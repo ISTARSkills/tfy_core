@@ -4,10 +4,10 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder;
+/*import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.Root;*/
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -366,7 +366,7 @@ public class TaskServices {
 		return task;
 	}
 	
-	public List<Task> getAllTaskFromItemIdAndItemType(Integer itemId, String itemType){
+	/*public List<Task> getAllTaskFromItemIdAndItemType(Integer itemId, String itemType){
 
 		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
 		Session session = baseHibernateDAO.getSession();
@@ -386,9 +386,46 @@ public class TaskServices {
 		List<Task> allTask = session.createQuery(criteria).getResultList();
 		
 		return allTask;
+	}*/
+	
+	@SuppressWarnings("unchecked")
+	public List<Task> getAllTaskFromItemIdAndItemType(Integer itemId, String itemType){
+
+		String sql = "from Task task where item_type= :itemType and item_id= :itemId";
+		
+		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
+		Session session = baseHibernateDAO.getSession();
+		
+		Query query = session.createQuery(sql);
+		query.setParameter("itemType",itemType);
+		query.setParameter("itemId",itemId);
+		
+		List<Task> allTask = query.list();
+		
+		return allTask;
 	}
 	
+	
+	@SuppressWarnings("unchecked")
 	public List<Task> getAllTaskFromItemAndActor(Integer itemId, String itemType, Integer actorId){
+
+		String sql = "from Task task where item_type= :itemType and item_id= :itemId and actor= :actorId";
+		
+		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
+		Session session = baseHibernateDAO.getSession();
+		
+		Query query = session.createQuery(sql);
+		query.setParameter("itemType",itemType);
+		query.setParameter("itemId",itemId);
+		query.setParameter("actorId",actorId);
+		
+		List<Task> allTask = query.list();
+		
+		return allTask;
+	}
+	
+	
+/*	public List<Task> getAllTaskFromItemAndActor(Integer itemId, String itemType, Integer actorId){
 
 		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
 		Session session = baseHibernateDAO.getSession();
@@ -409,8 +446,9 @@ public class TaskServices {
 		List<Task> allTask = session.createQuery(criteria).getResultList();
 		
 		return allTask;
-	}
+	}*/
 	
+	@SuppressWarnings("unchecked")
 	public List<Task> getAllSubTask(Task task){
 		
 		TaskDAO taskDAO = new TaskDAO();

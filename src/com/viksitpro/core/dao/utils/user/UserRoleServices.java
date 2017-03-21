@@ -1,15 +1,15 @@
 package com.viksitpro.core.dao.utils.user;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.criteria.CriteriaBuilder;
+/*import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.Root;*/
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -59,7 +59,7 @@ public class UserRoleServices {
 		}		
 	}
 	
-	public void revokeRoleFromUser(Integer istarUserId, Integer roleId)
+/*	public void revokeRoleFromUser(Integer istarUserId, Integer roleId)
 	{
 		IstarUserServices istarUserService = new IstarUserServices(); 
 		IstarUser istarUser = istarUserService.getIstarUser(istarUserId);
@@ -83,6 +83,25 @@ public class UserRoleServices {
 		criteria.where(builder.and(allPredicates.toArray(new Predicate[] {})));
 		
 		List<UserRole> allUserRoles = session.createQuery(criteria).getResultList();
+		
+		for(UserRole userRole : allUserRoles){
+			deleteUserRoleFromDAO(userRole);
+		}
+	}*/
+	
+	@SuppressWarnings("unchecked")
+	public void revokeRoleFromUser(Integer istarUserId, Integer roleId)
+	{		
+		String sql = "from UserRole where role= :roleId and istar_user= :istarUserId";
+		
+		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
+		Session session = baseHibernateDAO.getSession();
+
+		Query query = session.createQuery(sql);
+		query.setParameter("roleId",roleId);
+		query.setParameter("istarUserId",istarUserId);
+		
+		List<UserRole> allUserRoles = query.list();
 		
 		for(UserRole userRole : allUserRoles){
 			deleteUserRoleFromDAO(userRole);

@@ -4,11 +4,12 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder;
+/*import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.Root;*/
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -143,7 +144,7 @@ public class StageLogServices {
 		return stageLog;
 	}
 	
-	public List<StageLog> getStageLogOfTaskForStage(Task task, String stageName){
+/*	public List<StageLog> getStageLogOfTaskForStage(Task task, String stageName){
 		
 		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
 		Session session = baseHibernateDAO.getSession();
@@ -159,9 +160,26 @@ public class StageLogServices {
 		List<StageLog> allStageLog = session.createQuery(criteria).getResultList();
 		
 		return allStageLog;
+	}*/
+	
+	@SuppressWarnings("unchecked")
+	public List<StageLog> getStageLogOfTaskForStage(Task task, String stageName){
+		
+		String sql = "from StageLog where task= :task and stage_name= :stageName";
+		
+		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
+		Session session = baseHibernateDAO.getSession();
+
+		Query query = session.createQuery(sql);
+		query.setParameter("task",task);
+		query.setParameter("stageName",stageName);
+
+		List<StageLog> allStageLog = query.list();
+		
+		return allStageLog;
 	}
 	
-	public List<StageLog> getStageLogOfTaskForIstarUser(Task task, IstarUser istarUser){
+/*	public List<StageLog> getStageLogOfTaskForIstarUser(Task task, IstarUser istarUser){
 		
 		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
 		Session session = baseHibernateDAO.getSession();
@@ -175,6 +193,23 @@ public class StageLogServices {
 		criteria.where(builder.equal(fromStageLog.get("istarUser"), istarUser));
 
 		List<StageLog> allStageLog = session.createQuery(criteria).getResultList();
+		
+		return allStageLog;
+	}*/
+	
+	@SuppressWarnings("unchecked")
+	public List<StageLog> getStageLogOfTaskForIstarUser(Task task, IstarUser istarUser){
+		
+		String sql = "from StageLog where task= :task and istar_user= :istarUser";
+		
+		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
+		Session session = baseHibernateDAO.getSession();
+
+		Query query = session.createQuery(sql);
+		query.setParameter("task",task);
+		query.setParameter("istarUser",istarUser);
+
+		List<StageLog> allStageLog = query.list();
 		
 		return allStageLog;
 	}
