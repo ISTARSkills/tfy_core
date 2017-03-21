@@ -1,0 +1,21 @@
+#MyEclipse Hibernate Properties
+#Fri Mar 17 18:15:40 IST 2017
+genBasicCompId=true
+sessionFactoryName=com.viksitpro.core.dao.entities.utils.HibernateSessionFactory
+profile=
+daoSFId=
+jndiPath=
+detectM2M=true
+reStrategyClass=
+detectO2O=true
+springDaoFile=
+useJavaTypes=true
+keyGenerator=increment
+genVersionTag=true
+sessionFactoryId=
+basePersistenceClass=
+genAnnotations=true
+reSettingsFile=/istarcore/hibernate.reveng.xml
+configFile=/istarcore/src/hibernate.cfg.xml
+createConfigFile=true
+baseDaoClass=com.viksitpro.core.dao.entities.BaseHibernateDAO
