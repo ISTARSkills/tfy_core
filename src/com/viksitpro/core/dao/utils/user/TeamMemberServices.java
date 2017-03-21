@@ -5,33 +5,25 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.criteria.CriteriaBuilder;
+/*import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.Root;*/
 
-import org.hibernate.HibernateException;
+/*import org.hibernate.HibernateException;*/
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
+/*import org.hibernate.Transaction;*/
 
 import com.viksitpro.core.dao.entities.BaseHibernateDAO;
 import com.viksitpro.core.dao.entities.IstarUser;
 import com.viksitpro.core.dao.entities.Team;
-import com.viksitpro.core.dao.entities.TeamMember;
-import com.viksitpro.core.dao.entities.TeamMemberDAO;
+/*import com.viksitpro.core.dao.entities.TeamMember;
+import com.viksitpro.core.dao.entities.TeamMemberDAO;*/
 
 public class TeamMemberServices {
 
-	/**
-	 * The instance of TeamMember to be deleted corresponding to Input parameter
-	 * teamId istarUserId
-	 * 
-	 * @param teamId
-	 *            Integer value of Team Id
-	 * @param istarUserId
-	 *            Integer value of IstarUser Id
-	 */
-	public void deleteTeamMember(Integer teamId, Integer istarUserId) {
+/*	public void deleteTeamMember(Integer teamId, Integer istarUserId) {
 		IstarUserServices userService = new IstarUserServices();
 		IstarUser user = userService.getIstarUser(istarUserId);
 		Team team = new TeamServices().getTeam(teamId);
@@ -51,38 +43,30 @@ public class TeamMemberServices {
 			deleteTeamMemberFromDAO(member);
 		}
 	}
-
+*/
 	
 	
-	public void deleteTeamMembersByEmail(Integer teamId, List<String> allTeamMemberEmails){
+/*	public void deleteTeamMembersByEmail(Integer teamId, List<String> allTeamMemberEmails){
 		
 		TeamServices teamServices = new TeamServices();
 		Team team = teamServices.getTeam(teamId);
-		
+			t
 		IstarUserServices istarUserServices = new IstarUserServices();
 		
 		for(String email : allTeamMemberEmails){
 			IstarUser istarUser = istarUserServices.getIstarUserByEmail(email);
 			deleteTeamMember(team, istarUser);
 		}
-	}
+	}*/
 	
 	
-	public void deleteTeamMember(Team team, IstarUser istarUser){
+/*	public void deleteTeamMember(Team team, IstarUser istarUser){
 		
 		TeamMember teamMember = getTeamMember(team.getId(), istarUser.getId());	
 		deleteTeamMemberFromDAO(teamMember);
-	}
+	}*/
 	
-	/**
-	 * This method create TeamMember and returns TeamMember Object corresponding
-	 * to Input parameter teamId istarUserId
-	 * 
-	 * @param teamId
-	 * @param istarUserId
-	 * @return TeamMember Object
-	 */
-	public TeamMember createTeamMember(int teamId, int istarUserId) {
+/*	public TeamMember createTeamMember(int teamId, int istarUserId) {
 
 		TeamServices teamServices = new TeamServices();
 		Team team = teamServices.getTeam(teamId);
@@ -101,58 +85,36 @@ public class TeamMemberServices {
 		teamMember = saveTeamMemberToDAO(teamMember);
 
 		return teamMember;
-	}
+	}*/
 
-	/**
-	 * This method create List of TeamMembers and returns List of IstarUser
-	 * Objects of the team corresponding to Input parameter teamId List of
-	 * istarUserId
-	 * 
-	 * @param teamId
-	 * @param List
-	 *            of istarUserId
-	 * @return List of IstarUser Object
-	 */
 	public List<IstarUser> createTeamMember(int teamId, List<Integer> allIstarUserId) {
 
 		TeamServices teamServices = new TeamServices();
 		Team team = teamServices.getTeam(teamId);
 
-		List<IstarUser> allTeamMembers = new ArrayList<IstarUser>();
-
 		IstarUserServices istarUserServices = new IstarUserServices();
 
+		Set<IstarUser> allTeamMembersSet = team.getIstarUsers();
+		
 		for (Integer istarUserId : allIstarUserId) {
-			TeamMember teamMember = null;
 			if (checkIfTeamMemberAlreadyExists(teamId, istarUserId)) {
 				System.out.println("Creating New Team Member ");
-				teamMember = new TeamMember();
+
 				IstarUser istarUser = istarUserServices.getIstarUser(istarUserId);
-
-				teamMember.setIstarUser(istarUser);
-				teamMember.setTeam(team);
-
-				teamMember = saveTeamMemberToDAO(teamMember);
+				
+				allTeamMembersSet.add(istarUser);
 			} else {
-				System.out.println("old team Member");
-				teamMember = getTeamMember(teamId, istarUserId);
+				System.out.println("TeamMember already exists");
 			}
-			if(teamMember!=null){
-			allTeamMembers.add(teamMember.getIstarUser());
-			}
+			
+			team.setIstarUsers(allTeamMembersSet);
+			team = teamServices.updateTeamToDAO(team);
 		}
+		
+		List<IstarUser> allTeamMembers = new ArrayList<IstarUser>(team.getIstarUsers());
 		return allTeamMembers;
 	}
 
-	/**
-	 * This method create List of TeamMembers and returns List of TeamMember
-	 * Objects corresponding to Input parameter teamId List of istarUserId
-	 * 
-	 * @param teamId
-	 * @param List
-	 *            of istarUserId
-	 * @return List of IstarUser Object
-	 */
 	public List<IstarUser> createTeamMemberByEmail(int teamId, List<String> allEmails) {
 
 		IstarUserServices istarUserServices = new IstarUserServices();
@@ -173,21 +135,14 @@ public class TeamMemberServices {
 		return allIstarUserOfTeam;
 	}
 
-	/**
-	 * This method returns TeamMember Object corresponding to Input parameter
-	 * teamMemberId
-	 * 
-	 * @param teamMemberId
-	 * @return TeamMember Object
-	 */
-	public TeamMember getTeamMember(int teamMemberId) {
+/*	public TeamMember getTeamMember(int teamMemberId) {
 		TeamMemberDAO teamMemberDAO = new TeamMemberDAO();
 		TeamMember teamMember = teamMemberDAO.findById(teamMemberId);
 
 		return teamMember;
-	}
+	}*/
 
-	public TeamMember getTeamMember(int teamId, int istarUserId) {
+/*	public TeamMember getTeamMember(int teamId, int istarUserId) {
 
 		TeamMember teamMember = null;
 
@@ -219,42 +174,30 @@ public class TeamMemberServices {
 			teamMember = allTeamMember.get(0);
 		}
 		return teamMember;
-	}
+	}*/
 
+	@SuppressWarnings("unchecked")
 	public boolean checkIfTeamMemberAlreadyExists(int teamId, int istarUserId) {
 
-		boolean isNew = false;
-
-		IstarUserServices istarUserServices = new IstarUserServices();
-		IstarUser istarUser = istarUserServices.getIstarUser(istarUserId);
-
-		TeamServices teamServices = new TeamServices();
-		Team team = teamServices.getTeam(teamId);
+		boolean isOld = true;
 
 		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
 		Session session = baseHibernateDAO.getSession();
 
-		CriteriaBuilder builder = session.getCriteriaBuilder();
-
-		CriteriaQuery<TeamMember> criteria = builder.createQuery(TeamMember.class);
-		Root<TeamMember> fromTeamMember = criteria.from(TeamMember.class);
-
-		ArrayList<Predicate> allPredicates = new ArrayList<Predicate>();
-
-		allPredicates.add(builder.equal(fromTeamMember.get("team"), team));
-		allPredicates.add(builder.equal(fromTeamMember.get("istarUser"), istarUser));
-
-		criteria.where(builder.and(allPredicates.toArray(new Predicate[] {})));
-
-		List<TeamMember> allTeamMember = session.createQuery(criteria).getResultList();
+		String sql = "select user_id from team_member where team_id= :teamId and user_id= :istarUserId";
+		
+		SQLQuery query = session.createSQLQuery(sql);
+		query.setParameter("teamId", teamId);
+		query.setParameter("istarUserId", istarUserId);
+		
+		List<Integer> allTeamMember = query.list();
 
 		System.out.println(allTeamMember.size());
 		if (allTeamMember.size() <= 0) {
-			isNew = true;
-		}
-		
-		System.out.println("checkIfTeamMemberAlreadyExists:" + isNew);
-		return isNew;
+			isOld = false;
+		}		
+		System.out.println("checkIfTeamMemberAlreadyExists:" + isOld);
+		return isOld;
 	}
 	
 	public void removeAllExistingTeamMembers(int teamId){
@@ -262,19 +205,14 @@ public class TeamMemberServices {
 		TeamServices teamServices = new TeamServices();
 		Team team = teamServices.getTeam(teamId);
 		
-		Set<TeamMember> allTeamMembers = team.getTeamMembers();
+		Set<IstarUser> allTeamMembers = new HashSet<IstarUser>();
 		
-		for(TeamMember teamMember : allTeamMembers){
-			deleteTeamMemberFromDAO(teamMember);
-		}		
+		team.setIstarUsers(allTeamMembers);
+		
+		teamServices.updateTeamToDAO(team);
 	}
 
-	/**
-	 * 
-	 * @param teamMember
-	 * @return
-	 */
-	public TeamMember saveTeamMemberToDAO(TeamMember teamMember) {
+/*	public TeamMember saveTeamMemberToDAO(TeamMember teamMember) {
 
 		TeamMemberDAO teamMemberDAO = new TeamMemberDAO();
 
@@ -293,14 +231,9 @@ public class TeamMemberServices {
 			teamMemberSession.close();
 		}
 		return teamMember;
-	}
+	}*/
 
-	/**
-	 * 
-	 * @param teamMember
-	 * @return
-	 */
-	public TeamMember updateTeamMemberToDAO(TeamMember teamMember) {
+/*	public TeamMember updateTeamMemberToDAO(TeamMember teamMember) {
 
 		TeamMemberDAO teamMemberDAO = new TeamMemberDAO();
 
@@ -319,14 +252,9 @@ public class TeamMemberServices {
 			teamMemberSession.close();
 		}
 		return teamMember;
-	}
+	}*/
 
-	/**
-	 * 
-	 * @param teamMember
-	 *            instance of TeamMember to be deleted
-	 */
-	public void deleteTeamMemberFromDAO(TeamMember teamMember) {
+/*	public void deleteTeamMemberFromDAO(TeamMember teamMember) {
 
 		TeamMemberDAO teamMemberDAO = new TeamMemberDAO();
 
@@ -345,5 +273,5 @@ public class TeamMemberServices {
 			teamMemberSession.close();
 		}
 
-	}
+	}*/
 }
