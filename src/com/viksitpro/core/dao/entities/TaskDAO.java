@@ -35,6 +35,7 @@ public class TaskDAO extends BaseHibernateDAO {
 	public static final String ITEM_TYPE = "itemType";
 	public static final String IS_TIMED_TASK = "isTimedTask";
 	public static final String FOLLOW_UP_DURATION_IN_DAYS = "followUpDurationInDays";
+	public static final String ISTAR_USER_BY_ACTOR = "istarUserByActor";
 
 	public void save(Task transientInstance) {
 		log.debug("saving Task instance");
@@ -141,6 +142,10 @@ public class TaskDAO extends BaseHibernateDAO {
 
 	public List<Task> findByFollowUpDurationInDays(Object followUpDurationInDays) {
 		return findByProperty(FOLLOW_UP_DURATION_IN_DAYS, followUpDurationInDays);
+	}
+	
+	public List<Task> findByActor(Object istarUserByActor) {
+		return findByProperty(ISTAR_USER_BY_ACTOR, istarUserByActor);
 	}
 
 	public List findAll() {
