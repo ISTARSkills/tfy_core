@@ -63,7 +63,6 @@ insert into public.istar_user(id, email, password, mobile, auth_token, created_a
 insert into public.istar_user(id, email, password, mobile, auth_token, created_at) values (5123,'principal_dn@istarindia.com','test123', 	0,'jh',now());
 insert into public.istar_user(id, email, password, mobile, auth_token, created_at) values (3668,'principal_somlalit@istarindia.com','test123', 	0,'jh',now());
 insert into public.istar_user(id, email, password, mobile, auth_token, created_at) values (5117,'principal_trk@istarindia.com','test123', 	0,'jh',now());
-insert into public.istar_user(id, email, password, mobile, auth_token, created_at) values (1,'tpo@istar.com','test123', 	0, NULL ,now());
 insert into public.istar_user(id, email, password, mobile, auth_token, created_at) values (3437,'geethabhagya12@gmail.com','test123', 	999999999, NULL ,now());
 insert into public.istar_user(id, email, password, mobile, auth_token, created_at) values (4816,'chandanachandrashekhar@gmail.com','test123', 	9535459008, NULL ,now());
 insert into public.istar_user(id, email, password, mobile, auth_token, created_at) values (5027,'yuktashriwas@gmail.com','test123', 	7420957223, NULL ,now());
