@@ -1,4 +1,3 @@
---Adding assess dtaa
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10316, 'STATIC', now(), 5,0, 20, '09_Assessment_Bringing in the right people', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10331, 'STATIC', now(), 100,0, 60, 'Assessment test', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10311, 'STATIC', now(), 20,0, 60, 'Pre-Assessment', true, 'JOBS');
@@ -21,7 +20,7 @@ INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, as
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10201, 'STATIC', now(), 5,0, 20, 'Assessment_15_UI_HTML3', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10202, 'STATIC', now(), 5,0, 20, 'Assessment_16_UI_HTML4', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10203, 'STATIC', now(), 5,0, 20, 'mfp_assessment11', false, 'JOBS');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10204, 'STATIC', now(), 5,0, 20, 'LESSON-0', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10205, 'STATIC', now(), 5,0, 20, 'Assessment_17_UI_HTML5', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10206, 'STATIC', now(), 5,0, 20, 'Assessment_20_UI_CSS3', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10207, 'STATIC', now(), 3,0, 20, 'Pre Assessment', false, 'JOBS');
@@ -70,80 +69,80 @@ INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, as
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10253, 'STATIC', now(), 5,0, 20, '08_Assessment_Classification', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10254, 'STATIC', now(), 5,0, 20, '09_Assessment_Golden Rules', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10255, 'STATIC', now(), 5,0, 20, '10_Assessment_Documentation', false, 'JOBS');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10349, 'STATIC', now(), 100,0, 15, 'Assessment-Matrices in R', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10364, 'STATIC', now(), 5,0, 20, '06_Assessment_Application for PAN', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10355, 'STATIC', now(), 3,0, 10, 'Simple & Compound interest_pre assessment', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10294, 'STATIC', now(), 5,0, 15, 'Direction_post assessment', true, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10371, 'STATIC', now(), 10,0, 30, 'Health Insurance Products Assessment', false, 'NULL');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10389, 'STATIC', now(), 100,0, 10, 'Assessment_Search and Display Marketing', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10372, 'STATIC', now(), 3,0, 30, 'Types of Customers', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10327, 'STATIC', now(), 3,0, 10, 'Series completion_pre assessment', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10381, 'STATIC', now(), 100,0, 30, 'Final Assessment', false, 'NULL');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10390, 'STATIC', now(), 100,0, 10, 'Assessment_Social Media Marketing', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10293, 'STATIC', now(), 100,0, 42, 'assessment assessment', false, 'JOBS');
-
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10401, 'STATIC', now(), 100,0, 60, 'Assessment_Methods', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10412, 'STATIC', now(), 100,0, 60, 'Assessment_variables', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10256, 'STATIC', now(), 30,0, 20, '01_Mid term', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10257, 'STATIC', now(), 30,0, 20, '01_Mid term_Tally II', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10258, 'STATIC', now(), 5,0, 15, '07 Depreciation assessment', false, 'JOBS');
-
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10421, 'STATIC', now(), 100,0, 10, 'Assessment_Demand Forecasting', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10430, 'STATIC', now(), 100,0, 10, 'Assessment_Introduction to Advertising', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10439, 'STATIC', now(), 5,0, 5, '20_Precedents & Dependents_Assessment', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10341, 'STATIC', now(), 20,0, 30, 'Combined assessment ', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10304, 'STATIC', now(), 5,0, 15, 'Analogy_post assessment', true, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10332, 'STATIC', now(), 3,0, 10, 'Analogy_pre assessment', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10448, 'STATIC', now(), 100,0, 15, 'Assessment_Inflation and interest rates', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10296, 'STATIC', now(), 5,0, 20, '12_Assessment_Company creation', false, 'JOBS');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10350, 'STATIC', now(), 100,0, 15, 'Assessment-Matrices with R-2', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10312, 'STATIC', now(), 5,0, 15, 'Set theory_Post assessment', true, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10121, 'STATIC', now(), 10,0, 20, '04&05_FnA_Assessment', false, 'JOBS');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10356, 'STATIC', now(), 100,0, 10, 'Average_pre assessment', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10317, 'STATIC', now(), 5,0, 15, 'Average_post assessment', false, 'NULL');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10365, 'STATIC', now(), 100,0, 5, 'Product Demo_Assessment 4.1', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10455, 'STATIC', now(), 15,0, 15, 'English', false, 'NULL');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10471, 'STATIC', now(), 100,0, 15, 'Assessment_Object and methods ', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10479, 'STATIC', now(), 50,0, 30, 'Midterm assessments_Tally1.1', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10463, 'STATIC', now(), 75,0, 90, 'Banking Final Assessment ', false, 'NULL');
-
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10487, 'STATIC', now(), 100,0, 8, 'Assessment_Javascript_DOM', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10495, 'STATIC', now(), 100,0, 8, 'Assessment_Cost benefit analysis', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10318, 'STATIC', now(), 100,0, 45, 'Midterm Assessment 1-15', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10328, 'STATIC', now(), 3,0, 10, 'Calendar and Clock_ pre assessment', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10333, 'STATIC', now(), 10,0, 20, '03_Assessment_Intermediaries in Insurance', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10373, 'STATIC', now(), 4,0, 30, 'Investor Goals', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10301, 'STATIC', now(), 5,0, 15, 'Pattern recognition_post assessment', true, 'JOBS');
-
-
-
-
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10382, 'STATIC', now(), 100,0, 60, 'End term assessment', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10391, 'STATIC', now(), 100,0, 10, 'Assessment_Video Marketing', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10402, 'STATIC', now(), 100,0, 60, 'Assessment_Data types', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10357, 'STATIC', now(), 25,0, 10, 'MAWS Test', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10351, 'STATIC', now(), 100,0, 4, 'Product Demo Assessment 2', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10366, 'STATIC', now(), 5,0, 20, '07_Assessment_Need for TDS', false, 'NULL');
-
-
-
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10413, 'STATIC', now(), 100,0, 10, 'Assessment_Wholesale Price Index', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10422, 'STATIC', now(), 100,0, 10, 'Assessment_Tax Rate Setting', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10431, 'STATIC', now(), 100,0, 10, 'Assessment_Monopoly', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10440, 'STATIC', now(), 100,0, 5, 'What if analysis_Assessments', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10446, 'STATIC', now(), 100,0, 15, 'Assessment_Wholesale Price Index', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10456, 'STATIC', now(), 15,0, 15, 'Analytical reasoning', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10464, 'STATIC', now(), 5,0, 20, '14_Assessment_Ledgers', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10472, 'STATIC', now(), 5,0, 15, 'Assessment_exception handling ', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10480, 'STATIC', now(), 25,0, 60, 'Mid-term assessment 03', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10488, 'STATIC', now(), 20,0, 30, 'Midterm assessments_DT Theory', false, 'NULL');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10496, 'STATIC', now(), 100,0, 30, 'Final term assessment', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10370, 'STATIC', now(), 100,0, 30, 'Types of pitch', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10369, 'STATIC', now(), 100,0, 30, 'Investor Goals', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10319, 'STATIC', now(), 100,0, 40, '01Reading Comprehension_Post Assessment', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10329, 'STATIC', now(), 5,0, 20, '20_NAV_1', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10334, 'STATIC', now(), 10,0, 60, '02_Assessment_health insurance players', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10367, 'STATIC', now(), 100,0, 30, 'Retail Banking Products Assessment', false, 'NULL');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10342, 'STATIC', now(), 100,0, 60, '11_Assessment_Digital Research', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10352, 'STATIC', now(), 5,0, 60, '01_Assessment_Introduction to TDS', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10358, 'STATIC', now(), 25,0, 60, 'Midterm assessment GD/PI', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10374, 'STATIC', now(), 3,0, 30, 'Types of Pitch', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10383, 'STATIC', now(), 100,0, 60, 'Final Assessment GD/PI', false, 'NULL');
-
-
-
-
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10392, 'STATIC', now(), 100,0, 60, '02_Final_Assessment', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10403, 'STATIC', now(), 100,0, 60, 'Assessment_Front end and back end', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10414, 'STATIC', now(), 100,0, 10, 'Assessment_Consumer Price Index', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10423, 'STATIC', now(), 100,0, 60, 'Assessment_CSS3 - Fonts and Column ', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10432, 'STATIC', now(), 100,0, 10, 'Assessment_Oligopoly', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10441, 'STATIC', now(), 5,0, 20, 'WM_Assessment_Session4', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10449, 'STATIC', now(), 5,0, 20, 'wm_Assessment_session 9', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10457, 'STATIC', now(), 30,0, 30, 'Accounts and tax', false, 'NULL');
@@ -156,17 +155,17 @@ INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, as
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10265, 'STATIC', now(), 5,0, 15, 'Alligation_post assessment', true, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10375, 'STATIC', now(), 5,0, 20, '08_Assessment_Need for TDS 1', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10380, 'STATIC', now(), 100,0, 30, 'Final assessment FNA', false, '');
-
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10393, 'STATIC', now(), 100,0, 10, 'Assessment_Demand Case Study', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10404, 'STATIC', now(), 100,0, 60, 'Assessment_Eclipse and GIT', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10272, 'STATIC', now(), 7,0, 10, 'Assessment of Introduction to Analytics', true, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10280, 'STATIC', now(), 25,0, 60, 'Mindtree1', true, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10281, 'STATIC', now(), 40,0, 60, 'HP aptitude Test', true, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10263, 'STATIC', now(), 30,0, 20, '01_Mid term- Excel', false, 'JOBS');
-
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10415, 'STATIC', now(), 100,0, 60, 'Assessment_Modifiers', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10424, 'STATIC', now(), 100,0, 60, 'Assessment_CSS3 - Background and border', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10271, 'STATIC', now(), 25,0, 30, 'Pre -assessment DDUGKY', false, 'JOBS');
-
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10433, 'STATIC', now(), 100,0, 10, 'Assessment_Marginal cost and shutdown decisions', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10442, 'STATIC', now(), 100,0, 20, 'WM _Assessment_session5', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10275, 'STATIC', now(), 5,0, 20, '11_Assessment', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10278, 'STATIC', now(), 50,0, 30, 'Mid term assessment', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10450, 'STATIC', now(), 30,0, 30, 'UI Final Assessment', false, 'NULL');
@@ -182,7 +181,7 @@ INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, as
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10466, 'STATIC', now(), 1,0, 2, 'Assessment_ForexDemo1', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10279, 'STATIC', now(), 3,0, 10, 'Logical Puzzles_preassessment', true, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10474, 'STATIC', now(), 30,0, 30, 'MS_Excel_MergedAssessment_6sessions', false, 'NULL');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10482, 'STATIC', now(), 100,0, 10, '16_Assessment_CAPM', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10330, 'STATIC', now(), 30,0, 30, 'UI Midterm Assessment', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10320, 'STATIC', now(), 100,0, 60, '01_Assessment_Introduction', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10490, 'STATIC', now(), 30,0, 30, 'Final assessment_HR Comp and Ben', false, 'NULL');
@@ -200,8 +199,8 @@ INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, as
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10321, 'STATIC', now(), 3,0, 10, 'Ratio _Pre assessment', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10314, 'STATIC', now(), 100,0, 22, 'sss22222222222222', true, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10376, 'STATIC', now(), 5,0, 20, '09_Assessment_Introduction to TDS', false, 'NULL');
-
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10384, 'STATIC', now(), 100,0, 10, 'Assessment_Introduction to Digital Marketing', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10394, 'STATIC', now(), 100,0, 10, 'Assessment_Demand supply', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10005, 'STATIC', now(), 15,0, 60, 'Trainer -  Sales and Marketing', true, 'TRAINER_ASSESSMENT');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10007, 'STATIC', now(), 14,0, 60, 'Trainer - HR', true, 'TRAINER_ASSESSMENT');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10008, 'STATIC', now(), 15,0, 60, 'Trainer - Banking', true, 'TRAINER_ASSESSMENT');
@@ -213,17 +212,17 @@ INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, as
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10015, 'STATIC', now(), 15,0, 60, 'Trainer - Direct Tax', true, 'TRAINER_ASSESSMENT');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10038, 'STATIC', now(), 15,0, 30, 'Trainer Assessment- Economics', true, 'TRAINER_ASSESSMENT');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10306, 'STATIC', now(), 3,0, 10, 'Syllogism_pre assessment', true, 'TRAINER_ASSESSMENT');
-
-
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10405, 'STATIC', now(), 100,0, 10, 'Assessment_Online Marketing', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10407, 'STATIC', now(), 100,0, 10, 'Assessment_Online Advertising ', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10408, 'STATIC', now(), 100,0, 60, 'Assessment_HTML5 Semantics', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10158, 'STATIC', now(), 45,0, 60, 'Mu Sigma', false, 'JOBS');
-
-
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10410, 'STATIC', now(), 100,0, 60, 'Assessment_HTML5 Multimedia', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10416, 'STATIC', now(), 100,0, 60, 'Assessment_Operators', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10425, 'STATIC', now(), 100,0, 60, 'Assessment_CSS3 - Animations', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10434, 'STATIC', now(), 5,0, 20, 'Pivot Tables_Assessment', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10443, 'STATIC', now(), 5,0, 10, 'wm_assessment_session_6', false, 'NULL');
-
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10451, 'STATIC', now(), 100,0, 10, 'Assessment_conditional and looping', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10459, 'STATIC', now(), 100,0, 15, 'Mid term assessment', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10004, 'STATIC', now(), 15,0, 60, 'Trainer - Financial markets', true, 'TRAINER_ASSESSMENT');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10467, 'STATIC', now(), 1,0, 2, 'Assessment_ForexDemo2', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10344, 'STATIC', now(), 5,0, 10, 'Retail banking assessment ', false, 'NULL');
@@ -240,15 +239,15 @@ INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, as
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10023, 'STATIC', now(), 5,0, 20, '21_NAV_2', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10006, 'STATIC', now(), 16,0, 60, 'Trainer - Maths', false, 'TRAINER_ASSESSMENT');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10002, 'STATIC', now(), 30,0, 60, 'Trainer - Tally', false, 'TRAINER_ASSESSMENT');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10385, 'STATIC', now(), 100,0, 10, 'Assessment_Exploring Digital Marketing', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10395, 'STATIC', now(), 100,0, 60, 'Assessment_Introduction to JAVA', false, 'NULL');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10406, 'STATIC', now(), 100,0, 60, 'Assessment_HTML5 Introduction', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10195, 'STATIC', now(), 45,0, 60, 'Benchmark Test', true, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10145, 'STATIC', now(), 45,0, 60, 'Infosys1', false, 'JOBS');
-
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10417, 'STATIC', now(), 100,0, 10, 'Assessment_Inflation and Interest rates', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10426, 'STATIC', now(), 100,0, 60, 'Assessment_Javascript -Introduction', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10061, 'STATIC', now(), 5,0, 20, '03_Assessment_Structure of Bare Act', false, 'JOBS');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10361, 'STATIC', now(), 100,0, 60, 'Time and distance_pre assessment', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10345, 'STATIC', now(), 100,0, 3, 'Product Demo Assessment 1', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10435, 'STATIC', now(), 5,0, 20, 'Page Layout_Assessment', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10437, 'STATIC', now(), 5,0, 5, '18_Hyperlink_Assessment', false, 'NULL');
@@ -287,31 +286,31 @@ INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, as
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10308, 'STATIC', now(), 5,0, 15, 'Data sufficiency_ post assessment', true, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10323, 'STATIC', now(), 100,0, 10, 'Sentence Completion_Post Assessment', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10337, 'STATIC', now(), 100,0, 30, 'Merged Assessment', false, 'NULL');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10346, 'STATIC', now(), 100,0, 30, 'Assessment-Important Distributions1', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10062, 'STATIC', now(), 5,0, 20, '04_Assessment_Rule & IT Documents', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10315, 'STATIC', now(), 5,0, 15, 'Progression Post assessment', true, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10378, 'STATIC', now(), 5,0, 20, '29_Assessment_Taxation of MF', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10362, 'STATIC', now(), 5,0, 20, 'Time and distance_ post assessment', false, 'NULL');
-
-
-
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10386, 'STATIC', now(), 100,0, 10, 'Assessment_Website creation', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10396, 'STATIC', now(), 100,0, 10, 'Assessment_E-mail Marketing', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10397, 'STATIC', now(), 100,0, 10, 'Assessment_Content Marketing', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10409, 'STATIC', now(), 100,0, 10, 'Assessment_Facebook Advertising', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10300, 'STATIC', now(), 5,0, 15, 'Syllogism_post assessment', true, 'JOBS');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10427, 'STATIC', now(), 100,0, 60, 'Assessment_Javascript - Datatypes and objects', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10040, 'STATIC', now(), 10,0, 10, 'Assessment - Direct tax VS Indirect tax', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10041, 'STATIC', now(), 10,0, 30, 'Assessment - Concepts in DT', false, 'JOBS');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10436, 'STATIC', now(), 100,0, 60, 'Final assessment', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10445, 'STATIC', now(), 100,0, 15, 'Assessment_Demand elasticity', false, 'NULL');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10453, 'STATIC', now(), 100,0, 2, 'Testing_dubak', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10461, 'STATIC', now(), 20,0, 20, 'Eligibility Test - Banking ', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10325, 'STATIC', now(), 5,0, 20, '13_Assessment_Groups', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10469, 'STATIC', now(), 5,0, 15, 'Assessment_inheritance', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10477, 'STATIC', now(), 900,0, 30, 'Merged Assessment', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10485, 'STATIC', now(), 5,0, 8, 'Assessment_Javascript_Function', false, 'NULL');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10493, 'STATIC', now(), 100,0, 8, 'Assessment_Beta Analysis', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10379, 'STATIC', now(), 5,0, 20, '30_Assessment_Tax planning in MF', false, 'NULL');
-
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10387, 'STATIC', now(), 100,0, 10, 'Assessment_Foundation of Analytics', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10347, 'STATIC', now(), 100,0, 15, 'Assessment-Introduction to R', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10042, 'STATIC', now(), 5,0, 30, 'Assessment - Residential status', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10043, 'STATIC', now(), 5,0, 30, 'Assessment - Income from salary', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10044, 'STATIC', now(), 5,0, 30, 'Assessment - Computation of salary', false, 'JOBS');
@@ -330,8 +329,8 @@ INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, as
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10058, 'STATIC', now(), 5,0, 30, 'Assessment Questions_S05', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10059, 'STATIC', now(), 3,0, 30, 'Assessment Questions_S06', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10060, 'STATIC', now(), 3,0, 30, 'Assessment Questions_S07', false, 'JOBS');
-
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10398, 'STATIC', now(), 100,0, 10, 'Assessment_Mobile Marketing', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10411, 'STATIC', now(), 100,0, 10, 'Assessment_Inflation', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10066, 'STATIC', now(), 99,0, 60, 'Assessment - MFP - Identification of risk', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10067, 'STATIC', now(), 5,0, 60, 'mfp_assessment_risk_uncertainity', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10069, 'STATIC', now(), 5,0, 60, 'Assessment - Assessing risk', false, 'JOBS');
@@ -377,7 +376,7 @@ INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, as
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10116, 'STATIC', now(), 5,0, 60, '02_FnA_Assessment', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10117, 'STATIC', now(), 5,0, 60, '03_FnA_Assessment', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10120, 'STATIC', now(), 5,0, 60, '06_FnA_Assessment on expenses', false, 'JOBS');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10428, 'STATIC', now(), 100,0, 60, 'Assessment_Javascript - Statements', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10122, 'STATIC', now(), 5,0, 60, 'Assessment- Barriers to communication', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10123, 'STATIC', now(), 5,0, 60, 'Assessment- Oral communication', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10124, 'STATIC', now(), 5,0, 60, '05_Assessment_Sort&Filter', false, 'JOBS');
@@ -386,17 +385,17 @@ INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, as
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10064, 'STATIC', now(), 5,0, 60, 'Assessment - Intro to IT website', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10065, 'STATIC', now(), 5,0, 60, 'Assessment - Intro to IT website1', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10154, 'STATIC', now(), 45,0, 60, 'Igate aptitude test ', false, 'JOBS');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10388, 'STATIC', now(), 100,0, 10, 'Assessment_Search engine optimisation', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10155, 'STATIC', now(), 45,0, 60, 'Oracle aptitude test', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10146, 'STATIC', now(), 45,0, 60, 'IBM test 1', false, 'JOBS');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10348, 'STATIC', now(), 100,0, 15, 'Assessment-Important Distributions in R', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10063, 'STATIC', now(), 5,0, 60, 'Assessment - PAN', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10309, 'STATIC', now(), 5,0, 15, 'Ratio _Post assessment', true, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10310, 'STATIC', now(), 5,0, 15, 'Simple  and compound Interest Post assessment', true, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10339, 'STATIC', now(), 100,0, 30, 'Student Combined Assessment', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10143, 'STATIC', now(), 5,0, 60, '12_Assessment_Digital Research', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10148, 'STATIC', now(), 45,0, 60, 'Tech Mahindra Aptitude test', false, 'JOBS');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10363, 'STATIC', now(), 100,0, 120, 'Normal ', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10150, 'STATIC', now(), 45,0, 45, 'Cognizant test paper', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10161, 'STATIC', now(), 45,0, 60, 'Accenture Aptitude test', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10160, 'STATIC', now(), 45,0, 60, 'TCS Aptitude test', true, 'JOBS');
@@ -404,12 +403,12 @@ INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, as
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10157, 'STATIC', now(), 45,0, 60, 'Mindtree aptitude test ', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10302, 'STATIC', now(), 5,0, 15, 'Calendar and clock _ post assessment ', true, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10238, 'STATIC', now(), 8,0, 10, 'Pre assessment 1', false, 'JOBS');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10399, 'STATIC', now(), 100,0, 60, 'Assessment_Java Environment', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10241, 'STATIC', now(), 10,0, 5, 'Pre assessment 2', false, 'JOBS');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10400, 'STATIC', now(), 100,0, 60, 'Assessment_Objects and Classes', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10234, 'STATIC', now(), 5,0, 20, 'mfp_assessment24', false, 'JOBS');
-
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10420, 'STATIC', now(), 100,0, 60, 'Assessment_CSS3-Introduction', true, 'NULL');
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10429, 'STATIC', now(), 100,0, 10, 'Assessment_Twitter Advertising', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10125, 'STATIC', now(), 5,0, 60, 'Assessment- Written Communication 1', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10126, 'STATIC', now(), 5,0, 20, '06_Assessment_Written communication 2', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10127, 'STATIC', now(), 5,0, 60, 'Assessment- Nonverbal communication', false, 'JOBS');
@@ -435,9 +434,9 @@ INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, as
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10236, 'STATIC', now(), 5,0, 15, 'Post Assessment_seating arrangement', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10454, 'STATIC', now(), 1,0, 40, 'new assessment', false, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10462, 'STATIC', now(), 93,0, 30, 'Merged Assessment', false, 'NULL');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10478, 'STATIC', now(), 100,0, 60, 'Final Assessment_Digital Marketing', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10486, 'STATIC', now(), 5,0, 8, 'Assessment_Javascript_EventHandling', false, 'NULL');
-
+INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10494, 'STATIC', now(), 100,0, 8, 'Assessment_Viability gap funding', true, 'NULL');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10156, 'STATIC', now(), 45,0, 60, 'Capgemini Aptitude test', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10159, 'STATIC', now(), 45,0, 60, 'Mphasis', false, 'JOBS');
 INSERT INTO assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category) VALUES (10163, 'STATIC', now(), 45,0, 60, 'SAP Aptitude test', false, 'JOBS');
