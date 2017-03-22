@@ -3737,6 +3737,8 @@ INSERT INTO module (id, module_name, order_id, is_deleted) VALUES (209, 'Measure
 INSERT INTO module_course (module_id, course_id) VALUES (209, 20);
 INSERT INTO cmsession (id, title, description, order_id, created_at, is_deleted) VALUES (838, 'Measures of dispersion in R', 'Measures of dispersion in R', 1, 'now', 'f');
 INSERT INTO cmsession_module (cmsession_id, module_id) VALUES (838, 209);
+INSERT INTO lesson (id, type, duration, tags, title, subject, order_id, created_at, is_deleted) VALUES (5036,'PRESENTATION', 60, '', '06_Measures of dispersion in R', 'none', 1, 'now','f');
+INSERT INTO lesson_cmsession (lesson_id, cmsession_id) VALUES (5036, 838);
 INSERT INTO lesson (id, type, duration, tags, title, subject, order_id, created_at, is_deleted) VALUES (5582,'PRESENTATION', 20, 'Measures of Dispersion in R', 'Measures of Dispersion in R', 'NONE', 2, 'now','f');
 INSERT INTO lesson_cmsession (lesson_id, cmsession_id) VALUES (5582, 838);
 INSERT INTO module (id, module_name, order_id, is_deleted) VALUES (210, 'Probability distributions', 7, 'f');
