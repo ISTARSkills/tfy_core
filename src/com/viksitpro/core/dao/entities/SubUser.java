@@ -59,7 +59,7 @@ public class SubUser implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "istar_user")
 
 	public IstarUser getIstarUserByIstarUser() {
@@ -70,7 +70,7 @@ public class SubUser implements java.io.Serializable {
 		this.istarUserByIstarUser = istarUserByIstarUser;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "sub_istar_user")
 
 	public IstarUser getIstarUserBySubIstarUser() {
