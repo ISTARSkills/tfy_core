@@ -69,7 +69,6 @@ public class TaskServices {
 		
 		IstarUser istarUserByActor = null;
 		if(istarUserByAssigneeMember!=null){
-			System.out.println("istarUserByAssigneeMember is not null" + istarUserByAssigneeMember.getEmail());
 			istarUserByActor = istarUserByAssigneeMember;
 		}else{
 			istarUserByActor = istarUserByOwner;
@@ -135,7 +134,6 @@ public class TaskServices {
 		
 		IstarUser istarUserByActor = null;
 		if(istarUserByAssigneeMember!=null){
-			System.out.println("istarUserByAssigneeMember is not null" + istarUserByAssigneeMember.getEmail());
 			istarUserByActor = istarUserByAssigneeMember;
 		}else{
 			istarUserByActor = istarUserByOwner;

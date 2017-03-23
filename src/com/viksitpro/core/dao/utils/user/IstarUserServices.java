@@ -241,7 +241,12 @@ public class IstarUserServices {
 
 	public IstarUser createIstarUser(String email, String password, Long mobile) {
 		
-		IstarUser istarUser = new IstarUser();
+		IstarUser istarUser;
+		
+		istarUser = getIstarUserByEmail(email);
+		
+		if(istarUser==null){
+			istarUser = new IstarUser();
 
 		java.util.Date date = new java.util.Date();
 		Timestamp current = new Timestamp(date.getTime());
@@ -252,7 +257,9 @@ public class IstarUserServices {
 		istarUser.setCreatedAt(current);
 
 		istarUser = saveIstarUserToDAO(istarUser);
-
+		}else{
+			System.out.println("User alread exists!");
+		}
 		return istarUser;
 	}
 
