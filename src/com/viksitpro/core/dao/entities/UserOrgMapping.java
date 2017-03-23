@@ -52,7 +52,7 @@ public class UserOrgMapping implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "organization_id", nullable = false)
 
 	public Organization getOrganization() {
@@ -63,7 +63,7 @@ public class UserOrgMapping implements java.io.Serializable {
 		this.organization = organization;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id", nullable = false)
 
 	public IstarUser getIstarUser() {

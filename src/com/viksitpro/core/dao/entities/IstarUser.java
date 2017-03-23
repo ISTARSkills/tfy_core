@@ -245,7 +245,7 @@ public class IstarUser implements java.io.Serializable {
 		this.recruiterJobTaskCollegeMappings = recruiterJobTaskCollegeMappings;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "istarUser")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "istarUser")
 
 	public Set<UserOrgMapping> getUserOrgMappings() {
 		return this.userOrgMappings;

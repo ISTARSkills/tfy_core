@@ -12,8 +12,8 @@ public class JobProfilePOJO {
 	private String jobCategory;
 	private String jobPositionType;
 	private String jobExperienceLevel;
-	private ArrayList<String> graduationYears;
-	private ArrayList<String> skills;
+	private ArrayList<String> graduationYears = new ArrayList<String>();
+	private ArrayList<String> skills = new ArrayList<String>();
 
 	public JobProfilePOJO(){
 		

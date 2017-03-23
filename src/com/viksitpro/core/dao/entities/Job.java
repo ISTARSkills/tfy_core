@@ -126,7 +126,7 @@ public class Job implements java.io.Serializable {
 		this.istarUser = istarUser;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "organization")
 
 	public Organization getOrganization() {
