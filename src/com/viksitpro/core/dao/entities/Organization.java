@@ -42,6 +42,7 @@ public class Organization implements java.io.Serializable {
 	private String contactName;
 	private String contactEmail;
 	private Long contactPhone;
+	private Boolean isCompany;
 	private Set<BatchGroup> batchGroups = new HashSet<BatchGroup>(0);
 	private Set<ExceptionLog> exceptionLogs = new HashSet<ExceptionLog>(0);
 	private Set<Job> jobs = new HashSet<Job>(0);
@@ -70,7 +71,7 @@ public class Organization implements java.io.Serializable {
 			Set<ExceptionLog> exceptionLogs, Set<Job> jobs,
 			Set<RecruiterJobTaskCollegeMapping> recruiterJobTaskCollegeMappings,
 			Set<CollegeRecruiterMapping> collegeRecruiterMappings, Set<ClassroomDetails> classroomDetailses,
-			Set<UserOrgMapping> userOrgMappings) {
+			Set<UserOrgMapping> userOrgMappings,Boolean isCompany) {
 		this.address = address;
 		this.name = name;
 		this.orgType = orgType;
@@ -92,6 +93,7 @@ public class Organization implements java.io.Serializable {
 		this.collegeRecruiterMappings = collegeRecruiterMappings;
 		this.classroomDetailses = classroomDetailses;
 		this.userOrgMappings = userOrgMappings;
+		this.isCompany = isCompany;
 	}
 
 	// Property accessors
@@ -128,6 +130,16 @@ public class Organization implements java.io.Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	
+
+	public Boolean getIsCompany() {
+		return isCompany;
+	}
+
+	public void setIsCompany(Boolean isCompany) {
+		this.isCompany = isCompany;
 	}
 
 	@Column(name = "org_type", nullable = false)
