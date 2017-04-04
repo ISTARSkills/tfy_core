@@ -1,7 +1,9 @@
 package com.viksitpro.core.dao.entities;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -32,10 +34,12 @@ public class Course implements java.io.Serializable {
 	private String tags;
 	private Timestamp createdAt;
 	private Set<StudentPlaylist> studentPlaylists = new HashSet<StudentPlaylist>(0);
-	private Set<Module> modules = new HashSet<Module>(0);
-	private Set<SkillObjective> skillObjectives = new HashSet<SkillObjective>(0);
+	private List<Module> modules;
+	private List<SkillObjective> skillObjectives;// = new HashSet<SkillObjective>(0);
 	private Set<Batch> batchs = new HashSet<Batch>(0);
-
+	private String category;
+	
+	
 	// Constructors
 
 	/** default constructor */
@@ -49,7 +53,7 @@ public class Course implements java.io.Serializable {
 
 	/** full constructor */
 	public Course(String courseName, String courseDescription, String tags, Timestamp createdAt,
-			Set<StudentPlaylist> studentPlaylists, Set<Module> modules, Set<SkillObjective> skillObjectives,
+			Set<StudentPlaylist> studentPlaylists, List<Module> modules, List<SkillObjective> skillObjectives,
 			Set<Batch> batchs) {
 		this.courseName = courseName;
 		this.courseDescription = courseDescription;
@@ -128,21 +132,21 @@ public class Course implements java.io.Serializable {
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "courses")
 
-	public Set<Module> getModules() {
+	public List<Module> getModules() {
 		return this.modules;
 	}
 
-	public void setModules(Set<Module> modules) {
+	public void setModules(List<Module> modules) {
 		this.modules = modules;
 	}
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "courses")
 
-	public Set<SkillObjective> getSkillObjectives() {
+	public List<SkillObjective> getSkillObjectives() {
 		return this.skillObjectives;
 	}
 
-	public void setSkillObjectives(Set<SkillObjective> skillObjectives) {
+	public void setSkillObjectives(List<SkillObjective> skillObjectives) {
 		this.skillObjectives = skillObjectives;
 	}
 
@@ -155,5 +159,16 @@ public class Course implements java.io.Serializable {
 	public void setBatchs(Set<Batch> batchs) {
 		this.batchs = batchs;
 	}
+
+	@Column(name = "category")
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	
+	
 
 }

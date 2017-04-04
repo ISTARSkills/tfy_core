@@ -1,6 +1,7 @@
 package com.viksitpro.core.dao.entities;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -29,8 +30,8 @@ public class Cmsession implements java.io.Serializable {
 	private String description;
 	private Integer orderId;
 	private Boolean isDeleted;
-	private Set<Lesson> lessons = new HashSet<Lesson>(0);
-	private Set<SkillObjective> skillObjectives = new HashSet<SkillObjective>(0);
+	private List<Lesson> lessons;
+	private List<SkillObjective> skillObjectives;// = new HashSet<SkillObjective>(0);
 	private Set<Module> modules = new HashSet<Module>(0);
 
 	// Constructors
@@ -45,8 +46,8 @@ public class Cmsession implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Cmsession(String title, String description, Integer orderId, Boolean isDeleted, Set<Lesson> lessons,
-			Set<SkillObjective> skillObjectives, Set<Module> modules) {
+	public Cmsession(String title, String description, Integer orderId, Boolean isDeleted, List<Lesson> lessons,
+			List<SkillObjective> skillObjectives, Set<Module> modules) {
 		this.title = title;
 		this.description = description;
 		this.orderId = orderId;
@@ -111,27 +112,27 @@ public class Cmsession implements java.io.Serializable {
 		this.isDeleted = isDeleted;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cmsessions")
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "cmsessions")
 
-	public Set<Lesson> getLessons() {
+	public List<Lesson> getLessons() {
 		return this.lessons;
 	}
 
-	public void setLessons(Set<Lesson> lessons) {
+	public void setLessons(List<Lesson> lessons) {
 		this.lessons = lessons;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cmsessions")
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "cmsessions")
 
-	public Set<SkillObjective> getSkillObjectives() {
+	public List<SkillObjective> getSkillObjectives() {
 		return this.skillObjectives;
 	}
 
-	public void setSkillObjectives(Set<SkillObjective> skillObjectives) {
+	public void setSkillObjectives(List<SkillObjective> skillObjectives) {
 		this.skillObjectives = skillObjectives;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cmsessions")
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "cmsessions")
 
 	public Set<Module> getModules() {
 		return this.modules;

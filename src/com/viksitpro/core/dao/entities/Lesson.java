@@ -2,6 +2,7 @@ package com.viksitpro.core.dao.entities;
 
 import java.sql.Timestamp;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -34,12 +35,14 @@ public class Lesson implements java.io.Serializable {
 	private String tags;
 	private String title;
 	private String subject;
+	private String description;
 	private Integer orderId;
 	private Timestamp createdAt;
+	private Boolean isDeleted;
 	private Set<SkillObjective> skillObjectives = new HashSet<SkillObjective>(0);
 	private Set<Cmsession> cmsessions = new HashSet<Cmsession>(0);
 	private Set<StudentPlaylist> studentPlaylists = new HashSet<StudentPlaylist>(0);
-	private Set<Presentation> presentations = new HashSet<Presentation>(0);
+	private List<Presentation> presentations;// = new HashSet<Presentation>(0);
 
 	// Constructors
 
@@ -57,7 +60,7 @@ public class Lesson implements java.io.Serializable {
 	/** full constructor */
 	public Lesson(String type, Integer duration, String tags, String title, String subject, Integer orderId,
 			Timestamp createdAt, Set<SkillObjective> skillObjectives, Set<Cmsession> cmsessions,
-			Set<StudentPlaylist> studentPlaylists, Set<Presentation> presentations) {
+			Set<StudentPlaylist> studentPlaylists, List<Presentation> presentations) {
 		this.type = type;
 		this.duration = duration;
 		this.tags = tags;
@@ -191,12 +194,32 @@ public class Lesson implements java.io.Serializable {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "lesson")
 
-	public Set<Presentation> getPresentations() {
+	public List<Presentation> getPresentations() {
 		return this.presentations;
 	}
 
-	public void setPresentations(Set<Presentation> presentations) {
+	public void setPresentations(List<Presentation> presentations) {
 		this.presentations = presentations;
 	}
 
+	@Column(name = "is_deleted")
+	public Boolean getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
+	}
+
+	@Column(name = "description")
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	
+	
 }
