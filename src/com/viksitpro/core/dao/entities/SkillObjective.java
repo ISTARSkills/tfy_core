@@ -105,7 +105,7 @@ public class SkillObjective implements java.io.Serializable {
 		this.name = name;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "skillObjective")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "skillObjective")
 
 	public Set<TrainerSkillDistrubutionStats> getTrainerSkillDistrubutionStatses() {
 		return this.trainerSkillDistrubutionStatses;
@@ -115,7 +115,7 @@ public class SkillObjective implements java.io.Serializable {
 		this.trainerSkillDistrubutionStatses = trainerSkillDistrubutionStatses;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "course_skill_objective", schema = "public", joinColumns = {
 			@JoinColumn(name = "skill_objective_id", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "course_id", nullable = false, updatable = false) })
@@ -128,7 +128,7 @@ public class SkillObjective implements java.io.Serializable {
 		this.courses = courses;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "question_skill_objective", schema = "public", joinColumns = {
 			@JoinColumn(name = "learning_objectiveid", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "questionid", nullable = false, updatable = false) })
@@ -141,7 +141,7 @@ public class SkillObjective implements java.io.Serializable {
 		this.questions = questions;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "skillObjective")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "skillObjective")
 
 	public Set<SkillRating> getSkillRatings() {
 		return this.skillRatings;
@@ -151,7 +151,7 @@ public class SkillObjective implements java.io.Serializable {
 		this.skillRatings = skillRatings;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "lesson_skill_objective", schema = "public", joinColumns = {
 			@JoinColumn(name = "learning_objectiveid", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "lessonid", nullable = false, updatable = false) })
@@ -164,7 +164,7 @@ public class SkillObjective implements java.io.Serializable {
 		this.lessons = lessons;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "skillObjective")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "skillObjective")
 
 	public Set<BadgeSkill> getBadgeSkills() {
 		return this.badgeSkills;
@@ -174,7 +174,7 @@ public class SkillObjective implements java.io.Serializable {
 		this.badgeSkills = badgeSkills;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "skillObjective")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "skillObjective")
 
 	public Set<JobRoleSkillBenchmark> getJobRoleSkillBenchmarks() {
 		return this.jobRoleSkillBenchmarks;
@@ -184,7 +184,7 @@ public class SkillObjective implements java.io.Serializable {
 		this.jobRoleSkillBenchmarks = jobRoleSkillBenchmarks;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "module_skill_objective", schema = "public", joinColumns = {
 			@JoinColumn(name = "skill_objective_id", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "module_id", nullable = false, updatable = false) })
@@ -197,7 +197,7 @@ public class SkillObjective implements java.io.Serializable {
 		this.modules = modules;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "skillObjectivesForSkillId")
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "skillObjectivesForSkillId")
 
 	public Set<SkillObjective> getSkillObjectivesForLearningObjectiveId() {
 		return this.skillObjectivesForLearningObjectiveId;
@@ -220,7 +220,7 @@ public class SkillObjective implements java.io.Serializable {
 		this.cmsessions = cmsessions;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "skill_learning_obj_mapping", schema = "public", joinColumns = {
 			@JoinColumn(name = "learning_objective_id", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "skill_id", nullable = false, updatable = false) })

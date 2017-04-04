@@ -30,6 +30,9 @@ public class Presentation implements java.io.Serializable {
 	private Integer id;
 	private Lesson lesson;
 	private Timestamp createdAt;
+	private String name;
+	private String description;
+	private Boolean is_deleted;
 	private Set<Slide> slides = new HashSet<Slide>(0);
 
 	// Constructors
@@ -95,5 +98,32 @@ public class Presentation implements java.io.Serializable {
 	public void setSlides(Set<Slide> slides) {
 		this.slides = slides;
 	}
+	@Column(name = "title", unique = true, nullable = false)
+	public String getName() {
+		return name;
+	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Column(name = "description", unique = false, nullable = true)
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	@Column(name = "is_deleted", unique = false, nullable = false)
+	public Boolean getIs_deleted() {
+		return is_deleted;
+	}
+
+	public void setIs_deleted(Boolean is_deleted) {
+		this.is_deleted = is_deleted;
+	}
+
+	
 }

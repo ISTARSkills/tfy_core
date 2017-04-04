@@ -1,6 +1,7 @@
 package com.viksitpro.core.dao.entities;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -12,9 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.OrderBy;
 
 /**
  * Module entity. @author MyEclipse Persistence Tools
@@ -30,11 +33,20 @@ public class Module implements java.io.Serializable {
 	private String moduleName;
 	private Integer orderId;
 	private Boolean isDeleted;
-	private Set<Cmsession> cmsessions = new HashSet<Cmsession>(0);
+	private List<Cmsession> cmsessions;
 	private Set<Course> courses = new HashSet<Course>(0);
-	private Set<SkillObjective> skillObjectives = new HashSet<SkillObjective>(0);
-
+	private List<SkillObjective> skillObjectives;// = new HashSet<SkillObjective>(0);
+	private String module_description;
 	// Constructors
+
+	@Column(name = "module_description", nullable = true)
+	public String getModule_description() {
+		return module_description;
+	}
+
+	public void setModule_description(String module_description) {
+		this.module_description = module_description;
+	}
 
 	/** default constructor */
 	public Module() {
@@ -46,8 +58,8 @@ public class Module implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Module(String moduleName, Integer orderId, Boolean isDeleted, Set<Cmsession> cmsessions, Set<Course> courses,
-			Set<SkillObjective> skillObjectives) {
+	public Module(String moduleName, Integer orderId, Boolean isDeleted, List<Cmsession> cmsessions, Set<Course> courses,
+			List<SkillObjective> skillObjectives) {
 		this.moduleName = moduleName;
 		this.orderId = orderId;
 		this.isDeleted = isDeleted;
@@ -105,12 +117,12 @@ public class Module implements java.io.Serializable {
 	@JoinTable(name = "cmsession_module", schema = "public", joinColumns = {
 			@JoinColumn(name = "module_id", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "cmsession_id", nullable = false, updatable = false) })
-
-	public Set<Cmsession> getCmsessions() {
+	@OrderBy(clause = "oid asc")
+	public List<Cmsession> getCmsessions() {
 		return this.cmsessions;
 	}
 
-	public void setCmsessions(Set<Cmsession> cmsessions) {
+	public void setCmsessions(List<Cmsession> cmsessions) {
 		this.cmsessions = cmsessions;
 	}
 
@@ -129,11 +141,11 @@ public class Module implements java.io.Serializable {
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "modules")
 
-	public Set<SkillObjective> getSkillObjectives() {
+	public List<SkillObjective> getSkillObjectives() {
 		return this.skillObjectives;
 	}
 
-	public void setSkillObjectives(Set<SkillObjective> skillObjectives) {
+	public void setSkillObjectives(List<SkillObjective> skillObjectives) {
 		this.skillObjectives = skillObjectives;
 	}
 
