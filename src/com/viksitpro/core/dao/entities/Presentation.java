@@ -34,7 +34,26 @@ public class Presentation implements java.io.Serializable {
 	private String description;
 	private Boolean is_deleted;
 	private Set<Slide> slides = new HashSet<Slide>(0);
+	private String type;
+	private String presentationXml;
 
+	@Column(name="type", nullable=true)
+	public String getType() {
+	return type;
+	}
+
+	public void setType(String type) {
+	this.type = type;
+	}
+
+	@Column(name="presentation_xml", nullable=true)
+	public String getPresentationXml() {
+	return presentationXml;
+	}
+
+	public void setPresentationXml(String presentationXml) {
+	this.presentationXml = presentationXml;
+	}
 	// Constructors
 
 	/** default constructor */
@@ -98,7 +117,7 @@ public class Presentation implements java.io.Serializable {
 	public void setSlides(Set<Slide> slides) {
 		this.slides = slides;
 	}
-	@Column(name = "title", unique = true, nullable = false)
+	@Column(name = "title", unique = true, nullable = true)
 	public String getName() {
 		return name;
 	}
