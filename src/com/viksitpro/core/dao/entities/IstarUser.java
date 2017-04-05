@@ -40,7 +40,7 @@ public class IstarUser implements java.io.Serializable {
 	private Timestamp createdAt;
 	private Long mobile;
 	private String authToken;
-	private String type;
+	private String loginType;
 	private Set<Task> tasksForAssigneeMember = new HashSet<Task>(0);
 	private Set<RecruiterJobTaskCollegeMapping> recruiterJobTaskCollegeMappings = new HashSet<RecruiterJobTaskCollegeMapping>(
 			0);
@@ -99,7 +99,7 @@ public class IstarUser implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public IstarUser(String email, String password, Timestamp createdAt, Long mobile, String authToken, String type,
+	public IstarUser(String email, String password, Timestamp createdAt, Long mobile, String authToken, String loginType,
 			Set<Task> tasksForAssigneeMember, Set<RecruiterJobTaskCollegeMapping> recruiterJobTaskCollegeMappings,
 			Set<UserOrgMapping> userOrgMappings, UserProfile userProfile, Set<TrainerFeedback> trainerFeedbacks,
 			Set<Job> jobs, Set<Team> teams, Set<TrainerSkillDistrubutionStats> trainerSkillDistrubutionStatses,
@@ -122,7 +122,7 @@ public class IstarUser implements java.io.Serializable {
 		this.createdAt = createdAt;
 		this.mobile = mobile;
 		this.authToken = authToken;
-		this.type = type;
+		this.loginType = loginType;
 		this.tasksForAssigneeMember = tasksForAssigneeMember;
 		this.recruiterJobTaskCollegeMappings = recruiterJobTaskCollegeMappings;
 		this.userOrgMappings = userOrgMappings;
@@ -230,14 +230,14 @@ public class IstarUser implements java.io.Serializable {
 		this.authToken = authToken;
 	}
 
-	@Column(name = "type")
+	@Column(name = "login_type")
 		
-	public String getType() {
-		return type;
+	public String getLoginType() {
+		return loginType;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setLoginType(String loginType) {
+		this.loginType = loginType;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "istarUserByAssigneeMember")

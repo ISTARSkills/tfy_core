@@ -27,7 +27,7 @@ public class IstarUserDAO extends BaseHibernateDAO {
 	public static final String PASSWORD = "password";
 	public static final String MOBILE = "mobile";
 	public static final String AUTH_TOKEN = "authToken";
-	public static final String TYPE = "type";
+	public static final String LOGIN_TYPE = "loginType";
 
 	public void save(IstarUser transientInstance) {
 		log.debug("saving IstarUser instance");
@@ -104,8 +104,8 @@ public class IstarUserDAO extends BaseHibernateDAO {
 		return findByProperty(AUTH_TOKEN, authToken);
 	}
 	
-	public List<IstarUser> findByType(Object type) {
-		return findByProperty(TYPE, type);
+	public List<IstarUser> findByLoginType(Object loginType) {
+		return findByProperty(LOGIN_TYPE, loginType);
 	}
 
 	public List findAll() {

@@ -298,7 +298,7 @@ public class IstarUserServices {
 		return istarUser;
 	}
 	
-	public IstarUser createIstarUser(String email, String password, Long mobile, String authenticationToken, String type) {
+	public IstarUser createIstarUser(String email, String password, Long mobile, String authenticationToken, String loginType) {
 		
 		IstarUser istarUser;
 		IstarUser istarUserByMobile = null;
@@ -319,7 +319,7 @@ public class IstarUserServices {
 		istarUser.setPassword(password);
 		istarUser.setMobile(mobile);
 		istarUser.setAuthToken(authenticationToken);
-		istarUser.setType(type);
+		istarUser.setLoginType(loginType);
 		istarUser.setCreatedAt(current);
 
 		istarUser = saveIstarUserToDAO(istarUser);
