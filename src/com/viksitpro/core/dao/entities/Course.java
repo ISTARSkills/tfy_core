@@ -12,14 +12,11 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.OrderBy;
 
 /**
  * Course entity. @author MyEclipse Persistence Tools
@@ -41,6 +38,7 @@ public class Course implements java.io.Serializable {
 	private List<SkillObjective> skillObjectives;// = new HashSet<SkillObjective>(0);
 	private Set<Batch> batchs = new HashSet<Batch>(0);
 	private String category;
+	private String image_url;
 	
 	
 	// Constructors
@@ -133,13 +131,8 @@ public class Course implements java.io.Serializable {
 		this.studentPlaylists = studentPlaylists;
 	}
 
-	/*@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "courses")
-	@OrderBy(clause = "oid asc")*/
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name = "module_course", schema = "public", joinColumns = {
-			@JoinColumn(name = "course_id", nullable = false, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "module_id", nullable = false, updatable = false) })
-	/*@OrderBy(clause = "oid asc")*/
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "courses")
+
 	public List<Module> getModules() {
 		return this.modules;
 	}
@@ -175,6 +168,15 @@ public class Course implements java.io.Serializable {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	@Column(name = "image_url")
+	public String getImage_url() {
+		return image_url;
+	}
+
+	public void setImage_url(String image_url) {
+		this.image_url = image_url;
 	}
 	
 	
