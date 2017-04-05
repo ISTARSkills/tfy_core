@@ -1,51 +1,113 @@
 package com.viksitpro.chat.services;
+import static spark.Spark.init;
+import static spark.Spark.webSocket;
+
+import java.util.ArrayList;
+
+import javax.json.JsonObject;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 import javax.websocket.server.ServerEndpoint;
 
+import org.eclipse.jetty.websocket.api.Session;
+import org.eclipse.jetty.websocket.api.annotations.OnWebSocketClose;
+import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
+import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.viksitpro.core.dao.entities.BatchGroup;
+import com.viksitpro.core.dao.entities.BatchGroupDAO;
+import com.viksitpro.core.dao.entities.BatchStudents;
+import com.viksitpro.core.dao.entities.ChatGroup;
+import com.viksitpro.core.dao.entities.ChatMessages;
+import com.viksitpro.core.dao.entities.IstarUser;
+import com.viksitpro.core.dao.entities.IstarUserDAO;
+import com.viksitpro.core.dao.entities.Organization;
+import com.viksitpro.core.utilities.ChatType;
+
 
 
 
 @WebSocket
 @ServerEndpoint(value = "/chat/*")
-public class ChatWebSocketHandler   {/*
+public class ChatWebSocketHandler   {
 
-    
-    
-    
     @OnWebSocketConnect
     public void onConnect(Session user) throws Exception {
     	System.out.println(user.getUpgradeRequest().getRequestURI());
     	String url = user.getUpgradeRequest().getRequestURI().toString();
     	String email = url.split("/")[4];
-    	System.out.println(email);
+    	System.out.println("---"+email);
+    	IstarUser IstarUser = new IstarUserDAO().findByEmail(email).get(0);
     	
-    	IstarUser IstarUser = new IstarUserService().getIstarUser(email);
-    	
-    	String username = IstarUser.getIstarUserProfile()!=null ? (IstarUser.getIstarUserProfile().getFirstName()!=null ? IstarUser.getIstarUserProfile().getFirstName(): IstarUser.getEmail()) : IstarUser.getEmail() ;
+    	String username = IstarUser.getUserProfile()!=null ? (IstarUser.getUserProfile().getFirstName()!=null ? IstarUser.getUserProfile().getFirstName(): IstarUser.getEmail()) : IstarUser.getEmail() ;
     	Chat.userUsernameMap.put(user, username);
     	Chat.sessionUserIdMap.put(user,IstarUser.getId());
-    	if(!Chat.userIdGroupIdMap.keySet().contains(IstarUser.getId()))
+    	
+    	if(IstarUser.getUserRoles().iterator().next().getRole().getRoleName().equalsIgnoreCase("ORG_ADMIN"))
+    	{
+    		
+    		Organization org = IstarUser.getUserOrgMappings().iterator().next().getOrganization();
+    		ArrayList<Integer> bgids = new ArrayList<>();
+    		for(BatchGroup  bg : org.getBatchGroups())
+    		{
+    			bgids.add(bg.getId());
+    			
+    		}
+    		Chat.userIdBGGroupIdMap.put(IstarUser.getId(), bgids);
+    		
+    	}else if(IstarUser.getUserRoles().iterator().next().getRole().getRoleName().equalsIgnoreCase("SUPER_ADMIN"))
+    	{
+    		ArrayList<Integer> bgids = new ArrayList<>();
+    		for(BatchGroup  bg : (ArrayList<BatchGroup>)new BatchGroupDAO().findAll())
+    		{
+    			bgids.add(bg.getId());
+    			
+    		}
+    		Chat.userIdBGGroupIdMap.put(IstarUser.getId(), bgids);
+    	}
+    		
+    	
+    	//check and make a set of custom groups a user belongs to
+    	if(!Chat.userIdCustomGroupIdMap.keySet().contains(IstarUser.getId()))
     	{
     		ArrayList<Integer> groupIds = new ArrayList<>();
-    		for(ChatGroupMember member : IstarUser.getChatGroupMembers())
+    		for(ChatGroup group : IstarUser.getChatGroups())
     		{
-    			groupIds.add(member.getChatGroup().getId());
+    			groupIds.add(group.getId());
     		}
-    		Chat.userIdGroupIdMap.put(IstarUser.getId(), groupIds);
+    		Chat.userIdCustomGroupIdMap.put(IstarUser.getId(), groupIds);
     	}
     	
+    	// check and make a set pf batch group a user belongs to
+    	if(!Chat.userIdBGGroupIdMap.keySet().contains(IstarUser.getId()))
+    	{
+    		ArrayList<Integer> groupIds = new ArrayList<>();
+    		for(BatchStudents bs : IstarUser.getBatchStudentses())
+    		{
+    			if(!groupIds.contains(bs.getBatchGroup().getId()))
+    			{
+    				groupIds.add(bs.getBatchGroup().getId());
+    			} 			
+    		}
+    		Chat.userIdBGGroupIdMap.put(IstarUser.getId(), groupIds);
+    	}
+    	
+    	
+    	
     	MessageService msgService = new MessageService();
-    	JSONObject obj = getJoiningMsgJSONObject(user, IstarUser);
-    	msgService.addJoiningMessage(IstarUser,username+" joined the chat");
-    	Chat.broadcastJoiningMessage(IstarUser, obj.toString());
+    	//JSONObject obj = getJoiningMsgJSONObject(user, IstarUser);
+    	//msgService.addJoiningMessage(IstarUser,username+" joined the chat");
+    	//Chat.broadcastJoiningMessage(IstarUser, obj.toString());
+    	System.out.println("connected");
     	
     }
 
-    *//**
-	 * @param IstarUser
-	 * @return
-	 *//*
-	public String getReceivers(IstarUser IstarUser) {
+   
+	/*public String getReceivers(IstarUser IstarUser) {
 		JSONArray userArray = new JSONArray();
 		ArrayList<Integer> allreadyAdded = new ArrayList<>();
 		for(ChatGroupMember member : IstarUser.getChatGroupMembers())
@@ -81,16 +143,17 @@ public class ChatWebSocketHandler   {/*
 		}
 		
 		return userArray.toString();
-	}
+	}*/
 
 	@OnWebSocketClose
     public void onClose(Session user, int statusCode, String reason) {
         String username = Chat.userUsernameMap.get(user);
         Chat.userUsernameMap.remove(user);
         int IstarUserId = Chat.sessionUserIdMap.get(user);
-        Chat.userIdGroupIdMap.remove(IstarUserId);
+        Chat.userIdBGGroupIdMap.remove(IstarUserId);
+        Chat.userIdCustomGroupIdMap.remove(IstarUserId);
         Chat.sessionUserIdMap.remove(user);
-            
+        System.out.println("closed");
 	}
 
     @OnWebSocketMessage
@@ -108,22 +171,34 @@ public class ChatWebSocketHandler   {/*
     			JSONObject data = new JSONObject(message);
     			String type = (String)data.get("type");
     			switch (type) {
-    			case ChatType.JOINING_MESSAGE:
+    			/*case ChatType.JOINING_MESSAGE:
     				JSONObject obj = getJoiningMsgJSONObject(user, IstarUser);
     		    	msgService.addJoiningMessage(IstarUser,username+" joined the chat");
     		    	Chat.broadcastJoiningMessage(IstarUser, obj.toString());
-    				break;
+    				break;*/
     			case ChatType.USER_CHAT:
     				int receiverId = Integer.parseInt(data.getString("receiverId"));
     				ChatMessages msg = msgService.addUserMessage(senderId, data.getString("message"), receiverId);
     				Chat.broadcastMessageToUser(senderId, message, receiverId, msg.getId());
     				break;
-    			case ChatType.GROUP_CHAT:
+    			case ChatType.ORG_CHAT:
+    				int receiverAdminId = Integer.parseInt(data.getString("receiverId"));
+    				ChatMessages chatmsg = msgService.addOrgMessage(senderId, data.getString("message"), receiverAdminId);
+    				if(chatmsg.getId()!=null){
+    					Chat.broadcastMessageToOrgAdmin(senderId, message, receiverAdminId, chatmsg.getId());
+    				}
+    				break;	
+    			case ChatType.BG_CHAT:
     				int groupId = Integer.parseInt(data.getString("groupId"));
-    				ChatMessages grp_msg = msgService.addGroupMessage(senderId, data.getString("message"), groupId);
-    				Chat.broadcastMessageInGroup(senderId, message, groupId);
+    				int  msg_id = msgService.addBGroupMessage(senderId, data.getString("message"), groupId);    				
+    				Chat.broadcastMessageInBGGroup(senderId, message, groupId, msg_id);
     				break;
-    			case ChatType.ASK_DOUBT:
+    			case ChatType.CUSTOM_GROUP_CHAT:
+    				int bggroupId = Integer.parseInt(data.getString("groupId"));
+    				ChatMessages msgq = msgService.addCustomGroupMessage(senderId, data.getString("message"), bggroupId);
+    				Chat.broadcastMessageInCustomGroup(senderId, message, bggroupId, msgq.getId());
+    				break;
+    			/*case ChatType.ASK_DOUBT:
     				int slideId = Integer.parseInt(data.getString("slideId"));
     				msgService.addNewDoubt(senderId, data.getString("message"), slideId);
     				Chat.broadcastNewDoubt(senderId, message);
@@ -131,7 +206,7 @@ public class ChatWebSocketHandler   {/*
     			case ChatType.NOTIFICATION:    				    						
     				noticeService.addNotificationMessages(message);    				
     				Chat.broadcastNotification(message );
-    				break;    				
+    				break;   */ 				
     			default:
     				break;
     			}
@@ -144,9 +219,8 @@ public class ChatWebSocketHandler   {/*
 		
     }
 
-	private JSONObject getJoiningMsgJSONObject(Session user, IstarUser IstarUser) {
-		JSONObject obj = new  JSONObject();
-		IstarUserService IstarUserservce = new IstarUserService();
+	/*private JSONObject getJoiningMsgJSONObject(Session user, IstarUser IstarUser) {
+		JSONObject obj = new  JSONObject();		
 		String username = Chat.userUsernameMap.get(user);
     	try {
 			obj.put("senderId", IstarUser.getId());
@@ -169,10 +243,7 @@ public class ChatWebSocketHandler   {/*
     	return obj;
 	}
 
-	*//**
-	 * @param IstarUser
-	 * @return
-	 *//*
+	
 	private String getGroups(IstarUser IstarUser) {
 		
 		ArrayList<Integer> groups = new ArrayList<>();
@@ -195,8 +266,8 @@ public class ChatWebSocketHandler   {/*
 			}
 		}
 		return groupArray.toString();
-	}
+	}*/
 
-	*/
+	
 
 }

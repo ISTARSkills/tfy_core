@@ -19,5 +19,6 @@ public class TaskCategory {
 	public static final  String TODO="TODO";
 	public static final String LEARN = "LEARN";
 	public static final String CLASSROOM_SESSION = "CLASSROOM_SESSION";
+	public static final String ASSESSMENT = "ASSESSMENT";
 	
 }

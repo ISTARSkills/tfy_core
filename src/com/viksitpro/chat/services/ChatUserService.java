@@ -1,6 +1,6 @@
 /**
  * 
- *//*
+ */
 package com.viksitpro.chat.services;
 
 import java.sql.Timestamp;
@@ -12,6 +12,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.viksitpro.core.dao.entities.BatchGroup;
+import com.viksitpro.core.dao.entities.BatchStudents;
 import com.viksitpro.core.dao.entities.ChatGroup;
 import com.viksitpro.core.dao.entities.IstarUser;
 import com.viksitpro.core.dao.entities.IstarUserDAO;
@@ -19,13 +21,13 @@ import com.viksitpro.core.dao.entities.UserProfile;
 
 
 
-*//**
+/**
  * @author ComplexObject
  *
- *//*
+ */
 public class ChatUserService {
 
-	*//**
+	/**
 	 * 
 	 * @param email email Email of Loggedd in User 
 	 * @return returns the List of ChatGroup  user belongs to 
@@ -73,26 +75,71 @@ public class ChatUserService {
 		System.out.println();
 		return usersInGroup;
 	}
+	*/
 	
-	
-	public ArrayList<IstarUser> onlineUsersInGroup(String email)
+	public ArrayList<IstarUser> onlineUsersInBGroup(int id)
 	{
-		
 		ArrayList<IstarUser> onlineUsers = new ArrayList<>();
-		List<IstarUser> usersInGroup = getUserToDisplay(email);
-		for(IstarUser user : usersInGroup)
+		IstarUser user = new IstarUserDAO().findById(id);
+		ArrayList<Integer> bg = new ArrayList<>();
+		ArrayList<Integer> usersAdded = new ArrayList<>();
+		ArrayList<BatchGroup> bgroups = new ArrayList<>(); 
+		for(BatchStudents bs : user.getBatchStudentses())
 		{
-			if(Chat.userIdGroupIdMap.containsKey(user.getId()))
+			if(!bg.contains(bs.getBatchGroup().getId()))
+			{	
+				bg.add(bs.getBatchGroup().getId());
+				bgroups.add(bs.getBatchGroup());
+			}
+		}
+		
+		for(BatchGroup bgg : bgroups)
+		{
+			for(BatchStudents bs2: bgg.getBatchStudentses())
 			{
-				onlineUsers.add(user);
+				if(bs2.getIstarUser().getId() != id && !usersAdded.contains(bs2.getIstarUser().getId()))
+				{					
+						usersAdded.add(bs2.getIstarUser().getId());
+						if(Chat.userIdBGGroupIdMap.containsKey(bs2.getIstarUser().getId()))
+						{
+						onlineUsers.add(bs2.getIstarUser());
+						}
+				}
 			}
 		}
 		
 		return onlineUsers;
 	}
+
+	public ArrayList<IstarUser> onlineUsersInCustomGroup(int id)
+	{
+		
+		ArrayList<IstarUser> onlineUsers = new ArrayList<>();
+		IstarUser user = new IstarUserDAO().findById(id);
+		ArrayList<Integer> chatgrps = new ArrayList<>();
+		ArrayList<Integer> usersAdded = new ArrayList<>();
+		ArrayList<ChatGroup> chatgroups = new ArrayList<>(); 
+		for(ChatGroup bs : user.getChatGroups())
+		{
+			for(IstarUser member  : bs.getIstarUsers())
+			{
+				if(member.getId() != id && !usersAdded.contains(member.getId()))
+				{					
+						usersAdded.add(member.getId());
+						if(Chat.userIdCustomGroupIdMap.containsKey(member.getId()))
+						{
+						onlineUsers.add(member);
+						}
+				}
+			}
+		}		
+		
+		
+		return onlineUsers;
+	}
 	
 	
-	*//**
+	/**
 	 * 
 	 * @param email Email of IstarUser by which a user is logged in
 	 * @return Chat User instance corresponding to IstarUser
@@ -329,6 +376,5 @@ public class ChatUserService {
 			userProfileSession.close();
 		}
 		return userProfile;
-	}
+	}*/
 }
-*/
