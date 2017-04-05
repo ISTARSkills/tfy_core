@@ -297,6 +297,37 @@ public class IstarUserServices {
 		}
 		return istarUser;
 	}
+	
+	public IstarUser createIstarUser(String email, String password, Long mobile, String authenticationToken, String type) {
+		
+		IstarUser istarUser;
+		IstarUser istarUserByMobile = null;
+		
+		istarUser = getIstarUserByEmail(email);
+		
+		if(mobile!=null){
+			istarUserByMobile = getIstarUserByMobile(mobile); 
+		}
+		
+		if(istarUser==null && istarUserByMobile==null){
+			istarUser = new IstarUser();
+
+		java.util.Date date = new java.util.Date();
+		Timestamp current = new Timestamp(date.getTime());
+
+		istarUser.setEmail(email);
+		istarUser.setPassword(password);
+		istarUser.setMobile(mobile);
+		istarUser.setAuthToken(authenticationToken);
+		istarUser.setType(type);
+		istarUser.setCreatedAt(current);
+
+		istarUser = saveIstarUserToDAO(istarUser);
+		}else{
+			System.out.println("User Email/Mobile alread exists!");
+		}
+		return istarUser;
+	}
 
 	public IstarUser updateIstarUser(Integer istarUserId, String email, String password, Long mobile) {
 		

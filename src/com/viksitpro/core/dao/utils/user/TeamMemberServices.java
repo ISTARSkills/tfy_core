@@ -124,7 +124,7 @@ public class TeamMemberServices {
 			IstarUser istarUser = istarUserServices.getIstarUserByEmail(email);
 
 			if (istarUser == null) {
-				istarUser = istarUserServices.createIstarUser(email, "test123", 0L);
+				istarUser = istarUserServices.createIstarUser(email, "test123", null);
 				//RecruiterEmailUtility recruiterEmailUtility = new RecruiterEmailUtility();
 				//recruiterEmailUtility.sendEmailToHiringTeamMembers(istarUser);
 			} 	
