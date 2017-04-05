@@ -242,10 +242,15 @@ public class IstarUserServices {
 	public IstarUser createIstarUser(String email, String password, Long mobile) {
 		
 		IstarUser istarUser;
+		IstarUser istarUserByMobile = null;
 		
 		istarUser = getIstarUserByEmail(email);
 		
-		if(istarUser==null){
+		if(mobile!=null){
+			istarUserByMobile = getIstarUserByMobile(mobile); 
+		}
+		
+		if(istarUser==null && istarUserByMobile==null){
 			istarUser = new IstarUser();
 
 		java.util.Date date = new java.util.Date();
@@ -259,6 +264,36 @@ public class IstarUserServices {
 		istarUser = saveIstarUserToDAO(istarUser);
 		}else{
 			System.out.println("User alread exists!");
+		}
+		return istarUser;
+	}
+	
+	public IstarUser createIstarUser(String email, String password, Long mobile, String authenticationToken) {
+		
+		IstarUser istarUser;
+		IstarUser istarUserByMobile = null;
+		
+		istarUser = getIstarUserByEmail(email);
+		
+		if(mobile!=null){
+			istarUserByMobile = getIstarUserByMobile(mobile); 
+		}
+		
+		if(istarUser==null && istarUserByMobile==null){
+			istarUser = new IstarUser();
+
+		java.util.Date date = new java.util.Date();
+		Timestamp current = new Timestamp(date.getTime());
+
+		istarUser.setEmail(email);
+		istarUser.setPassword(password);
+		istarUser.setMobile(mobile);
+		istarUser.setAuthToken(authenticationToken);
+		istarUser.setCreatedAt(current);
+
+		istarUser = saveIstarUserToDAO(istarUser);
+		}else{
+			System.out.println("User Email/Mobile alread exists!");
 		}
 		return istarUser;
 	}
@@ -368,6 +403,8 @@ public class IstarUserServices {
 		try {
 			allIstarUsersByEmail = istarUserDAO.findByEmail(email);
 
+			System.out.println("Size is " + allIstarUsersByEmail.size());
+			
 			if (allIstarUsersByEmail.size() > 0) {
 				istarUser = allIstarUsersByEmail.get(0);
 			} else {
@@ -379,6 +416,26 @@ public class IstarUserServices {
 		return istarUser;
 	}
 
+	public IstarUser getIstarUserByMobile(Long mobile) {
+
+		List<IstarUser> allIstarUsersByMobile;
+		IstarUser istarUser = null;
+		IstarUserDAO istarUserDAO = new IstarUserDAO();
+		try {
+			allIstarUsersByMobile = istarUserDAO.findByMobile(mobile);
+
+			System.out.println("Size is " + allIstarUsersByMobile.size());
+			
+			if (allIstarUsersByMobile.size() > 0) {
+				istarUser = allIstarUsersByMobile.get(0);
+			} else {
+				return null;
+			}
+		} catch (IllegalArgumentException e) {
+			istarUser = null;
+		}
+		return istarUser;
+	}
 
 	public List<IstarUser> getUserWithEmail(String email) {
 		List<IstarUser> users = new ArrayList<>();

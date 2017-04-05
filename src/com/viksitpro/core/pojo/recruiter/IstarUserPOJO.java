@@ -12,6 +12,10 @@ public class IstarUserPOJO {
 	private String authenticationToken;
 	private String role;
 
+	public IstarUserPOJO(){
+		
+	}
+	
 	@XmlAttribute(name = "istarUserId", required=false)
 	public Integer getIstarUserId() {
 		return istarUserId;
