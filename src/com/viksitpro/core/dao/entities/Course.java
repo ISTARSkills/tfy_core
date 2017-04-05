@@ -12,11 +12,14 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.OrderBy;
 
 /**
  * Course entity. @author MyEclipse Persistence Tools
@@ -130,8 +133,13 @@ public class Course implements java.io.Serializable {
 		this.studentPlaylists = studentPlaylists;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "courses")
-
+	/*@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "courses")
+	@OrderBy(clause = "oid asc")*/
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "module_course", schema = "public", joinColumns = {
+			@JoinColumn(name = "course_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "module_id", nullable = false, updatable = false) })
+	/*@OrderBy(clause = "oid asc")*/
 	public List<Module> getModules() {
 		return this.modules;
 	}
