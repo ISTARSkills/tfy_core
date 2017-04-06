@@ -37,17 +37,10 @@ public class Module implements java.io.Serializable {
 	private Set<Course> courses = new HashSet<Course>(0);
 	private List<SkillObjective> skillObjectives;// = new HashSet<SkillObjective>(0);
 	private String module_description;
+	private String Image_url;
+	
+	
 	// Constructors
-
-	@Column(name = "module_description", nullable = true)
-	public String getModule_description() {
-		return module_description;
-	}
-
-	public void setModule_description(String module_description) {
-		this.module_description = module_description;
-	}
-
 	/** default constructor */
 	public Module() {
 	}
@@ -149,4 +142,25 @@ public class Module implements java.io.Serializable {
 		this.skillObjectives = skillObjectives;
 	}
 
+	@Column(name = "module_description", nullable = true)
+
+	public String getModule_description() {
+		return module_description;
+	}
+
+	public void setModule_description(String module_description) {
+		this.module_description = module_description;
+	}
+
+	@Column(name = "image_url", nullable = true)
+	
+	public String getImage_url() {
+		return Image_url;
+	}
+
+	public void setImage_url(String image_url) {
+		Image_url = image_url;
+	}
+	
+	
 }
