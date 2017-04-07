@@ -10,6 +10,7 @@ public class IstarUserPOJO {
 	private String name;
 	private String email;
 	private String authenticationToken;
+	private Boolean isVerified;
 	private String role;
 
 	public IstarUserPOJO(){
@@ -47,6 +48,15 @@ public class IstarUserPOJO {
 		this.authenticationToken = authenticationToken;
 	}
 	
+	@XmlAttribute(name = "isVerified", required=false)	
+	public Boolean getIsVerified() {
+		return isVerified;
+	}
+
+	public void setIsVerified(Boolean isVerified) {
+		this.isVerified = isVerified;
+	}
+
 	@XmlAttribute(name = "role", required=false)
 	public String getRole() {
 		return role;

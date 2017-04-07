@@ -373,6 +373,15 @@ public class IstarUserServices {
 		return istarUser;		
 	}
 	
+	public IstarUser updateIsVerified(Integer istarUserId, Boolean isVerified){
+		IstarUser istarUser = getIstarUser(istarUserId);
+		
+		istarUser.setIsVerified(isVerified);
+		istarUser = updateIstarUserToDAO(istarUser);
+
+		return istarUser;		
+	}
+	
 	
 	public IstarUser saveIstarUserToDAO(IstarUser istarUser) {
 
@@ -416,6 +425,29 @@ public class IstarUserServices {
 		return istarUser;
 	}
 	
+	public boolean deleteIstarUserFromDAO(IstarUser istarUser) {
+
+		boolean isDeleted = false;
+		
+		IstarUserDAO istarUserDAO = new IstarUserDAO();
+
+		Session istarUserSession = istarUserDAO.getSession();
+		Transaction istarUserTransaction = null;
+		try {
+			istarUserTransaction = istarUserSession.beginTransaction();
+			istarUserSession.delete(istarUser);
+			istarUserTransaction.commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			if (istarUserTransaction != null)
+				istarUserTransaction.rollback();
+			e.printStackTrace();
+		} finally {
+			istarUserSession.close();
+		}
+		return isDeleted;
+	}
+	
 	public IstarUser getIstarUser(Integer istarUserId) {
 		IstarUser istarUser;
 		IstarUserDAO istarUserDAO = new IstarUserDAO();
@@ -425,6 +457,11 @@ public class IstarUserServices {
 			istarUser = null;
 		}
 		return istarUser;
+	}
+	
+	public void deleteIstarUser(Integer istarUserId){
+		IstarUser istarUser = getIstarUser(istarUserId);
+		deleteIstarUserFromDAO(istarUser);
 	}
 	
 	@SuppressWarnings("unchecked")

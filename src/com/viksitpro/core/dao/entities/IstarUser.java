@@ -41,6 +41,7 @@ public class IstarUser implements java.io.Serializable {
 	private Long mobile;
 	private String authToken;
 	private String loginType;
+	private Boolean isVerified;
 	private Set<Task> tasksForAssigneeMember = new HashSet<Task>(0);
 	private Set<RecruiterJobTaskCollegeMapping> recruiterJobTaskCollegeMappings = new HashSet<RecruiterJobTaskCollegeMapping>(
 			0);
@@ -99,7 +100,7 @@ public class IstarUser implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public IstarUser(String email, String password, Timestamp createdAt, Long mobile, String authToken, String loginType,
+	public IstarUser(String email, String password, Timestamp createdAt, Long mobile, String authToken, String loginType, Boolean isVerified,
 			Set<Task> tasksForAssigneeMember, Set<RecruiterJobTaskCollegeMapping> recruiterJobTaskCollegeMappings,
 			Set<UserOrgMapping> userOrgMappings, UserProfile userProfile, Set<TrainerFeedback> trainerFeedbacks,
 			Set<Job> jobs, Set<Team> teams, Set<TrainerSkillDistrubutionStats> trainerSkillDistrubutionStatses,
@@ -123,6 +124,7 @@ public class IstarUser implements java.io.Serializable {
 		this.mobile = mobile;
 		this.authToken = authToken;
 		this.loginType = loginType;
+		this.isVerified = isVerified;
 		this.tasksForAssigneeMember = tasksForAssigneeMember;
 		this.recruiterJobTaskCollegeMappings = recruiterJobTaskCollegeMappings;
 		this.userOrgMappings = userOrgMappings;
@@ -238,6 +240,17 @@ public class IstarUser implements java.io.Serializable {
 
 	public void setLoginType(String loginType) {
 		this.loginType = loginType;
+	}
+
+	
+	@Column(name = "is_verified")
+	
+	public Boolean getIsVerified() {
+		return isVerified;
+	}
+
+	public void setIsVerified(Boolean isVerified) {
+		this.isVerified = isVerified;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "istarUserByAssigneeMember")

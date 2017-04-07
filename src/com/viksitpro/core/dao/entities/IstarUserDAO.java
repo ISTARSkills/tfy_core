@@ -28,6 +28,7 @@ public class IstarUserDAO extends BaseHibernateDAO {
 	public static final String MOBILE = "mobile";
 	public static final String AUTH_TOKEN = "authToken";
 	public static final String LOGIN_TYPE = "loginType";
+	private static final String IS_VERIFIED = "isVerified";
 
 	public void save(IstarUser transientInstance) {
 		log.debug("saving IstarUser instance");
