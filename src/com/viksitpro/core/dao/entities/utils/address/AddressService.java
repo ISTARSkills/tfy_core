@@ -27,9 +27,9 @@ public class AddressService {
 	{
 		AddressDAO addressDAO = new AddressDAO();
 		Address address;
-		try{
+		if(addressId != null) {
 			address = addressDAO.findById(addressId);
-		}catch(IllegalArgumentException e){
+		} else {
 			address = null;
 		}
 		return address;	

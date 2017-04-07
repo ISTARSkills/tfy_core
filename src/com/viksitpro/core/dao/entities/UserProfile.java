@@ -73,7 +73,7 @@ public class UserProfile implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "address_id")
 
 	public Address getAddress() {
@@ -84,7 +84,7 @@ public class UserProfile implements java.io.Serializable {
 		this.address = address;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
 
 	public IstarUser getIstarUser() {

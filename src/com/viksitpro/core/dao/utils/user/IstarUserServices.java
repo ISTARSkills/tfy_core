@@ -164,6 +164,7 @@ public class IstarUserServices {
 	public UserProfile createUserProfile(Integer istarUserId, Integer addressId, String firstName, String lastName,
 			Date dob, String gender, String profileImage, Long aadhar) {
 
+		System.out.println("Name is-> "+firstName);
 		IstarUser istarUser = getIstarUser(istarUserId);
 
 		UserProfile userProfile = new UserProfile();
@@ -177,6 +178,7 @@ public class IstarUserServices {
 			userProfile.setIstarUser(istarUser);
 			userProfile.setLastName(lastName);
 			userProfile.setProfileImage(profileImage);
+			
 			userProfile = saveUserProfileToDAO(userProfile);
 
 		return userProfile;
