@@ -159,7 +159,7 @@ public class Lesson implements java.io.Serializable {
 		this.createdAt = createdAt;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "lessons")
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "lessons")
 
 	public Set<SkillObjective> getSkillObjectives() {
 		return this.skillObjectives;

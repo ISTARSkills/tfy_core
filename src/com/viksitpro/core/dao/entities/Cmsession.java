@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -33,6 +35,7 @@ public class Cmsession implements java.io.Serializable {
 	private List<Lesson> lessons;
 	private List<SkillObjective> skillObjectives;// = new HashSet<SkillObjective>(0);
 	private Set<Module> modules = new HashSet<Module>(0);
+	private String Image_url;
 
 	// Constructors
 
@@ -112,8 +115,11 @@ public class Cmsession implements java.io.Serializable {
 		this.isDeleted = isDeleted;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "cmsessions")
-
+	//@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cmsessions")
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "lesson_cmsession", schema = "public", joinColumns = {
+			@JoinColumn(name = "cmsession_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "lesson_id", nullable = false, updatable = false) })
 	public List<Lesson> getLessons() {
 		return this.lessons;
 	}
@@ -122,8 +128,11 @@ public class Cmsession implements java.io.Serializable {
 		this.lessons = lessons;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "cmsessions")
-
+	//@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "cmsessions")
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "cmsession_skill_objective", schema = "public", joinColumns = {
+			@JoinColumn(name = "cmsession_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "skill_objective_id", nullable = false, updatable = false) })
 	public List<SkillObjective> getSkillObjectives() {
 		return this.skillObjectives;
 	}
@@ -142,4 +151,14 @@ public class Cmsession implements java.io.Serializable {
 		this.modules = modules;
 	}
 
+	@Column(name = "image_url")
+	public String getImage_url() {
+		return Image_url;
+	}
+
+	public void setImage_url(String image_url) {
+		Image_url = image_url;
+	}
+	
+	
 }
