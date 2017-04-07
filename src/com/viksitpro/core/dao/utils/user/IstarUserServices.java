@@ -363,6 +363,17 @@ public class IstarUserServices {
 		return updateAuthenticationTokenForIstarUser(istarUser, authenticationToken);
 	}
 
+	public IstarUser updateMobile(Integer istarUserId, Long mobile){
+		
+		IstarUser istarUser = getIstarUser(istarUserId);
+		
+		istarUser.setMobile(mobile);
+		istarUser = updateIstarUserToDAO(istarUser);
+
+		return istarUser;		
+	}
+	
+	
 	public IstarUser saveIstarUserToDAO(IstarUser istarUser) {
 
 		IstarUserDAO istarUserDAO = new IstarUserDAO();
