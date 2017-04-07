@@ -43,7 +43,7 @@ public class Lesson implements java.io.Serializable {
 	private Set<Cmsession> cmsessions = new HashSet<Cmsession>(0);
 	private Set<StudentPlaylist> studentPlaylists = new HashSet<StudentPlaylist>(0);
 	private List<Presentation> presentations;// = new HashSet<Presentation>(0);
-
+	private String Image_url;
 	// Constructors
 
 	/** default constructor */
@@ -159,7 +159,10 @@ public class Lesson implements java.io.Serializable {
 		this.createdAt = createdAt;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "lessons")
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "lesson_skill_objective", schema = "public", joinColumns = {
+			@JoinColumn(name = "lessonid", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "learning_objectiveid", nullable = false, updatable = false) })
 
 	public Set<SkillObjective> getSkillObjectives() {
 		return this.skillObjectives;
@@ -219,6 +222,17 @@ public class Lesson implements java.io.Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	@Column(name = "image_url")
+	public String getImage_url() {
+		return Image_url;
+	}
+
+	public void setImage_url(String image_url) {
+		Image_url = image_url;
+	}
+	
+	
 	
 	
 	
