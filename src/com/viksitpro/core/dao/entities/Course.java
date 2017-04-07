@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -179,6 +180,26 @@ public class Course implements java.io.Serializable {
 		this.image_url = image_url;
 	}
 	
-	
+	@Transient 
+	public String getCourselevelSkills() {
+		String out = new String();
+		for (SkillObjective skill : skillObjectives) {
+			out = out+ skill.getName().replaceAll(" ", "").replaceAll("-", "_").toLowerCase() +" ,";
+		}
+		
+		for(Module module : getModules()) {
+			for (SkillObjective skill : module.getSkillObjectives()) {
+				out = out+ skill.getName().toLowerCase().replaceAll(" ", "") +" ,";
+				for(Cmsession cmsession : module.getCmsessions()) {
+					for (SkillObjective skill1 : cmsession.getSkillObjectives()) {
+						out = out+ skill1.getName().replaceAll(" ", "").replaceAll("-", "_").toLowerCase() +" ,";
+					}
+				}
+			}
+		}
+		
+		
+		return out;
+	}
 
 }

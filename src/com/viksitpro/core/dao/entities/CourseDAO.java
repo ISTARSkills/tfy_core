@@ -98,7 +98,7 @@ public class CourseDAO extends BaseHibernateDAO {
 		return findByProperty(TAGS, tags);
 	}
 
-	public List findAll() {
+	public List<Course> findAll() {
 		log.debug("finding all Course instances");
 		try {
 			String queryString = "from Course";
