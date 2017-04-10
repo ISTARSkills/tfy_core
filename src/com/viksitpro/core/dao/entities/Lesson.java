@@ -42,9 +42,23 @@ public class Lesson implements java.io.Serializable {
 	private Set<SkillObjective> skillObjectives = new HashSet<SkillObjective>(0);
 	private Set<Cmsession> cmsessions = new HashSet<Cmsession>(0);
 	private Set<StudentPlaylist> studentPlaylists = new HashSet<StudentPlaylist>(0);
-	private List<Presentation> presentations;// = new HashSet<Presentation>(0);
 	private String Image_url;
+	
+	private String lessonXml;
+
+	
+	
+	
 	// Constructors
+
+	@Column(name="lesson_xml", nullable=true)
+	public String getLessonXml() {
+		return lessonXml;
+	}
+
+	public void setLessonXml(String lessonXml) {
+		this.lessonXml = lessonXml;
+	}
 
 	/** default constructor */
 	public Lesson() {
@@ -60,7 +74,7 @@ public class Lesson implements java.io.Serializable {
 	/** full constructor */
 	public Lesson(String type, Integer duration, String tags, String title, String subject, Integer orderId,
 			Timestamp createdAt, Set<SkillObjective> skillObjectives, Set<Cmsession> cmsessions,
-			Set<StudentPlaylist> studentPlaylists, List<Presentation> presentations) {
+			Set<StudentPlaylist> studentPlaylists) {
 		this.type = type;
 		this.duration = duration;
 		this.tags = tags;
@@ -71,7 +85,6 @@ public class Lesson implements java.io.Serializable {
 		this.skillObjectives = skillObjectives;
 		this.cmsessions = cmsessions;
 		this.studentPlaylists = studentPlaylists;
-		this.presentations = presentations;
 	}
 
 	// Property accessors
@@ -195,15 +208,7 @@ public class Lesson implements java.io.Serializable {
 		this.studentPlaylists = studentPlaylists;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "lesson")
-
-	public List<Presentation> getPresentations() {
-		return this.presentations;
-	}
-
-	public void setPresentations(List<Presentation> presentations) {
-		this.presentations = presentations;
-	}
+	
 
 	@Column(name = "is_deleted")
 	public Boolean getIsDeleted() {

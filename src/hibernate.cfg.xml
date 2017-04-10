@@ -45,7 +45,6 @@
 		<mapping class="com.viksitpro.core.dao.entities.BatchStudents" />
 		<mapping class="com.viksitpro.core.dao.entities.Address" />
 		<mapping class="com.viksitpro.core.dao.entities.Campaign" />
-		<mapping class="com.viksitpro.core.dao.entities.Presentation" />
 		<mapping class="com.viksitpro.core.dao.entities.Report" />
 		<mapping class="com.viksitpro.core.dao.entities.Slide" />
 		<mapping class="com.viksitpro.core.dao.entities.RecruiterPanelistMapping" />
