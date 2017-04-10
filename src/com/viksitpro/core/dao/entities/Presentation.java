@@ -36,7 +36,10 @@ public class Presentation implements java.io.Serializable {
 	private Set<Slide> slides = new HashSet<Slide>(0);
 	private String type;
 	private String presentationXml;
+	private String Image_url;
 
+	
+	
 	@Column(name="type", nullable=true)
 	public String getType() {
 	return type;
@@ -144,5 +147,15 @@ public class Presentation implements java.io.Serializable {
 		this.is_deleted = is_deleted;
 	}
 
-	
+	@Column(name = "image_url")
+	public String getImage_url() {
+		if(Image_url == null) {
+			return "/content/assets/images/Aplied_economics.png";
+		} else {
+			return Image_url;
+		}	}
+
+	public void setImage_url(String image_url) {
+		Image_url = image_url;
+	}
 }
