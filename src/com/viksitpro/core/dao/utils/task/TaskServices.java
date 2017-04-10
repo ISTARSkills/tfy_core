@@ -422,6 +422,38 @@ public class TaskServices {
 		return allTask;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Task> getAllTaskOfOwner(IstarUser istarUser){
+		
+		String sql = "from Task task where owner= :owner";
+		
+		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
+		Session session = baseHibernateDAO.getSession();
+		
+		Query query = session.createQuery(sql);
+		query.setParameter("owner", istarUser.getId());
+		
+		List<Task> allTask = query.list();
+		
+		return allTask;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Task> getAllTaskOfActor(IstarUser istarUser){
+		
+		String sql = "from Task task where actor= :actor";
+		
+		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
+		Session session = baseHibernateDAO.getSession();
+		
+		Query query = session.createQuery(sql);
+		query.setParameter("actor", istarUser.getId());
+		
+		List<Task> allTask = query.list();
+		
+		return allTask;
+	}
+	
 	
 /*	public List<Task> getAllTaskFromItemAndActor(Integer itemId, String itemType, Integer actorId){
 
