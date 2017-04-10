@@ -155,7 +155,11 @@ public class Module implements java.io.Serializable {
 	@Column(name = "image_url", nullable = true)
 	
 	public String getImage_url() {
-		return Image_url;
+		if(Image_url == null) {
+			return "/content/assets/images/Aplied_economics.png";
+		} else {
+			return Image_url;
+		}
 	}
 
 	public void setImage_url(String image_url) {
