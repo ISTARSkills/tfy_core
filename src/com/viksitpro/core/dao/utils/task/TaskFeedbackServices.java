@@ -1,11 +1,15 @@
 package com.viksitpro.core.dao.utils.task;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.viksitpro.core.dao.entities.BaseHibernateDAO;
 import com.viksitpro.core.dao.entities.IstarUser;
 import com.viksitpro.core.dao.entities.Task;
 import com.viksitpro.core.dao.entities.TaskFeedback;
@@ -33,6 +37,19 @@ public class TaskFeedbackServices {
 		IstarUser istarUser = istarUserServices.getIstarUser(istarUserId);
 		
 		TaskFeedback taskFeedback = createTaskFeedback(status, stage, feedback, task, istarUser, rating);
+		
+		return taskFeedback;
+	}
+	
+	public TaskFeedback createTaskFeedback(String feedback, Integer taskId, Integer istarUserId, Integer rating){
+		
+		TaskServices taskServices = new TaskServices();
+		Task task = taskServices.getTask(taskId);
+		
+		IstarUserServices istarUserServices = new IstarUserServices();
+		IstarUser istarUser = istarUserServices.getIstarUser(istarUserId);
+		
+		TaskFeedback taskFeedback = createTaskFeedback(task.getState(), task.getState(), feedback, task, istarUser, rating);
 		
 		return taskFeedback;
 	}
@@ -80,6 +97,27 @@ public class TaskFeedbackServices {
 		TaskFeedback taskFeedback = taskFeedbackDAO.findById(taskFeedbackId);
 
 		return taskFeedback;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<TaskFeedback> getAllTaskFeedback(int taskId){
+		
+		String sql = "from TaskFeedback taskFeedback where task= :taskId";
+		
+		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
+		Session session = baseHibernateDAO.getSession();
+		
+		Query query = session.createQuery(sql);
+		query.setParameter("taskId",taskId);
+		
+		List<TaskFeedback> allTaskFeedback = new ArrayList<TaskFeedback>();
+		try{
+			allTaskFeedback = query.list();
+		}catch(IllegalArgumentException e){
+			e.printStackTrace();
+		}
+		
+		return allTaskFeedback;
 	}
 
 	public TaskFeedback saveTaskFeedbackToDAO(TaskFeedback taskFeedback) {
