@@ -26,7 +26,6 @@
 		<mapping class="com.viksitpro.core.dao.entities.ClassroomDetails" />
 		<mapping class="com.viksitpro.core.dao.entities.Task" />
 		<mapping class="com.viksitpro.core.dao.entities.UserOrgMapping" />
-		<mapping class="com.viksitpro.core.dao.entities.SlideVersion" />
 		<mapping class="com.viksitpro.core.dao.entities.TrainerFeedback" />
 		<mapping class="com.viksitpro.core.dao.entities.Badge" />
 		<mapping class="com.viksitpro.core.dao.entities.Metadata" />
@@ -46,7 +45,6 @@
 		<mapping class="com.viksitpro.core.dao.entities.Address" />
 		<mapping class="com.viksitpro.core.dao.entities.Campaign" />
 		<mapping class="com.viksitpro.core.dao.entities.Report" />
-		<mapping class="com.viksitpro.core.dao.entities.Slide" />
 		<mapping class="com.viksitpro.core.dao.entities.RecruiterPanelistMapping" />
 		<mapping class="com.viksitpro.core.dao.entities.SkillRating" />
 		<mapping class="com.viksitpro.core.dao.entities.UserSessionLog" />
