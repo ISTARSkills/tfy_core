@@ -19,7 +19,6 @@ public class TaskCategory {
 	public static final  String TODO="TODO";
 	public static final String LEARN = "LEARN";
 	public static final String LESSON = "LESSON";
-	public static final String PRESENTATION = "PRESENTATION";
 	public static final String CLASSROOM_SESSION = "CLASSROOM_SESSION";
 	public static final String ASSESSMENT = "ASSESSMENT";
 	public static final String FEEDBACK = "FEEDBACK";	
