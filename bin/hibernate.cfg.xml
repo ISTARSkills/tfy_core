@@ -19,7 +19,7 @@
 		
 		
 		<property name="connection.username">postgres</property>
-		<property name="connection.url">jdbc:postgresql://127.0.0.1:5432/talentify</property>
+		<property name="connection.url">jdbc:postgresql://192.168.1.6:5432/talentify</property>
 		<property name="connection.driver_class">org.postgresql.Driver</property>
 		<mapping class="com.viksitpro.core.dao.entities.CollegeRecruiterMapping" />
 		<mapping class="com.viksitpro.core.dao.entities.JobRoleSkillBenchmark" />
