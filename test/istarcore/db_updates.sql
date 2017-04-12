@@ -22,3 +22,7 @@ WITH (OIDS=FALSE)
 ALTER TABLE "public"."user_gamification"
 ADD FOREIGN KEY ("istar_user") REFERENCES "public"."istar_user" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION,
 ADD FOREIGN KEY ("skill_objective") REFERENCES "public"."skill_objective" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE "public"."user_gamification"
+ADD COLUMN "item_id" int4,
+ADD COLUMN "item_type" varchar(255);
