@@ -28,6 +28,8 @@ public class UserGamification implements java.io.Serializable {
 	private Integer coins;
 	private Timestamp createdAt;
 	private Timestamp updatedAt;
+	private Integer itemId;
+	private String itemType;
 
 	// Constructors
 
@@ -37,13 +39,15 @@ public class UserGamification implements java.io.Serializable {
 
 	/** full constructor */
 	public UserGamification(SkillObjective skillObjective, IstarUser istarUser, Integer points, Integer coins,
-			Timestamp createdAt, Timestamp updatedAt) {
+			Timestamp createdAt, Timestamp updatedAt, Integer itemId, String itemType) {
 		this.skillObjective = skillObjective;
 		this.istarUser = istarUser;
 		this.points = points;
 		this.coins = coins;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
+		this.itemId = itemId;
+		this.itemType = itemType;
 	}
 
 	// Property accessors
@@ -122,5 +126,28 @@ public class UserGamification implements java.io.Serializable {
 	public void setUpdatedAt(Timestamp updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+
+	@Column(name = "item_id")
+	
+	public Integer getItemId() {
+		return itemId;
+	}
+
+	public void setItemId(Integer itemId) {
+		this.itemId = itemId;
+	}
+	
+	@Column(name = "item_type")
+
+	public String getItemType() {
+		return itemType;
+	}
+
+	public void setItemType(String itemType) {
+		this.itemType = itemType;
+	}
+	
+	
+	
 
 }

@@ -24,6 +24,8 @@ public class UserGamificationDAO extends BaseHibernateDAO {
 	// property constants
 	public static final String POINTS = "points";
 	public static final String COINS = "coins";
+	public static final String ITEM_ID = "itemId";
+	public static final String ITEM_TYPE = "itemType";
 
 	public void save(UserGamification transientInstance) {
 		log.debug("saving UserGamification instance");
@@ -91,6 +93,14 @@ public class UserGamificationDAO extends BaseHibernateDAO {
 
 	public List<UserGamification> findByCoins(Object coins) {
 		return findByProperty(COINS, coins);
+	}
+	
+	public List<UserGamification> findByItemId(Object itemId) {
+		return findByProperty(ITEM_ID, itemId);
+	}
+	
+	public List<UserGamification> findByItemType(Object itemType) {
+		return findByProperty(ITEM_TYPE, itemType);
 	}
 
 	public List findAll() {
