@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.OrderBy;
 
 /**
  * Question entity. @author MyEclipse Persistence Tools
@@ -211,7 +212,7 @@ public class Question implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "question")
-
+	@OrderBy(clause = "id")
 	public Set<AssessmentOption> getAssessmentOptions() {
 		return this.assessmentOptions;
 	}

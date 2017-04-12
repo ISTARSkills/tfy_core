@@ -24,5 +24,6 @@ public class TaskCategory {
 	public static final String FEEDBACK = "FEEDBACK";	
 	public static final String CHALLENGE = "CHALLENGE";
 	public static final String GAME = "GAME";
+	public static final String VIDEO = "VIDEO";
 	
 }
