@@ -1,7 +1,13 @@
 package com.viksitpro.core.dao.entities;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringReader;
 import java.sql.Timestamp;
 import java.util.HashSet;
+import java.util.Properties;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -15,8 +21,14 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 
 import org.hibernate.annotations.GenericGenerator;
+
+import com.viksitpro.core.cms.lesson.VideoLesson;
 
 /**
  * Lesson entity. @author MyEclipse Persistence Tools
@@ -42,17 +54,14 @@ public class Lesson implements java.io.Serializable {
 	private Set<Cmsession> cmsessions = new HashSet<Cmsession>(0);
 	private Set<StudentPlaylist> studentPlaylists = new HashSet<StudentPlaylist>(0);
 	private String Image_url;
-	
+
 	private String lessonXml;
 
-	
-	
-	
 	// Constructors
 
-	@Column(name="lesson_xml", nullable=true)
+	@Column(name = "lesson_xml", nullable = true)
 	public String getLessonXml() {
-		return lessonXml;
+		return this.lessonXml;
 	}
 
 	public void setLessonXml(String lessonXml) {
@@ -207,8 +216,6 @@ public class Lesson implements java.io.Serializable {
 		this.studentPlaylists = studentPlaylists;
 	}
 
-	
-
 	@Column(name = "is_deleted")
 	public Boolean getIsDeleted() {
 		return isDeleted;
@@ -229,18 +236,36 @@ public class Lesson implements java.io.Serializable {
 
 	@Column(name = "image_url")
 	public String getImage_url() {
-		if(Image_url == null) {
+		if (Image_url == null) {
 			return "/content/assets/images/Aplied_economics.png";
 		} else {
 			return Image_url;
-		}	}
+		}
+	}
 
 	public void setImage_url(String image_url) {
 		Image_url = image_url;
 	}
-	
-	
-	
-	
-	
+
+	@Transient
+	public VideoLesson getVideoLesson() {
+
+		VideoLesson videoLesson = null;
+
+		if(this.getLessonXml()!=null){
+		try{
+		JAXBContext jaxbContext = JAXBContext.newInstance(VideoLesson.class);
+		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+		
+		
+		StringReader reader = new StringReader(this.getLessonXml());
+		videoLesson = (VideoLesson) jaxbUnmarshaller.unmarshal(reader);
+		
+		} catch (JAXBException e) {
+			e.printStackTrace();
+		}
+		}
+		return videoLesson;
+	}
+
 }

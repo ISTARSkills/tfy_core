@@ -450,7 +450,7 @@ public class TaskServices {
 		query.setParameter("actor", istarUser.getId());
 		
 		List<Task> allTask = query.list();
-		
+		System.out.println("allTask" + allTask.size());
 		return allTask;
 	}
 	
