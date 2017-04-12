@@ -86,7 +86,7 @@ public class IstarUser implements java.io.Serializable {
 	private Set<ChatGroup> chatGroups = new HashSet<ChatGroup>(0);
 	private Set<StudentPlaylist> studentPlaylists = new HashSet<StudentPlaylist>(0);
 	private Set<Notification> notificationsForReceiverId = new HashSet<Notification>(0);
-
+	private Set<UserGamification> userGamifications = new HashSet<UserGamification>(0);
 	// Constructors
 
 	/** default constructor */
@@ -117,7 +117,7 @@ public class IstarUser implements java.io.Serializable {
 			Set<JobPanelistMapping> jobPanelistMappings, Set<Task> tasksForActor,
 			Set<TrainerPresentor> trainerPresentorsForTrainerId, Set<ExceptionLog> exceptionLogs, Set<Team> teams_1,
 			Set<ChatGroup> chatGroups, Set<StudentPlaylist> studentPlaylists,
-			Set<Notification> notificationsForReceiverId) {
+			Set<Notification> notificationsForReceiverId, Set<UserGamification> userGamifications) {
 		this.email = email;
 		this.password = password;
 		this.createdAt = createdAt;
@@ -165,6 +165,7 @@ public class IstarUser implements java.io.Serializable {
 		this.chatGroups = chatGroups;
 		this.studentPlaylists = studentPlaylists;
 		this.notificationsForReceiverId = notificationsForReceiverId;
+		this.userGamifications = userGamifications;
 	}
 
 	// Property accessors
@@ -659,10 +660,21 @@ public class IstarUser implements java.io.Serializable {
 		this.notificationsForReceiverId = notificationsForReceiverId;
 	}
 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "istarUser")
+
+	public Set<UserGamification> getUserGamifications() {
+		return this.userGamifications;
+	}
+
+	public void setUserGamifications(Set<UserGamification> userGamifications) {
+		this.userGamifications = userGamifications;
+	}
+	
 	@Transient
 	public Set<SkillPrecentile> getSkillPercentiles() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }

@@ -98,6 +98,7 @@
 		<mapping class="com.viksitpro.core.dao.entities.TaskFeedback" />
 		<mapping class="com.viksitpro.core.dao.entities.CourseStats" />
 		<mapping class="com.viksitpro.core.dao.entities.Notification" />
+		<mapping class="com.viksitpro.core.dao.entities.UserGamification" />
 
 
 	</session-factory>

@@ -42,7 +42,8 @@ public class SkillObjective implements java.io.Serializable {
 	private Set<SkillObjective> skillObjectivesForLearningObjectiveId = new HashSet<SkillObjective>(0);
 	private Set<Cmsession> cmsessions = new HashSet<Cmsession>(0);
 	private Set<SkillObjective> skillObjectivesForSkillId = new HashSet<SkillObjective>(0);
-
+	private Set<UserGamification> userGamifications = new HashSet<UserGamification>(0);
+	
 	// Constructors
 
 	/** default constructor */
@@ -54,7 +55,7 @@ public class SkillObjective implements java.io.Serializable {
 			Set<Course> courses, Set<Question> questions, Set<SkillRating> skillRatings, Set<Lesson> lessons,
 			Set<BadgeSkill> badgeSkills, Set<JobRoleSkillBenchmark> jobRoleSkillBenchmarks, Set<Module> modules,
 			Set<SkillObjective> skillObjectivesForLearningObjectiveId, Set<Cmsession> cmsessions,
-			Set<SkillObjective> skillObjectivesForSkillId) {
+			Set<SkillObjective> skillObjectivesForSkillId, Set<UserGamification> userGamifications) {
 		this.type = type;
 		this.name = name;
 		this.trainerSkillDistrubutionStatses = trainerSkillDistrubutionStatses;
@@ -68,6 +69,7 @@ public class SkillObjective implements java.io.Serializable {
 		this.skillObjectivesForLearningObjectiveId = skillObjectivesForLearningObjectiveId;
 		this.cmsessions = cmsessions;
 		this.skillObjectivesForSkillId = skillObjectivesForSkillId;
+		this.userGamifications = userGamifications;
 	}
 
 	// Property accessors
@@ -231,6 +233,16 @@ public class SkillObjective implements java.io.Serializable {
 
 	public void setSkillObjectivesForSkillId(Set<SkillObjective> skillObjectivesForSkillId) {
 		this.skillObjectivesForSkillId = skillObjectivesForSkillId;
+	}
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "skillObjective")
+
+	public Set<UserGamification> getUserGamifications() {
+		return this.userGamifications;
+	}
+
+	public void setUserGamifications(Set<UserGamification> userGamifications) {
+		this.userGamifications = userGamifications;
 	}
 
 }
