@@ -30,6 +30,9 @@ public class SkillObjective implements java.io.Serializable {
 	private Integer id;
 	private String type;
 	private String name;
+	private Integer parentSkill;
+	private String skillLevelType;
+	
 	private Set<TrainerSkillDistrubutionStats> trainerSkillDistrubutionStatses = new HashSet<TrainerSkillDistrubutionStats>(
 			0);
 	private Set<Course> courses = new HashSet<Course>(0);
@@ -51,13 +54,15 @@ public class SkillObjective implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public SkillObjective(String type, String name, Set<TrainerSkillDistrubutionStats> trainerSkillDistrubutionStatses,
+	public SkillObjective(String type, String name, Integer parentSkill, String skillLevelType, Set<TrainerSkillDistrubutionStats> trainerSkillDistrubutionStatses,
 			Set<Course> courses, Set<Question> questions, Set<SkillRating> skillRatings, Set<Lesson> lessons,
 			Set<BadgeSkill> badgeSkills, Set<JobRoleSkillBenchmark> jobRoleSkillBenchmarks, Set<Module> modules,
 			Set<SkillObjective> skillObjectivesForLearningObjectiveId, Set<Cmsession> cmsessions,
 			Set<SkillObjective> skillObjectivesForSkillId, Set<UserGamification> userGamifications) {
 		this.type = type;
 		this.name = name;
+		this.parentSkill = parentSkill;
+		this.skillLevelType = skillLevelType;
 		this.trainerSkillDistrubutionStatses = trainerSkillDistrubutionStatses;
 		this.courses = courses;
 		this.questions = questions;
@@ -105,6 +110,26 @@ public class SkillObjective implements java.io.Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	@Column(name = "parent_skill")
+	
+	public Integer getParentSkill() {
+		return parentSkill;
+	}
+
+	public void setParentSkill(Integer parentSkill) {
+		this.parentSkill = parentSkill;
+	}
+	
+	@Column(name = "skill_level_type")
+
+	public String getSkillLevelType() {
+		return skillLevelType;
+	}
+
+	public void setSkillLevelType(String skillLevelType) {
+		this.skillLevelType = skillLevelType;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "skillObjective")

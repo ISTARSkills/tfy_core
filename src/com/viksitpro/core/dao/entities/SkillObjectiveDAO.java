@@ -25,6 +25,8 @@ public class SkillObjectiveDAO extends BaseHibernateDAO {
 	// property constants
 	public static final String TYPE = "type";
 	public static final String NAME = "name";
+	public static final String PARENT_SKILL = "parentSkill";
+	public static final String SKILL_LEVEL_TYPE = "skillLevelType";
 
 	public void save(SkillObjective transientInstance) {
 		log.debug("saving SkillObjective instance");
@@ -92,6 +94,14 @@ public class SkillObjectiveDAO extends BaseHibernateDAO {
 
 	public List<SkillObjective> findByName(Object name) {
 		return findByProperty(NAME, name);
+	}
+	
+	public List<SkillObjective> findByParentSkill(Object parentSkill) {
+		return findByProperty(PARENT_SKILL, parentSkill);
+	}
+	
+	public List<SkillObjective> findBySkillLevelType(Object skillLevelType) {
+		return findByProperty(SKILL_LEVEL_TYPE, skillLevelType);
 	}
 
 	public List findAll() {
