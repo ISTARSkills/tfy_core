@@ -1,5 +1,6 @@
 package com.viksitpro.core.dao.entities;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -32,9 +33,9 @@ public class Module implements java.io.Serializable {
 	private String moduleName;
 	private Integer orderId;
 	private Boolean isDeleted;
-	private List<Cmsession> cmsessions;
+	private List<Cmsession> cmsessions = new ArrayList<Cmsession>();
 	private Set<Course> courses = new HashSet<Course>(0);
-	private List<SkillObjective> skillObjectives;// = new HashSet<SkillObjective>(0);
+	private List<SkillObjective> skillObjectives = new ArrayList<SkillObjective>();
 	private String module_description;
 	private String Image_url;
 	
@@ -131,7 +132,11 @@ public class Module implements java.io.Serializable {
 		this.courses = courses;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "modules")
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "module_skill_objective", schema = "public", joinColumns = {
+			@JoinColumn(name = "module_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "skill_objective_id", nullable = false, updatable = false) })
+	//@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "modules")
 
 	public List<SkillObjective> getSkillObjectives() {
 		return this.skillObjectives;

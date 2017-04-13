@@ -1,5 +1,6 @@
 package com.viksitpro.core.dao.entities;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -32,8 +33,8 @@ public class Cmsession implements java.io.Serializable {
 	private String description;
 	private Integer orderId;
 	private Boolean isDeleted;
-	private List<Lesson> lessons;
-	private List<SkillObjective> skillObjectives;// = new HashSet<SkillObjective>(0);
+	private List<Lesson> lessons = new ArrayList<Lesson>();
+	private List<SkillObjective> skillObjectives= new ArrayList<SkillObjective>();
 	private Set<Module> modules = new HashSet<Module>(0);
 	private String Image_url;
 

@@ -1,6 +1,7 @@
 package com.viksitpro.core.dao.entities;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -34,8 +37,8 @@ public class Course implements java.io.Serializable {
 	private String tags;
 	private Timestamp createdAt;
 	private Set<StudentPlaylist> studentPlaylists = new HashSet<StudentPlaylist>(0);
-	private List<Module> modules;
-	private List<SkillObjective> skillObjectives;// = new HashSet<SkillObjective>(0);
+	private List<Module> modules = new ArrayList<Module>();
+	private List<SkillObjective> skillObjectives = new ArrayList<SkillObjective>();
 	private Set<Batch> batchs = new HashSet<Batch>(0);
 	private String category;
 	private String image_url;
@@ -131,7 +134,11 @@ public class Course implements java.io.Serializable {
 		this.studentPlaylists = studentPlaylists;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "courses")
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "module_course", schema = "public", joinColumns = {
+			@JoinColumn(name = "course_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "module_id", nullable = false, updatable = false) })
+	//@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "courses")
 
 	public List<Module> getModules() {
 		return this.modules;
@@ -141,7 +148,11 @@ public class Course implements java.io.Serializable {
 		this.modules = modules;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "courses")
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "course_skill_objective", schema = "public", joinColumns = {
+			@JoinColumn(name = "course_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "skill_objective_id", nullable = false, updatable = false) })
+	//@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "courses")
 
 	public List<SkillObjective> getSkillObjectives() {
 		return this.skillObjectives;
