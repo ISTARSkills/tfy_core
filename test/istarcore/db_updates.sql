@@ -26,3 +26,7 @@ ADD FOREIGN KEY ("skill_objective") REFERENCES "public"."skill_objective" ("id")
 ALTER TABLE "public"."user_gamification"
 ADD COLUMN "item_id" int4,
 ADD COLUMN "item_type" varchar(255);
+
+ALTER TABLE "public"."skill_objective"
+ADD COLUMN "parent_skill" int4,
+ADD COLUMN "skill_level_type" varchar(255);
