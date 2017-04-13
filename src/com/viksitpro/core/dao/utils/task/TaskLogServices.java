@@ -46,13 +46,13 @@ public class TaskLogServices {
    
 	public List<Task> getTasks(Integer istarUserId)
 	{
-		 List<Task> uniqueTasks = new ArrayList<>();
+		 List<Task> uniqueTasks = new ArrayList<Task>();
 		 IstarUserServices userService = new IstarUserServices();
     	 IstarUser user = userService.getIstarUser(istarUserId);
-		 Set<Task> logs = new HashSet<>();
-		 List<Task> userTasksAsActor = new ArrayList<>(user.getTasksForActor());
-    	 List<Task> userTasksAsOwner = new ArrayList<>(user.getTasksForOwner());
-    	 List<Task> userTasksAsAssigneeMember = new ArrayList<>(user.getTasksForAssigneeMember());
+		 Set<Task> logs = new HashSet<Task>();
+		 List<Task> userTasksAsActor = new ArrayList<Task>(user.getTasksForActor());
+    	 List<Task> userTasksAsOwner = new ArrayList<Task>(user.getTasksForOwner());
+    	 List<Task> userTasksAsAssigneeMember = new ArrayList<Task>(user.getTasksForAssigneeMember());
     	  		     		
     		 logs.addAll(userTasksAsActor);
     	 
@@ -71,13 +71,13 @@ public class TaskLogServices {
 	
     public  List<TaskLog> getTaskLogs(Integer istarUserId)
     {
-    	 List<TaskLog> uniqueLogs = new ArrayList<>();
-    	 Set<TaskLog> logs = new HashSet<>();
+    	 List<TaskLog> uniqueLogs = new ArrayList<TaskLog>();
+    	 Set<TaskLog> logs = new HashSet<TaskLog>();
     	 IstarUserServices userService = new IstarUserServices();
     	 IstarUser user = userService.getIstarUser(istarUserId);
-    	 List<Task> userTasksAsActor = new ArrayList<>(user.getTasksForActor());
-    	 List<Task> userTasksAsOwner = new ArrayList<>(user.getTasksForOwner());
-    	 List<Task> userTasksAsAssigneeMember = new ArrayList<>(user.getTasksForAssigneeMember());
+    	 List<Task> userTasksAsActor = new ArrayList<Task>(user.getTasksForActor());
+    	 List<Task> userTasksAsOwner = new ArrayList<Task>(user.getTasksForOwner());
+    	 List<Task> userTasksAsAssigneeMember = new ArrayList<Task>(user.getTasksForAssigneeMember());
     	 for(Task task : userTasksAsActor)
     	 { 		     		
     		 logs.addAll(task.getTaskLogs());

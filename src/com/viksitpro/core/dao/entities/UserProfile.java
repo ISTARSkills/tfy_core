@@ -139,7 +139,11 @@ public class UserProfile implements java.io.Serializable {
 	@Column(name = "profile_image")
 
 	public String getProfileImage() {
-		return this.profileImage;
+		if (profileImage != null) {
+			return this.profileImage;
+		} else {
+			return "http://api.talentify.in/video/android_images/" + firstName.substring(0, 1).toUpperCase() + ".png";
+		}
 	}
 
 	public void setProfileImage(String profileImage) {

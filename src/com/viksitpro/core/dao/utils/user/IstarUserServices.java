@@ -261,6 +261,7 @@ public class IstarUserServices {
 		istarUser.setEmail(email);
 		istarUser.setPassword(password);
 		istarUser.setMobile(mobile);
+		istarUser.setIsVerified(false);
 		istarUser.setCreatedAt(current);
 
 		istarUser = saveIstarUserToDAO(istarUser);
@@ -291,6 +292,7 @@ public class IstarUserServices {
 		istarUser.setPassword(password);
 		istarUser.setMobile(mobile);
 		istarUser.setAuthToken(authenticationToken);
+		istarUser.setIsVerified(false);
 		istarUser.setCreatedAt(current);
 
 		istarUser = saveIstarUserToDAO(istarUser);
@@ -322,6 +324,7 @@ public class IstarUserServices {
 		istarUser.setMobile(mobile);
 		istarUser.setAuthToken(authenticationToken);
 		istarUser.setLoginType(loginType);
+		istarUser.setIsVerified(false);
 		istarUser.setCreatedAt(current);
 
 		istarUser = saveIstarUserToDAO(istarUser);
@@ -519,7 +522,7 @@ public class IstarUserServices {
 	}
 
 	public List<IstarUser> getUserWithEmail(String email) {
-		List<IstarUser> users = new ArrayList<>();
+		List<IstarUser> users = new ArrayList<IstarUser>();
 		IstarUserDAO dao = new IstarUserDAO();
 		users = dao.findByEmail(email);
 		return users;
@@ -527,9 +530,9 @@ public class IstarUserServices {
 
 	@SuppressWarnings("unchecked")
 	public ArrayList<Role> getRolesOfUser(IstarUser user) {
-		ArrayList<Role> roles = new ArrayList<>();
+		ArrayList<Role> roles = new ArrayList<Role>();
 
-		Set<Role> rolesset = new HashSet<>();
+		Set<Role> rolesset = new HashSet<Role>();
 		for (UserRole userRole : user.getUserRoles()) {
 			rolesset.add(userRole.getRole());
 		}
@@ -541,7 +544,7 @@ public class IstarUserServices {
 
 	public List<IstarUser> getUserByMobile(Integer mobile) {
 		IstarUserDAO userDao = new IstarUserDAO();
-		List<IstarUser> users = new ArrayList<>();
+		List<IstarUser> users = new ArrayList<IstarUser>();
 		users = userDao.findByMobile(mobile);
 		return users;
 	}
