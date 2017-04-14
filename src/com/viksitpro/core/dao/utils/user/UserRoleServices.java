@@ -59,6 +59,22 @@ public class UserRoleServices {
 		}		
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<UserRole> getAllUserRolesOfRole(Integer roleId){
+		
+		String hql = "from UserRole userRole where role= :role";
+
+		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
+		Session session = baseHibernateDAO.getSession();
+
+		Query query = session.createQuery(hql);
+		query.setParameter("role", roleId);
+		
+		List<UserRole> allUserRoles = query.list();
+		
+		return allUserRoles;
+	}
+	
 /*	public void revokeRoleFromUser(Integer istarUserId, Integer roleId)
 	{
 		IstarUserServices istarUserService = new IstarUserServices(); 
