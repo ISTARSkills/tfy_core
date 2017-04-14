@@ -118,7 +118,7 @@ public class AssessmentDAO extends BaseHibernateDAO {
 		return findByProperty(CATEGORY, category);
 	}
 
-	public List findAll() {
+	public List<Assessment> findAll() {
 		log.debug("finding all Assessment instances");
 		try {
 			String queryString = "from Assessment";

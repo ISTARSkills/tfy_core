@@ -89,7 +89,7 @@ public class AssessmentQuestionDAO extends BaseHibernateDAO {
 		return findByProperty(ORDER_ID, orderId);
 	}
 
-	public List findAll() {
+	public List<AssessmentQuestion> findAll() {
 		log.debug("finding all AssessmentQuestion instances");
 		try {
 			String queryString = "from AssessmentQuestion";
