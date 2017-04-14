@@ -261,7 +261,7 @@ public class AddressService {
 	 */
 
 	public HashMap<String, Double> getLatLongFromPincode(Integer pincode) {
-		HashMap<String, Double> data = new HashMap<>();
+		HashMap<String, Double> data = new HashMap<String, Double>();
 		data.put("longitude", 77.55209);
 		data.put("latitude", 13.0356122);
 		return data;
