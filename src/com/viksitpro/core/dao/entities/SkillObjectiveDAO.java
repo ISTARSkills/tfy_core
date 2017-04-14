@@ -104,7 +104,7 @@ public class SkillObjectiveDAO extends BaseHibernateDAO {
 		return findByProperty(SKILL_LEVEL_TYPE, skillLevelType);
 	}
 
-	public List findAll() {
+	public List<SkillObjective> findAll() {
 		log.debug("finding all SkillObjective instances");
 		try {
 			String queryString = "from SkillObjective";

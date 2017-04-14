@@ -35,6 +35,7 @@ public class Assessment implements java.io.Serializable {
 	private String assessmenttitle;
 	private Boolean retryAble;
 	private String category;
+	private Integer course;
 	private Set<AssessmentQuestion> assessmentQuestions = new HashSet<AssessmentQuestion>(0);
 	private Set<Report> reports = new HashSet<Report>(0);
 	private Set<StudentAssessment> studentAssessments = new HashSet<StudentAssessment>(0);
@@ -48,7 +49,7 @@ public class Assessment implements java.io.Serializable {
 	/** full constructor */
 	public Assessment(String assessmentType, Timestamp createdAt, Integer numberOfQuestions,
 			Integer assessmentdurationhours, Integer assessmentdurationminutes, String assessmenttitle,
-			Boolean retryAble, String category, Set<AssessmentQuestion> assessmentQuestions, Set<Report> reports,
+			Boolean retryAble, String category, Integer course, Set<AssessmentQuestion> assessmentQuestions, Set<Report> reports,
 			Set<StudentAssessment> studentAssessments) {
 		this.assessmentType = assessmentType;
 		this.createdAt = createdAt;
@@ -61,6 +62,7 @@ public class Assessment implements java.io.Serializable {
 		this.assessmentQuestions = assessmentQuestions;
 		this.reports = reports;
 		this.studentAssessments = studentAssessments;
+		this.course = course;
 	}
 
 	// Property accessors
@@ -156,6 +158,16 @@ public class Assessment implements java.io.Serializable {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	@Column(name = "course_id")
+
+	public Integer getCourse() {
+		return course;
+	}
+
+	public void setCourse(Integer course) {
+		this.course = course;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "assessment")

@@ -201,7 +201,7 @@ public class Question implements java.io.Serializable {
 		this.studentAssessments = studentAssessments;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "questions")
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "questions")
 
 	public Set<SkillObjective> getSkillObjectives() {
 		return this.skillObjectives;
