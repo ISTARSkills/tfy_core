@@ -19,7 +19,7 @@
 		
 		
 		<property name="connection.username">postgres</property>
-		<property name="connection.url">jdbc:postgresql://192.168.1.6:5432/talentify</property>
+		<property name="connection.url">jdbc:postgresql://localhost:5432/talentify</property>
 		<property name="connection.driver_class">org.postgresql.Driver</property>
 		<mapping class="com.viksitpro.core.dao.entities.CollegeRecruiterMapping" />
 		<mapping class="com.viksitpro.core.dao.entities.JobRoleSkillBenchmark" />
@@ -99,6 +99,7 @@
 		<mapping class="com.viksitpro.core.dao.entities.CourseStats" />
 		<mapping class="com.viksitpro.core.dao.entities.Notification" />
 		<mapping class="com.viksitpro.core.dao.entities.UserGamification" />
+		<mapping class="com.viksitpro.core.dao.entities.AssessmentBenchmark" />
 
 
 	</session-factory>

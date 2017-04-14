@@ -39,6 +39,7 @@ public class Assessment implements java.io.Serializable {
 	private Set<AssessmentQuestion> assessmentQuestions = new HashSet<AssessmentQuestion>(0);
 	private Set<Report> reports = new HashSet<Report>(0);
 	private Set<StudentAssessment> studentAssessments = new HashSet<StudentAssessment>(0);
+	private Set<AssessmentBenchmark> assessmentBenchmarks = new HashSet<AssessmentBenchmark>(0);
 
 	// Constructors
 
@@ -50,7 +51,7 @@ public class Assessment implements java.io.Serializable {
 	public Assessment(String assessmentType, Timestamp createdAt, Integer numberOfQuestions,
 			Integer assessmentdurationhours, Integer assessmentdurationminutes, String assessmenttitle,
 			Boolean retryAble, String category, Integer course, Set<AssessmentQuestion> assessmentQuestions, Set<Report> reports,
-			Set<StudentAssessment> studentAssessments) {
+			Set<StudentAssessment> studentAssessments, Set<AssessmentBenchmark> assessmentBenchmarks) {
 		this.assessmentType = assessmentType;
 		this.createdAt = createdAt;
 		this.numberOfQuestions = numberOfQuestions;
@@ -63,6 +64,7 @@ public class Assessment implements java.io.Serializable {
 		this.reports = reports;
 		this.studentAssessments = studentAssessments;
 		this.course = course;
+		this.assessmentBenchmarks = assessmentBenchmarks;
 	}
 
 	// Property accessors
@@ -200,4 +202,13 @@ public class Assessment implements java.io.Serializable {
 		this.studentAssessments = studentAssessments;
 	}
 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "assessment")
+
+	public Set<AssessmentBenchmark> getAssessmentBenchmarks() {
+		return this.assessmentBenchmarks;
+	}
+
+	public void setAssessmentBenchmarks(Set<AssessmentBenchmark> assessmentBenchmarks) {
+		this.assessmentBenchmarks = assessmentBenchmarks;
+	}
 }
