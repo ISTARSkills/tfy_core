@@ -21,10 +21,14 @@ public class UserGamification implements java.io.Serializable {
 
 	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private SkillObjective skillObjective;
 	private IstarUser istarUser;
-	private Integer points;
+	private Double points;
 	private Integer coins;
 	private Timestamp createdAt;
 	private Timestamp updatedAt;
@@ -38,7 +42,7 @@ public class UserGamification implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public UserGamification(SkillObjective skillObjective, IstarUser istarUser, Integer points, Integer coins,
+	public UserGamification(SkillObjective skillObjective, IstarUser istarUser, Double points, Integer coins,
 			Timestamp createdAt, Timestamp updatedAt, Integer itemId, String itemType) {
 		this.skillObjective = skillObjective;
 		this.istarUser = istarUser;
@@ -89,11 +93,11 @@ public class UserGamification implements java.io.Serializable {
 
 	@Column(name = "points")
 
-	public Integer getPoints() {
+	public Double getPoints() {
 		return this.points;
 	}
 
-	public void setPoints(Integer points) {
+	public void setPoints(Double points) {
 		this.points = points;
 	}
 
@@ -146,8 +150,4 @@ public class UserGamification implements java.io.Serializable {
 	public void setItemType(String itemType) {
 		this.itemType = itemType;
 	}
-	
-	
-	
-
 }
