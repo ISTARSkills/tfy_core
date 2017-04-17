@@ -109,7 +109,7 @@ public class IstarUserDAO extends BaseHibernateDAO {
 		return findByProperty(LOGIN_TYPE, loginType);
 	}
 
-	public List findAll() {
+	public List<IstarUser> findAll() {
 		log.debug("finding all IstarUser instances");
 		try {
 			String queryString = "from IstarUser";
