@@ -19,28 +19,41 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author ComplexObject
  *
  */
-@XmlRootElement(name = "interactive_content")
+@Root(name="interactive_content")
 public class InteractiveContent implements Serializable {
 
-	Integer id;
-	String bgImage;
-	Boolean evalType;
-	Boolean scrollable;
-	Integer gridX;
-	Integer gridY;
-	List<Entity> questions;
-	List<Variable> variables;
-	String audioUrl;
+	@Attribute(name = "id", required = false)
+    Integer id;
+	@Attribute(name = "bgImage", required = false)
+    String bgImage;
+	@Attribute(name = "evalType", required = false)
+    Boolean evalType;
+	@Attribute(name = "scrollable", required = false)
+    Boolean scrollable;
+	@Attribute(name = "gridX", required = false)
+    Integer gridX;
+	@Attribute(name = "gridY", required = false)
+    Integer gridY;
+	
+	@ElementList(name = "entity", inline = true, required = false)
+	List<Entity> questions ;
+
+	@ElementList(name = "variables", inline = true, required = false)
+  List<Variable> variables;
+
+
+	@Attribute(name = "audioUrl", required = false)
+    String audioUrl;
 
 	public InteractiveContent() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public List<Entity> getQuestions() {
 		return questions;
 	}
 
-	@XmlElement(name = "entity", required = false)
 	public void setQuestions(List<Entity> questions) {
 		this.questions = questions;
 	}
@@ -49,7 +62,6 @@ public class InteractiveContent implements Serializable {
 		return id;
 	}
 
-	@XmlAttribute(name = "id", required = false)
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -58,7 +70,6 @@ public class InteractiveContent implements Serializable {
 		return bgImage;
 	}
 
-	@XmlAttribute(name = "bgImage", required = false)
 	public void setBgImage(String bgImage) {
 		this.bgImage = bgImage;
 	}
@@ -67,7 +78,6 @@ public class InteractiveContent implements Serializable {
 		return evalType;
 	}
 
-	@XmlAttribute(name = "evalType", required = false)
 	public void setEvalType(Boolean evalType) {
 		this.evalType = evalType;
 	}
@@ -76,7 +86,6 @@ public class InteractiveContent implements Serializable {
 		return scrollable;
 	}
 
-	@XmlAttribute(name = "scrollable", required = false)
 	public void setScrollable(Boolean scrollable) {
 		this.scrollable = scrollable;
 	}
@@ -85,7 +94,6 @@ public class InteractiveContent implements Serializable {
 		return gridX;
 	}
 
-	@XmlAttribute(name = "gridX", required = false)
 	public void setGridX(Integer gridX) {
 		this.gridX = gridX;
 	}
@@ -94,7 +102,6 @@ public class InteractiveContent implements Serializable {
 		return gridY;
 	}
 
-	@XmlAttribute(name = "gridY", required = false)
 	public void setGridY(Integer gridY) {
 		this.gridY = gridY;
 	}
@@ -103,7 +110,6 @@ public class InteractiveContent implements Serializable {
 		return variables;
 	}
 
-	@XmlElement(name = "variables", required = false)
 	public void setVariables(List<Variable> variables) {
 		this.variables = variables;
 	}
@@ -112,7 +118,6 @@ public class InteractiveContent implements Serializable {
 		return audioUrl;
 	}
 
-	@XmlAttribute(name = "audioUrl", required = false)
 	public void setAudioUrl(String audioUrl) {
 		this.audioUrl = audioUrl;
 	}

@@ -9,130 +9,134 @@ import org.simpleframework.xml.ElementMap;
 import java.io.Serializable;
 import java.util.HashMap;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  * @author ComplexObject
  */
-@XmlRootElement(name = "option_entity")
+
 public class EntityOption implements Serializable {
 
-	Integer id;
-	String optionText;
-	String backgroundImage;
-	String grid;
-	boolean isCorrect;
-	String backgroundColor;
-	Integer nextEntity;
-	HashMap<Integer, InfoCard> cards = new HashMap<>();
-	String evaluationScript;
-	String mediaUrl;
-	String mediaType;
+    @Attribute(name = "id", required = false)
+    Integer id;
+    @Attribute(name = "option_text", required = false)
+    String optionText;
+    @Attribute(name = "image_url", required = false)
+    String backgroundImage;
+    @Attribute(name = "option_grid", required = false)
+    String grid;
+    @Attribute(name = "iscorrect", required = false)
+    boolean isCorrect;
+    @Attribute(name = "bg_color", required = false)
+    String backgroundColor;
 
-	
-	public HashMap<Integer, InfoCard> getCards() {
-		return cards;
-	}
+    @Attribute(name = "next_entity", required = false)
+    Integer nextEntity;
 
-	@XmlElementWrapper(name = "info_cards", required = false)
-	public void setCards(HashMap<Integer, InfoCard> cards) {
-		this.cards = cards;
-	}
+    @ElementMap(entry = "info_cards",inline = false, required = false)
+    HashMap<Integer, InfoCard> cards = new HashMap<>();
 
-	public EntityOption() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    @Attribute(name = "eval_script", required = false)
+    String evaluationScript;
 
-	public String getBackgroundColor() {
-		return backgroundColor;
-	}
+    @Attribute(name = "media_url", required = false)
+    String mediaUrl;
+    @Attribute(name = "media_type", required = false)
+    String mediaType;
 
-	@XmlAttribute(name = "bg_color", required = false)
-	public void setBackgroundColor(String backgroundColor) {
-		this.backgroundColor = backgroundColor;
-	}
+    public HashMap<Integer, InfoCard> getCards() {
+        return cards;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public void setCards(HashMap<Integer, InfoCard> cards) {
+        this.cards = cards;
+    }
 
-	@XmlAttribute(name = "id", required = false)
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
-	public String getOptionText() {
-		return optionText;
-	}
+    public EntityOption() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	@XmlAttribute(name = "option_text", required = false)
-	public void setOptionText(String optionText) {
-		this.optionText = optionText;
-	}
 
-	public String getBackgroundImage() {
-		return backgroundImage;
-	}
+    public String getBackgroundColor() {
+        return backgroundColor;
+    }
 
-	@XmlAttribute(name = "image_url", required = false)
-	public void setBackgroundImage(String backgroundImage) {
-		this.backgroundImage = backgroundImage;
-	}
+    public void setBackgroundColor(String backgroundColor) {
+        this.backgroundColor = backgroundColor;
+    }
 
-	public String getGrid() {
-		return grid;
-	}
 
-	@XmlAttribute(name = "option_grid", required = false)
-	public void setGrid(String grid) {
-		this.grid = grid;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public boolean isCorrect() {
-		return isCorrect;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	@XmlAttribute(name = "iscorrect", required = false)
-	public void setCorrect(boolean isCorrect) {
-		this.isCorrect = isCorrect;
-	}
+    public String getOptionText() {
+        return optionText;
+    }
 
-	public Integer getNextEntity() {
-		return nextEntity;
-	}
+    public void setOptionText(String optionText) {
+        this.optionText = optionText;
+    }
 
-	@XmlAttribute(name = "next_entity", required = false)
-	public void setNextEntity(Integer nextEntity) {
-		this.nextEntity = nextEntity;
-	}
+    public String getBackgroundImage() {
+        return backgroundImage;
+    }
 
-	public String getEvaluationScript() {
-		return evaluationScript;
-	}
+    public void setBackgroundImage(String backgroundImage) {
+        this.backgroundImage = backgroundImage;
+    }
 
-	@XmlAttribute(name = "eval_script", required = false)
-	public void setEvaluationScript(String evaluationScript) {
-		this.evaluationScript = evaluationScript;
-	}
+    public String getGrid() {
+        return grid;
+    }
 
-	public String getMediaUrl() {
-		return mediaUrl;
-	}
+    public void setGrid(String grid) {
+        this.grid = grid;
+    }
 
-	@XmlAttribute(name = "media_url", required = false)
-	public void setMediaUrl(String mediaUrl) {
-		this.mediaUrl = mediaUrl;
-	}
+    public boolean isCorrect() {
+        return isCorrect;
+    }
 
-	public String getMediaType() {
-		return mediaType;
-	}
+    public void setCorrect(boolean isCorrect) {
+        this.isCorrect = isCorrect;
+    }
 
-	@XmlAttribute(name = "media_type", required = false)
-	public void setMediaType(String mediaType) {
-		this.mediaType = mediaType;
-	}
+
+    public Integer getNextEntity() {
+        return nextEntity;
+    }
+
+    public void setNextEntity(Integer nextEntity) {
+        this.nextEntity = nextEntity;
+    }
+
+    public String getEvaluationScript() {
+        return evaluationScript;
+    }
+
+    public void setEvaluationScript(String evaluationScript) {
+        this.evaluationScript = evaluationScript;
+    }
+
+    public String getMediaUrl() {
+        return mediaUrl;
+    }
+
+    public void setMediaUrl(String mediaUrl) {
+        this.mediaUrl = mediaUrl;
+    }
+
+    public String getMediaType() {
+        return mediaType;
+    }
+
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
+    }
 }
+

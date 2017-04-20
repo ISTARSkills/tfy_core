@@ -1,17 +1,14 @@
-package com.viksitpro.core.cms.interactive;		
-/**
- * Created by ajith on 14-02-2017.
- */
+package com.viksitpro.core.cms.interactive;
+
+import java.io.Serializable;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Root;
 
-import java.io.Serializable;
-
 /**
- * @author ComplexObject
- *
+ * Created by ajith on 14-02-2017.
  */
+
 @Root(name = "variable")
 public class Variable implements Serializable {
 
@@ -27,7 +24,6 @@ public class Variable implements Serializable {
     Integer maxvalue;
     @Attribute(name = "variable_icon", required = false)
     String icon;
-
 
     public Integer getId() {
         return id;
