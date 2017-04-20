@@ -9,27 +9,26 @@ import org.simpleframework.xml.Root;
 
 import java.io.Serializable;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  * @author ComplexObject
  *
  */
 
-@XmlRootElement(name = "info_card")
-public class InfoCard implements Serializable {
+@Root(name="info_card")
+public class InfoCard    implements Serializable {
 
-	Integer id;
-	String template;
+	@Attribute(name = "id", required = false)
+    Integer id;
+	@Attribute(name = "template", required = false)
+    String template;
+	
+	@Element(name="content", required=false)
 	CardContent content;
 
 	public Integer getId() {
 		return id;
 	}
 
-	@XmlAttribute(name = "id", required = false)
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -38,7 +37,6 @@ public class InfoCard implements Serializable {
 		return template;
 	}
 
-	@XmlAttribute(name = "template", required = false)
 	public void setTemplate(String template) {
 		this.template = template;
 	}
@@ -47,7 +45,6 @@ public class InfoCard implements Serializable {
 		return content;
 	}
 
-	@XmlElement(name = "content")
 	public void setContent(CardContent content) {
 		this.content = content;
 	}
@@ -56,5 +53,8 @@ public class InfoCard implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	
+	
+	
 }

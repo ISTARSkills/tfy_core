@@ -3,128 +3,138 @@
  */
 package com.viksitpro.core.cms.interactive;		
 
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.ElementMap;
 import org.simpleframework.xml.Root;
 
 
-import java.io.Serializable;
-import java.util.HashMap;
-
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  * @author ComplexObject
  */
-@XmlRootElement(name = "entity")
+@Root(name = "card_entity")
 public class Entity implements Serializable {
 
-	Integer id;
-	String backgroundImage;
-	String grid;
-	String correctMessage;
-	String incorrectMessage;
-	String actionType;
-	String text;
-	String bgColor;
-	HashMap<Integer, EntityOption> options;
-	String transitionImage;
+    @Attribute(name = "id", required = false)
+    Integer id;
+    @Attribute(name = "image_url", required = false)
+    String backgroundImage;
+    @Attribute(name = "question_grid", required = false)
+    String grid;
+    @Attribute(name = "correct_opt_message", required = false)
+    String correctMessage;
+    @Attribute(name = "incorrect_opt_message", required = false)
+    String incorrectMessage;
+    @Attribute(name = "action", required = false)
+    String actionType;
+    @Attribute(name = "q_text", required = false)
+    String text;
+    @Attribute(name = "bg_color", required = false)
+    String bgColor;
+    @ElementMap(entry = "option_entity",  inline = false, required = false)
+    HashMap<Integer, EntityOption> options;
+    
+    @Attribute(name = "transition_image", required = false)
+    String transitionImage;
 
-	
-	public String getBgColor() {
-		return bgColor;
-	}
+    public String getBgColor() {
+        return bgColor;
+    }
 
-	@XmlAttribute(name = "bg_color", required = false)
-	public void setBgColor(String bgColor) {
-		this.bgColor = bgColor;
-	}
 
-	public Entity() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    public void setBgColor(String bgColor) {
+        this.bgColor = bgColor;
+    }
 
-	public String getText() {
-		return text;
-	}
 
-	@XmlAttribute(name = "q_text", required = false)
-	public void setText(String text) {
-		this.text = text;
-	}
+    public Entity() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	public String getActionType() {
-		return actionType;
-	}
 
-	@XmlAttribute(name = "action", required = false)
-	public void setActionType(String actionType) {
-		this.actionType = actionType;
-	}
+    public String getText() {
+        return text;
+    }
 
-	public Integer getId() {
-		return id;
-	}
 
-	@XmlAttribute(name = "id", required = false)
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setText(String text) {
+        this.text = text;
+    }
 
-	public String getBackgroundImage() {
-		return backgroundImage;
-	}
 
-	@XmlAttribute(name = "image_url", required = false)
-	public void setBackgroundImage(String backgroundImage) {
-		this.backgroundImage = backgroundImage;
-	}
+    public String getActionType() {
+        return actionType;
+    }
 
-	public String getGrid() {
-		return grid;
-	}
 
-	@XmlAttribute(name = "question_grid", required = false)
-	public void setGrid(String grid) {
-		this.grid = grid;
-	}
+    public void setActionType(String actionType) {
+        this.actionType = actionType;
+    }
 
-	public String getCorrectMessage() {
-		return correctMessage;
-	}
 
-	@XmlAttribute(name = "correct_opt_message", required = false)
-	public void setCorrectMessage(String correctMessage) {
-		this.correctMessage = correctMessage;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getIncorrectMessage() {
-		return incorrectMessage;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	@XmlAttribute(name = "incorrect_opt_message", required = false)
-	public void setIncorrectMessage(String incorrectMessage) {
-		this.incorrectMessage = incorrectMessage;
-	}
+    public String getBackgroundImage() {
+        return backgroundImage;
+    }
 
-	public HashMap<Integer, EntityOption> getOptions() {
-		return options;
-	}
+    public void setBackgroundImage(String backgroundImage) {
+        this.backgroundImage = backgroundImage;
+    }
 
-	@XmlElementWrapper(name = "option_entity", required = false)
-	public void setOptions(HashMap<Integer, EntityOption> options) {
-		this.options = options;
-	}
+    public String getGrid() {
+        return grid;
+    }
 
-	public String getTransitionImage() {
-		return transitionImage;
-	}
+    public void setGrid(String grid) {
+        this.grid = grid;
+    }
 
-	@XmlAttribute(name = "transition_image", required = false)
-	public void setTransitionImage(String transitionImage) {
-		this.transitionImage = transitionImage;
-	}
+    public String getCorrectMessage() {
+        return correctMessage;
+    }
+
+    public void setCorrectMessage(String correctMessage) {
+        this.correctMessage = correctMessage;
+    }
+
+    public String getIncorrectMessage() {
+        return incorrectMessage;
+    }
+
+    public void setIncorrectMessage(String incorrectMessage) {
+        this.incorrectMessage = incorrectMessage;
+    }
+
+
+    public HashMap<Integer, EntityOption> getOptions() {
+        return options;
+    }
+
+
+    public void setOptions(HashMap<Integer, EntityOption> options) {
+        this.options = options;
+    }
+
+    public String getTransitionImage() {
+        return transitionImage;
+    }
+
+    public void setTransitionImage(String transitionImage) {
+        this.transitionImage = transitionImage;
+    }
 }
