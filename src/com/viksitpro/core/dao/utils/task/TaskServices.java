@@ -1,7 +1,11 @@
 package com.viksitpro.core.dao.utils.task;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /*import javax.persistence.criteria.CriteriaBuilder;
@@ -346,6 +350,25 @@ public class TaskServices {
 		return task;
 	}
 	
+	public Task completeTask(String state, boolean isActive, Integer taskId, String jsessionId){
+		
+		Task task = getTask(taskId);
+	
+		java.util.Date date= new java.util.Date();
+		Timestamp current = new Timestamp(date.getTime());
+		
+		task.setState(state);
+		task.setIsActive(isActive);
+		task.setEndDate(current);
+		task.setUpdatedAt(current);
+		
+		task = updateTaskToDAO(task);
+		
+		new TaskLogServices().generateTaskLog(task, "Task Completed", jsessionId);
+		
+		return task;
+	}
+	
    
 	/**
 	 * This method returns Task Object corresponding to Input parameter taskId
@@ -389,12 +412,12 @@ public class TaskServices {
 	@SuppressWarnings("unchecked")
 	public List<Task> getAllTaskFromItemIdAndItemType(Integer itemId, String itemType){
 
-		String sql = "from Task task where item_type= :itemType and item_id= :itemId";
+		String hql = "from Task task where item_type= :itemType and item_id= :itemId";
 		
 		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
 		Session session = baseHibernateDAO.getSession();
 		
-		Query query = session.createQuery(sql);
+		Query query = session.createQuery(hql);
 		query.setParameter("itemType",itemType);
 		query.setParameter("itemId",itemId);
 		
@@ -407,12 +430,12 @@ public class TaskServices {
 	@SuppressWarnings("unchecked")
 	public List<Task> getAllTaskFromItemAndActor(Integer itemId, String itemType, Integer actorId){
 
-		String sql = "from Task task where item_type= :itemType and item_id= :itemId and actor= :actorId";
+		String hql = "from Task task where item_type= :itemType and item_id= :itemId and actor= :actorId";
 		
 		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
 		Session session = baseHibernateDAO.getSession();
 		
-		Query query = session.createQuery(sql);
+		Query query = session.createQuery(hql);
 		query.setParameter("itemType",itemType);
 		query.setParameter("itemId",itemId);
 		query.setParameter("actorId",actorId);
@@ -425,12 +448,12 @@ public class TaskServices {
 	@SuppressWarnings("unchecked")
 	public List<Task> getAllTaskOfOwner(IstarUser istarUser){
 		
-		String sql = "from Task task where owner= :owner";
+		String hql = "from Task task where owner= :owner";
 		
 		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
 		Session session = baseHibernateDAO.getSession();
 		
-		Query query = session.createQuery(sql);
+		Query query = session.createQuery(hql);
 		query.setParameter("owner", istarUser.getId());
 		
 		List<Task> allTask = query.list();
@@ -441,12 +464,12 @@ public class TaskServices {
 	@SuppressWarnings("unchecked")
 	public List<Task> getAllTaskOfActor(IstarUser istarUser){
 		
-		String sql = "from Task task where actor= :actor";
+		String hql = "from Task task where actor= :actor";
 		
 		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
 		Session session = baseHibernateDAO.getSession();
 		
-		Query query = session.createQuery(sql);
+		Query query = session.createQuery(hql);
 		query.setParameter("actor", istarUser.getId());
 		
 		List<Task> allTask = query.list();
@@ -454,6 +477,37 @@ public class TaskServices {
 		return allTask;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Task> getAllTaskOfActorForToday(IstarUser istarUser){
+		
+		String hql = "from Task task where actor= :actor and startDate<= :dayEnd";
+		
+		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
+		Session session = baseHibernateDAO.getSession();
+
+		DateFormat day = new SimpleDateFormat("yyyyMMdd");
+		Date startDate = new Date();
+		
+		try {
+			startDate = day.parse(day.format(new Date()));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		Date endDate = new Date(startDate.getTime()+24*60*60*1000);		
+		Timestamp dayEnd = new Timestamp(endDate.getTime());
+
+		
+		System.out.println("Day ends at->" + dayEnd);
+		
+		Query query = session.createQuery(hql);
+		query.setParameter("actor", istarUser.getId());
+		query.setParameter("dayEnd", dayEnd);
+		
+		List<Task> allTask = query.list();
+		System.out.println("allTask" + allTask.size());
+		return allTask;		
+	}
 	
 /*	public List<Task> getAllTaskFromItemAndActor(Integer itemId, String itemType, Integer actorId){
 
