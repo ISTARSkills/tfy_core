@@ -41,6 +41,12 @@ public class EntityOption implements Serializable {
     String mediaUrl;
     @Attribute(name = "media_type", required = false)
     String mediaType;
+    
+    @Attribute(name = "font_color", required = false)
+    String fontColor;
+    
+    @Attribute(name = "font_size", required = false)
+    String fontSize;
 
     public HashMap<Integer, InfoCard> getCards() {
         return cards;
@@ -138,5 +144,24 @@ public class EntityOption implements Serializable {
     public void setMediaType(String mediaType) {
         this.mediaType = mediaType;
     }
+
+	public String getFontColor() {
+		return fontColor;
+	}
+
+	public void setFontColor(String fontColor) {
+		this.fontColor = fontColor;
+	}
+
+	public String getFontSize() {
+		return fontSize;
+	}
+
+	public void setFontSize(String fontSize) {
+		this.fontSize = fontSize;
+	}
+    
+    
+    
 }
 

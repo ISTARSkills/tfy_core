@@ -22,6 +22,19 @@ public class CardContent implements Serializable {
     String aTitle;
     @Attribute(name = "aDescription", required = false)
     String aDescription;
+    
+    @Attribute(name = "aTitlefontColor", required = false)
+    String aTitlefontColor;
+    @Attribute(name = "aTitlefontSize", required = false)
+    String aTitlefontSize;
+    
+    @Attribute(name = "aDescriptionfontColor", required = false)
+    String aDescriptionfontColor;
+    @Attribute(name = "aDescriptionfontSize", required = false)
+    String aDescriptionfontSize;
+    
+    
+    
 
     @Attribute(name = "bBackgroundColor", required = false)
     String bBackgroundColor;
@@ -396,6 +409,46 @@ public class CardContent implements Serializable {
 
 	public void setbCenterBottomMediaType(String bCenterBottomMediaType) {
 		this.bCenterBottomMediaType = bCenterBottomMediaType;
+	}
+
+
+	public String getaTitlefontColor() {
+		return aTitlefontColor;
+	}
+
+
+	public void setaTitlefontColor(String aTitlefontColor) {
+		this.aTitlefontColor = aTitlefontColor;
+	}
+
+
+	public String getaTitlefontSize() {
+		return aTitlefontSize;
+	}
+
+
+	public void setaTitlefontSize(String aTitlefontSize) {
+		this.aTitlefontSize = aTitlefontSize;
+	}
+
+
+	public String getaDescriptionfontColor() {
+		return aDescriptionfontColor;
+	}
+
+
+	public void setaDescriptionfontColor(String aDescriptionfontColor) {
+		this.aDescriptionfontColor = aDescriptionfontColor;
+	}
+
+
+	public String getaDescriptionfontSize() {
+		return aDescriptionfontSize;
+	}
+
+
+	public void setaDescriptionfontSize(String aDescriptionfontSize) {
+		this.aDescriptionfontSize = aDescriptionfontSize;
 	}
 
 

@@ -43,6 +43,13 @@ public class Entity implements Serializable {
     
     @Attribute(name = "transition_image", required = false)
     String transitionImage;
+    
+    @Attribute(name = "font_color", required = false)
+    String fontColor;
+    
+    @Attribute(name = "font_size", required = false)
+    String fontSize;
+    
 
     public String getBgColor() {
         return bgColor;
@@ -137,4 +144,30 @@ public class Entity implements Serializable {
     public void setTransitionImage(String transitionImage) {
         this.transitionImage = transitionImage;
     }
+
+
+	public String getFontColor() {
+		return fontColor;
+	}
+
+
+	public void setFontColor(String fontColor) {
+		this.fontColor = fontColor;
+	}
+
+
+	public String getFontSize() {
+		return fontSize;
+	}
+
+
+	public void setFontSize(String fontSize) {
+		this.fontSize = fontSize;
+	}
+
+
+
+    
+    
+    
 }
