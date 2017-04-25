@@ -32,6 +32,7 @@ public class SkillObjective implements java.io.Serializable {
 	private String name;
 	private Integer parentSkill;
 	private String skillLevelType;
+	private Integer order_id;
 	
 	private Set<TrainerSkillDistrubutionStats> trainerSkillDistrubutionStatses = new HashSet<TrainerSkillDistrubutionStats>(
 			0);
@@ -280,6 +281,15 @@ public class SkillObjective implements java.io.Serializable {
 
 	public void setAssessmentBenchmarks(Set<AssessmentBenchmark> assessmentBenchmarks) {
 		this.assessmentBenchmarks = assessmentBenchmarks;
+	}
+
+	@Column(name = "order_id")
+	public Integer getOrder_id() {
+		return order_id;
+	}
+
+	public void setOrder_id(Integer order_id) {
+		this.order_id = order_id;
 	}
 
 }
