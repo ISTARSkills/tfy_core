@@ -100,7 +100,7 @@
 		<mapping class="com.viksitpro.core.dao.entities.Notification" />
 		<mapping class="com.viksitpro.core.dao.entities.UserGamification" />
 		<mapping class="com.viksitpro.core.dao.entities.AssessmentBenchmark" />
-
+		<mapping class="com.viksitpro.core.dao.entities.IstarNotification" />
 
 	</session-factory>
 

@@ -1,6 +1,7 @@
 package com.viksitpro.core.notification;
 
 import java.sql.Timestamp;
+import java.util.UUID;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -11,7 +12,8 @@ import com.viksitpro.core.dao.entities.IstarNotificationDAO;
 
 public class NotificationServices {
 	
-	public IstarNotification createIstarNotification(int senderId, int receiverId, String title, String details, String status, String action, String type, Boolean isEventBased, int taskId, String groupCode){
+	public IstarNotification createIstarNotification(int senderId, int receiverId, String title, String details, 
+			String status, String action, String type, Boolean isEventBased, int taskId, String groupCode){
 		
 		java.util.Date date = new java.util.Date();
 		Timestamp current = new Timestamp(date.getTime());
@@ -27,6 +29,9 @@ public class NotificationServices {
 		istarNotification.setType(type);
 		istarNotification.setIsEventBased(isEventBased);
 		istarNotification.setTaskId(taskId);
+		if(groupCode==null){
+			groupCode = UUID.randomUUID().toString();
+		}
 		istarNotification.setGroupCode(groupCode);
 		istarNotification.setCreatedAt(current);
 		
