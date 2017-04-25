@@ -33,13 +33,14 @@ public class PublishDelegator {
 	}
 	
 	//Send notification to an INDIVIDUAL USER
-	// The argument value inside the HashMap<String, Object> item is based upon the argument "type"
-	// if type = "lesson", the keys should be--> taskId, lessonId, lessonType, 
-	// if type = "assessment", the keys should be --> taskId, assessmentId, assessmentType
+	// The argument value inside the HashMap<String, Object> item is based upon "type" of entity
+	// if type = "lesson", the keys should be--> type, lessonId lessonType
+	// if type = "assessment", the keys should be --> type, assessmentId, assessmentType
 	public void sendNotification(int istarUserID, String message, String type, HashMap<String, Object> item, Timestamp eventDate){
 		if(serverConfig.equalsIgnoreCase("prod")){			
-			DatabaseReference databaseReferenceForUser = FirebaseDatabase.getInstance().getReference(istarUserID+"");
+			DatabaseReference databaseReferenceForUser = FirebaseDatabase.getInstance().getReference("istar-notification");
 			
+			databaseReferenceForUser.child(istarUserID+"");
 			Map<String, Object> hopperUpdates = new HashMap<String, Object>();
 			hopperUpdates.put("item", item);
 			hopperUpdates.put("message", message);
@@ -55,16 +56,17 @@ public class PublishDelegator {
 		}
 	}
 	
-	//Send notification to a ALL USERS of GROUP in the List
-	// The argument value inside the HashMap<String, Object> item is based upon the argument "type"
-	// if type = "lesson", the keys should be--> taskId, lessonId, lessonType, 
-	// if type = "assessment", the keys should be --> taskId, assessmentId, assessmentType
+	//Send notification to a ALL USERS of GROUP (List)
+	// The argument value inside the HashMap<String, Object> item is based upon "type" of entity
+	// if type = "lesson", the keys should be--> type, lessonId lessonType
+	// if type = "assessment", the keys should be --> type, assessmentId, assessmentType
 	public void sendNotificationToGroup(List<Integer> allIstarUserIds, String message, String type, HashMap<String, Object> item, Timestamp eventDate){
 		if(serverConfig.equalsIgnoreCase("prod")){
 			
 			for(Integer istarUserId : allIstarUserIds){
 				DatabaseReference databaseReferenceForUser = FirebaseDatabase.getInstance().getReference(istarUserId+"");
 				
+				databaseReferenceForUser.child(istarUserId+"");
 				Map<String, Object> hopperUpdates = new HashMap<String, Object>();
 				hopperUpdates.put("item", item);
 				hopperUpdates.put("message", message);
@@ -76,8 +78,7 @@ public class PublishDelegator {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				System.out.println("error in sending notification");
-			}
-			
+			}			
 			System.out.println("Notification sent to all the users");
 		}
 	}	
