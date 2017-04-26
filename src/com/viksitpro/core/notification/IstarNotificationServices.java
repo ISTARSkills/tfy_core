@@ -80,6 +80,15 @@ public class IstarNotificationServices {
 		}	
 	}
 	
+	public void updateNotificationStatus(Integer notificationId, String status){		
+			IstarNotification istarNotification = getIstarNotification(notificationId);
+			
+			if(istarNotification!=null){
+				istarNotification.setStatus(status);
+				istarNotification = updateIstarNotificationToDAO(istarNotification);
+			}
+	}
+	
 	
 	public List<IstarNotification> getAllNotificationOfUser(int istarUserId){
 		IstarNotificationDAO istarNotificationDAO = new IstarNotificationDAO();
