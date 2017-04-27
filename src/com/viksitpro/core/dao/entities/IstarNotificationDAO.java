@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
  			* Transaction control of the save(), update() and delete() operations 
 		can directly support Spring container-managed transactions or they can be augmented	to handle user-managed Spring transactions. 
 		Each of these methods provides additional information for how to configure it for the desired type of transaction control. 	
-	 * @see com.istarindia.apps.dao.IstarNotification
+	 * @see com.viksitpro.core.dao.entities.IstarNotification
   * @author MyEclipse Persistence Tools 
  */
 public class IstarNotificationDAO extends BaseHibernateDAO  {
@@ -59,7 +59,7 @@ public class IstarNotificationDAO extends BaseHibernateDAO  {
         log.debug("getting IstarNotification instance with id: " + id);
         try {
             IstarNotification instance = (IstarNotification) getSession()
-                    .get("com.istarindia.apps.dao.IstarNotification", id);
+                    .get("com.viksitpro.core.dao.entities.IstarNotification", id);
             return instance;
         } catch (RuntimeException re) {
             log.error("get failed", re);
@@ -72,7 +72,7 @@ public class IstarNotificationDAO extends BaseHibernateDAO  {
         log.debug("finding IstarNotification instance by example");
         try {
             List<IstarNotification> results = (List<IstarNotification>) getSession()
-                    .createCriteria("com.istarindia.apps.dao.IstarNotification")
+                    .createCriteria("com.viksitpro.core.dao.entities.IstarNotification")
                     .add( create(instance) )
             .list();
             log.debug("find by example successful, result size: " + results.size());
