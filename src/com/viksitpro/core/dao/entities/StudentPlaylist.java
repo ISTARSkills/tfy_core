@@ -26,6 +26,8 @@ public class StudentPlaylist implements java.io.Serializable {
 	private Course course;
 	private IstarUser istarUser;
 	private String status;
+	private Module module;
+	private Cmsession cmsession;
 
 	// Constructors
 
@@ -34,11 +36,13 @@ public class StudentPlaylist implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public StudentPlaylist(Lesson lesson, Course course, IstarUser istarUser, String status) {
+	public StudentPlaylist(Lesson lesson, Cmsession cmsession, Module module, Course course, IstarUser istarUser, String status) {
 		this.lesson = lesson;
 		this.course = course;
 		this.istarUser = istarUser;
 		this.status = status;
+		this.module = module;
+		this.cmsession = cmsession;
 	}
 
 	// Property accessors
@@ -68,6 +72,28 @@ public class StudentPlaylist implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "module_id")
+
+	public Module getModule() {
+		return this.module;
+	}
+
+	public void setModule(Module module) {
+		this.module = module;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "cmsession_id")
+
+	public Cmsession getCmsession() {
+		return this.cmsession;
+	}
+
+	public void setCmsession(Cmsession cmsession) {
+		this.cmsession = cmsession;
+	}
+	
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "course_id")
 
 	public Course getCourse() {
@@ -77,7 +103,8 @@ public class StudentPlaylist implements java.io.Serializable {
 	public void setCourse(Course course) {
 		this.course = course;
 	}
-
+	
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "student_id")
 

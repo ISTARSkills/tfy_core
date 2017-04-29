@@ -89,7 +89,7 @@ public class StudentPlaylistDAO extends BaseHibernateDAO {
 		return findByProperty(STATUS, status);
 	}
 
-	public List findAll() {
+	public List<StudentPlaylist> findAll() {
 		log.debug("finding all StudentPlaylist instances");
 		try {
 			String queryString = "from StudentPlaylist";
