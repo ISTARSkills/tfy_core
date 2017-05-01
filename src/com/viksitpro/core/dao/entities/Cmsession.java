@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -37,6 +38,7 @@ public class Cmsession implements java.io.Serializable {
 	private List<SkillObjective> skillObjectives= new ArrayList<SkillObjective>();
 	private Set<Module> modules = new HashSet<Module>(0);
 	private String Image_url;
+	private Set<StudentPlaylist> studentPlaylists = new HashSet<StudentPlaylist>(0);
 
 	// Constructors
 
@@ -51,7 +53,7 @@ public class Cmsession implements java.io.Serializable {
 
 	/** full constructor */
 	public Cmsession(String title, String description, Integer orderId, Boolean isDeleted, List<Lesson> lessons,
-			List<SkillObjective> skillObjectives, Set<Module> modules) {
+			List<SkillObjective> skillObjectives, Set<Module> modules,  Set<StudentPlaylist> studentPlaylists) {
 		this.title = title;
 		this.description = description;
 		this.orderId = orderId;
@@ -59,6 +61,7 @@ public class Cmsession implements java.io.Serializable {
 		this.lessons = lessons;
 		this.skillObjectives = skillObjectives;
 		this.modules = modules;
+		this.studentPlaylists = studentPlaylists;
 	}
 
 	// Property accessors
@@ -142,6 +145,16 @@ public class Cmsession implements java.io.Serializable {
 		this.skillObjectives = skillObjectives;
 	}
 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cmsession")
+
+	public Set<StudentPlaylist> getStudentPlaylists() {
+		return this.studentPlaylists;
+	}
+
+	public void setStudentPlaylists(Set<StudentPlaylist> studentPlaylists) {
+		this.studentPlaylists = studentPlaylists;
+	}
+	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "cmsessions")
 
 	public Set<Module> getModules() {
