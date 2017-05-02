@@ -9,10 +9,8 @@ package com.viksitpro.core.utilities;
  */
 public class NotificationType {
 
-	public static final String GENERIC = "GENERIC";
-
-	public static String UPDATE_COMPLEX_OBJECT ="UPDATE_COMPLEX_OBJECT";
-	
+	public static String GENERIC = "GENERIC";
+	public static String UPDATE_COMPLEX_OBJECT ="UPDATE_COMPLEX_OBJECT";	
 	public static String ADMIN_NOTIFICATION = "ADMIN_NOTIFICATION";
 	public static String ASSESSMENT = "ASSESSMENT";
 	public static String LESSON = "LESSON";
