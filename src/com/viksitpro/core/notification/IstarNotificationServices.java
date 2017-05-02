@@ -15,7 +15,7 @@ import com.viksitpro.core.dao.entities.IstarNotificationDAO;
 public class IstarNotificationServices {
 	
 	public IstarNotification createIstarNotification(int senderId, int receiverId, String title, String details, 
-			String status, String action, String type, Boolean isEventBased, Integer taskId){
+			String status, String action, String type, Boolean isEventBased, Integer taskId, String groupCode){
 		
 		java.util.Date date = new java.util.Date();
 		Timestamp current = new Timestamp(date.getTime());
@@ -33,7 +33,7 @@ public class IstarNotificationServices {
 		istarNotification.setTaskId(taskId);
 		istarNotification.setCreatedAt(current);
 		
-		String groupCode = UUID.randomUUID().toString();
+		//String groupCode = UUID.randomUUID().toString();
 		istarNotification.setGroupCode(groupCode);
 		
 		istarNotification = saveIstarNotificationToDAO(istarNotification);
