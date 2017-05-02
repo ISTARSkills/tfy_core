@@ -10,9 +10,12 @@ package com.viksitpro.core.utilities;
 public class NotificationType {
 
 	public static String UPDATE_COMPLEX_OBJECT ="UPDATE_COMPLEX_OBJECT";
-	public static String LESSON_PUBLISHED = "LESSON_PUBLISHED";
+	
 	public static String ADMIN_NOTIFICATION = "ADMIN_NOTIFICATION";
-	public static String ASSESSMENT_EVENT = "ASSESSMENT_EVENT";
+	public static String ASSESSMENT = "ASSESSMENT";
+	public static String LESSON = "LESSON";
+	public static String COMPLEX_UPDATE = "COMPLEX_UPDATE";
+	public static String MESSAGE = "MESSAGE";		
 	public static String TICKET_NOTIFICATION = "TICKET_NOTIFICATION";
 	
 	
