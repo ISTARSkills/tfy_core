@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -38,7 +39,7 @@ public class Module implements java.io.Serializable {
 	private List<SkillObjective> skillObjectives = new ArrayList<SkillObjective>();
 	private String module_description;
 	private String Image_url;
-	
+	private Set<StudentPlaylist> studentPlaylists = new HashSet<StudentPlaylist>(0);
 	
 	// Constructors
 	/** default constructor */
@@ -52,13 +53,14 @@ public class Module implements java.io.Serializable {
 
 	/** full constructor */
 	public Module(String moduleName, Integer orderId, Boolean isDeleted, List<Cmsession> cmsessions, Set<Course> courses,
-			List<SkillObjective> skillObjectives) {
+			List<SkillObjective> skillObjectives, Set<StudentPlaylist> studentPlaylists) {
 		this.moduleName = moduleName;
 		this.orderId = orderId;
 		this.isDeleted = isDeleted;
 		this.cmsessions = cmsessions;
 		this.courses = courses;
 		this.skillObjectives = skillObjectives;
+		this.studentPlaylists = studentPlaylists;
 	}
 
 	// Property accessors
@@ -132,6 +134,16 @@ public class Module implements java.io.Serializable {
 		this.courses = courses;
 	}
 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "module")
+
+	public Set<StudentPlaylist> getStudentPlaylists() {
+		return this.studentPlaylists;
+	}
+
+	public void setStudentPlaylists(Set<StudentPlaylist> studentPlaylists) {
+		this.studentPlaylists = studentPlaylists;
+	}
+	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "module_skill_objective", schema = "public", joinColumns = {
 			@JoinColumn(name = "module_id", nullable = false, updatable = false) }, inverseJoinColumns = {

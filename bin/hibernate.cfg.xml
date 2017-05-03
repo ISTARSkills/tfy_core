@@ -12,9 +12,9 @@
 		<property name="hbm2ddl.auto">update</property>
 		<property name="myeclipse.connection.profile">org.postgresql.Driver</property>
 		<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-		<property name="connection.password">root</property>
+		<property name="connection.password">X3m2p1z0!@#</property>
 		
-				<property name="show_sql">true</property>
+				<property name="show_sql">false</property>
 		
 		
 		
@@ -100,7 +100,7 @@
 		<mapping class="com.viksitpro.core.dao.entities.Notification" />
 		<mapping class="com.viksitpro.core.dao.entities.UserGamification" />
 		<mapping class="com.viksitpro.core.dao.entities.AssessmentBenchmark" />
-
+		<mapping class="com.viksitpro.core.dao.entities.IstarNotification" />
 
 	</session-factory>
 

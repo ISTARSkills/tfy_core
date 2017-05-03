@@ -38,7 +38,12 @@ public class BatchGroup implements java.io.Serializable {
 	private Set<Batch> batchs = new HashSet<Batch>(0);
 	private Set<BatchStudents> batchStudentses = new HashSet<BatchStudents>(0);
 	private Set<Notification> notifications = new HashSet<Notification>(0);
-
+	private Integer parentGroupId;
+	private String type;
+	private Integer year; 
+	
+	
+	
 	// Constructors
 
 	/** default constructor */
@@ -183,5 +188,33 @@ public class BatchGroup implements java.io.Serializable {
 	public void setNotifications(Set<Notification> notifications) {
 		this.notifications = notifications;
 	}
+	@Column(name = "parent_group_id", nullable = true)
+	public Integer getParentGroupId() {
+		return parentGroupId;
+	}
+
+	public void setParentGroupId(Integer parentBatchGroupId) {
+		this.parentGroupId = parentBatchGroupId;
+	}
+	@Column(name = "type", nullable = true)
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	@Column(name = "year", nullable = true)
+	public Integer getYear() {
+		return year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
+	}
+	
+	
+	
 
 }

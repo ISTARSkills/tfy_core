@@ -30,6 +30,7 @@ public class AssessmentDAO extends BaseHibernateDAO {
 	public static final String ASSESSMENTTITLE = "assessmenttitle";
 	public static final String RETRY_ABLE = "retryAble";
 	public static final String CATEGORY = "category";
+	public static final String DESCRIPTION = "description";
 
 	public void save(Assessment transientInstance) {
 		log.debug("saving Assessment instance");
@@ -116,6 +117,10 @@ public class AssessmentDAO extends BaseHibernateDAO {
 
 	public List<Assessment> findByCategory(Object category) {
 		return findByProperty(CATEGORY, category);
+	}
+	
+	public List<Assessment> findByDescription(Object description) {
+		return findByProperty(DESCRIPTION, description);
 	}
 
 	public List<Assessment> findAll() {

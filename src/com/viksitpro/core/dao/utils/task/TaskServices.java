@@ -27,10 +27,20 @@ import com.viksitpro.core.dao.entities.TaskType;
 import com.viksitpro.core.dao.entities.Team;
 import com.viksitpro.core.dao.utils.user.IstarUserServices;
 import com.viksitpro.core.dao.utils.user.TeamServices;
+import com.viksitpro.core.utilities.DBUTILS;
 
 public class TaskServices {
 	
-	
+	public Integer createTodaysTask(String name, String description, String owner, String actor, String itemId, String itemType)
+	{
+		DBUTILS util = new DBUTILS();
+		Integer taskId = null;
+		String sql ="INSERT INTO task (id, name, description, owner, actor, state,  start_date, end_date, is_active,  created_at, updated_at, item_id, item_type) "
+				+ "VALUES ((select COALESCE(max(id),0) +1 from task), '"+name+"', '"+description+"', "+owner+", "+actor+", 'SCHEDULED', now(),now(), 't', now(), now(), "+itemId+", '"+itemType+"') returning id;";
+		System.out.println(">>>"+sql);
+		taskId = util.executeUpdateReturn(sql); 
+		return taskId;
+	}
 	
 	/**
 	 * This method create Task and returns Task Object corresponding to Input parameter name  description  state  tags

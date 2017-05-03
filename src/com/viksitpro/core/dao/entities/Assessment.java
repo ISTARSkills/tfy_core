@@ -35,6 +35,7 @@ public class Assessment implements java.io.Serializable {
 	private String assessmenttitle;
 	private Boolean retryAble;
 	private String category;
+	private String description;
 	private Integer course;
 	private Set<AssessmentQuestion> assessmentQuestions = new HashSet<AssessmentQuestion>(0);
 	private Set<Report> reports = new HashSet<Report>(0);
@@ -49,7 +50,7 @@ public class Assessment implements java.io.Serializable {
 
 	/** full constructor */
 	public Assessment(String assessmentType, Timestamp createdAt, Integer numberOfQuestions,
-			Integer assessmentdurationhours, Integer assessmentdurationminutes, String assessmenttitle,
+			Integer assessmentdurationhours, Integer assessmentdurationminutes, String assessmenttitle, String description,
 			Boolean retryAble, String category, Integer course, Set<AssessmentQuestion> assessmentQuestions, Set<Report> reports,
 			Set<StudentAssessment> studentAssessments, Set<AssessmentBenchmark> assessmentBenchmarks) {
 		this.assessmentType = assessmentType;
@@ -65,6 +66,7 @@ public class Assessment implements java.io.Serializable {
 		this.studentAssessments = studentAssessments;
 		this.course = course;
 		this.assessmentBenchmarks = assessmentBenchmarks;
+		this.description = description;
 	}
 
 	// Property accessors
@@ -160,6 +162,16 @@ public class Assessment implements java.io.Serializable {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+	
+	@Column(name = "description")
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Column(name = "course_id")
