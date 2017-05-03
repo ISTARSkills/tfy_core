@@ -42,7 +42,7 @@ public class DBUTILS {
 	public int executeUpdateReturn(String sql) {
 		Session session_hibernate = HibernateSessionFactory.getSessionFactory().openSession();
 		Transaction tx = null;
-		List<HashMap<String, Object>> ret = new ArrayList<>();
+		List<HashMap<String, Object>> ret = new ArrayList<HashMap<String, Object>>();
 		try {
 			tx = session_hibernate.beginTransaction();
 			SQLQuery query = session_hibernate.createSQLQuery(sql);

@@ -43,7 +43,7 @@ public class IStarBaseServelet extends HttpServlet {
 	}
 
 	public HashMap<String, String> getReqMap(HttpServletRequest request) {
-		HashMap<String, String> data = new HashMap<>();
+		HashMap<String, String> data = new HashMap<String, String>();
 		for (String iterable_element : request.getParameterMap().keySet()) {
 			data.put(iterable_element, request.getParameter(iterable_element));
 		}

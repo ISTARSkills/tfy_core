@@ -32,7 +32,7 @@ public class EntityOption implements Serializable {
     Integer nextEntity;
 
     @ElementMap(entry = "info_cards",inline = false, required = false)
-    HashMap<Integer, InfoCard> cards = new HashMap<>();
+    HashMap<Integer, InfoCard> cards = new HashMap<Integer, InfoCard>();
 
     @Attribute(name = "eval_script", required = false)
     String evaluationScript;
