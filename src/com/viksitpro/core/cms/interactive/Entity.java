@@ -50,6 +50,15 @@ public class Entity implements Serializable {
     @Attribute(name = "font_size", required = false)
     String fontSize;
     
+    @Attribute(name = "is_bold", required = false)
+    boolean isBold;
+    
+    @Attribute(name = "is_italic", required = false)
+    boolean isItalic;
+    
+    @Attribute(name = "is_underlined", required = false)
+    boolean isUnderlined;
+    
 
     public String getBgColor() {
         return bgColor;
@@ -166,8 +175,33 @@ public class Entity implements Serializable {
 	}
 
 
+	public boolean isBold() {
+		return isBold;
+	}
 
-    
-    
-    
+
+	public void setBold(boolean isBold) {
+		this.isBold = isBold;
+	}
+
+
+	public boolean isItalic() {
+		return isItalic;
+	}
+
+
+	public void setItalic(boolean isItalic) {
+		this.isItalic = isItalic;
+	}
+
+
+	public boolean isUnderlined() {
+		return isUnderlined;
+	}
+
+
+	public void setUnderlined(boolean isUnderlined) {
+		this.isUnderlined = isUnderlined;
+	}
+
 }

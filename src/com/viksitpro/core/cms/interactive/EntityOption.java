@@ -48,6 +48,15 @@ public class EntityOption implements Serializable {
     @Attribute(name = "font_size", required = false)
     String fontSize;
 
+    @Attribute(name = "is_bold", required = false)
+    boolean isBold;
+    
+    @Attribute(name = "is_italic", required = false)
+    boolean isItalic;
+    
+    @Attribute(name = "is_underlined", required = false)
+    boolean isUnderlined;
+    
     public HashMap<Integer, InfoCard> getCards() {
         return cards;
     }
@@ -160,8 +169,31 @@ public class EntityOption implements Serializable {
 	public void setFontSize(String fontSize) {
 		this.fontSize = fontSize;
 	}
-    
-    
+
+	public boolean isBold() {
+		return isBold;
+	}
+
+	public void setBold(boolean isBold) {
+		this.isBold = isBold;
+	}
+
+	public boolean isItalic() {
+		return isItalic;
+	}
+
+	public void setItalic(boolean isItalic) {
+		this.isItalic = isItalic;
+	}
+
+	public boolean isUnderlined() {
+		return isUnderlined;
+	}
+
+	public void setUnderlined(boolean isUnderlined) {
+		this.isUnderlined = isUnderlined;
+	}  
+	   
     
 }
 

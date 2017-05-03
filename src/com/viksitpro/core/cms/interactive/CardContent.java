@@ -27,13 +27,26 @@ public class CardContent implements Serializable {
     String aTitlefontColor;
     @Attribute(name = "aTitlefontSize", required = false)
     String aTitlefontSize;
+    @Attribute(name = "aTitleIsBold", required = false)
+    boolean aTitleIsBold;
+    @Attribute(name = "aTitleIsItalic", required = false)
+    boolean aTitleIsItalic; 
+    @Attribute(name = "aTitleIsUnderlined", required = false)
+    boolean aTitleIsUnderlined;
+    
+    
+    
     
     @Attribute(name = "aDescriptionfontColor", required = false)
     String aDescriptionfontColor;
     @Attribute(name = "aDescriptionfontSize", required = false)
     String aDescriptionfontSize;
-    
-    
+    @Attribute(name = "aDescIsBold", required = false)
+    boolean aDescIsBold;
+    @Attribute(name = "aDescIsItalic", required = false)
+    boolean aDescIsItalic;
+    @Attribute(name = "aDescIsUnderlined", required = false)
+    boolean aDescIsUnderlined;       
     
 
     @Attribute(name = "bBackgroundColor", required = false)
@@ -451,6 +464,65 @@ public class CardContent implements Serializable {
 		this.aDescriptionfontSize = aDescriptionfontSize;
 	}
 
+
+	public boolean isaTitleIsBold() {
+		return aTitleIsBold;
+	}
+
+
+	public void setaTitleIsBold(boolean aTitleIsBold) {
+		this.aTitleIsBold = aTitleIsBold;
+	}
+
+
+	public boolean isaTitleIsItalic() {
+		return aTitleIsItalic;
+	}
+
+
+	public void setaTitleIsItalic(boolean aTitleIsItalic) {
+		this.aTitleIsItalic = aTitleIsItalic;
+	}
+
+
+	public boolean isaTitleIsUnderlined() {
+		return aTitleIsUnderlined;
+	}
+
+
+	public void setaTitleIsUnderlined(boolean aTitleIsUnderlined) {
+		this.aTitleIsUnderlined = aTitleIsUnderlined;
+	}
+
+
+	public boolean isaDescIsBold() {
+		return aDescIsBold;
+	}
+
+
+	public void setaDescIsBold(boolean aDescIsBold) {
+		this.aDescIsBold = aDescIsBold;
+	}
+
+
+	public boolean isaDescIsItalic() {
+		return aDescIsItalic;
+	}
+
+
+	public void setaDescIsItalic(boolean aDescIsItalic) {
+		this.aDescIsItalic = aDescIsItalic;
+	}
+
+
+	public boolean isaDescIsUnderlined() {
+		return aDescIsUnderlined;
+	}
+
+
+	public void setaDescIsUnderlined(boolean aDescIsUnderlined) {
+		this.aDescIsUnderlined = aDescIsUnderlined;
+	}
 
     
 }
