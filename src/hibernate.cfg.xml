@@ -101,7 +101,7 @@
 		<mapping class="com.viksitpro.core.dao.entities.UserGamification" />
 		<mapping class="com.viksitpro.core.dao.entities.AssessmentBenchmark" />
 		<mapping class="com.viksitpro.core.dao.entities.IstarNotification" />
-
+		<mapping class="com.viksitpro.core.dao.entities.Context" />
 	</session-factory>
 
 </hibernate-configuration>
