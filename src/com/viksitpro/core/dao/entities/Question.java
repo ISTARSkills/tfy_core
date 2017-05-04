@@ -41,6 +41,7 @@ public class Question implements java.io.Serializable {
 	private Set<StudentAssessment> studentAssessments = new HashSet<StudentAssessment>(0);
 	private Set<SkillObjective> skillObjectives = new HashSet<SkillObjective>(0);
 	private Set<AssessmentOption> assessmentOptions = new HashSet<AssessmentOption>(0);
+	private Integer context_id;
 
 	// Constructors
 
@@ -219,6 +220,15 @@ public class Question implements java.io.Serializable {
 
 	public void setAssessmentOptions(Set<AssessmentOption> assessmentOptions) {
 		this.assessmentOptions = assessmentOptions;
+	}
+
+	@Column(name = "context_id")
+	public Integer getContext_id() {
+		return context_id;
+	}
+
+	public void setContext_id(Integer context_id) {
+		this.context_id = context_id;
 	}
 
 }
