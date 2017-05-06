@@ -204,6 +204,18 @@ public class IstarUserServices {
 		return userProfile;
 	}
 
+	
+	public UserProfile updateProfileImage(IstarUser istarUser, String profileImage){
+		
+		UserProfile userProfile = istarUser.getUserProfile();
+		
+		if(userProfile!=null){
+			userProfile.setProfileImage(profileImage);			
+			userProfile = updateUserProfileToDAO(userProfile);
+		}
+		return userProfile;
+	}
+	
 	private UserProfile saveUserProfileToDAO(UserProfile userProfile) {
 		UserProfileDAO userProfileDAO = new UserProfileDAO();
 		Session userProfileSession = userProfileDAO.getSession();
