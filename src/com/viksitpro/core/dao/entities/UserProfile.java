@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -139,13 +140,19 @@ public class UserProfile implements java.io.Serializable {
 	@Column(name = "profile_image")
 
 	public String getProfileImage() {
+			return this.profileImage;
+	}
+
+	@Transient
+	public String getImage(){
 		if (profileImage != null) {
 			return this.profileImage;
 		} else {
+			System.out.println("Assiging default image");
 			return "http://api.talentify.in/video/android_images/" + firstName.substring(0, 1).toUpperCase() + ".png";
 		}
 	}
-
+	
 	public void setProfileImage(String profileImage) {
 		this.profileImage = profileImage;
 	}
@@ -177,7 +184,4 @@ public class UserProfile implements java.io.Serializable {
 	public void setMotherName(String motherName) {
 		this.motherName = motherName;
 	}
-
-	
-	
 }

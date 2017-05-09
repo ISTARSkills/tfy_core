@@ -364,10 +364,9 @@ public class IstarUserServices {
 	}
 
 	public IstarUser updateAuthenticationTokenForIstarUser(IstarUser istarUser, String authenticationToken) {
-
 		istarUser.setAuthToken(authenticationToken);
 		istarUser = updateIstarUserToDAO(istarUser);
-
+		
 		return istarUser;
 	}
 
