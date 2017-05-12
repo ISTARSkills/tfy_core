@@ -10,6 +10,7 @@ public class VideoLesson implements Serializable{
 	Integer id;
 	String video_url;
 	String video_thumb_url;
+	String zipFileURL;
 	
 	public VideoLesson() {
 		super();
@@ -37,5 +38,13 @@ public class VideoLesson implements Serializable{
 	public void setVideo_thumb_url(String video_thumb_url) {
 		this.video_thumb_url = video_thumb_url;
 	}
-	
+
+	@XmlElement(name = "zipFileURL", required = false)
+	public String getZipFileURL() {
+		return zipFileURL;
+	}
+
+	public void setZipFileURL(String zipFileURL) {
+		this.zipFileURL = zipFileURL;
+	}
 }

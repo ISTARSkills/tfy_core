@@ -45,6 +45,9 @@ public class InteractiveContent implements Serializable {
 	@Attribute(name = "audioUrl", required = false)
     String audioUrl;
 
+	@Attribute(name = "zipFileURL", required = false)
+	String zipFileURL;
+	
 	public InteractiveContent() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -121,4 +124,14 @@ public class InteractiveContent implements Serializable {
 	public void setAudioUrl(String audioUrl) {
 		this.audioUrl = audioUrl;
 	}
+
+	public String getZipFileURL() {
+		return zipFileURL;
+	}
+
+	public void setZipFileURL(String zipFileURL) {
+		this.zipFileURL = zipFileURL;
+	}
+	
+	
 }
