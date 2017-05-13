@@ -2,7 +2,11 @@ package com.viksitpro.chat.services;
 import static spark.Spark.init;
 import static spark.Spark.webSocket;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.UUID;
 
 import javax.json.JsonObject;
 import javax.servlet.ServletContextEvent;
@@ -18,6 +22,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.google.firebase.database.util.AndroidSupport;
 import com.viksitpro.core.dao.entities.BatchGroup;
 import com.viksitpro.core.dao.entities.BatchGroupDAO;
 import com.viksitpro.core.dao.entities.BatchStudents;
@@ -26,7 +31,10 @@ import com.viksitpro.core.dao.entities.ChatMessages;
 import com.viksitpro.core.dao.entities.IstarUser;
 import com.viksitpro.core.dao.entities.IstarUserDAO;
 import com.viksitpro.core.dao.entities.Organization;
+import com.viksitpro.core.notification.IstarNotificationServices;
+import com.viksitpro.core.notification.PublishDelegator;
 import com.viksitpro.core.utilities.ChatType;
+import com.viksitpro.core.utilities.NotificationType;
 
 
 
@@ -41,68 +49,73 @@ public class ChatWebSocketHandler   {
     	String url = user.getUpgradeRequest().getRequestURI().toString();
     	String email = url.split("/")[4];
     	System.out.println("---"+email);
-    	IstarUser IstarUser = new IstarUserDAO().findByEmail(email).get(0);
-    	
-    	String username = IstarUser.getUserProfile()!=null ? (IstarUser.getUserProfile().getFirstName()!=null ? IstarUser.getUserProfile().getFirstName(): IstarUser.getEmail()) : IstarUser.getEmail() ;
-    	Chat.userUsernameMap.put(user, username);
-    	Chat.sessionUserIdMap.put(user,IstarUser.getId());
-    	
-    	if(IstarUser.getUserRoles().iterator().next().getRole().getRoleName().equalsIgnoreCase("ORG_ADMIN"))
+    	List<IstarUser> users = new IstarUserDAO().findByEmail(email);
+    	if(users.size()>0)
     	{
-    		
-    		Organization org = IstarUser.getUserOrgMappings().iterator().next().getOrganization();
-    		ArrayList<Integer> bgids = new ArrayList<>();
-    		for(BatchGroup  bg : org.getBatchGroups())
-    		{
-    			bgids.add(bg.getId());
-    			
-    		}
-    		Chat.userIdBGGroupIdMap.put(IstarUser.getId(), bgids);
-    		
-    	}else if(IstarUser.getUserRoles().iterator().next().getRole().getRoleName().equalsIgnoreCase("SUPER_ADMIN"))
-    	{
-    		ArrayList<Integer> bgids = new ArrayList<>();
-    		for(BatchGroup  bg : (ArrayList<BatchGroup>)new BatchGroupDAO().findAll())
-    		{
-    			bgids.add(bg.getId());
-    			
-    		}
-    		Chat.userIdBGGroupIdMap.put(IstarUser.getId(), bgids);
+    		IstarUser IstarUser = new IstarUserDAO().findByEmail(email).get(0);
+        	
+        	String username = IstarUser.getUserProfile()!=null ? (IstarUser.getUserProfile().getFirstName()!=null ? IstarUser.getUserProfile().getFirstName(): IstarUser.getEmail()) : IstarUser.getEmail() ;
+        	Chat.userUsernameMap.put(user, username);
+        	Chat.sessionUserIdMap.put(user,IstarUser.getId());
+        	
+        	if(IstarUser.getUserRoles().iterator().next().getRole().getRoleName().equalsIgnoreCase("ORG_ADMIN"))
+        	{
+        		
+        		Organization org = IstarUser.getUserOrgMappings().iterator().next().getOrganization();
+        		ArrayList<Integer> bgids = new ArrayList<>();
+        		for(BatchGroup  bg : org.getBatchGroups())
+        		{
+        			bgids.add(bg.getId());
+        			
+        		}
+        		Chat.userIdBGGroupIdMap.put(IstarUser.getId(), bgids);
+        		
+        	}else if(IstarUser.getUserRoles().iterator().next().getRole().getRoleName().equalsIgnoreCase("SUPER_ADMIN"))
+        	{
+        		ArrayList<Integer> bgids = new ArrayList<>();
+        		for(BatchGroup  bg : (ArrayList<BatchGroup>)new BatchGroupDAO().findAll())
+        		{
+        			bgids.add(bg.getId());
+        			
+        		}
+        		Chat.userIdBGGroupIdMap.put(IstarUser.getId(), bgids);
+        	}
+        		
+        	
+        	//check and make a set of custom groups a user belongs to
+        	if(!Chat.userIdCustomGroupIdMap.keySet().contains(IstarUser.getId()))
+        	{
+        		ArrayList<Integer> groupIds = new ArrayList<>();
+        		for(ChatGroup group : IstarUser.getChatGroups())
+        		{
+        			groupIds.add(group.getId());
+        		}
+        		Chat.userIdCustomGroupIdMap.put(IstarUser.getId(), groupIds);
+        	}
+        	
+        	// check and make a set pf batch group a user belongs to
+        	if(!Chat.userIdBGGroupIdMap.keySet().contains(IstarUser.getId()))
+        	{
+        		ArrayList<Integer> groupIds = new ArrayList<>();
+        		for(BatchStudents bs : IstarUser.getBatchStudentses())
+        		{
+        			if(!groupIds.contains(bs.getBatchGroup().getId()))
+        			{
+        				groupIds.add(bs.getBatchGroup().getId());
+        			} 			
+        		}
+        		Chat.userIdBGGroupIdMap.put(IstarUser.getId(), groupIds);
+        	}
+        	
+        	
+        	
+        	MessageService msgService = new MessageService();
+        	//JSONObject obj = getJoiningMsgJSONObject(user, IstarUser);
+        	//msgService.addJoiningMessage(IstarUser,username+" joined the chat");
+        	//Chat.broadcastJoiningMessage(IstarUser, obj.toString());
+        	System.out.println("connected");
     	}
-    		
     	
-    	//check and make a set of custom groups a user belongs to
-    	if(!Chat.userIdCustomGroupIdMap.keySet().contains(IstarUser.getId()))
-    	{
-    		ArrayList<Integer> groupIds = new ArrayList<>();
-    		for(ChatGroup group : IstarUser.getChatGroups())
-    		{
-    			groupIds.add(group.getId());
-    		}
-    		Chat.userIdCustomGroupIdMap.put(IstarUser.getId(), groupIds);
-    	}
-    	
-    	// check and make a set pf batch group a user belongs to
-    	if(!Chat.userIdBGGroupIdMap.keySet().contains(IstarUser.getId()))
-    	{
-    		ArrayList<Integer> groupIds = new ArrayList<>();
-    		for(BatchStudents bs : IstarUser.getBatchStudentses())
-    		{
-    			if(!groupIds.contains(bs.getBatchGroup().getId()))
-    			{
-    				groupIds.add(bs.getBatchGroup().getId());
-    			} 			
-    		}
-    		Chat.userIdBGGroupIdMap.put(IstarUser.getId(), groupIds);
-    	}
-    	
-    	
-    	
-    	MessageService msgService = new MessageService();
-    	//JSONObject obj = getJoiningMsgJSONObject(user, IstarUser);
-    	//msgService.addJoiningMessage(IstarUser,username+" joined the chat");
-    	//Chat.broadcastJoiningMessage(IstarUser, obj.toString());
-    	System.out.println("connected");
     	
     }
 
@@ -159,9 +172,9 @@ public class ChatWebSocketHandler   {
     @OnWebSocketMessage
     public void onMessage(Session user, String message) {
     	MessageService msgService = new MessageService();
-    	NotificationService noticeService = new NotificationService();
     	System.out.println("json string in onMessage >>>>>>>"+ message);
-    	
+    	IstarNotificationServices serv = new IstarNotificationServices();
+    	PublishDelegator delegator = new PublishDelegator();
     	Integer senderId = Chat.sessionUserIdMap.get(user);
     	if(senderId!=null)
     	{
@@ -176,10 +189,27 @@ public class ChatWebSocketHandler   {
     		    	msgService.addJoiningMessage(IstarUser,username+" joined the chat");
     		    	Chat.broadcastJoiningMessage(IstarUser, obj.toString());
     				break;*/
+    			case ChatType.MARK_GROUP_CHAT_AS_READ:
+    				String readBy = data.getString("receiverId");
+    				String group = data.getString("groupId");
+    				Chat.markGroupChatAsReadForUser(readBy,group);
+    				break;
+    			case ChatType.MARK_CHAT_AS_SENT:
+    				String recID = data.getString("receiverId");
+    				String sndrId = data.getString("senderId");
+    				Chat.markChatAsSentBetweenUser(sndrId, recID);
+    				break;
     			case ChatType.USER_CHAT:
     				int receiverId = Integer.parseInt(data.getString("receiverId"));
     				ChatMessages msg = msgService.addUserMessage(senderId, data.getString("message"), receiverId);
     				Chat.broadcastMessageToUser(senderId, message, receiverId, msg.getId());
+    				IstarUser userReceiver = new IstarUserDAO().findById(receiverId);
+    				if(userReceiver.getUserRoles() !=null && userReceiver.getUserRoles().iterator().next().getRole().getRoleName().equalsIgnoreCase("STUDENT")){
+	    				String groupNotificationCode = UUID.randomUUID().toString();
+	    				serv.createIstarNotification(senderId, receiverId, data.getString("message").replace("'", ""), "", "UNREAD", null, NotificationType.GENERIC, true, null, groupNotificationCode);    				
+	    				HashMap<String, Object> item = new HashMap<String, Object>();    				
+	    				delegator.sendNotificationToUser(receiverId+"", data.getString("message").replace("'", ""), NotificationType.GENERIC, item);
+    				}
     				break;
     			case ChatType.ORG_CHAT:
     				int receiverAdminId = Integer.parseInt(data.getString("receiverId"));

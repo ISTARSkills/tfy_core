@@ -34,6 +34,7 @@ public class IstarNotification  implements java.io.Serializable {
      private Timestamp createdAt;
      private Integer taskId;
      private String groupCode;
+     private Boolean readByAdmin;	
 
 
     // Constructors
@@ -181,6 +182,17 @@ public class IstarNotification  implements java.io.Serializable {
     public void setGroupCode(String groupCode) {
         this.groupCode = groupCode;
     }
+
+    
+    @Column(name="read_by_admin")
+	public Boolean getReadByAdmin() {
+		return readByAdmin;
+	}
+
+
+	public void setReadByAdmin(Boolean readByAdmin) {
+		this.readByAdmin = readByAdmin;
+	}
    
 
 

@@ -32,7 +32,7 @@ public class IstarNotificationServices {
 		istarNotification.setIsEventBased(isEventBased);
 		istarNotification.setTaskId(taskId);
 		istarNotification.setCreatedAt(current);
-		
+		istarNotification.setReadByAdmin(false);
 		//String groupCode = UUID.randomUUID().toString();
 		istarNotification.setGroupCode(groupCode);
 		

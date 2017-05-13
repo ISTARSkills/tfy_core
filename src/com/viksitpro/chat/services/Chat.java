@@ -122,7 +122,7 @@ public class Chat {
 		if(receiverSession!=null && receiverSession.isOpen())
 			try {
 				receiverSession.getRemote().sendString(message);
-				markChatMessageAsSent(messageId);
+				//markChatMessageAsSent(messageId);
 				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -267,7 +267,7 @@ public class Chat {
 		if(receiverSession!=null && receiverSession.isOpen())
 			try {
 				receiverSession.getRemote().sendString(message);
-				markChatMessageAsSent(messageId);
+				//markChatMessageAsSent(messageId);
 				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -277,7 +277,12 @@ public class Chat {
 	}
 
 
-
+	public static void markChatAsSentBetweenUser(String senderId, String recId)
+	{
+		DBUTILS util = new DBUTILS();
+		String markAsRead="update chat_messages set sent='t' where user_id="+senderId+" and receiver_id="+recId;
+		util.executeUpdate(markAsRead);
+	}
 
 	public static void broadcastMessageInBGGroup(Integer senderId, String message, int groupId, int msg_id) {
 		sessionUserIdMap.keySet().stream().filter(Session::isOpen).forEach(session -> {
@@ -296,6 +301,17 @@ public class Chat {
         });
     	
 		
+	}
+
+
+
+
+	public static void markGroupChatAsReadForUser(String readBy, String group) {
+
+		DBUTILS util = new DBUTILS();
+		String update ="update batch_group_messages set read_by = COALESCE(read_by,'') || '!#"+readBy+"#!' where batch_group_id="+group;
+		System.out.println(update);
+		util.executeUpdate(update);
 	}
 
 }

@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /*import javax.persistence.criteria.CriteriaBuilder;
@@ -35,10 +36,21 @@ public class TaskServices {
 	{
 		DBUTILS util = new DBUTILS();
 		Integer taskId = null;
-		String sql ="INSERT INTO task (id, name, description, owner, actor, state,  start_date, end_date, is_active,  created_at, updated_at, item_id, item_type) "
-				+ "VALUES ((select COALESCE(max(id),0) +1 from task), '"+name+"', '"+description+"', "+owner+", "+actor+", 'SCHEDULED', now(),now(), 't', now(), now(), "+itemId+", '"+itemType+"') returning id;";
-		System.out.println(">>>"+sql);
-		taskId = util.executeUpdateReturn(sql); 
+		String checkIfTaskExist ="select id from task where item_id="+itemId+" and item_type='"+itemType+"' and cast (start_date  as date) = cast (now() as date)";
+		List<HashMap<String, Object>> alreadyAvailbleTask = util.executeQuery(checkIfTaskExist);
+		if(alreadyAvailbleTask.size()>0)
+		{
+			taskId = (int)alreadyAvailbleTask.get(0).get("id");
+		}
+		else
+		{
+			String sql ="INSERT INTO task (id, name, description, owner, actor, state,  start_date, end_date, is_active,  created_at, updated_at, item_id, item_type) "
+					+ "VALUES ((select COALESCE(max(id),0) +1 from task), '"+name+"', '"+description+"', "+owner+", "+actor+", 'SCHEDULED', now(),now(), 't', now(), now(), "+itemId+", '"+itemType+"') returning id;";
+				System.out.println(">>>"+sql);
+			taskId = util.executeUpdateReturn(sql);
+		}
+		
+			 
 		return taskId;
 	}
 	
