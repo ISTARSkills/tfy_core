@@ -149,7 +149,7 @@ public class UserProfile implements java.io.Serializable {
 			return this.profileImage;
 		} else {
 			System.out.println("Assiging default image");
-			return "http://api.talentify.in/video/android_images/" + firstName.substring(0, 1).toUpperCase() + ".png";
+			return "http://cdn.talentify.in/video/android_images/" + firstName.substring(0, 1).toUpperCase() + ".png";
 		}
 	}
 	
