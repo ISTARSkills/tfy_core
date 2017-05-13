@@ -18,21 +18,21 @@ public class IStarBaseServelet extends HttpServlet {
 	private static final long serialVersionUID = 8222264765449309590L;
 
 	public void printParams(HttpServletRequest request) {
-		com.viksitpro.core.utilities.UUIUtils.printlog("From IStarBaseServelet:");
+		System.out.println("From IStarBaseServelet:");
 		for (Object key : request.getParameterMap().keySet()) {
 			String paramName = key.toString();
 			Object paramValue = request.getParameter(key.toString());
-			com.viksitpro.core.utilities.UUIUtils.printlog("Param -> " + paramName + " : Value ->" + paramValue);
+			System.out.println("Param -> " + paramName + " : Value ->" + paramValue);
 		}
 
 	}
 
 	public void printAttrs(HttpServletRequest request) {
-		com.viksitpro.core.utilities.UUIUtils.printlog("From IStarBaseServelet: ");
+		System.out.println("From IStarBaseServelet: ");
 		for (Enumeration<String> enumeration = request.getAttributeNames(); enumeration.hasMoreElements();) {
 			String attributeName = enumeration.nextElement();
 			Object attribute = request.getAttribute(attributeName);
-			com.viksitpro.core.utilities.UUIUtils.printlog("Attr -> " + attributeName + " : Value ->" + attribute);
+			System.out.println("Attr -> " + attributeName + " : Value ->" + attribute);
 		}
 
 	}

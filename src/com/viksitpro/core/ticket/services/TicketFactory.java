@@ -9,5 +9,5 @@ package com.viksitpro.core.ticket.services;
  */
 public class TicketFactory {
 
-	public 
+	 
 }

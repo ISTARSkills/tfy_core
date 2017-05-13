@@ -285,7 +285,7 @@ public class IstarUser implements java.io.Serializable {
 		this.userOrgMappings = userOrgMappings;
 	}
 
-	@OneToOne(fetch = FetchType.EAGER, mappedBy = "istarUser")
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "istarUser")
 
 	public UserProfile getUserProfile() {
 		return this.userProfile;

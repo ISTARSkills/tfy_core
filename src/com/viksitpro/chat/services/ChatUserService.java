@@ -1,6 +1,6 @@
 /**
  * 
- */
+ *//*
 package com.viksitpro.chat.services;
 
 import java.sql.Timestamp;
@@ -21,13 +21,13 @@ import com.viksitpro.core.dao.entities.UserProfile;
 
 
 
-/**
+*//**
  * @author ComplexObject
  *
- */
+ *//*
 public class ChatUserService {
 
-	/**
+	*//**
 	 * 
 	 * @param email email Email of Loggedd in User 
 	 * @return returns the List of ChatGroup  user belongs to 
@@ -75,7 +75,7 @@ public class ChatUserService {
 		System.out.println();
 		return usersInGroup;
 	}
-	*/
+	
 	
 	public ArrayList<IstarUser> onlineUsersInBGroup(int id)
 	{
@@ -139,7 +139,7 @@ public class ChatUserService {
 	}
 	
 	
-	/**
+	*//**
 	 * 
 	 * @param email Email of IstarUser by which a user is logged in
 	 * @return Chat User instance corresponding to IstarUser
@@ -376,5 +376,6 @@ public class ChatUserService {
 			userProfileSession.close();
 		}
 		return userProfile;
-	}*/
+	}
 }
+*/
