@@ -13,7 +13,9 @@ public class SkillPOJO {
 	private String skillLevel;
 	private Integer orderId;
 	private String levelType;
-	private Integer skillRating;
+	private Double skillRating;
+	private Double totalRating = 0.0;
+	private Integer percentage = 0;
 	
 	@XmlAttribute(name = "id", required = false)
 	public Integer getId() {
@@ -64,12 +66,34 @@ public class SkillPOJO {
 	}
 	
 	@XmlAttribute(name = "skillRating", required = false)
-	public Integer getSkillRating() {
+	public Double getSkillRating() {
 		return skillRating;
 	}
-	public void setSkillRating(Integer skillRating) {
+	public void setSkillRating(Double skillRating) {
 		this.skillRating = skillRating;
 	}
 	
+	@XmlAttribute(name = "totalRating", required = false)
+	public Double getTotalRating() {
+		return totalRating;
+	}
+	public void setTotalRating(Double totalRating) {
+		this.totalRating = totalRating;
+	}
 	
+	@XmlAttribute(name = "percentage", required = false)
+	public Integer getPercentage() {
+		return percentage;
+	}
+	public void setPercentage(Integer percentage) {
+		this.percentage = percentage;
+	}
+	
+	public void calculatePercentage(){
+		if(this.totalRating!=0){
+		this.percentage = ((Double) ((this.skillRating/this.totalRating)*100)).intValue();
+		}else{
+			this.percentage = 0;
+		}
+	}	
 }
