@@ -6,11 +6,14 @@ import java.util.List;
 import java.util.UUID;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.viksitpro.core.dao.entities.BaseHibernateDAO;
 import com.viksitpro.core.dao.entities.IstarNotification;
 import com.viksitpro.core.dao.entities.IstarNotificationDAO;
+import com.viksitpro.core.dao.entities.Task;
 
 public class IstarNotificationServices {
 	
@@ -96,6 +99,25 @@ public class IstarNotificationServices {
 		try{
 			allIstarNotification= istarNotificationDAO.findByReceiverId(istarUserId);
 		}catch(IllegalArgumentException e){
+			allIstarNotification = new ArrayList<IstarNotification>();
+		}
+		return allIstarNotification;
+	}
+	
+	public List<IstarNotification> getAllNotificationOfSenderAndReceiver(int senderId, int receiverId){
+		List<IstarNotification> allIstarNotification; 
+		try {
+			String hql = "from IstarNotification istarNotification where senderId=:senderId and receiverId=:receiverId order by createdAt";
+
+			BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
+			Session session = baseHibernateDAO.getSession();
+
+			Query query = session.createQuery(hql);
+			query.setParameter("senderId", senderId);
+			query.setParameter("receiverId", receiverId);
+
+			allIstarNotification = query.list();
+		} catch (Exception e) {
 			allIstarNotification = new ArrayList<IstarNotification>();
 		}
 		return allIstarNotification;
