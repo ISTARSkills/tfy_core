@@ -132,7 +132,7 @@ public class Task implements java.io.Serializable {
 		this.task = task;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "task_type")
 
 	public TaskType getTaskType() {
@@ -154,7 +154,7 @@ public class Task implements java.io.Serializable {
 		this.istarUserByOwner = istarUserByOwner;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "assignee_member")
 
 	public IstarUser getIstarUserByAssigneeMember() {
@@ -165,7 +165,7 @@ public class Task implements java.io.Serializable {
 		this.istarUserByAssigneeMember = istarUserByAssigneeMember;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "actor")
 
 	public IstarUser getIstarUserByActor() {
@@ -187,7 +187,7 @@ public class Task implements java.io.Serializable {
 		this.project = project;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "assignee_team")
 
 	public Team getTeam() {

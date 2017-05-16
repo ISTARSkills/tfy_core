@@ -75,7 +75,7 @@ public class Address implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "pincode_id", nullable = false)
 
 	public Pincode getPincode() {

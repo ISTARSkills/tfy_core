@@ -206,19 +206,18 @@ public class IstarUserServices {
 
 	
 	public UserProfile updateProfileImage(IstarUser istarUser, String profileImage){
-		
+		IstarUserDAO uDAO = new IstarUserDAO();
+		UserProfileDAO pDAO = new UserProfileDAO();
 		UserProfile userProfile = istarUser.getUserProfile();
 		
 		if(userProfile!=null){
 			userProfile.setProfileImage(profileImage);			
-			//userProfile = updateUserProfileToDAO(userProfile);
-			UserProfileDAO userProfileDAO = new UserProfileDAO();
-
-			Session userProfileSession = userProfileDAO.getSession();
+			Session userProfileSession = uDAO.getSession();
 			Transaction userProfileTransaction = null;
 			try {
 				userProfileTransaction = userProfileSession.beginTransaction();
-				userProfileSession.update(userProfile);
+				pDAO.attachDirty(userProfile);
+				//userProfileSession.update(userProfile);
 				userProfileTransaction.commit();
 			} catch (HibernateException e) {
 				e.printStackTrace();
@@ -226,6 +225,22 @@ public class IstarUserServices {
 					userProfileTransaction.rollback();
 			} finally {
 				userProfileSession.close();
+				
+			}
+			istarUser.setUserProfile(userProfile);
+			Session userSession = uDAO.getSession();
+			Transaction userTransaction = null;
+			try {
+				userTransaction = userSession.beginTransaction();
+				uDAO.attachDirty(istarUser);
+				userTransaction.commit();
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				if (userTransaction != null)
+					userTransaction.rollback();
+			} finally {
+				userSession.close();
+				
 			}
 			
 		}
@@ -574,6 +589,12 @@ public class IstarUserServices {
 		List<IstarUser> users = new ArrayList<IstarUser>();
 		users = userDao.findByMobile(mobile);
 		return users;
+	}
+
+	public void testProfile(int userId, String fileName) {
+		System.err.println("-------------->"+(new IstarUserDAO()).findById(userId).getUserProfile().getImage());
+		System.err.println("fileName--->"+fileName);
+		
 	}
 
 }
