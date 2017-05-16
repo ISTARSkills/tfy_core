@@ -36,7 +36,7 @@ public class TaskServices {
 	{
 		DBUTILS util = new DBUTILS();
 		Integer taskId = null;
-		String checkIfTaskExist ="select id from task where item_id="+itemId+" and item_type='"+itemType+"' and cast (start_date  as date) = cast (now() as date)";
+		String checkIfTaskExist ="select id from task where actor= "+actor+" and item_id="+itemId+" and item_type='"+itemType+"' and cast (start_date  as date) = cast (now() as date)";
 		List<HashMap<String, Object>> alreadyAvailbleTask = util.executeQuery(checkIfTaskExist);
 		if(alreadyAvailbleTask.size()>0)
 		{

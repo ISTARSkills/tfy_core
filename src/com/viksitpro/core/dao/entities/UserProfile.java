@@ -145,11 +145,11 @@ public class UserProfile implements java.io.Serializable {
 
 	@Transient
 	public String getImage(){
-		if (profileImage != null) {
+		if (this.profileImage != null) {
 			return this.profileImage;
 		} else {
 			System.out.println("Assiging default image");
-			return "http://cdn.talentify.in/video/android_images/" + firstName.substring(0, 1).toUpperCase() + ".png";
+			return "users/" + firstName.substring(0, 1).toUpperCase() + ".png";
 		}
 	}
 	

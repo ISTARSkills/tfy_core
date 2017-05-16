@@ -28,6 +28,7 @@ public class StudentPlaylist implements java.io.Serializable {
 	private String status;
 	private Module module;
 	private Cmsession cmsession;
+	private Integer taskId;
 
 	// Constructors
 
@@ -125,5 +126,17 @@ public class StudentPlaylist implements java.io.Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	@Column(name = "task_id")
+	public Integer getTaskId() {
+		return taskId;
+	}
+
+	public void setTaskId(Integer taskId) {
+		this.taskId = taskId;
+	}
+	
+	
+	
 
 }

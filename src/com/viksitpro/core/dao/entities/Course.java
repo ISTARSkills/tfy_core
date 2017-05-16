@@ -184,7 +184,7 @@ public class Course implements java.io.Serializable {
 	@Column(name = "image_url")
 	public String getImage_url() {
 		if(image_url == null) {
-			return "/content/assets/images/Aplied_economics.png";
+			return "course_images/"+this.courseName.charAt(0)+".png";
 		} else {
 			return image_url;
 		}

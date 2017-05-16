@@ -211,7 +211,23 @@ public class IstarUserServices {
 		
 		if(userProfile!=null){
 			userProfile.setProfileImage(profileImage);			
-			userProfile = updateUserProfileToDAO(userProfile);
+			//userProfile = updateUserProfileToDAO(userProfile);
+			UserProfileDAO userProfileDAO = new UserProfileDAO();
+
+			Session userProfileSession = userProfileDAO.getSession();
+			Transaction userProfileTransaction = null;
+			try {
+				userProfileTransaction = userProfileSession.beginTransaction();
+				userProfileSession.update(userProfile);
+				userProfileTransaction.commit();
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				if (userProfileTransaction != null)
+					userProfileTransaction.rollback();
+			} finally {
+				userProfileSession.close();
+			}
+			
 		}
 		return userProfile;
 	}
