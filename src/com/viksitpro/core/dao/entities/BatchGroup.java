@@ -41,7 +41,7 @@ public class BatchGroup implements java.io.Serializable {
 	private Integer parentGroupId;
 	private String type;
 	private Integer year; 
-	
+	private Boolean isPrimary;
 	
 	
 	// Constructors
@@ -212,6 +212,15 @@ public class BatchGroup implements java.io.Serializable {
 
 	public void setYear(Integer year) {
 		this.year = year;
+	}
+
+	@Column(name = "is_primary", nullable = true)
+	public Boolean getIsPrimary() {
+		return isPrimary;
+	}
+
+	public void setIsPrimary(Boolean isPrimary) {
+		this.isPrimary = isPrimary;
 	}
 	
 	
