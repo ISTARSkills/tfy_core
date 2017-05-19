@@ -40,7 +40,7 @@ public class TaskServices {
 		List<HashMap<String, Object>> alreadyAvailbleTask = util.executeQuery(checkIfTaskExist);
 		if(alreadyAvailbleTask.size()>0)
 		{
-			taskId = (int)alreadyAvailbleTask.get(0).get("id");
+			taskId = (Integer)alreadyAvailbleTask.get(0).get("id");
 		}
 		else
 		{
@@ -589,7 +589,9 @@ public class TaskServices {
 	 * @param task  Task instance to be marked as Inactive
 	 * @return Task Object
 	 */
-	public Task markTaskAsInactive(Task task, String jsessionId){
+	public Task markTaskAsInactive(Integer taskId, String jsessionId){
+		
+		Task task = getTask(taskId);
 		
 		java.util.Date date= new java.util.Date();
 		Timestamp current = new Timestamp(date.getTime());

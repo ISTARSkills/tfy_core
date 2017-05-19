@@ -16,10 +16,10 @@ public class CampaignProfilePOJO {
 	private ArrayList<String> cities = new ArrayList<String>();
 	private ArrayList<String> colleges = new ArrayList<String>();
 	private HashMap<String, String> skills = new HashMap<String, String>();
-	private Float ugCutOff = 30f;
-	private Float pgCutOff =30f;
-	private Float highschoolCutOff = 30f;
-	private Float intermediateCutOff =30f;
+	private Float ugCutOff = 0f;
+	private Float pgCutOff =0f;
+	private Float highschoolCutOff = 0f;
+	private Float intermediateCutOff =0f;
 
 	
 	@XmlAttribute(name = "campaignId", required=false)
