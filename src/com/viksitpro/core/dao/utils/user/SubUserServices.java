@@ -13,6 +13,7 @@ import javax.persistence.criteria.Root;*/
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -38,6 +39,24 @@ public class SubUserServices {
 		subUser = saveSubUserToDAO(subUser);
 
 		return subUser;
+	}
+	
+	public Boolean isSubUserAlready(Integer istarUserId, Integer subIstarUserId){
+		
+		String sql = "select id from sub_user where istar_user="+istarUserId+" and sub_istar_user="+subIstarUserId;
+		
+		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
+		Session session = baseHibernateDAO.getSession();
+
+		SQLQuery query = session.createSQLQuery(sql);
+	
+		List<Integer> result = query.list();
+		
+		if(result.size()>0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	
 /*	public void deleteSubUser(int istarUserId, int subIstarUserId){
