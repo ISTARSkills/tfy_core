@@ -28,7 +28,8 @@ public class AssessmentBenchmark implements java.io.Serializable {
 	private Integer itemId;
 	private String itemType;
 	private SkillObjective skillObjective;
-	private Double maxPoints;
+	private String maxPoints;
+	private Integer contextId;
 
 	// Constructors
 
@@ -37,7 +38,7 @@ public class AssessmentBenchmark implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AssessmentBenchmark(Assessment assessment, SkillObjective skillObjective, Double maxPoints) {
+	public AssessmentBenchmark(Assessment assessment, SkillObjective skillObjective, String maxPoints) {
 		
 		this.skillObjective = skillObjective;
 		this.maxPoints = maxPoints;
@@ -73,11 +74,11 @@ public class AssessmentBenchmark implements java.io.Serializable {
 
 	@Column(name = "max_points", precision = 17, scale = 17)
 
-	public Double getMaxPoints() {
+	public String getMaxPoints() {
 		return this.maxPoints;
 	}
 
-	public void setMaxPoints(Double maxPoints) {
+	public void setMaxPoints(String maxPoints) {
 		this.maxPoints = maxPoints;
 	}
 
@@ -97,6 +98,14 @@ public class AssessmentBenchmark implements java.io.Serializable {
 
 	public void setItemType(String itemType) {
 		this.itemType = itemType;
+	}
+	@Column(name="context_id")
+	public Integer getContextId() {
+		return contextId;
+	}
+
+	public void setContextId(Integer contextId) {
+		this.contextId = contextId;
 	}
 
 	
