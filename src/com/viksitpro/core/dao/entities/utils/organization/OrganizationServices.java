@@ -77,8 +77,12 @@ public class OrganizationServices {
 		
 	public Organization getOrganization(int organizationId) {
 		OrganizationDAO organizationDAO = new OrganizationDAO();
-		Organization organization = organizationDAO.findById(organizationId);
-
+		Organization organization;
+		try {
+			organization = organizationDAO.findById(organizationId);
+		} catch (IllegalArgumentException e) {
+			organization = null;
+		}
 		return organization;
 	}
 	

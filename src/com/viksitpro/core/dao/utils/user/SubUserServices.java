@@ -114,13 +114,27 @@ public class SubUserServices {
 		return subUser;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public Set<IstarUser> getSubIstarUsers(IstarUser istarUser){
 				
-		Set<SubUser> allSubUsers = istarUser.getSubUsersForIstarUser();		
+		String sql = "select sub_istar_user from sub_user where istar_user="+istarUser.getId();
+		
+		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
+		Session session = baseHibernateDAO.getSession();
+
+		SQLQuery query = session.createSQLQuery(sql);
+	
+		List<Integer> allSubUserIds = query.list();
+		
+		IstarUserServices istarUserServices = new IstarUserServices();		
+	
 		Set<IstarUser> allSubIstarUsers = new HashSet<IstarUser>();
 		
-		for(SubUser subUser : allSubUsers){
-			allSubIstarUsers.add(subUser.getIstarUserBySubIstarUser());
+		for(Integer subUserId : allSubUserIds){
+			IstarUser subIstarUser = istarUserServices.getIstarUser(subUserId);
+			if(subIstarUser!=null){
+				allSubIstarUsers.add(subIstarUser);
+			}
 		}		
 		return allSubIstarUsers;
 	}
