@@ -7,7 +7,7 @@ package com.viksitpro.core.utilities;
  * @author ComplexObject
  *
  */
-public class TaskCategory {
+public class TaskItemCategory {
 
 	/**
 	 * refrenced in ContentTaskManager
