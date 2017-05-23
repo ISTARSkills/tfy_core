@@ -172,7 +172,7 @@ public class Module implements java.io.Serializable {
 	
 	public String getImage_url() {
 		if(Image_url == null) {
-			return "/content/assets/images/Aplied_economics.png";
+			return "/course_images/"+this.moduleName.trim().charAt(0)+".png";
 		} else {
 			return Image_url;
 		}

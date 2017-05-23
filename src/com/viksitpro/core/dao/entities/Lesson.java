@@ -54,6 +54,7 @@ public class Lesson implements java.io.Serializable {
 	private Set<Cmsession> cmsessions = new HashSet<Cmsession>(0);
 	private Set<StudentPlaylist> studentPlaylists = new HashSet<StudentPlaylist>(0);
 	private String Image_url;
+	private String category;
 
 	private String lessonXml;
 
@@ -237,7 +238,7 @@ public class Lesson implements java.io.Serializable {
 	@Column(name = "image_url")
 	public String getImage_url() {
 		if (Image_url == null) {
-			return "/content/assets/images/Aplied_economics.png";
+			return "/course_images/"+this.title.trim().charAt(0)+".png";
 		} else {
 			return Image_url;
 		}
@@ -267,5 +268,18 @@ public class Lesson implements java.io.Serializable {
 		}
 		return videoLesson;
 	}
+
+	@Column(name = "category", nullable = true)
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	
+	
+	
+	
 
 }
