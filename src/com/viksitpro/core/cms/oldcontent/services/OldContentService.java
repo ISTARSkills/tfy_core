@@ -76,6 +76,22 @@ public class OldContentService {
 			}
 			return mediaPath;
 		}
+		
+		private String getMediaUrl() {
+			String mediaPath = null;
+			try {
+				Properties properties = new Properties();
+				String propertyFileName = "app.properties";
+				InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propertyFileName);
+				if (inputStream != null) {
+					properties.load(inputStream);
+					mediaPath = properties.getProperty("media_url_path");
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return mediaPath;
+		}
 
 		public void createFolderForLessonInCourse(int courseId, int lessonId)
 		{
@@ -83,23 +99,26 @@ public class OldContentService {
 			Set<String> allUrls = new HashSet<String>();
 			String mediaPath =getMediaPath();
 			String oldMediaPath = getOldMediaPath();
+			String mediaUrlPath= getMediaUrl();
 			try {
 				JAXBContext  jaxbContext= JAXBContext.newInstance(CMSLesson.class);
 				File file = new File(mediaPath+"/lessonXMLs/"+lessonId+".xml");
 				Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 				CMSLesson cmsLesson = (CMSLesson) unmarshaller.unmarshal(file);
+				
+				mediaUrlPath = mediaUrlPath+"/lessonXMLs/"+lessonId+"/";
 				for (CMSSlide cmsSlide : cmsLesson.getSlides()) {
 					 try{
 					allUrls.add(oldMediaPath+cmsSlide.getImage_BG());
 					//remove unnecessary path
 					if(cmsSlide.getImage_BG()!=null)
 					{
-						cmsSlide.setImage_BG(cmsSlide.getImage_BG().replace("/video/backgrounds/", ""));
+						cmsSlide.setImage_BG(mediaUrlPath+cmsSlide.getImage_BG().replace("/video/backgrounds/", ""));
 					}
 					allUrls.add(oldMediaPath+cmsSlide.getAudioUrl());
 					if(cmsSlide.getAudioUrl()!=null)
 					{
-						cmsSlide.setAudioUrl(cmsSlide.getAudioUrl().replace("/video/",""));
+						cmsSlide.setAudioUrl(mediaUrlPath+cmsSlide.getAudioUrl().replace("/video/",""));
 					}
 					
 					
@@ -108,7 +127,7 @@ public class OldContentService {
 						allUrls.add(oldMediaPath+cmsSlide.getTitle().getFragmentAudioUrl());
 						if(cmsSlide.getTitle().getFragmentAudioUrl()!=null)
 						{
-							cmsSlide.getTitle().setFragmentAudioUrl(cmsSlide.getTitle().getFragmentAudioUrl().replace("/video/", ""));
+							cmsSlide.getTitle().setFragmentAudioUrl(mediaUrlPath+cmsSlide.getTitle().getFragmentAudioUrl().replace("/video/", ""));
 						}
 						
 					}
@@ -117,7 +136,7 @@ public class OldContentService {
 						allUrls.add(oldMediaPath+cmsSlide.getTitle2().getFragmentAudioUrl());
 						if(cmsSlide.getTitle2().getFragmentAudioUrl()!=null)
 						{
-							cmsSlide.getTitle2().setFragmentAudioUrl(cmsSlide.getTitle2().getFragmentAudioUrl().replace("/video/", ""));
+							cmsSlide.getTitle2().setFragmentAudioUrl(mediaUrlPath+cmsSlide.getTitle2().getFragmentAudioUrl().replace("/video/", ""));
 						}
 						
 					}
@@ -126,7 +145,7 @@ public class OldContentService {
 						allUrls.add(oldMediaPath+cmsSlide.getParagraph().getFragmentAudioUrl());
 						if(cmsSlide.getParagraph().getFragmentAudioUrl()!=null)
 						{
-							cmsSlide.getParagraph().setFragmentAudioUrl(cmsSlide.getParagraph().getFragmentAudioUrl().replace("/video/", ""));
+							cmsSlide.getParagraph().setFragmentAudioUrl(mediaUrlPath+cmsSlide.getParagraph().getFragmentAudioUrl().replace("/video/", ""));
 						}
 						
 					}
@@ -139,7 +158,7 @@ public class OldContentService {
 							allUrls.add(oldMediaPath+item.getFragmentAudioUrl());	
 							if(item.getFragmentAudioUrl()!=null)
 							{
-								item.setFragmentAudioUrl(item.getFragmentAudioUrl().replace("/video/", ""));
+								item.setFragmentAudioUrl(mediaUrlPath+item.getFragmentAudioUrl().replace("/video/", ""));
 								
 							}
 							newItems.add(item);
@@ -148,7 +167,7 @@ public class OldContentService {
 						
 						if(cmsSlide.getList().getMergedAudioURL()!=null)
 						{
-							cmsSlide.getList().setMergedAudioURL(cmsSlide.getList().getMergedAudioURL().replace("/video/", ""));
+							cmsSlide.getList().setMergedAudioURL(mediaUrlPath+cmsSlide.getList().getMergedAudioURL().replace("/video/", ""));
 						}
 						
 					}
@@ -160,7 +179,7 @@ public class OldContentService {
 						if(cmsSlide.getImage().getUrl()!=null)
 						{
 							CMSImage im = cmsSlide.getImage();
-							String updateImageUrl = cmsSlide.getImage().getUrl().replace("/content/media_upload?getfile=", "").replace("/video/", "");
+							String updateImageUrl = mediaUrlPath+cmsSlide.getImage().getUrl().replace("/content/media_upload?getfile=", "").replace("/video/", "");
 							im.setUrl(updateImageUrl);
 							cmsSlide.setImage(im);
 						}
@@ -168,7 +187,7 @@ public class OldContentService {
 						allUrls.add(oldMediaPath+cmsSlide.getImage().getFragmentAudioUrl());
 						if(cmsSlide.getImage().getFragmentAudioUrl()!=null)
 						{
-							cmsSlide.getImage().setFragmentAudioUrl(cmsSlide.getImage().getFragmentAudioUrl().replace("/video/", ""));
+							cmsSlide.getImage().setFragmentAudioUrl(mediaUrlPath+cmsSlide.getImage().getFragmentAudioUrl().replace("/video/", ""));
 						}
 						
 						System.err.println(">>>>>>>>>>>>>>>"+cmsSlide.getImage().getUrl());
@@ -183,7 +202,7 @@ public class OldContentService {
 						allUrls.add(oldMediaPath+cmsSlide.getVideo().getUrl());
 						if(cmsSlide.getVideo().getUrl()!=null)
 						{
-							cmsSlide.getVideo().setUrl(cmsSlide.getVideo().getUrl().replace("/video/", ""));
+							cmsSlide.getVideo().setUrl(mediaUrlPath+cmsSlide.getVideo().getUrl().replace("/video/", ""));
 						}
 						
 					}
