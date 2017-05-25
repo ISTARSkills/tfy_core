@@ -137,6 +137,15 @@ public class OldContentService {
 					lessonFolder.mkdir();
 				}
 				
+				/* make a folder in lessonXML folder also which will contain lessonxml, and assessts*/
+				File lessonFolderInLessonXML = new File(mediaPath + "lessonXMLs/"+lessonId);
+
+				System.out.println(lessonFolderInLessonXML.getAbsolutePath());
+				if (!lessonFolderInLessonXML.exists()) {
+					System.out.println("Folder does not exists");
+					lessonFolderInLessonXML.mkdir();
+				}
+				
 				for(String str :allUrls)
 				{
 					System.out.println(str);
@@ -148,13 +157,38 @@ public class OldContentService {
 						File dest = new File(mediaPath + "courseZIPs/"+courseId+"/"+lessonId+"/"+fileName);
 						System.err.println(src.getAbsolutePath());
 						System.err.println(dest.getAbsolutePath());
-						FileUtils.copyFile(src, dest);						
+						FileUtils.copyFile(src, dest);	
+						
+						
+						
+						//same media file will go in lesson folder in lessonXMLs folder
+						File fileInLessonXMLFolder = new File(mediaPath + "lessonXMLs/"+lessonId+"/"+fileName);
+						FileUtils.copyFile(src, fileInLessonXMLFolder);					
 					}
 				}
 				
 				File srcLessonXml = new File(mediaPath+"/lessonXMLs/"+lessonId+".xml");
 				File destLessonXML = new File(mediaPath + "courseZIPs/"+courseId+"/"+lessonId+"/"+lessonId+".xml");
-				FileUtils.copyFile(srcLessonXml, destLessonXML);	
+				FileUtils.copyFile(srcLessonXml, destLessonXML);
+				
+				
+				//copy lessonXML in lessonXMLs folder
+				
+				File destLessonXMLInlessonXMLsFolder = new File(mediaPath + "lessonXMLs/"+lessonId+"/"+lessonId+".xml");
+				FileUtils.copyFile(srcLessonXml, destLessonXMLInlessonXMLsFolder);
+				
+				
+				//zip the lesson folder
+				String SOURCE_FOLDER = mediaPath+"/lessonXMLs/"+lessonId;
+				File sourceFile = new File(SOURCE_FOLDER);
+				
+				String zipName = mediaPath+"/lessonXMLs/"+lessonId+".zip";
+				
+				ZipFiles zipFiles = new ZipFiles();
+		        zipFiles.zipDirectory(sourceFile, zipName);
+				
+				
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
