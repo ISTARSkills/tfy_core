@@ -14,11 +14,13 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
+import com.viksitpro.core.cms.oldcontent.CMSImage;
 import com.viksitpro.core.cms.oldcontent.CMSLesson;
 import com.viksitpro.core.cms.oldcontent.CMSSlide;
 import com.viksitpro.core.cms.oldcontent.CMSTextItem;
@@ -87,37 +89,110 @@ public class OldContentService {
 				Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 				CMSLesson cmsLesson = (CMSLesson) unmarshaller.unmarshal(file);
 				for (CMSSlide cmsSlide : cmsLesson.getSlides()) {
-					 
+					 try{
 					allUrls.add(oldMediaPath+cmsSlide.getImage_BG());
+					//remove unnecessary path
+					if(cmsSlide.getImage_BG()!=null)
+					{
+						cmsSlide.setImage_BG(cmsSlide.getImage_BG().replace("/video/backgrounds/", ""));
+					}
 					allUrls.add(oldMediaPath+cmsSlide.getAudioUrl());
+					if(cmsSlide.getAudioUrl()!=null)
+					{
+						cmsSlide.setAudioUrl(cmsSlide.getAudioUrl().replace("/video/",""));
+					}
+					
+					
 					if(cmsSlide.getTitle()!=null)
 					{
 						allUrls.add(oldMediaPath+cmsSlide.getTitle().getFragmentAudioUrl());
+						if(cmsSlide.getTitle().getFragmentAudioUrl()!=null)
+						{
+							cmsSlide.getTitle().setFragmentAudioUrl(cmsSlide.getTitle().getFragmentAudioUrl().replace("/video/", ""));
+						}
+						
 					}
 					if(cmsSlide.getTitle2()!=null)
 					{
 						allUrls.add(oldMediaPath+cmsSlide.getTitle2().getFragmentAudioUrl());
+						if(cmsSlide.getTitle2().getFragmentAudioUrl()!=null)
+						{
+							cmsSlide.getTitle2().setFragmentAudioUrl(cmsSlide.getTitle2().getFragmentAudioUrl().replace("/video/", ""));
+						}
+						
 					}
 					if(cmsSlide.getParagraph()!=null)
 					{
 						allUrls.add(oldMediaPath+cmsSlide.getParagraph().getFragmentAudioUrl());
+						if(cmsSlide.getParagraph().getFragmentAudioUrl()!=null)
+						{
+							cmsSlide.getParagraph().setFragmentAudioUrl(cmsSlide.getParagraph().getFragmentAudioUrl().replace("/video/", ""));
+						}
+						
 					}
 					if(cmsSlide.getList()!=null)
 					{
+						ArrayList<CMSTextItem> newItems = new ArrayList<>();
 						allUrls.add(oldMediaPath+cmsSlide.getList().getMergedAudioURL());
 						for(CMSTextItem item : cmsSlide.getList().getItems())
 						{
-							allUrls.add(oldMediaPath+item.getFragmentAudioUrl());							
+							allUrls.add(oldMediaPath+item.getFragmentAudioUrl());	
+							if(item.getFragmentAudioUrl()!=null)
+							{
+								item.setFragmentAudioUrl(item.getFragmentAudioUrl().replace("/video/", ""));
+								
+							}
+							newItems.add(item);
 						}
+						cmsSlide.getList().setItems(newItems);
+						
+						if(cmsSlide.getList().getMergedAudioURL()!=null)
+						{
+							cmsSlide.getList().setMergedAudioURL(cmsSlide.getList().getMergedAudioURL().replace("/video/", ""));
+						}
+						
 					}
 					if(cmsSlide.getImage()!=null)
 					{
+						
+						allUrls.add(oldMediaPath+cmsSlide.getImage().getUrl());
+						System.out.println("uodated image url "+cmsSlide.getImage().getUrl().replace("/content/media_upload?getfile=", "").replace("/video/", ""));
+						if(cmsSlide.getImage().getUrl()!=null)
+						{
+							CMSImage im = cmsSlide.getImage();
+							String updateImageUrl = cmsSlide.getImage().getUrl().replace("/content/media_upload?getfile=", "").replace("/video/", "");
+							im.setUrl(updateImageUrl);
+							cmsSlide.setImage(im);
+						}
+											
 						allUrls.add(oldMediaPath+cmsSlide.getImage().getFragmentAudioUrl());
+						if(cmsSlide.getImage().getFragmentAudioUrl()!=null)
+						{
+							cmsSlide.getImage().setFragmentAudioUrl(cmsSlide.getImage().getFragmentAudioUrl().replace("/video/", ""));
+						}
+						
+						System.err.println(">>>>>>>>>>>>>>>"+cmsSlide.getImage().getUrl());
+						
 					}
+					else
+					{
+						System.err.println("cmsSlide.getImage() is null");
+					}	
 					if(cmsSlide.getVideo()!=null)
 					{
 						allUrls.add(oldMediaPath+cmsSlide.getVideo().getUrl());
+						if(cmsSlide.getVideo().getUrl()!=null)
+						{
+							cmsSlide.getVideo().setUrl(cmsSlide.getVideo().getUrl().replace("/video/", ""));
+						}
+						
 					}
+					
+					 }catch(NullPointerException eeee)
+					 {
+						 eeee.printStackTrace();
+					 }
+					 
 					
 				}
 				
@@ -153,29 +228,50 @@ public class OldContentService {
 					{
 						str = str.replace("/content/media_upload?getfile=", "").replaceAll("/video/", "");
 						String fileName = str.substring(str.lastIndexOf("/")); 						
-						File src = new File(str.replace("/content/media_upload?getfile=", "").replaceAll("/video/", ""));
+						File src = new File(str);
 						File dest = new File(mediaPath + "courseZIPs/"+courseId+"/"+lessonId+"/"+fileName);
 						System.err.println(src.getAbsolutePath());
 						System.err.println(dest.getAbsolutePath());
+						try{
 						FileUtils.copyFile(src, dest);	
-						
+						}
+						catch(FileNotFoundException ee)
+						{
+							}
 						
 						
 						//same media file will go in lesson folder in lessonXMLs folder
 						File fileInLessonXMLFolder = new File(mediaPath + "lessonXMLs/"+lessonId+"/"+fileName);
-						FileUtils.copyFile(src, fileInLessonXMLFolder);					
+						try{
+						FileUtils.copyFile(src, fileInLessonXMLFolder);		
+						}catch (FileNotFoundException e)
+						{
+							
+						}
 					}
 				}
+				JAXBContext jaxbContext11 = JAXBContext.newInstance(CMSLesson.class);
+				Marshaller jaxbMarshaller = jaxbContext11.createMarshaller();
+				jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 				
-				File srcLessonXml = new File(mediaPath+"/lessonXMLs/"+lessonId+".xml");
+				
 				File destLessonXML = new File(mediaPath + "courseZIPs/"+courseId+"/"+lessonId+"/"+lessonId+".xml");
-				FileUtils.copyFile(srcLessonXml, destLessonXML);
+				System.err.println("|||||||||||||||||||||||"+destLessonXML.getAbsolutePath());
+				jaxbMarshaller.marshal(cmsLesson, destLessonXML);
 				
 				
-				//copy lessonXML in lessonXMLs folder
+				//copy updatedlessonXML in lessonXMLs folder
+				
+				
 				
 				File destLessonXMLInlessonXMLsFolder = new File(mediaPath + "lessonXMLs/"+lessonId+"/"+lessonId+".xml");
-				FileUtils.copyFile(srcLessonXml, destLessonXMLInlessonXMLsFolder);
+				
+				
+
+				// output pretty printed
+				
+
+				jaxbMarshaller.marshal(cmsLesson, destLessonXMLInlessonXMLsFolder);
 				
 				
 				//zip the lesson folder
