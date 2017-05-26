@@ -3,6 +3,7 @@
  */
 package com.viksitpro.core.dao.entities;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,8 +23,8 @@ public class PmWorkflow {
 	String name;
 	String description;
 	String category;
-	List<PMStage> stages;
-	HashMap<String, String[]> attributes;
+	List<PMStage> stages = new ArrayList<PMStage>();
+	HashMap<String, String[]> attributes = new HashMap<String, String[]>();
 
 	@XmlAttribute(name = "id")
 	public Integer getId() {

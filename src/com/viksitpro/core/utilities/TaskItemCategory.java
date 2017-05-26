@@ -15,6 +15,7 @@ public class TaskItemCategory {
 	public static final  String CONTENT="CONTENT";
 	public static final  String WORKFLOW_INDEPENDENT="WORKFLOW_INDEPENDENT";
 	public static final  String JOB="JOB";
+	public static final  String JOB_STUDENT="JOB STUDENT";
 	public static final  String SALES="SALES";
 	public static final  String SKILL="SKILL";
 	public static final  String TODO="TODO";

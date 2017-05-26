@@ -4,6 +4,7 @@
 package com.viksitpro.core.dao.entities;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAttribute;
@@ -22,7 +23,7 @@ public class PMStage{
 	Integer orderId;
 	String allowedRoles;
 	String type;
-	List<PmStageAction> stageActions;
+	List<PmStageAction> stageActions = new ArrayList<PmStageAction>();
 	
 	@XmlAttribute (name="id")
 	public Integer getId() {
