@@ -109,27 +109,24 @@ public class OldContentService {
 				mediaUrlPath = mediaUrlPath+"/lessonXMLs/"+lessonId+"/";
 				for (CMSSlide cmsSlide : cmsLesson.getSlides()) {
 					 try{
-					allUrls.add(oldMediaPath+cmsSlide.getImage_BG());
+						 allUrls.add(oldMediaPath+cmsSlide.getImage_BG());
 					//remove unnecessary path
-					if(cmsSlide.getImage_BG()!=null)
+					if(cmsSlide.getImage_BG()!=null && !cmsSlide.getImage_BG().contains("http") && !cmsSlide.getImage_BG().contains("none") &&!cmsSlide.getImage_BG().contains("null"))
 					{
 						cmsSlide.setImage_BG(mediaUrlPath+cmsSlide.getImage_BG().replace("/video/backgrounds/", ""));
 					}
 					allUrls.add(oldMediaPath+cmsSlide.getAudioUrl());
-					if(cmsSlide.getAudioUrl()!=null)
+					if(cmsSlide.getAudioUrl()!=null && !cmsSlide.getAudioUrl().equalsIgnoreCase("none"))
 					{
 						cmsSlide.setAudioUrl(mediaUrlPath+cmsSlide.getAudioUrl().replace("/video/",""));
-					}
-					
-					
+					}										
 					if(cmsSlide.getTitle()!=null)
 					{
 						allUrls.add(oldMediaPath+cmsSlide.getTitle().getFragmentAudioUrl());
 						if(cmsSlide.getTitle().getFragmentAudioUrl()!=null)
 						{
 							cmsSlide.getTitle().setFragmentAudioUrl(mediaUrlPath+cmsSlide.getTitle().getFragmentAudioUrl().replace("/video/", ""));
-						}
-						
+						}						
 					}
 					if(cmsSlide.getTitle2()!=null)
 					{
@@ -137,8 +134,7 @@ public class OldContentService {
 						if(cmsSlide.getTitle2().getFragmentAudioUrl()!=null)
 						{
 							cmsSlide.getTitle2().setFragmentAudioUrl(mediaUrlPath+cmsSlide.getTitle2().getFragmentAudioUrl().replace("/video/", ""));
-						}
-						
+						}						
 					}
 					if(cmsSlide.getParagraph()!=null)
 					{
@@ -149,14 +145,14 @@ public class OldContentService {
 						}
 						
 					}
-					if(cmsSlide.getList()!=null)
+					if(cmsSlide.getList()!=null )
 					{
 						ArrayList<CMSTextItem> newItems = new ArrayList<>();
 						allUrls.add(oldMediaPath+cmsSlide.getList().getMergedAudioURL());
 						for(CMSTextItem item : cmsSlide.getList().getItems())
 						{
 							allUrls.add(oldMediaPath+item.getFragmentAudioUrl());	
-							if(item.getFragmentAudioUrl()!=null)
+							if(item.getFragmentAudioUrl()!=null && !item.getFragmentAudioUrl().equalsIgnoreCase(""))
 							{
 								item.setFragmentAudioUrl(mediaUrlPath+item.getFragmentAudioUrl().replace("/video/", ""));
 								
@@ -165,24 +161,30 @@ public class OldContentService {
 						}
 						cmsSlide.getList().setItems(newItems);
 						
-						if(cmsSlide.getList().getMergedAudioURL()!=null)
+						if(cmsSlide.getList().getMergedAudioURL()!=null && !cmsSlide.getList().getMergedAudioURL().equalsIgnoreCase("none")&& !cmsSlide.getList().getMergedAudioURL().equalsIgnoreCase("null"))
 						{
 							cmsSlide.getList().setMergedAudioURL(mediaUrlPath+cmsSlide.getList().getMergedAudioURL().replace("/video/", ""));
 						}
 						
 					}
-					if(cmsSlide.getImage()!=null)
+					if(cmsSlide.getImage()!=null )
 					{
 						
 						allUrls.add(oldMediaPath+cmsSlide.getImage().getUrl());
 						System.out.println("uodated image url "+cmsSlide.getImage().getUrl().replace("/content/media_upload?getfile=", "").replace("/video/", ""));
-						if(cmsSlide.getImage().getUrl()!=null)
+						if(cmsSlide.getImage().getUrl()!=null && !cmsSlide.getImage().getUrl().contains("http"))
 						{
+							
+							
 							CMSImage im = cmsSlide.getImage();
 							String updateImageUrl = mediaUrlPath+cmsSlide.getImage().getUrl().replace("/content/media_upload?getfile=", "").replace("/video/", "");
 							im.setUrl(updateImageUrl);
 							cmsSlide.setImage(im);
 						}
+						else
+						{
+							
+						}	
 											
 						allUrls.add(oldMediaPath+cmsSlide.getImage().getFragmentAudioUrl());
 						if(cmsSlide.getImage().getFragmentAudioUrl()!=null)
@@ -242,12 +244,14 @@ public class OldContentService {
 				
 				for(String str :allUrls)
 				{
-					System.out.println(str);
-					if(!str.contains("null") && !str.contains("none") && !str.equalsIgnoreCase(oldMediaPath))
+					System.out.println("iterating strsss"+ str);
+					if(str!=null && !str.contains("null") && !str.contains("none") && !str.equalsIgnoreCase(oldMediaPath))
 					{
 						str = str.replace("/content/media_upload?getfile=", "").replaceAll("/video/", "");
-						String fileName = str.substring(str.lastIndexOf("/")); 						
+						String fileName = str.replace("backgrounds/", "");
+						fileName= fileName.replace("C:/Users/mayank/Pictures/Camera Roll/", "");
 						File src = new File(str);
+						
 						File dest = new File(mediaPath + "courseZIPs/"+courseId+"/"+lessonId+"/"+fileName);
 						System.err.println(src.getAbsolutePath());
 						System.err.println(dest.getAbsolutePath());
@@ -268,6 +272,7 @@ public class OldContentService {
 							
 						}
 					}
+					
 				}
 				JAXBContext jaxbContext11 = JAXBContext.newInstance(CMSLesson.class);
 				Marshaller jaxbMarshaller = jaxbContext11.createMarshaller();
