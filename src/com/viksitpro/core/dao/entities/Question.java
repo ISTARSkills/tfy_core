@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -202,8 +204,12 @@ public class Question implements java.io.Serializable {
 		this.studentAssessments = studentAssessments;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "questions")
-
+	//@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "questions")
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "question_skill_objective", schema = "public", joinColumns = {
+			@JoinColumn(name = "questionid", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "learning_objectiveid", nullable = false, updatable = false) })
+	
 	public Set<SkillObjective> getSkillObjectives() {
 		return this.skillObjectives;
 	}
