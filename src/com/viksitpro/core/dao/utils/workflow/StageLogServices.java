@@ -10,6 +10,7 @@ import javax.persistence.criteria.Root;*/
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -198,18 +199,18 @@ public class StageLogServices {
 	}*/
 	
 	@SuppressWarnings("unchecked")
-	public List<StageLog> getStageLogOfTaskForIstarUser(Task task, IstarUser istarUser){
+	public List<Integer> getStageLogOfTaskForIstarUser(Task task, IstarUser istarUser){
 		
-		String sql = "from StageLog where task= :task and istar_user= :istarUser";
+		String sql = "select id from stage_log where task= :task and istar_user= :istarUser";
 		
 		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
 		Session session = baseHibernateDAO.getSession();
 
-		Query query = session.createQuery(sql);
+		SQLQuery query = session.createSQLQuery(sql);
 		query.setParameter("task",task);
 		query.setParameter("istarUser",istarUser);
 
-		List<StageLog> allStageLog = query.list();
+		List<Integer> allStageLog = query.list();
 		
 		return allStageLog;
 	}
@@ -238,9 +239,10 @@ public class StageLogServices {
 		return stageLog;
 	}
 	
-	public void removeStageLogs(List<StageLog> allStageLog){		
-		for(StageLog stageLog : allStageLog){
-			deleteStageLogFromDAO(stageLog);
+	public void removeStageLogs(List<Integer> allStageLog){		
+		for(Integer stageLogId : allStageLog){
+			
+			deleteStageLogFromDAO(getStageLog(stageLogId));
 		}				
 		System.out.println("All existing stage logs deleted");
 	}

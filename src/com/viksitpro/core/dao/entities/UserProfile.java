@@ -148,7 +148,6 @@ public class UserProfile implements java.io.Serializable {
 		if (this.profileImage != null) {
 			return this.profileImage;
 		} else {
-			System.out.println("Assiging default image");
 			return "users/" + firstName.trim().substring(0, 1).toUpperCase() + ".png";
 		}
 	}

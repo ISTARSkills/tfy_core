@@ -368,7 +368,7 @@ public class Task implements java.io.Serializable {
 		this.followUpDurationInDays = followUpDurationInDays;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "task")
+	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "task")
 
 	public Set<StageLog> getStageLogs() {
 		return this.stageLogs;
