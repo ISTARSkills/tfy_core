@@ -56,7 +56,7 @@ public class Metadata implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "meta_column_id")
 
 	public MetaColumn getMetaColumn() {

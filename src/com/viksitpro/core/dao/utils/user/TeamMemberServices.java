@@ -86,7 +86,49 @@ public class TeamMemberServices {
 
 		return teamMember;
 	}*/
+	
+	@SuppressWarnings("unchecked")
+	public List<IstarUser> getIstarUsersOfTeam(int teamId){
+		
+		String sql = "select user_id from team_member where team_id="+teamId;
+		
+		System.out.println(sql);
+		
+		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
+		Session session = baseHibernateDAO.getSession();
 
+		SQLQuery query = session.createSQLQuery(sql);
+
+		List<Integer> result = query.list();
+		
+		List<IstarUser> allIstarUserOfTeam = new ArrayList<IstarUser>();
+		IstarUserServices istarUserServices = new IstarUserServices();
+		for(Integer userId: result){
+			allIstarUserOfTeam.add(istarUserServices.getIstarUser(userId));
+		}
+		
+		return allIstarUserOfTeam;
+	} 
+
+	public void setIstarUsersOfTeam(int teamId, List<IstarUser> allTeamMembers) {
+
+		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
+		Session session = baseHibernateDAO.getSession();
+		try {
+			for (IstarUser user : allTeamMembers) {
+				String sql = "INSERT INTO team_member (team_id, user_id) VALUES (" + teamId + ", " + user.getId() + ")";
+				System.out.println(sql);
+
+				SQLQuery query = session.createSQLQuery(sql);
+				query.executeUpdate();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+	
 	public List<IstarUser> createTeamMember(int teamId, List<Integer> allIstarUserId) {
 
 		TeamServices teamServices = new TeamServices();
@@ -94,29 +136,24 @@ public class TeamMemberServices {
 
 		IstarUserServices istarUserServices = new IstarUserServices();
 
-		Set<IstarUser> allTeamMembersSet = team.getIstarUsers();
-		
-		for (Integer istarUserId : allIstarUserId) {
-			if (checkIfTeamMemberAlreadyExists(teamId, istarUserId)) {
-				System.out.println("Creating New Team Member ");
-
+		List<IstarUser> allTeamMembersSet = getIstarUsersOfTeam(teamId);
+				for (Integer istarUserId : allIstarUserId) {
+			if (!checkIfTeamMemberAlreadyExists(teamId, istarUserId)) {
 				IstarUser istarUser = istarUserServices.getIstarUser(istarUserId);
 				
 				allTeamMembersSet.add(istarUser);
 			} else {
 				System.out.println("TeamMember already exists");
 			}
-			
-			team.setIstarUsers(allTeamMembersSet);
 			team = teamServices.updateTeamToDAO(team);
 		}
 		
-		List<IstarUser> allTeamMembers = new ArrayList<IstarUser>(team.getIstarUsers());
+		setIstarUsersOfTeam(team.getId(), allTeamMembersSet);
+		List<IstarUser> allTeamMembers = new ArrayList<IstarUser>( getIstarUsersOfTeam(teamId));
 		return allTeamMembers;
 	}
 
 	public List<IstarUser> createTeamMemberByEmail(int teamId, List<String> allEmails) {
-
 		IstarUserServices istarUserServices = new IstarUserServices();
 		List<Integer> allIstarUserIds = new ArrayList<Integer>();
 
@@ -196,20 +233,22 @@ public class TeamMemberServices {
 		if (allTeamMember.size() <= 0) {
 			isOld = false;
 		}		
-		System.out.println("checkIfTeamMemberAlreadyExists:" + isOld);
 		return isOld;
 	}
 	
-	public void removeAllExistingTeamMembers(int teamId){
-		
-		TeamServices teamServices = new TeamServices();
-		Team team = teamServices.getTeam(teamId);
-		
-		Set<IstarUser> allTeamMembers = new HashSet<IstarUser>();
-		
-		team.setIstarUsers(allTeamMembers);
-		
-		teamServices.updateTeamToDAO(team);
+	public void removeAllExistingTeamMembers(int teamId){		
+		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
+		Session session = baseHibernateDAO.getSession();
+		try {
+			String sql = "delete from team_member where team_id=" + teamId;
+			System.err.println(sql);
+			SQLQuery query = session.createSQLQuery(sql);
+			query.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
 	}
 
 /*	public TeamMember saveTeamMemberToDAO(TeamMember teamMember) {
