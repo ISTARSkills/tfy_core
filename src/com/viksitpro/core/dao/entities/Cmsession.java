@@ -155,8 +155,11 @@ public class Cmsession implements java.io.Serializable {
 		this.studentPlaylists = studentPlaylists;
 	}
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cmsessions")
-
+	//@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cmsessions")
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "cmsession_module", schema = "public", joinColumns = {
+			@JoinColumn(name = "cmsession_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "module_id", nullable = false, updatable = false) })
 	public Set<Module> getModules() {
 		return this.modules;
 	}

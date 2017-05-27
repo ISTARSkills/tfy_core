@@ -58,8 +58,10 @@ public class MAIN {
 		System.out.println("started");
 		//System.out.println();
 		//createAssesmentBechmark();
-		executeSQLFromFile();
+		//executeSQLFromFile();
 		//addCourseToAssessment();
+		//SS();
+		ll();
 		System.out.println("exiting");
 		System.exit(0);
 
@@ -68,6 +70,45 @@ public class MAIN {
 	
 
 	
+
+
+	private static void ll() {
+		// TODO Auto-generated method stub
+		DBUTILS util = new DBUTILS();
+		for(int i=4; i<=16 ;i++)
+		{
+			String insertlesson="INSERT INTO lesson (id, type, duration, tags, title, subject, order_id, created_at, is_deleted, description, image_url, lesson_xml) VALUES ((select		COALESCE(max(id),0)+1 from lesson), 'VIDEO', NULL, NULL, 'L"+i+"', NULL, NULL, NULL, 'f', 'JRE Components. The JRE is the software environment in which programs compiled for a typical JVM implementation can run.', '/var/www/html/course_images/7f2ab079-fc2d-4239-98bd-191e93bf9843.png ', '<?xml version=1.0 encoding=UTF-8 standalone=yes?><video_lesson>    <id>11</id>    <video_thumb_url>/var/www/html/course_images/991a5b48-f020-42b2-a18b-55b1d3027bfe.png</video_thumb_url>    <video_url>/var/www/html/video/5dae77c9-3fce-4bef-9188-ec4517174924.mp4</video_url></video_lesson>'); ";
+			util.executeUpdate(insertlesson);
+		}
+	}
+
+
+
+
+
+
+	private static void SS() {
+		// TODO Auto-generated method stub
+		System.out.println("start");
+		DBUTILS util = new DBUTILS();
+		for(int i =5 ; i<= 16;i++)
+		{
+		String skillName = "SK"+i;
+		String sql ="INSERT INTO skill_objective (id, type, name,parent_skill, skill_level_type, order_id, context) VALUES ((select		COALESCE(max(id),0)+1 from skill_objective), 'SKILL', '"+skillName+"',		NULL, NULL,NULL,7) returning id;";
+		int skillId = util.executeUpdateReturn(sql);
+		for(int j=1; j <3; j++)
+		{
+		String lobname = "LO"+j+skillName;
+		String indertLOb= "INSERT INTO skill_objective (id, type, name,		parent_skill, skill_level_type, order_id, context) VALUES ((select		COALESCE(max(id),0)+1 from skill_objective), 'LEARNING_OBJECTIVE',		'"+lobname+"', "+skillId+", NULL,NULL,7);";
+		util.executeUpdate(indertLOb);
+		}
+		}
+		System.out.println("done");
+		}
+
+
+
+
 
 
 	private static void addCourseToAssessment() throws FileNotFoundException, IOException {
