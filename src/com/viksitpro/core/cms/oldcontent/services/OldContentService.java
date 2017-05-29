@@ -6,6 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.attribute.PosixFilePermission;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Properties;
@@ -32,7 +35,11 @@ import com.viksitpro.core.dao.entities.Module;
 
 public class OldContentService {
 
+	
+	
 	public void createZipForCourse(int courseId) {
+		
+		
 		String mediaPath = getMediaPath();
 		Course c = new CourseDAO().findById(courseId);
 		for (Module m : c.getModules()) {
@@ -93,6 +100,23 @@ public class OldContentService {
 
 	public void createFolderForLessonInCourse(int courseId, int lessonId) {
 
+		Set<PosixFilePermission> perms = new HashSet<PosixFilePermission>();
+		// add owners permission
+		perms.add(PosixFilePermission.OWNER_READ);
+		perms.add(PosixFilePermission.OWNER_WRITE);
+		perms.add(PosixFilePermission.OWNER_EXECUTE);
+		// add group permissions
+		perms.add(PosixFilePermission.GROUP_READ);
+		perms.add(PosixFilePermission.GROUP_WRITE);
+		perms.add(PosixFilePermission.GROUP_EXECUTE);
+		// add others permissions
+		perms.add(PosixFilePermission.OTHERS_READ);
+		perms.add(PosixFilePermission.OTHERS_WRITE);
+		perms.add(PosixFilePermission.OTHERS_EXECUTE);
+		
+		
+		
+		
 		Set<String> allUrls = new HashSet<String>();
 		String mediaPath = getMediaPath();
 		String oldMediaPath = getOldMediaPath();
@@ -204,21 +228,23 @@ public class OldContentService {
 			}
 
 			File courseFolder = new File(mediaPath + "courseZIPs/" + courseId);
-
+			
 			System.out.println(courseFolder.getAbsolutePath());
 			if (!courseFolder.exists()) {
 				System.out.println("Folder does not exists");
 				courseFolder.mkdir();
+				Files.setPosixFilePermissions(Paths.get(courseFolder.getAbsolutePath()), perms);
 			}
 
 			File lessonFolder = new File(mediaPath + "courseZIPs/" + courseId + "/" + lessonId);
-
+			
 			System.out.println(lessonFolder.getAbsolutePath());
 			if (!lessonFolder.exists()) {
 				System.out.println("Folder does not exists");
 				lessonFolder.mkdir();
+				Files.setPosixFilePermissions(Paths.get(lessonFolder.getAbsolutePath()), perms);
 			}
-
+			
 			/*
 			 * make a folder in lessonXML folder also which will contain
 			 * lessonxml, and assessts
@@ -229,6 +255,7 @@ public class OldContentService {
 			if (!lessonFolderInLessonXML.exists()) {
 				System.out.println("Folder does not exists");
 				lessonFolderInLessonXML.mkdir();
+				Files.setPosixFilePermissions(Paths.get(lessonFolderInLessonXML.getAbsolutePath()), perms);
 			}
 
 			for (String str : allUrls) {
@@ -244,6 +271,7 @@ public class OldContentService {
 
 					try {
 						FileUtils.copyFile(src, dest);
+						Files.setPosixFilePermissions(Paths.get(dest.getAbsolutePath()), perms);
 					} catch (FileNotFoundException ee) {
 					}
 
@@ -252,6 +280,7 @@ public class OldContentService {
 					File fileInLessonXMLFolder = new File(mediaPath + "lessonXMLs/" + lessonId + "/" + fileName);
 					try {
 						FileUtils.copyFile(src, fileInLessonXMLFolder);
+						Files.setPosixFilePermissions(Paths.get(fileInLessonXMLFolder.getAbsolutePath()), perms);
 					} catch (FileNotFoundException e) {
 
 					}
@@ -310,4 +339,5 @@ public class OldContentService {
 		OldContentService oc = new OldContentService();
 		oc.createZipForCourse(5);
 	}
+	
 }
