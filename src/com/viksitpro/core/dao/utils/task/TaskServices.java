@@ -502,12 +502,12 @@ public class TaskServices {
 	@SuppressWarnings("unchecked")
 	public List<Task> getAllTaskOfActorForToday(IstarUser istarUser){
 		
-		String hql = "from Task task where actor= :actor and startDate>= :dayStart and endDate<= :dayEnd";
+		String hql = "from Task task where actor= :actor";
 		
 		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
 		Session session = baseHibernateDAO.getSession();
 
-		DateFormat day = new SimpleDateFormat("yyyyMMdd");
+/*		DateFormat day = new SimpleDateFormat("yyyyMMdd");
 		Date startDate = new Date();
 		
 		try {
@@ -522,11 +522,11 @@ public class TaskServices {
 
 		System.out.println("Day ends at->" + dayStart);
 		System.out.println("Day ends at->" + dayEnd);
-		
+		*/
 		Query query = session.createQuery(hql);
 		query.setParameter("actor", istarUser.getId());
-		query.setParameter("dayStart", dayStart);
-		query.setParameter("dayEnd", dayEnd);
+		//query.setParameter("dayStart", dayStart);
+		//query.setParameter("dayEnd", dayEnd);
 		
 		List<Task> allTask = query.list();
 		System.out.println("allTask" + allTask.size());
