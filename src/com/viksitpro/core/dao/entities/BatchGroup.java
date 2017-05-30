@@ -1,5 +1,6 @@
 package com.viksitpro.core.dao.entities;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
@@ -42,7 +43,9 @@ public class BatchGroup implements java.io.Serializable {
 	private String type;
 	private Integer year; 
 	private Boolean isPrimary;
-	
+	private Boolean isHistorical;
+	private String modeType ;
+	private Date startDate;
 	
 	// Constructors
 
@@ -221,6 +224,33 @@ public class BatchGroup implements java.io.Serializable {
 
 	public void setIsPrimary(Boolean isPrimary) {
 		this.isPrimary = isPrimary;
+	}
+
+	@Column(name = "mode_type", nullable = true)
+	public String getModeType() {
+		return modeType;
+	}
+
+	public void setModeType(String modeType) {
+		this.modeType = modeType;
+	}
+
+	@Column(name = "start_date", nullable = true)
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+	
+	@Column(name = "is_historical_group", nullable = true)
+	public Boolean getIsHistorical() {
+		return isHistorical;
+	}
+
+	public void setIsHistorical(Boolean isHistorical) {
+		this.isHistorical = isHistorical;
 	}
 	
 	
