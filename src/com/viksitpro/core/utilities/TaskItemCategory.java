@@ -28,6 +28,7 @@ public class TaskItemCategory {
 	public static final String GAME = "GAME";
 	public static final String VIDEO = "VIDEO";
 	public static final String CLASSROOM_ASSESSMENT = "CLASSROOM_ASSESSMENT";
+	public static final String CLASSROOM_SESSION_STUDENT = "CLASSROOM_SESSION_STUDENT";
 	
 	
 }
