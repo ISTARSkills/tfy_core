@@ -39,6 +39,7 @@ public class UserProfile implements java.io.Serializable {
 	private Long aadharNo;
 	private String fatherName;
 	private String motherName;
+	private String userCategory;
 
 	// Constructors
 
@@ -183,4 +184,17 @@ public class UserProfile implements java.io.Serializable {
 	public void setMotherName(String motherName) {
 		this.motherName = motherName;
 	}
+
+	@Column(name = "user_category", nullable=true)
+	public String getUserCategory() {
+		return userCategory;
+	}
+
+	public void setUserCategory(String userCategory) {
+		this.userCategory = userCategory;
+	}
+	
+	
+	
+	
 }
