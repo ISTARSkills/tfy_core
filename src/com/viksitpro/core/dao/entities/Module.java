@@ -171,11 +171,8 @@ public class Module implements java.io.Serializable {
 	@Column(name = "image_url", nullable = true)
 	
 	public String getImage_url() {
-		if(Image_url == null) {
-			return "/course_images/"+this.moduleName.trim().charAt(0)+".png";
-		} else {
-			return Image_url;
-		}
+		return Image_url;
+
 	}
 
 	public void setImage_url(String image_url) {

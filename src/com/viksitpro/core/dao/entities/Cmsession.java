@@ -171,7 +171,8 @@ public class Cmsession implements java.io.Serializable {
 	@Column(name = "image_url")
 	public String getImage_url() {
 		if(Image_url == null) {
-			return "/course_images/"+this.title.trim().charAt(0)+".png";
+			return "/course_images/s.png";
+			//"+this.title.trim().charAt(0)+"
 		} else {
 			return Image_url;
 		}
