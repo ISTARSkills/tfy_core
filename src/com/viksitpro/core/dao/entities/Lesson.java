@@ -237,11 +237,7 @@ public class Lesson implements java.io.Serializable {
 
 	@Column(name = "image_url")
 	public String getImage_url() {
-		if (Image_url == null) {
-			return "/course_images/"+this.title.trim().charAt(0)+".png";
-		} else {
-			return Image_url;
-		}
+		return Image_url;
 	}
 
 	public void setImage_url(String image_url) {
