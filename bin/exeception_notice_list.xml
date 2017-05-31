@@ -1,0 +1,12 @@
+<exception_notice_list>
+<notice id="1">
+<sql>
+select (case when cast (extract(MINUTE from (tel.created_at-bse.eventdate)) as integer) > 10 then 'TRUE' else 'FALSE' end) as result
+from batch_schedule_event bse, trainer_event_log tel
+where bse.id = tel.event_id
+and tel.event_status='TEACHING'
+and cast (bse.id  as varchar)  like ':event_id'
+order by tel.created_at limit 1
+</sql>
+</notice>
+</exception_notice_list>

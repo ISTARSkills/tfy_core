@@ -86,28 +86,9 @@ public class StageLogServices {
 		return stageLog;
 	}
 	
-	public StageLog updateStageLog(StageLog stageLog, String status, String result, String action, String url0, String url1, 
-			String actionPassword, Integer actionId, String urlCode){
+	public StageLog updateStatusAndResultStageLog(Integer stageLogId, String status, String result, String action){
 		
-		java.util.Date date = new java.util.Date();
-		Timestamp current = new Timestamp(date.getTime());
-		
-		stageLog.setStatus(status);
-		stageLog.setResult(result);
-		stageLog.setAction(action);
-		stageLog.setUrl0(url0);
-		stageLog.setUrl1(url1);
-		stageLog.setActionPassword(actionPassword);
-		stageLog.setActionId(actionId);
-		stageLog.setUpdatedAt(current);
-		stageLog.setUrlCode(urlCode);
-		
-		stageLog = updateStageLogToDAO(stageLog);
-		
-		return stageLog;
-	}
-	
-	public StageLog updateStatusAndResultStageLog(StageLog stageLog, String status, String result, String action){
+		StageLog stageLog = getStageLog(stageLogId);
 		
 		java.util.Date date = new java.util.Date();
 		Timestamp current = new Timestamp(date.getTime());
