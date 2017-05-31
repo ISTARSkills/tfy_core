@@ -10,6 +10,7 @@ package com.viksitpro.core.utilities;
 public class NotificationType {
 
 	public static final String CONTENT_ASSIGNED = "CONTENT_ASSIGNED";
+	public static final String CLASSROOM_SESSION_STUDENT = "CLASSROOM_SESSION_STUDENT";
 	public static String GENERIC = "GENERIC";
 	public static String UPDATE_COMPLEX_OBJECT ="UPDATE_COMPLEX_OBJECT";	
 	public static String ADMIN_NOTIFICATION = "ADMIN_NOTIFICATION";
