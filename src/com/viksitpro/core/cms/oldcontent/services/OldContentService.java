@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.nio.file.attribute.PosixFilePermission;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 import java.util.zip.ZipEntry;
@@ -233,7 +234,7 @@ public class OldContentService {
 			if (!courseFolder.exists()) {
 				System.out.println("Folder does not exists");
 				courseFolder.mkdir();
-				Files.setPosixFilePermissions(Paths.get(courseFolder.getAbsolutePath()), perms);
+				//Files.setPosixFilePermissions(Paths.get(courseFolder.getAbsolutePath()), perms);
 			}
 
 			File lessonFolder = new File(mediaPath + "courseZIPs/" + courseId + "/" + lessonId);
@@ -242,7 +243,7 @@ public class OldContentService {
 			if (!lessonFolder.exists()) {
 				System.out.println("Folder does not exists");
 				lessonFolder.mkdir();
-				Files.setPosixFilePermissions(Paths.get(lessonFolder.getAbsolutePath()), perms);
+				//Files.setPosixFilePermissions(Paths.get(lessonFolder.getAbsolutePath()), perms);
 			}
 			
 			/*
@@ -255,7 +256,7 @@ public class OldContentService {
 			if (!lessonFolderInLessonXML.exists()) {
 				System.out.println("Folder does not exists");
 				lessonFolderInLessonXML.mkdir();
-				Files.setPosixFilePermissions(Paths.get(lessonFolderInLessonXML.getAbsolutePath()), perms);
+				//Files.setPosixFilePermissions(Paths.get(lessonFolderInLessonXML.getAbsolutePath()), perms);
 			}
 
 			for (String str : allUrls) {
@@ -271,7 +272,7 @@ public class OldContentService {
 
 					try {
 						FileUtils.copyFile(src, dest);
-						Files.setPosixFilePermissions(Paths.get(dest.getAbsolutePath()), perms);
+						//Files.setPosixFilePermissions(Paths.get(dest.getAbsolutePath()), perms);
 					} catch (FileNotFoundException ee) {
 					}
 
@@ -280,7 +281,7 @@ public class OldContentService {
 					File fileInLessonXMLFolder = new File(mediaPath + "lessonXMLs/" + lessonId + "/" + fileName);
 					try {
 						FileUtils.copyFile(src, fileInLessonXMLFolder);
-						Files.setPosixFilePermissions(Paths.get(fileInLessonXMLFolder.getAbsolutePath()), perms);
+						//Files.setPosixFilePermissions(Paths.get(fileInLessonXMLFolder.getAbsolutePath()), perms);
 					} catch (FileNotFoundException e) {
 
 					}
@@ -337,7 +338,10 @@ public class OldContentService {
 
 	public static void main(String[] args) {
 		OldContentService oc = new OldContentService();
-		oc.createZipForCourse(5);
+		for(Course c : (List<Course>) new CourseDAO().findAll())
+		{
+			oc.createZipForCourse(c.getId());
+		}
 	}
 	
 }
