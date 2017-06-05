@@ -40,7 +40,6 @@ public class OldContentService {
 	
 	public void createZipForCourse(int courseId) {
 		
-		
 		String mediaPath = getMediaPath();
 		Course c = new CourseDAO().findById(courseId);
 		for (Module m : c.getModules()) {
@@ -132,6 +131,12 @@ public class OldContentService {
 			for (CMSSlide cmsSlide : cmsLesson.getSlides()) {
 				try {
 					allUrls.add(oldMediaPath + cmsSlide.getImage_BG());
+					try {
+						allUrls.add(oldMediaPath + cmsSlide.getImage_BG().replaceAll(".png", "_desktop.png"));
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						//e.printStackTrace();
+					}
 					// remove unnecessary path
 					if (cmsSlide.getImage_BG() != null && !cmsSlide.getImage_BG().contains("http")
 							&& !cmsSlide.getImage_BG().contains("none") && !cmsSlide.getImage_BG().contains("null")) {
@@ -201,7 +206,7 @@ public class OldContentService {
 						} else {
 
 						}
-
+						
 						allUrls.add(oldMediaPath + cmsSlide.getImage().getFragmentAudioUrl());
 						if (cmsSlide.getImage().getFragmentAudioUrl() != null) {
 							cmsSlide.getImage().setFragmentAudioUrl(
@@ -216,6 +221,7 @@ public class OldContentService {
 					if (cmsSlide.getVideo() != null) {
 						allUrls.add(oldMediaPath + cmsSlide.getVideo().getUrl());
 						if (cmsSlide.getVideo().getUrl() != null) {
+							System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>video"+oldMediaPath + cmsSlide.getVideo().getUrl());
 							cmsSlide.getVideo()
 									.setUrl(mediaUrlPath + cmsSlide.getVideo().getUrl().replace("/video/", ""));
 						}
@@ -246,6 +252,25 @@ public class OldContentService {
 				//Files.setPosixFilePermissions(Paths.get(lessonFolder.getAbsolutePath()), perms);
 			}
 			
+			File coursefolderInlessonFolder = new File(mediaPath + "courseZIPs/" + courseId + "/" + lessonId+"/"+courseId);
+			
+			System.out.println(coursefolderInlessonFolder.getAbsolutePath());
+			if (!coursefolderInlessonFolder.exists()) {
+				System.out.println("Folder does not exists");
+				coursefolderInlessonFolder.mkdir();
+				//Files.setPosixFilePermissions(Paths.get(lessonFolder.getAbsolutePath()), perms);
+			}
+			
+			
+			File finalLessonFolderolderInlessonFolder = new File(mediaPath + "courseZIPs/" + courseId + "/" + lessonId+"/"+courseId+"/"+lessonId);
+			
+			System.out.println(finalLessonFolderolderInlessonFolder.getAbsolutePath());
+			if (!finalLessonFolderolderInlessonFolder.exists()) {
+				System.out.println("Folder does not exists");
+				finalLessonFolderolderInlessonFolder.mkdir();
+				//Files.setPosixFilePermissions(Paths.get(lessonFolder.getAbsolutePath()), perms);
+			}
+			
 			/*
 			 * make a folder in lessonXML folder also which will contain
 			 * lessonxml, and assessts
@@ -260,7 +285,7 @@ public class OldContentService {
 			}
 
 			for (String str : allUrls) {
-				System.out.println("iterating strsss" + str);
+				System.out.println("iterating strsss!!!!!!!!!!!!" + str);
 				if (str != null && !str.contains("null") && !str.contains("none")
 						&& !str.equalsIgnoreCase(oldMediaPath)) {
 					str = str.replace("/content/media_upload?getfile=", "").replaceAll("/video/", "");
@@ -268,7 +293,7 @@ public class OldContentService {
 					fileName = fileName.replace(getOldMediaPath(), "");
 					File src = new File(str);
 					System.err.println("src file name ->"+ src.getAbsolutePath());
-					File dest = new File(mediaPath + "courseZIPs/" + courseId + "/" + lessonId + "/" + fileName);
+					File dest = new File(mediaPath + "courseZIPs/" + courseId + "/" + lessonId+"/"+courseId+"/"+lessonId+"/"+ fileName);
 
 					try {
 						FileUtils.copyFile(src, dest);
@@ -293,7 +318,7 @@ public class OldContentService {
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
 			File destLessonXML = new File(
-					mediaPath + "courseZIPs/" + courseId + "/" + lessonId + "/" + lessonId + ".xml");
+					mediaPath + "courseZIPs/" + courseId + "/" + lessonId+"/"+courseId+"/"+lessonId + "/" + lessonId + ".xml");
 			System.err.println("|||||||||||||||||||||||" + destLessonXML.getAbsolutePath());
 			jaxbMarshaller.marshal(cmsLesson, destLessonXML);
 
@@ -342,6 +367,7 @@ public class OldContentService {
 		{
 			oc.createZipForCourse(c.getId());
 		}
+		
 	}
 	
 }

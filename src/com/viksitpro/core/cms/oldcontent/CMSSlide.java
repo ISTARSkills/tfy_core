@@ -108,7 +108,8 @@ public class CMSSlide {
 	String studentNotes;
 	String audioUrl;
 	int slideDuration;
-
+	Integer fragmentCount;
+	
 	@XmlElement(name = "id")
 	public int getId() {
 		return Id;
@@ -312,6 +313,15 @@ public class CMSSlide {
 
 	public void setTitle2(CMSTitle2 title2) {
 		this.title2 = title2;
+	}
+	
+	@XmlAttribute(name = "fragmentCount")
+	public Integer getFragmentCount() {
+		return fragmentCount;
+	}
+
+	public void setFragmentCount(Integer fragmentCount) {
+		this.fragmentCount = fragmentCount;
 	}
 
 }
