@@ -103,7 +103,7 @@ public class CMSSlide {
 	String background = "null";
 	String backgroundTransition = "zoom";
 	String position;
-
+	int fragment_count;
 	String templateName;
 
 	String teacherNotes;
@@ -111,8 +111,16 @@ public class CMSSlide {
 
 	String audioUrl;
 	int slideDuration;
+
 	
-	Integer fragmentCount;
+	@XmlAttribute
+	public int getFragment_count() {
+		return fragment_count;
+	}
+
+	public void setFragment_count(int fragment_count) {
+		this.fragment_count = fragment_count;
+	}
 
 	@XmlElement(name = "id")
 	public int getId() {
@@ -319,17 +327,4 @@ public class CMSSlide {
 		this.title2 = title2;
 	}
 
-	@XmlAttribute(name = "fragmentCount")
-	public Integer getFragmentCount() {
-		return fragmentCount;
-	}
-
-	public void setFragmentCount(Integer fragmentCount) {
-		this.fragmentCount = fragmentCount;
-	}
-
-	
-	
-	
-	
 }
