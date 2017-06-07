@@ -127,7 +127,7 @@ public class OldContentService {
 			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 			CMSLesson cmsLesson = (CMSLesson) unmarshaller.unmarshal(file);
 
-			mediaUrlPath = mediaUrlPath + "/lessonXMLs/" + lessonId + "/";
+			mediaUrlPath = mediaUrlPath + "/lessonXMLs/" + lessonId + "/"+lessonId+"/";
 			for (CMSSlide cmsSlide : cmsLesson.getSlides()) {
 				try {
 					allUrls.add(oldMediaPath + cmsSlide.getImage_BG());
@@ -275,7 +275,7 @@ public class OldContentService {
 			 * make a folder in lessonXML folder also which will contain
 			 * lessonxml, and assessts
 			 */
-			File lessonFolderInLessonXML = new File(mediaPath + "lessonXMLs/" + lessonId);
+			File lessonFolderInLessonXML = new File(mediaPath + "lessonXMLs/" + lessonId+"/"+lessonId+"/");
 
 			System.out.println(lessonFolderInLessonXML.getAbsolutePath());
 			if (!lessonFolderInLessonXML.exists()) {
@@ -303,7 +303,7 @@ public class OldContentService {
 
 					// same media file will go in lesson folder in lessonXMLs
 					// folder
-					File fileInLessonXMLFolder = new File(mediaPath + "lessonXMLs/" + lessonId + "/" + fileName);
+					File fileInLessonXMLFolder = new File(mediaPath + "lessonXMLs/" + lessonId + "/" +lessonId+"/"+fileName);
 					try {
 						FileUtils.copyFile(src, fileInLessonXMLFolder);
 						//Files.setPosixFilePermissions(Paths.get(fileInLessonXMLFolder.getAbsolutePath()), perms);
@@ -325,7 +325,7 @@ public class OldContentService {
 			// copy updatedlessonXML in lessonXMLs folder
 
 			File destLessonXMLInlessonXMLsFolder = new File(
-					mediaPath + "lessonXMLs/" + lessonId + "/" + lessonId + ".xml");
+					mediaPath + "lessonXMLs/" + lessonId + "/" + lessonId+"/"+lessonId + ".xml");
 
 			// output pretty printed
 
