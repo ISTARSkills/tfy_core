@@ -1,0 +1,18 @@
+<section  fragment_coun='2' class="ONLY_2TITLE_IMAGE" $header>
+
+	<div class='row'>
+					
+					<div class='col-md-6'>
+					<h1 data-slide_id='$slide.getId()' data-element_type='TITLE' class="edit" >$slide.getTitle().getText()</h1>
+					<h3  data-slide_id='$slide.getId()' data-element_type='TITLE2' class="edit fragment">$slide.getTitle2().getText()</h3>
+					</div>
+					
+					<div class='col-md-6 fragment fade-up'>
+						<img  src="$slide.getImage().getUrl()" alt="no_img" >
+					</div>
+					</div>
+					<aside class="notes">
+		                 $slide.getTeacherNotes()
+	                </aside>
+  </section>
+

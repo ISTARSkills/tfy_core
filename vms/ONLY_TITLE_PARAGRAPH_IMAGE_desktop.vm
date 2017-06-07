@@ -1,0 +1,15 @@
+<section  $fragment_count class="ONLY_TITLE_PARAGRAPH_IMAGE" $header>
+
+<div class="row"> 
+<div class="col-md-9 "><h1 data-slide_id='$slide.getId()' data-element_type='TITLE' class="edit">$slide.getTitle().getText()</h1></div> 
+<div class="col-md-4 fragment fade-up visible" data-fragment-index="0"><img  src="$slide.getImage().getUrl()" alt="no_img" ></div>
+ <div class="col-md-6" data-fragment-index="1">
+ #if(!$slide.getParagraph().getText().isEmpty())
+					<div data-slide_id='$slide.getId()' data-element_type='PHARAGRAPH' class='edit_phara'>	$slide.getParagraph().getText() </div>
+					    #end
+					    </div> 
+					    </div>
+<aside class="notes">
+		                 $slide.getTeacherNotes()
+	                </aside>
+</section>

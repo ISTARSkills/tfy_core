@@ -1,0 +1,3 @@
+<section  fragment_count='0' class="NO_CONTENT" $header><aside class="notes">
+		                 $slide.getTeacherNotes()
+	                </aside></section>

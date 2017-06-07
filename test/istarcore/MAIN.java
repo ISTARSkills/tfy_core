@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.ServerSocket;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -61,7 +62,8 @@ public class MAIN {
 		//executeSQLFromFile();
 		//addCourseToAssessment();
 		//SS();
-		ll();
+		//ll();
+		portCheck();
 		System.out.println("exiting");
 		System.exit(0);
 
@@ -70,6 +72,26 @@ public class MAIN {
 	
 
 	
+
+
+	private static void portCheck() {
+		// TODO Auto-generated method stub
+		System.out.println(isLocalPortInUse(4567));
+	}
+
+
+	private static boolean isLocalPortInUse(int port) {
+	    try {
+	        // ServerSocket try to open a LOCAL port
+	        new ServerSocket(port).close();
+	        // local port can be opened, it's available
+	        return false;
+	    } catch(IOException e) {
+	        // local port cannot be opened, it's in use
+	        return true;
+	    }
+	}
+
 
 
 	private static void ll() {

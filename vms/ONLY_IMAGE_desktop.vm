@@ -1,0 +1,12 @@
+  <section data-fragment_count='0' class="ONLY_IMAGE" $header>
+						
+						
+						<p>
+						 <span class="image">
+						<img  src="$slide.getImage().getUrl()" alt="no_img" >
+						</span>
+						</p>
+						<aside class="notes">
+		                 $slide.getTeacherNotes()
+	                </aside>
+					</section>

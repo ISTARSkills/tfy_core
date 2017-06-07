@@ -1,0 +1,14 @@
+<section  $fragment_count class="ONLY_LIST" $header>
+					
+					<ul>
+					#foreach( $item in $slide.getList().getItems() )
+						#if(!$item.getText().isEmpty())
+						<li data-slide_id='$slide.getId()' data-element_type='LIST' class="fragment fade-up edit" data-fragment-index="$foreach.index">$item.getText()</li>
+						
+						#end
+	 	 				#end
+					</ul>
+					<aside class="notes">
+		                 $slide.getTeacherNotes()
+	                </aside>
+				</section>

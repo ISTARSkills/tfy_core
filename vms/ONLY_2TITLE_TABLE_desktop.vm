@@ -1,0 +1,35 @@
+<section class="ONLY_2TITLE_TABLE" $header>
+        <h2  >$slide.getTitle().getText()</h2>
+        <h3  >$slide.getTitle2().getText()</h3>
+
+<table>
+	<tbody>
+		<tr>
+			<td><span >$slide.getList().getItems().get(0).getText()</span></td>
+			<td><span >$slide.getList().getItems().get(0).getDescription()</span></td>
+		</tr>
+		<tr>
+			<td >$slide.getList().getItems().get(1).getText()</td>
+			<td >$slide.getList().getItems().get(1).getDescription()</td>
+		</tr>
+		<tr>
+			<td>$slide.getList().getItems().get(2).getText()</td>
+			<td >$slide.getList().getItems().get(2).getDescription()</td>
+		</tr>
+		<tr>
+			<td >$slide.getList().getItems().get(3).getText()</td>
+			<td >$slide.getList().getItems().get(3).getDescription()</td>
+		</tr>
+		<tr>
+			<td >$slide.getList().getItems().get(4).getText()</td>
+			<td >$slide.getList().getItems().get(4).getDescription()</td>
+		</tr>
+		<tr>
+			<td >$slide.getList().getItems().get(5).getText()</td>
+			<td >$slide.getList().getItems().get(5).getDescription()</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+</section>

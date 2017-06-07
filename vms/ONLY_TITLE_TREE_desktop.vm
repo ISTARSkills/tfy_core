@@ -1,0 +1,24 @@
+<section  $fragment_count class="ONLY_TITLE_TREE" $header>
+					<h1 data-slide_id='$slide.getId()' data-element_type='TITLE' class="edit">$slide.getTitle().getText()</h1>
+					<ul>
+					#foreach( $item in $slide.getList().getItems() )
+					#set( $v = $foreach.index ) 
+                    #if(!$item.getText().isEmpty())
+						<li data-slide_id='$slide.getId()' data-element_type='LIST'  class="fragment fade-up edit" data-fragment-index="$foreach.index">$item.getText()</li>
+						
+						<ul>
+						#foreach( $itemTree in $item.getList().getItems() )
+						#set( $k = $foreach.index )
+					#if(!$itemTree.getText().isEmpty())
+						<li data-slide_id='$slide.getId()' data-element_type='SUBLIST' class="fragment fade-up edit" data-fragment-index="$v" data-child-fragment-index="$k" >$itemTree.getText()</li>
+					#end
+					#end
+					#end
+					</ul>
+	 	            #end
+	 	            
+					</ul>
+					<aside class="notes">
+		                 $slide.getTeacherNotes()
+	                </aside>
+</section>

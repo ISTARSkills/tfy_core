@@ -1,0 +1,38 @@
+<section  $fragment_count class="ONLY_2BOX" $header>
+   <div class='row'>
+      <div class='col-md-5'>
+         <h1 data-slide_id='$slide.getId()' data-element_type='TITLE' class='edit' >$slide.getTitle().getText()</h1>
+         <ul>
+            #if($slide.getList().getItems().size()>6)
+            #if(!$slide.getList().getItems().get(6).getText().isEmpty())
+            <div data-slide_id='$slide.getId()' data-element_type='LIST' class="fragment fade-up edit" data-fragment-index="6">$slide.getList().getItems().get(6).getText()</div>
+             #end
+             #end
+              #if($slide.getList().getItems().size()>0)
+            #if(!$slide.getList().getItems().get(0).getText().isEmpty())
+            <div data-slide_id='$slide.getId()' data-element_type='LIST' class="fragment fade-up edit" data-fragment-index="0">$slide.getList().getItems().get(0).getText()</div>
+             #end
+             #end
+         </ul>
+      </div>
+      <div class='col-md-2'> </div>
+      <div class='col-md-5'>
+         <h1 data-slide_id='$slide.getId()' data-element_type='TITLE2' class='edit'>$slide.getTitle2().getText()</h1>
+         <ul>
+            #if($slide.getList().getItems().size()>7)
+             #if(!$slide.getList().getItems().get(7).getText().isEmpty())
+            <div data-slide_id='$slide.getId()' data-element_type='LIST' class="fragment fade-up edit" data-fragment-index="7">$slide.getList().getItems().get(7).getText()</div>
+           #end
+           #end
+            #if($slide.getList().getItems().size()>1)
+             #if(!$slide.getList().getItems().get(1).getText().isEmpty())
+            <div data-slide_id='$slide.getId()' data-element_type='LIST' class="fragment fade-up edit" data-fragment-index="1">$slide.getList().getItems().get(1).getText()</div>
+           #end
+           #end
+         </ul>
+      </div>
+   </div>
+   <aside class="notes">
+		                 $slide.getTeacherNotes()
+	                </aside>
+</section>

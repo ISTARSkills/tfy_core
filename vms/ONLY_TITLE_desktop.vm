@@ -1,0 +1,10 @@
+<section data-fragment_count='0' class="ONLY_TITLE" $header>
+				
+					<h1 data-slide_id='$slide.getId()' data-element_type='TITLE' class="edit">$slide.getTitle().getText()</h1>
+				
+			
+				<aside class="notes">
+		                 $slide.getTeacherNotes()
+	                </aside>
+					
+				</section>

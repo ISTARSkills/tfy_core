@@ -1,0 +1,10 @@
+<section $fragment_count class="ONLY_PARAGRAPH" $header>
+					
+					
+						#if(!$slide.getParagraph().getText().isEmpty())
+						<div data-slide_id='$slide.getId()' data-element_type='PHARAGRAPH' class="edit">$slide.getParagraph().getText()</div>
+					    #end
+					<aside class="notes">
+		                 $slide.getTeacherNotes()
+	                </aside>
+				</section>
