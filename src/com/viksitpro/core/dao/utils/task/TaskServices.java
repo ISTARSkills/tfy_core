@@ -381,7 +381,7 @@ public class TaskServices {
 		
 		task.setState(state);
 		task.setIsActive(isActive);
-		task.setEndDate(current);
+		//task.setEndDate(current);
 		task.setUpdatedAt(current);
 		
 		task = updateTaskToDAO(task);
@@ -531,6 +531,41 @@ public class TaskServices {
 		List<Task> allTask = query.list();
 		System.out.println("allTask" + allTask.size());
 		return allTask;		
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public int getAllTaskOfActorForToday22Count(IstarUser istarUser){
+		
+		String hql = "from Task task where actor= :actor and startDate<= :dayEnd";
+		
+		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
+		Session session = baseHibernateDAO.getSession();
+
+		DateFormat day = new SimpleDateFormat("yyyyMMdd");
+		Date startDate = new Date();
+		
+		try {
+			startDate = day.parse(day.format(new Date()));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		Date endDate = new Date(startDate.getTime()+24*60*60*1000);
+		Timestamp dayStart = new Timestamp(startDate.getTime());
+		Timestamp dayEnd = new Timestamp(endDate.getTime());
+
+		System.out.println("Day ends at->" + dayStart);
+		System.out.println("Day ends at->" + dayEnd);
+		
+		Query query = session.createQuery(hql);
+		query.setParameter("actor", istarUser.getId());
+		//query.setParameter("dayStart", dayStart);
+		query.setParameter("dayEnd", dayEnd);
+		
+		List<Task> allTask = query.list();
+		System.out.println("allTask" + allTask.size());
+		return allTask.size();		
 	}
 	
 /*	public List<Task> getAllTaskFromItemAndActor(Integer itemId, String itemType, Integer actorId){

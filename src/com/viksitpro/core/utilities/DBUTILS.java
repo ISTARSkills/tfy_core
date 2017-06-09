@@ -22,7 +22,7 @@ import com.viksitpro.core.dao.utils.HibernateSessionFactory;
  */
 public class DBUTILS {
 	public void executeUpdate(String sql) {
-		System.out.println("sql in DBUTILs>>>>>>"+sql);
+		//System.out.println("sql in DBUTILs>>>>>>"+sql);
 		Session session_hibernate = HibernateSessionFactory.getSessionFactory().openSession();
 		Transaction tx = null;
 		try {

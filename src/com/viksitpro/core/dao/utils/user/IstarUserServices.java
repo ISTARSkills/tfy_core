@@ -496,6 +496,7 @@ public class IstarUserServices {
 	public IstarUser getIstarUser(Integer istarUserId) {
 		IstarUser istarUser;
 		IstarUserDAO istarUserDAO = new IstarUserDAO();
+		istarUserDAO.getSession().clear();
 		try {
 			istarUser = istarUserDAO.findById(istarUserId);
 		} catch (IllegalArgumentException e) {
