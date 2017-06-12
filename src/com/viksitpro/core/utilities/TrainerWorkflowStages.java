@@ -14,6 +14,7 @@ public class TrainerWorkflowStages {
 	public static final String TEACHING ="TEACHING";
 	public final static String ATTENDANCE ="ATTENDANCE";
 	public final static String FEEDBACK ="FEEDBACK";
+	public static final String COMPLETED = "COMPLETED";
 	
 	
 }
