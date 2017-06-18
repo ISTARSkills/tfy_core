@@ -50,6 +50,7 @@ public class Lesson implements java.io.Serializable {
 	private Integer orderId;
 	private Timestamp createdAt;
 	private Boolean isDeleted;
+	private Boolean isPublished;
 	private Set<SkillObjective> skillObjectives = new HashSet<SkillObjective>(0);
 	private Set<Cmsession> cmsessions = new HashSet<Cmsession>(0);
 	private Set<StudentPlaylist> studentPlaylists = new HashSet<StudentPlaylist>(0);
@@ -272,6 +273,15 @@ public class Lesson implements java.io.Serializable {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	@Column(name = "is_published")
+	public Boolean getIsPublished() {
+		return isPublished;
+	}
+
+	public void setIsPublished(Boolean isPublished) {
+		this.isPublished = isPublished;
 	}
 	
 	
