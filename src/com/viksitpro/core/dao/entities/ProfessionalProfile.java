@@ -52,7 +52,8 @@ public class ProfessionalProfile implements java.io.Serializable {
 	private Integer postGraduationYear;
 	private String underGraduationCollege;
 	private String postGraduationCollege;
-
+	private String expereinceInYears;
+	private String experienceInMonths;
 	// Constructors
 
 	/** default constructor */
@@ -403,5 +404,21 @@ public class ProfessionalProfile implements java.io.Serializable {
 	public void setPostGraduationCollege(String postGraduationCollege) {
 		this.postGraduationCollege = postGraduationCollege;
 	}
+	@Column(name="experience_in_years")
+	public String getExpereinceInYears() {
+		return expereinceInYears;
+	}
 
+	public void setExpereinceInYears(String expereinceInYears) {
+		this.expereinceInYears = expereinceInYears;
+	}
+
+	@Column(name="experince_in_months")
+	public String getExperienceInMonths() {
+		return experienceInMonths;
+	}
+
+	public void setExperienceInMonths(String experienceInMonths) {
+		this.experienceInMonths = experienceInMonths;
+	}
 }
