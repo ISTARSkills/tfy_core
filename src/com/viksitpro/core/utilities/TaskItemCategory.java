@@ -30,6 +30,7 @@ public class TaskItemCategory {
 	public static final String CLASSROOM_ASSESSMENT = "CLASSROOM_ASSESSMENT";
 	public static final String CLASSROOM_SESSION_STUDENT = "CLASSROOM_SESSION_STUDENT";
 	public static final String CLASSROOM_SESSION_PRESENTOR = "CLASSROOM_SESSION_PRESENTOR";
+	public static final String LESSON_PRESENTATION = "LESSON_PRESENTATION";
 	
 	
 }
