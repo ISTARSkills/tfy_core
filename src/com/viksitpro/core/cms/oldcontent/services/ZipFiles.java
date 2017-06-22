@@ -75,6 +75,7 @@ public class ZipFiles {
      */
     private void populateFilesList(File dir) throws IOException {
         File[] files = dir.listFiles();
+        
         for(File file : files){
             if(file.isFile()) filesListInDir.add(file.getAbsolutePath());
             else populateFilesList(file);

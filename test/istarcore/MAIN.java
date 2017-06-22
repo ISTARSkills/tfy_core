@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.net.ServerSocket;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -23,6 +24,9 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.viksitpro.core.dao.entities.Assessment;
 import com.viksitpro.core.dao.entities.AssessmentDAO;
 import com.viksitpro.core.dao.entities.AssessmentQuestion;
@@ -63,7 +67,9 @@ public class MAIN {
 		//addCourseToAssessment();
 		//SS();
 		//ll();
-		portCheck();
+		//portCheck();
+		checkAssessment();
+		
 		System.out.println("exiting");
 		System.exit(0);
 
@@ -72,6 +78,15 @@ public class MAIN {
 	
 
 	
+
+
+	private static void checkAssessment() {
+		
+	}
+
+
+
+
 
 
 	private static void portCheck() {
