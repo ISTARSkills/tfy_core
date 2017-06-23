@@ -1,0 +1,109 @@
+/**
+ * 
+ */
+package istarcore;
+
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Vector;
+
+/**
+ * @author ISTAR-SERVER-PU-1
+ *
+ */
+public class CreateIndex {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		// CREATE INDEX ON address USING btree (id);
+		HashMap<String, List<String>> tablename = new HashMap<>();
+		Connection conn;
+
+		Statement st;
+		// Step 1: Load the JDBC driver.
+		try {
+			Class.forName("org.postgresql.Driver");
+			// System.out.println("Driver Loaded.");
+			// Step 2: Establish the connection to the database.
+			String url = "jdbc:postgresql://localhost:5432/talentify";
+
+			conn = DriverManager.getConnection(url, "postgres", "fca65afc-3f40");
+			// System.out.println("Got Connection.");
+
+			st = conn.createStatement();
+			String[] types = { "TABLE"};
+			Vector<String> columnNames = new Vector<String>();
+
+			DatabaseMetaData md = conn.getMetaData();
+			ResultSet rs = md.getTables(null, null, "%", types);
+			while (rs.next()) {
+				// System.out.println(rs.getString("TABLE_NAME"));
+				String tableName = rs.getString("TABLE_NAME");
+				tablename.put(tableName, getAllColumns(tableName));
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	private static List<String> getAllColumns(String tableName) throws SQLException, ClassNotFoundException {
+		String sql = "select * from "+tableName;
+		Connection conn;
+
+		Statement stmt = null;
+		Class.forName("org.postgresql.Driver");
+		// System.out.println("Driver Loaded.");
+		String url = "jdbc:postgresql://localhost:5432/talentify";
+
+		conn = DriverManager.getConnection(url, "postgres", "fca65afc-3f40");
+		// System.out.println("Got Connection.");
+
+		stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery(sql);
+		ResultSetMetaData rsmd = rs.getMetaData();
+		for (int i =0; i< rsmd.getColumnCount()-1; i++) {
+			try {	
+				String key = rsmd.getColumnName(i);
+				String string ="CREATE INDEX ON "+tableName+" USING btree ("+key+");";	
+				executesql(string);
+			System.err.println(string);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+		}
+		return null;
+	}
+
+	private static void executesql(String string) throws ClassNotFoundException, SQLException {
+		Connection conn;
+
+		Statement stmt = null;
+		Class.forName("org.postgresql.Driver");
+		// System.out.println("Driver Loaded.");
+		String url = "jdbc:postgresql://139.59.31.93:5432/talentify";
+
+		conn = DriverManager.getConnection(url, "postgres", "4a626021-e55a");		
+		stmt = conn.createStatement();
+
+		int rs = stmt.executeUpdate(string);
+		System.err.println("status ->"+ stmt.executeUpdate(string));
+	}
+}
