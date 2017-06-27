@@ -22,7 +22,6 @@ import com.viksitpro.core.dao.utils.HibernateSessionFactory;
  */
 public class DBUTILS {
 	public void executeUpdate(String sql) {
-		//System.out.println("sql in DBUTILs>>>>>>"+sql);
 		Session session_hibernate = HibernateSessionFactory.getSessionFactory().openSession();
 		Transaction tx = null;
 		try {
@@ -41,7 +40,6 @@ public class DBUTILS {
 	}
 
 	public int executeUpdateReturn(String sql) {
-		System.out.println("sql in DBUTILs>>>>>>"+sql);
 		Session session_hibernate = HibernateSessionFactory.getSessionFactory().openSession();
 		Transaction tx = null;
 		List<HashMap<String, Object>> ret = new ArrayList<HashMap<String, Object>>();
@@ -62,7 +60,6 @@ public class DBUTILS {
 	}
 
 	public List<HashMap<String, Object>> executeQuery(String sql) {
-		System.out.println("sql in DBUTILs>>>>>>"+sql);
 		List<HashMap<String, Object>> data = new ArrayList<HashMap<String, Object>>();
 		Session session_hibernate = HibernateSessionFactory.getSessionFactory().openSession();
 		Transaction tx = null;

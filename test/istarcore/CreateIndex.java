@@ -37,9 +37,9 @@ public class CreateIndex {
 			Class.forName("org.postgresql.Driver");
 			// System.out.println("Driver Loaded.");
 			// Step 2: Establish the connection to the database.
-			String url = "jdbc:postgresql://localhost:5432/talentify";
+			String url = "jdbc:postgresql://elt.talentify.in:5432/talentify";
 
-			conn = DriverManager.getConnection(url, "postgres", "fca65afc-3f40");
+			conn = DriverManager.getConnection(url, "postgres", "4a626021-e55a");
 			// System.out.println("Got Connection.");
 
 			st = conn.createStatement();
@@ -70,9 +70,9 @@ public class CreateIndex {
 		Statement stmt = null;
 		Class.forName("org.postgresql.Driver");
 		// System.out.println("Driver Loaded.");
-		String url = "jdbc:postgresql://localhost:5432/talentify";
+		String url = "jdbc:postgresql://elt.talentify.in:5432/talentify";
 
-		conn = DriverManager.getConnection(url, "postgres", "fca65afc-3f40");
+		conn = DriverManager.getConnection(url, "postgres", "4a626021-e55a");
 		// System.out.println("Got Connection.");
 
 		stmt = conn.createStatement();
@@ -98,7 +98,7 @@ public class CreateIndex {
 		Statement stmt = null;
 		Class.forName("org.postgresql.Driver");
 		// System.out.println("Driver Loaded.");
-		String url = "jdbc:postgresql://139.59.31.93:5432/talentify";
+		String url = "jdbc:postgresql://elt.talentify.in:5432/talentify";
 
 		conn = DriverManager.getConnection(url, "postgres", "4a626021-e55a");		
 		stmt = conn.createStatement();
