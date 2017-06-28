@@ -31,7 +31,8 @@ public class TaskItemCategory {
 	public static final String CLASSROOM_SESSION_STUDENT = "CLASSROOM_SESSION_STUDENT";
 	public static final String CLASSROOM_SESSION_PRESENTOR = "CLASSROOM_SESSION_PRESENTOR";
 	public static final String LESSON_PRESENTATION = "LESSON_PRESENTATION";
-	public static final String ZOOM_INTERVIEW = "ZOOM_INTERVIEW";
+	public static final String ZOOM_INTERVIEW_INTERVIEWEE = "ZOOM_INTERVIEW_INTERVIEWEE";
+	public static final String ZOOM_INTERVIEW_INTERVIEWER = "ZOOM_INTERVIEW_INTERVIEWER";
 	
 	
 }
