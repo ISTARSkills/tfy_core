@@ -34,6 +34,8 @@ public class Pincode implements java.io.Serializable {
 	private String stateCode;
 	private Set<Address> addresses = new HashSet<Address>(0);
 	private Set<Address> addresses_1 = new HashSet<Address>(0);
+	private String name;
+	private String pc_name;
 
 	// Constructors
 
@@ -143,6 +145,24 @@ public class Pincode implements java.io.Serializable {
 		return this.stateCode;
 	}
 
+	@Column(name = "name")
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Column(name = "pc_name")
+	public String getPc_name() {
+		return pc_name;
+	}
+
+	public void setPc_name(String pc_name) {
+		this.pc_name = pc_name;
+	}
+
 	public void setStateCode(String stateCode) {
 		this.stateCode = stateCode;
 	}
@@ -166,5 +186,8 @@ public class Pincode implements java.io.Serializable {
 	public void setAddresses_1(Set<Address> addresses_1) {
 		this.addresses_1 = addresses_1;
 	}
+	
+	
+	
 
 }

@@ -77,7 +77,7 @@ public class PincodeDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public List findByProperty(String propertyName, Object value) {
+	public List<Pincode> findByProperty(String propertyName, Object value) {
 		log.debug("finding Pincode instance with property: " + propertyName + ", value: " + value);
 		try {
 			String queryString = "from Pincode as model where model." + propertyName + "= ?";
@@ -118,7 +118,7 @@ public class PincodeDAO extends BaseHibernateDAO {
 		return findByProperty(STATE_CODE, stateCode);
 	}
 
-	public List findAll() {
+	public List<Pincode> findAll() {
 		log.debug("finding all Pincode instances");
 		try {
 			String queryString = "from Pincode";
