@@ -54,6 +54,7 @@ public class ProfessionalProfile implements java.io.Serializable {
 	private String postGraduationCollege;
 	private String expereinceInYears;
 	private String experienceInMonths;
+	private String panNo;
 	// Constructors
 
 	/** default constructor */
@@ -68,7 +69,7 @@ public class ProfessionalProfile implements java.io.Serializable {
 			String position, String duration, String description, String interestedInTypeOfCourse,
 			String areaOfInterest, String marksheet10, String marksheet12, String underGraduateDegreeName,
 			String pgDegreeName, String resumeUrl, Integer underGraduationYear, Integer postGraduationYear,
-			String underGraduationCollege, String postGraduationCollege) {
+			String underGraduationCollege, String postGraduationCollege, String panNo) {
 		this.istarUser = istarUser;
 		this.yop10 = yop10;
 		this.marks10 = marks10;
@@ -98,6 +99,7 @@ public class ProfessionalProfile implements java.io.Serializable {
 		this.postGraduationYear = postGraduationYear;
 		this.underGraduationCollege = underGraduationCollege;
 		this.postGraduationCollege = postGraduationCollege;
+		this.panNo = panNo;
 	}
 
 	// Property accessors
@@ -420,5 +422,14 @@ public class ProfessionalProfile implements java.io.Serializable {
 
 	public void setExperienceInMonths(String experienceInMonths) {
 		this.experienceInMonths = experienceInMonths;
+	}
+
+	@Column(name="pan_no")
+	public String getPanNo() {
+		return panNo;
+	}
+
+	public void setPanNo(String panNo) {
+		this.panNo = panNo;
 	}
 }
