@@ -30,6 +30,30 @@ import com.viksitpro.core.utilities.DBUTILS;
  *///
 @XmlRootElement(name = "slide")
 public class CMSSlide {
+	int Id;
+	int order_id;
+	String image_BG;
+	String transition = "zoom";
+	CMSTitle title;
+	CMSTitle2 title2;
+	CMSParagraph paragraph;
+	List<CMSHTMLTable> tables = new ArrayList<CMSHTMLTable>();
+	CMSList list;
+	CMSImage image;
+	CMSVideo video;
+	String background = "null";
+	String backgroundTransition = "zoom";
+	String position;
+	String templateName;
+	String teacherNotes;
+	String studentNotes;
+	String audioUrl;
+	int slideDuration;
+	Integer fragmentCount;
+	String slide_type="INFORMATION_ONLY";
+	String evaluatorType;
+	List<CMSEVALUTAOR> evaluators = new ArrayList<CMSEVALUTAOR>();
+
 	public CMSSlide() {
 		ArrayList<CMSTextItem> items = new ArrayList<CMSTextItem>();
 		items.add(new CMSTextItem("", ""));
@@ -89,27 +113,17 @@ public class CMSSlide {
 
 	}
 
-	int Id;
-	int order_id;
-	String image_BG;
-	String transition = "zoom";
-	CMSTitle title;
-	CMSTitle2 title2;
-	CMSParagraph paragraph;
-	List<CMSHTMLTable> tables = new ArrayList<CMSHTMLTable>();
-	CMSList list;
-	CMSImage image;
-	CMSVideo video;
-	String background = "null";
-	String backgroundTransition = "zoom";
-	String position;
-	String templateName;
-	String teacherNotes;
-	String studentNotes;
-	String audioUrl;
-	int slideDuration;
-	Integer fragmentCount;
+
 	
+	@XmlAttribute
+	public String getSlide_type() {
+		return slide_type;
+	}
+
+	public void setSlide_type(String slide_type) {
+		this.slide_type = slide_type;
+	}
+
 	@XmlElement(name = "id")
 	public int getId() {
 		return Id;
@@ -322,6 +336,24 @@ public class CMSSlide {
 
 	public void setFragmentCount(Integer fragmentCount) {
 		this.fragmentCount = fragmentCount;
+	}
+
+	@XmlElement(name = "evaluatorType")
+	public String getEvaluatorType() {
+		return evaluatorType;
+	}
+
+	public void setEvaluatorType(String evaluatorType) {
+		this.evaluatorType = evaluatorType;
+	}
+
+	@XmlElement(name = "evaluators")
+	public List<CMSEVALUTAOR> getEvaluators() {
+		return evaluators;
+	}
+
+	public void setEvaluators(List<CMSEVALUTAOR> evaluators) {
+		this.evaluators = evaluators;
 	}
 
 }
