@@ -23,6 +23,7 @@ import com.viksitpro.core.dao.utils.HibernateSessionFactory;
 public class DBUTILS {
 	public void executeUpdate(String sql) {
 		Session session_hibernate = HibernateSessionFactory.getSessionFactory().openSession();
+		session_hibernate.clear();
 		Transaction tx = null;
 		try {
 			tx = session_hibernate.beginTransaction();
@@ -41,7 +42,8 @@ public class DBUTILS {
 
 	public int executeUpdateReturn(String sql) {
 		Session session_hibernate = HibernateSessionFactory.getSessionFactory().openSession();
-		Transaction tx = null;
+		session_hibernate.clear();
+	Transaction tx = null;
 		List<HashMap<String, Object>> ret = new ArrayList<HashMap<String, Object>>();
 		try {
 			tx = session_hibernate.beginTransaction();
@@ -62,7 +64,8 @@ public class DBUTILS {
 	public List<HashMap<String, Object>> executeQuery(String sql) {
 		List<HashMap<String, Object>> data = new ArrayList<HashMap<String, Object>>();
 		Session session_hibernate = HibernateSessionFactory.getSessionFactory().openSession();
-		Transaction tx = null;
+		session_hibernate.clear();
+	Transaction tx = null;
 		try {
 			tx = session_hibernate.beginTransaction();
 			SQLQuery query = session_hibernate.createSQLQuery(sql);
@@ -82,7 +85,8 @@ public class DBUTILS {
 	public List<HashMap<String, Object>> executeFromQueryObject(SQLQuery query) {
 		List<HashMap<String, Object>> data = new ArrayList<HashMap<String, Object>>();
 		Session session_hibernate = HibernateSessionFactory.getSessionFactory().openSession();
-		Transaction tx = null;
+		session_hibernate.clear();
+Transaction tx = null;
 		try {
 			tx = session_hibernate.beginTransaction();
 			query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
@@ -111,7 +115,8 @@ public class DBUTILS {
 	}
 	
 	public List<Object> executeHQL(String hql) {
-		Session session = HibernateSessionFactory.getSessionFactory().openSession();
+		Session session = HibernateSessionFactory.getSessionFactory().openSession();		session.clear();
+
 		Query query = session.createQuery(hql);
 		List<Object> results = query.list();
 		return results;

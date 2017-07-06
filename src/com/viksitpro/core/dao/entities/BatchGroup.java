@@ -46,7 +46,7 @@ public class BatchGroup implements java.io.Serializable {
 	private Boolean isHistorical;
 	private String modeType ;
 	private Date startDate;
-	
+	private Integer numberOfStudents;
 	// Constructors
 
 	/** default constructor */
@@ -251,6 +251,15 @@ public class BatchGroup implements java.io.Serializable {
 
 	public void setIsHistorical(Boolean isHistorical) {
 		this.isHistorical = isHistorical;
+	}
+
+	@Column(name = "enrolled_students", nullable = true)
+	public Integer getNumberOfStudents() {
+		return numberOfStudents;
+	}
+
+	public void setNumberOfStudents(Integer numberOfStudents) {
+		this.numberOfStudents = numberOfStudents;
 	}
 	
 	
