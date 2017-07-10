@@ -21,6 +21,12 @@ public class NotificationType {
 	public static String COMPLEX_UPDATE = "COMPLEX_UPDATE";
 	public static String MESSAGE = "MESSAGE";		
 	public static String TICKET_NOTIFICATION = "TICKET_NOTIFICATION";
+	public static final String WEBINAR_TRAINER = "WEBINAR_TRAINER";
+	public static final String WEBINAR_PRESENTOR = "WEBINAR_PRESENTOR";
+	public static final String WEBINAR_STUDENT = "WEBINAR_STUDENT";
+	public static final String REMOTE_CLASS_TRAINER = "REMOTE_CLASS_TRAINER";
+	public static final String REMOTE_CLASS_PRESENTOR = "REMOTE_CLASS_PRESENTOR";
+	public static final String REMOTE_CLASS_STUDENT = "REMOTE_CLASS_STUDENT";
 	
 	
 }

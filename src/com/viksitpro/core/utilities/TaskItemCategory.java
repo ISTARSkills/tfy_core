@@ -33,6 +33,12 @@ public class TaskItemCategory {
 	public static final String LESSON_PRESENTATION = "LESSON_PRESENTATION";
 	public static final String ZOOM_INTERVIEW_INTERVIEWEE = "ZOOM_INTERVIEW_INTERVIEWEE";
 	public static final String ZOOM_INTERVIEW_INTERVIEWER = "ZOOM_INTERVIEW_INTERVIEWER";
+	public static final String WEBINAR_TRAINER = "WEBINAR_TRAINER";
+	public static final String WEBINAR_PRESENTOR = "WEBINAR_PRESENTOR";
+	public static final String WEBINAR_STUDENT = "WEBINAR_STUDENT";
+	public static final String REMOTE_CLASS_TRAINER = "REMOTE_CLASS_TRAINER";
+	public static final String REMOTE_CLASS_PRESENTOR = "REMOTE_CLASS_PRESENTOR";
+	public static final String REMOTE_CLASS_STUDENT = "REMOTE_CLASS_STUDENT";
 	
 	
 }
