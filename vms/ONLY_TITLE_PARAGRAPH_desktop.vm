@@ -1,9 +1,12 @@
 <section  $fragment_count class="ONLY_TITLE_PARAGRAPH" $header>
 					<h1 data-slide_id='$slide.getId()' data-element_type='TITLE' class='edit'>$slide.getTitle().getText()</h1>
 						
-						#if(!$slide.getParagraph().getText().isEmpty())
-					<div  data-slide_id='$slide.getId()' data-element_type='PHARAGRAPH' class='edit_phara'>$slide.getParagraph().getText() </div>
-					    #end
+						<ul>
+							#foreach( $item in $slide.getList().getItems() )
+#if(!$item.getText().isEmpty())
+<div data-slide_id='$slide.getId()' data-element_type='LIST' class="fragment fade-up edit" data-fragment-index="$foreach.index">$item.getText()</div> #end
+	 	 #end
+			</ul>		
 					   
 					   <aside class="notes">
 		                 $slide.getTeacherNotes()

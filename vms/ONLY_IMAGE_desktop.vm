@@ -3,7 +3,7 @@
 						
 						<p>
 						 <span class="image">
-						<img  src="$slide.getImage().getUrl()" alt="no_img" >
+						<img  class='edit_img' src="$slide.getImage().getUrl()" alt="no_img" >
 						</span>
 						</p>
 						<aside class="notes">

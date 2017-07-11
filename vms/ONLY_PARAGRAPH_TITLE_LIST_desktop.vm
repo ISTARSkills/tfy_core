@@ -4,7 +4,7 @@
 					<ul>
 							#foreach( $item in $slide.getList().getItems() )
 #if(!$item.getText().isEmpty())
-<div data-slide_id='$slide.getId()' data-element_type='PHARALIST' class="fragment fade-up edit" 
+<div data-slide_id='$slide.getId()' data-element_type='LIST' class="fragment fade-up edit" 
 data-fragment-index="$foreach.index ">$item.getText()</div> #end
 	 	 #end
 			</ul>		
