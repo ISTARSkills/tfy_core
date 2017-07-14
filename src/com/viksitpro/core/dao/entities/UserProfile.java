@@ -40,6 +40,42 @@ public class UserProfile implements java.io.Serializable {
 	private String fatherName;
 	private String motherName;
 	private String userCategory;
+	
+	
+	private String religion;
+	private String casteCategory;
+	private String placeOfBirth;
+	
+	
+	
+	@Column(name = "religion", nullable = false)
+	public String getReligion() {
+		return religion;
+	}
+
+	public void setReligion(String religion) {
+		this.religion = religion;
+	}
+
+	@Column(name = "caste_category", nullable = false)
+
+	public String getCasteCategory() {
+		return casteCategory;
+	}
+
+	public void setCasteCategory(String casteCategory) {
+		this.casteCategory = casteCategory;
+	}
+
+	@Column(name = "place_of_birth", nullable = false)
+
+	public String getPlaceOfBirth() {
+		return placeOfBirth;
+	}
+
+	public void setPlaceOfBirth(String placeOfBirth) {
+		this.placeOfBirth = placeOfBirth;
+	}
 
 	// Constructors
 

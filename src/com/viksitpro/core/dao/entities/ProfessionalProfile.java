@@ -55,6 +55,7 @@ public class ProfessionalProfile implements java.io.Serializable {
 	private String expereinceInYears;
 	private String experienceInMonths;
 	private String panNo;
+	private Boolean belowPovertyLine;
 	// Constructors
 
 	/** default constructor */
@@ -432,4 +433,16 @@ public class ProfessionalProfile implements java.io.Serializable {
 	public void setPanNo(String panNo) {
 		this.panNo = panNo;
 	}
+
+	@Column(name="below_poverty_line")
+	public Boolean getBelowPovertyLine() {
+		return belowPovertyLine;
+	}
+
+	public void setBelowPovertyLine(Boolean belowPovertyLine) {
+		this.belowPovertyLine = belowPovertyLine;
+	}
+	
+	
+	
 }
