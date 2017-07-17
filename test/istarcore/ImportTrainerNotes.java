@@ -1,6 +1,6 @@
 /**
  * 
- */
+ *//*
 package istarcore;
 
 import java.io.BufferedReader;
@@ -16,10 +16,10 @@ import java.net.HttpURLConnection;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-/**
+*//**
  * @author ISTAR-SERVER-PU-1
  *
- */
+ *//*
 public class ImportTrainerNotes {
 
  public static void main(String[] args) throws FileNotFoundException, IOException{
@@ -125,3 +125,4 @@ public class ImportTrainerNotes {
 
 	}
 
+*/

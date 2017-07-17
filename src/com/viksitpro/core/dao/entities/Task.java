@@ -14,8 +14,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
+
+import com.viksitpro.core.customtask.TaskTemplate;
 
 /**
  * Task entity. @author MyEclipse Persistence Tools
@@ -428,5 +431,12 @@ public class Task implements java.io.Serializable {
 			Set<RecruiterJobTaskCollegeMapping> recruiterJobTaskCollegeMappings) {
 		this.recruiterJobTaskCollegeMappings = recruiterJobTaskCollegeMappings;
 	}
-
+	
+	public TaskTemplate taskTemplate;
+	
+	
+	public TaskTemplate fetchTaskTemplate() {
+		return taskTemplate;
+		
+	}
 }

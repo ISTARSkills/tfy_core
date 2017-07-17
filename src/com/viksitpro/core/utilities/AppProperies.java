@@ -39,7 +39,7 @@ public class AppProperies {
 	}
 	
 	public static  String generatePopOver(String elementName) {
-		try {
+		/*try {
 			DBUTILS db = new DBUTILS();
 			HashMap<String, Object> item = db.executeQuery("select * from helper where element_name='"+elementName+"'").get(0);
 			
@@ -48,7 +48,9 @@ public class AppProperies {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "";
-		}
+		}*/
+		
+		return elementName;
 		
 	}
 }
