@@ -185,7 +185,7 @@ public class IstarUserServices {
 	}
 
 	public UserProfile updateUserProfile(Integer istarUserId, Integer addressId, String firstName, String lastName,
-			Date dob, String gender, String profileImage, Long aadhar) {
+			String dob, String gender, String profileImage, Long aadhar) {
 		
 		IstarUser user = getIstarUser(istarUserId);
 		UserProfile userProfile = user.getUserProfile();
