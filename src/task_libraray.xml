@@ -1,161 +1,241 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <taskLibrary>
-    <templates>
-        <entry>
-            <key>100</key>
-            <value id="100" taskName="MID_SESSION_STUDENT_FEEDBACK">
-                <description>A class has been scheduled for the course $$PROGRAM in $$ORGANIZATION_NAME at $$EVENT_DATE</description>
-                <label>Mid Session Student Feedback</label>
-                <steps label="Course Content">
-                    <form_elements>
-                        <dataType>number</dataType>
-                        <label>coverage</label>
-                        <elemntName>coverage</elemntName>
-                        <elemntType>STAR_RATING</elemntType>
-                    </form_elements>
-                    <form_elements>
-                        <dataType>number</dataType>
-                        <label>Ease of Understanding</label>
-                        <elemntName>ease_of_understanding</elemntName>
-                        <elemntType>STAR_RATING</elemntType>
-                    </form_elements>
-                    <form_elements>
-                        <dataType>number</dataType>
-                        <label>Quality Of Examples Provided</label>
-                        <elemntName>quality_of_examples_provided</elemntName>
-                        <elemntType>STAR_RATING</elemntType>
-                    </form_elements>
-                    <updateQuery>update to something where something is something</updateQuery>
-                </steps>
-                <steps label="Faculty">
-                    <form_elements>
-                        <dataType>number</dataType>
-                        <label>Knowledge of Subject Matter</label>
-                        <elemntName>knowledge_of_subject_matter</elemntName>
-                        <elemntType>STAR_RATING</elemntType>
-                    </form_elements>
-                    <form_elements>
-                        <dataType>number</dataType>
-                        <label>Classroom Management</label>
-                        <elemntName>classroom_management</elemntName>
-                        <elemntType>STAR_RATING</elemntType>
-                    </form_elements>
-                    <form_elements>
-                        <dataType>number</dataType>
-                        <label>Communication Style</label>
-                        <elemntName>communication_style</elemntName>
-                        <elemntType>STAR_RATING</elemntType>
-                    </form_elements>
-                    <form_elements>
-                        <dataType>number</dataType>
-                        <label>Ablity to explain concepts</label>
-                        <elemntName>ablity_to_explain_concepts</elemntName>
-                        <elemntType>STAR_RATING</elemntType>
-                    </form_elements>
-                    <form_elements>
-                        <dataType>boolean</dataType>
-                        <label>Are you enjoying the course?</label>
-                        <elemntName>are_you_enjoying_the_course</elemntName>
-                        <elemntType>SWITCH</elemntType>
-                    </form_elements>
-                    <updateQuery>update to something where something is something</updateQuery>
-                </steps>
-                <steps label="Learning">
-                    <form_elements>
-                        <dataType>boolean</dataType>
-                        <label>Do you feel like you are learning something useful?</label>
-                        <elemntName>do_you_feel_like_you_are_learning_something_useful</elemntName>
-                        <elemntType>SWITCH</elemntType>
-                    </form_elements>
-                    <form_elements>
-                        <dataType>boolean</dataType>
-                        <label>Is the course giving you a fair idea of the kind of work involved in jobs in the sector and the nature of Industry?</label>
-                        <elemntName>is_the_course_giving_you_a_fair_idea_of_the_kind_of_work_involved_in_jobs_in_the_sector_and_the_nature_of_industry</elemntName>
-                        <elemntType>SWITCH</elemntType>
-                    </form_elements>
-                    <form_elements>
-                        <dataType>boolean</dataType>
-                        <label>Would you be interested in learning more subjects related to the sector?</label>
-                        <elemntName>would_you_be_interested_in_learning_more_subjects_related_to_the_sector</elemntName>
-                        <elemntType>SWITCH</elemntType>
-                    </form_elements>
-                    <form_elements>
-                        <dataType>boolean</dataType>
-                        <label>Are you considering a career in this sector?</label>
-                        <elemntName>are_you_considering_a_career_in_this_sector</elemntName>
-                        <elemntType>SWITCH</elemntType>
-                    </form_elements>
-                    <form_elements>
-                        <dataType>boolean</dataType>
-                        <label>Would you recommend istar course(s) to your friends based on your experience?</label>
-                        <elemntName>would_you_recommend_istar_course(s)_to_your_friends_based_on_your_experience</elemntName>
-                        <elemntType>SWITCH</elemntType>
-                    </form_elements>
-                    <updateQuery>update to something where something is something</updateQuery>
-                </steps>
-                <steps label="Istar Courses">
-                    <form_elements>
-                        <dataType>text_area</dataType>
-                        <label>How can istar make the course more interesting?</label>
-                        <elemntName>how_can_istar_make_the_course_more_interesting</elemntName>
-                        <elemntType>TEXT</elemntType>
-                    </form_elements>
-                    <form_elements>
-                        <dataType>text_area</dataType>
-                        <label>What aspects of the course would you change/remove?</label>
-                        <elemntName>what_aspects_of_the_course_would_you_change/remove</elemntName>
-                        <elemntType>TEXT</elemntType>
-                    </form_elements>
-                    <form_elements>
-                        <dataType>text_area</dataType>
-                        <label>What aspects would you like to see coverage of?</label>
-                        <elemntName>what_aspects_would_you_like_to_see_coverage_of</elemntName>
-                        <elemntType>TEXT</elemntType>
-                    </form_elements>
-                    <form_elements>
-                        <dataType>text_area</dataType>
-                        <label>Which session did you enjoy the most?</label>
-                        <elemntName>which_session_did_you_enjoy_the_most</elemntName>
-                        <elemntType>TEXT</elemntType>
-                    </form_elements>
-                    <form_elements>
-                        <dataType>text_area</dataType>
-                        <label>Which session did you enjoy the least?</label>
-                        <elemntName>which_session_did_you_enjoy_the_least</elemntName>
-                        <elemntType>TEXT</elemntType>
-                    </form_elements>
-                    <updateQuery>update to something where something is something</updateQuery>
-                </steps>
-                
-                <steps label="Istar Courses 2">
-                    
-                    <form_elements>
-                        <dataType>text_area</dataType>
-                        <label>Which session did you enjoy the least?</label>
-                        <elemntName>which_session_did_you_enjoy_the_least</elemntName>
-                        <elemntType>TEXT</elemntType>
-                    </form_elements>
-                     <form_elements>
-                        <dataType>text_area</dataType>
-                        <label>How does Istar course compare to your regular college curriculum?</label>
-                        <elemntName>how_does_istar_course_compare_to_your_regular_college_curriculum</elemntName>
-                        <elemntType>TEXT</elemntType>
-                    </form_elements>
-                    <form_elements>
-                        <dataType>text_area</dataType>
-                        <label>How is istar faculty compared to regular college faculty?</label>
-                        <elemntName>how_is_istar_faculty_compared_to_regular_college_faculty</elemntName>
-                        <elemntType>TEXT</elemntType>
-                    </form_elements>
-                    <form_elements>
-                        <dataType>number</dataType>
-                        <label>Overall how would you rate your experience In the course?</label>
-                        <elemntName>overall_how_would_you_rate_your_experience_in_the_course</elemntName>
-                        <elemntType>STAR_RATING</elemntType>
-                    </form_elements>
-                    <updateQuery>update to something where something is something</updateQuery>
-                </steps>
-            </value>
-        </entry>
-    </templates>
+	<templates>
+	<entry>
+			<key>200</key>
+			<value id="200" taskName="Text Analysis">
+				<description>This template is for sentiemnt analysis and density
+					analysis</description>
+				<label>Text Analysis</label>
+				<steps label="Text Analysis">
+					<form_elements>
+						<dataType>text_area</dataType>
+						<elemntName>input_text</elemntName>
+						<elemntType>TEXT</elemntType>
+						<label>Enter Text</label>
+					</form_elements>
+					<updateQuery>update to something where something is something
+					</updateQuery>
+				</steps>
+			</value>
+		</entry>
+		<entry>
+			<key>100</key>
+			<value id="100" taskName="MID_SESSION_STUDENT_FEEDBACK">
+				<description>A class has been scheduled for the course $$PROGRAM in
+					$$ORGANIZATION_NAME at $$EVENT_DATE</description>
+				<label>Mid Session Student Feedback</label>
+				<steps label="Course Content">
+					<form_elements>
+						<dataType>number</dataType>
+						<label>coverage</label>
+						<elemntName>coverage</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<form_elements>
+						<dataType>number</dataType>
+						<label>Ease of Understanding</label>
+						<elemntName>ease_of_understanding</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<form_elements>
+						<dataType>number</dataType>
+						<label>Quality Of Examples Provided</label>
+						<elemntName>quality_of_examples_provided</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<updateQuery>update to something where something is something
+					</updateQuery>
+				</steps>
+				<steps label="Faculty">
+					<form_elements>
+						<dataType>number</dataType>
+						<label>Knowledge of Subject Matter</label>
+						<elemntName>knowledge_of_subject_matter</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<form_elements>
+						<dataType>number</dataType>
+						<label>Classroom Management</label>
+						<elemntName>classroom_management</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<form_elements>
+						<dataType>number</dataType>
+						<label>Communication Style</label>
+						<elemntName>communication_style</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<form_elements>
+						<dataType>number</dataType>
+						<label>Ablity to explain concepts</label>
+						<elemntName>ablity_to_explain_concepts</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<form_elements>
+						<dataType>boolean</dataType>
+						<label>Are you enjoying the course?</label>
+						<elemntName>are_you_enjoying_the_course</elemntName>
+						<elemntType>SWITCH</elemntType>
+					</form_elements>
+					<updateQuery>update to something where something is something
+					</updateQuery>
+				</steps>
+				<steps label="Learning">
+					<form_elements>
+						<dataType>boolean</dataType>
+						<label>Do you feel like you are learning something useful?</label>
+						<elemntName>do_you_feel_like_you_are_learning_something_useful
+						</elemntName>
+						<elemntType>SWITCH</elemntType>
+					</form_elements>
+					<form_elements>
+						<dataType>boolean</dataType>
+						<label>Is the course giving you a fair idea of the kind of work
+							involved in jobs in the sector and the nature of Industry?
+						</label>
+						<elemntName>is_the_course_giving_you_a_fair_idea_of_the_kind_of_work_involved_in_jobs_in_the_sector_and_the_nature_of_industry
+						</elemntName>
+						<elemntType>SWITCH</elemntType>
+					</form_elements>
+					<form_elements>
+						<dataType>boolean</dataType>
+						<label>Would you be interested in learning more subjects related
+							to the sector?</label>
+						<elemntName>would_you_be_interested_in_learning_more_subjects_related_to_the_sector
+						</elemntName>
+						<elemntType>SWITCH</elemntType>
+					</form_elements>
+					<form_elements>
+						<dataType>boolean</dataType>
+						<label>Are you considering a career in this sector?</label>
+						<elemntName>are_you_considering_a_career_in_this_sector
+						</elemntName>
+						<elemntType>SWITCH</elemntType>
+					</form_elements>
+					<form_elements>
+						<dataType>boolean</dataType>
+						<label>Would you recommend istar course(s) to your friends based
+							on your experience?</label>
+						<elemntName>would_you_recommend_istar_course(s)_to_your_friends_based_on_your_experience
+						</elemntName>
+						<elemntType>SWITCH</elemntType>
+					</form_elements>
+					<updateQuery>update to something where something is something
+					</updateQuery>
+				</steps>
+				<steps label="Istar Courses">
+					<form_elements>
+						<dataType>text_area</dataType>
+						<label>How can istar make the course more interesting?</label>
+						<elemntName>how_can_istar_make_the_course_more_interesting
+						</elemntName>
+						<elemntType>TEXT</elemntType>
+					</form_elements>
+					<form_elements>
+						<dataType>text_area</dataType>
+						<label>What aspects of the course would you change/remove?</label>
+						<elemntName>what_aspects_of_the_course_would_you_change/remove
+						</elemntName>
+						<elemntType>TEXT</elemntType>
+					</form_elements>
+					<form_elements>
+						<dataType>text_area</dataType>
+						<label>What aspects would you like to see coverage of?</label>
+						<elemntName>what_aspects_would_you_like_to_see_coverage_of
+						</elemntName>
+						<elemntType>TEXT</elemntType>
+					</form_elements>
+					<form_elements>
+						<dataType>text_area</dataType>
+						<label>Which session did you enjoy the most?</label>
+						<elemntName>which_session_did_you_enjoy_the_most</elemntName>
+						<elemntType>TEXT</elemntType>
+					</form_elements>
+					<form_elements>
+						<dataType>text_area</dataType>
+						<label>Which session did you enjoy the least?</label>
+						<elemntName>which_session_did_you_enjoy_the_least</elemntName>
+						<elemntType>TEXT</elemntType>
+					</form_elements>
+					<updateQuery>update to something where something is something
+					</updateQuery>
+				</steps>
+
+				<steps label="Istar Courses 2">
+
+					<form_elements>
+						<dataType>text_area</dataType>
+						<label>Which session did you enjoy the least?</label>
+						<elemntName>which_session_did_you_enjoy_the_least</elemntName>
+						<elemntType>TEXT</elemntType>
+					</form_elements>
+					<form_elements>
+						<dataType>text_area</dataType>
+						<label>How does Istar course compare to your regular college
+							curriculum?</label>
+						<elemntName>how_does_istar_course_compare_to_your_regular_college_curriculum
+						</elemntName>
+						<elemntType>TEXT</elemntType>
+					</form_elements>
+					<form_elements>
+						<dataType>text_area</dataType>
+						<label>How is istar faculty compared to regular college faculty?
+						</label>
+						<elemntName>how_is_istar_faculty_compared_to_regular_college_faculty
+						</elemntName>
+						<elemntType>TEXT</elemntType>
+					</form_elements>
+					<form_elements>
+						<dataType>number</dataType>
+						<label>Overall how would you rate your experience In the course?
+						</label>
+						<elemntName>overall_how_would_you_rate_your_experience_in_the_course
+						</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<updateQuery>update to something where something is something
+					</updateQuery>
+				</steps>
+			</value>
+		</entry>
+		<entry>
+			<key>201</key>
+			<value id="201" taskName="NSDC_FORM">
+				<description>This form need to be filled by students</description>
+				<label>Certificate Requisition Form</label>
+				<steps label="Personal Profile">
+					<form_elements>
+						<dataType>number</dataType>
+						<label>pincode</label>
+						<elemntName>pincode</elemntName>
+						<elemntType>DB_DROP_DOWN</elemntType>
+						<dropdownData>select distinct id as key , pin as value from pincode limit 3</dropdownData>
+					</form_elements>
+					<form_elements>
+						<dataType>date</dataType>
+						<label>Date of Birth</label>
+						<elemntName>dob</elemntName>
+						<elemntType>DATE_PICKER</elemntType>
+					</form_elements>
+					<form_elements>
+						<dataType>number</dataType>
+						<label>Aadhar No</label>
+						<elemntName>aadhar</elemntName>
+						<elemntType>TEXT_BOX</elemntType>
+					</form_elements>
+					<form_elements>
+						<dataType>string</dataType>
+						<label>Caste Category *</label>
+						<elemntName>caste_category</elemntName>
+						<elemntType>STATIC_DROP_DOWN</elemntType>
+						<dropdownData>Gen!#OBC!#SC!#ST!#PH</dropdownData>
+					</form_elements>
+					<updateQuery>update address set pincode_id = where id = (select address_id from user_profile where user_id =$$USER_ID);
+					 update user_profile set dob =$$dob , gender ='$$gender', aadhar_no = $$aadhar , caste_category ='$$caste_category' where user_id=$$USER_ID;
+					</updateQuery>
+				</steps>				
+			</value>
+		</entry>
+	</templates>
 </taskLibrary>

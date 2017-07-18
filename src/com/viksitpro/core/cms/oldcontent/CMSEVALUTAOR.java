@@ -11,7 +11,8 @@ import javax.xml.bind.annotation.XmlElement;
  */
 public class CMSEVALUTAOR {
 	String key;
-	String value;
+	Object value;
+	
 	public CMSEVALUTAOR() {
 		super();
 	}
@@ -19,8 +20,7 @@ public class CMSEVALUTAOR {
 		super();
 		this.key = key;
 		this.value = value;
-	}
-	
+	}	
 	
 	@XmlElement(name = "key")
 	public String getKey() {
@@ -31,7 +31,7 @@ public class CMSEVALUTAOR {
 	}
 	
 	@XmlElement(name = "value")
-	public String getValue() {
+	public Object getValue() {
 		return value;
 	}
 	public void setValue(String value) {

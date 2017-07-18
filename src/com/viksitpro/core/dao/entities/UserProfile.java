@@ -45,7 +45,7 @@ public class UserProfile implements java.io.Serializable {
 	private String religion;
 	private String casteCategory;
 	private String placeOfBirth;
-	
+	private Integer user_id;
 	
 	
 	@Column(name = "religion", nullable = false)

@@ -37,24 +37,25 @@ public class TaskLibrary {
 	}
 	
 	public Task getTaskTemplate(int taskID) {
-		Task t = new TaskDAO().findById(taskID);
-		
-		TaskTemplate tp =  getTaskFromLibrary(t);
-		
+		Task t = new TaskDAO().findById(taskID);		
+		TaskTemplate tp =  getTaskFromLibrary(t);		
 		t.taskTemplate =  tp;
 		return t;
 		
 	}
 
-	private TaskTemplate getTaskFromLibrary(Task t) {
+	public TaskTemplate getTaskFromLibrary(Task t) {
 		try {
 
-			URL url = getClass().getClassLoader().getResource("/task_libraray.xml");
+			URL url = getClass().getClassLoader().getResource("task_libraray.xml");
 			JAXBContext jaxbContext = JAXBContext.newInstance(TaskLibrary.class);
-
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			TaskLibrary library = (TaskLibrary) jaxbUnmarshaller.unmarshal(url);
-			System.out.println(library);
+			/*for(int i :library.getTemplates().keySet())
+			{
+				System.out.println(library.getTemplates().get(i).getId());
+			}
+			*/
 			return library.getTemplates().get(t.getItemId());
 		  } catch (JAXBException e) {
 			e.printStackTrace();

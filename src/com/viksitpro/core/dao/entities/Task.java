@@ -18,6 +18,7 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.viksitpro.core.customtask.TaskLibrary;
 import com.viksitpro.core.customtask.TaskTemplate;
 
 /**
@@ -436,7 +437,10 @@ public class Task implements java.io.Serializable {
 	
 	
 	public TaskTemplate fetchTaskTemplate() {
-		return taskTemplate;
+		
+		TaskLibrary lib = new TaskLibrary();
+		
+		return lib.getTaskFromLibrary(this);
 		
 	}
 }
