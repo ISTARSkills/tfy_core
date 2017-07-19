@@ -106,9 +106,9 @@ Transaction tx = null;
 		String syncSeq = "SELECT setval('" + pkey_seq + "', COALESCE((SELECT MAX(id)+1 FROM " + table_name + "), 1), false) as id;";
 		try {
 			long seq_val = executeUpdateReturn(syncSeq);
-			System.out.println("DONE: DBUTILS::syncPkeySeq -> syncSeq --> " + syncSeq + pkey_seq + " ---> " + seq_val);
+			//System.out.println("DONE: DBUTILS::syncPkeySeq -> syncSeq --> " + syncSeq + pkey_seq + " ---> " + seq_val);
 		} catch (Exception e) {
-			System.err.println("FAIL: DBUTILS::syncPkeySeq -> syncSeq --> " + syncSeq);
+			//System.err.println("FAIL: DBUTILS::syncPkeySeq -> syncSeq --> " + syncSeq);
 			e.printStackTrace();
 		}
 		return;

@@ -188,7 +188,7 @@ public class UserProfile implements java.io.Serializable {
 			try {
 				return "users/" + firstName.trim().substring(0, 1).toUpperCase() + ".png";
 			} catch (Exception e) {
-				System.err.println("UserID ->"+ user_id);
+				//System.err.println("UserID ->"+ user_id);
 			}
 		}
 		return profileImage;

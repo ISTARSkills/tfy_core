@@ -18,7 +18,7 @@ public class WorkflowUtility {
 
 	public String createPmWorkflowXML(PmWorkflow workflow) {
 		
-		System.out.println("Generating XML");
+		//System.out.println("Generating XML");
 		String absoluteFileName=null;
 		UUID fileName = UUID.randomUUID();	
 		JAXBContext contextObj;
@@ -51,7 +51,7 @@ public class WorkflowUtility {
 		} catch(IOException e){
 			e.printStackTrace();
 		} catch(NullPointerException e){
-			System.out.println("InputStream is null");
+			//System.out.println("InputStream is null");
 		}
 		return fileName+".xml";
 	}

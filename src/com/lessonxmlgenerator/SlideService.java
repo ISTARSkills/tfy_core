@@ -44,7 +44,7 @@ public class SlideService {
 
 		File file = new File(path);
 
-		System.err.println(path);
+		//System.err.println(path);
 
 		try {
 			JAXBContext jaxbcontext = JAXBContext.newInstance(CMSLesson.class);
@@ -53,7 +53,7 @@ public class SlideService {
 			if (cmsLesson != null && cmsLesson.getSlides() != null) {
 				for (CMSSlide cmsSlide : cmsLesson.getSlides()) {
 					String templateVMFileName = cmsSlide.getTemplateName();
-					System.err.println(templateVMFileName + " " + cmsSlide.getId());
+					//System.err.println(templateVMFileName + " " + cmsSlide.getId());
 					if (templateVMFileName.equalsIgnoreCase("ONLY_TITLE_PARAGRAPH")) {
 
 						CMSParagraph cmsphara = new CMSParagraph();
@@ -86,7 +86,7 @@ public class SlideService {
 							cmsSlide.setParagraph(cmsphara);
 
 						} else {
-							System.err.println("has table");
+							//System.err.println("has table");
 						}
 
 					}
@@ -122,7 +122,7 @@ public class SlideService {
 							cmsSlide.setParagraph(cmsphara);
 
 						} else {
-							System.err.println("has table");
+							//System.err.println("has table");
 						}
 
 					}
@@ -158,7 +158,7 @@ public class SlideService {
 							cmsSlide.setParagraph(cmsphara);
 
 						} else {
-							System.err.println("has table");
+							//System.err.println("has table");
 						}
 
 					}
@@ -194,7 +194,7 @@ public class SlideService {
 							cmsSlide.setParagraph(cmsphara);
 
 						} else {
-							System.err.println("has table");
+							//System.err.println("has table");
 						}
 
 					}
@@ -230,7 +230,7 @@ public class SlideService {
 							cmsSlide.setParagraph(cmsphara);
 
 						} else {
-							System.err.println("has table");
+							//System.err.println("has table");
 						}
 
 					}

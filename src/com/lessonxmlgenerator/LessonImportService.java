@@ -92,16 +92,10 @@ public class LessonImportService {
 	}
 	
 	
-	 public void importLessonForCourse(int courseId) {
+	 public void importLessonForCourse(int courseId) throws SQLException {
 		// TODO Auto-generated method stub
 		String query="select lesson.id  from lesson, cmsession, module, course where lesson.session_id = cmsession.id and cmsession.module_id = module.id and course.id = module.course_id and course.id = "+courseId;
 		Connection con = getConnection();
-		try {
-			System.out.println(con.isClosed());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		try {
 			Statement statement = con.createStatement();
 			
@@ -122,12 +116,6 @@ public class LessonImportService {
 	public void createXMLForAllLesson()
 	{
 		Connection con = getConnection();
-		try {
-			System.out.println(con.isClosed());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		String getLessonPptDetails  = "select lesson.id  as lesson_id , presentaion.id  as ppt_id from lesson , presentaion, slide where lesson.id = presentaion.lesson_id and presentaion.id = slide.presentation_id and lesson_type != 'ASSESSMENT' group by lesson.id , presentaion.id having (count(slide.id) >1)";
 		try {
 			Statement statement = con.createStatement();
@@ -168,7 +156,7 @@ public class LessonImportService {
 						String slide_text = slide_xml.replaceAll("<br />", " ").replaceAll("<br>", " ")
 								.replaceAll("&nbsp;", " ").replaceAll("&lt;br&gt;", " ").replaceAll("&lt;br /&gt;", " ")
 								.replaceAll("[^\\x00-\\x7F]", "");
-						// //System.err.println(slide_text);
+						// ////System.err.println(slide_text);
 						InputStream in = IOUtils.toInputStream(slide_text, "UTF-8");
 						Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
 						cmsSlide = (CMSSlide) jaxbUnmarshaller.unmarshal(in);
@@ -258,7 +246,7 @@ public class LessonImportService {
 				cmsSlide.setParagraph(cmsphara);
 
 			} else {
-				System.err.println("has table");
+				//System.err.println("has table");
 			}
 
 		}
@@ -294,7 +282,7 @@ public class LessonImportService {
 				cmsSlide.setParagraph(cmsphara);
 
 			} else {
-				System.err.println("has table");
+				//System.err.println("has table");
 			}
 
 		}
@@ -330,7 +318,7 @@ public class LessonImportService {
 				cmsSlide.setParagraph(cmsphara);
 
 			} else {
-				System.err.println("has table");
+				//System.err.println("has table");
 			}
 
 		}
@@ -366,7 +354,7 @@ public class LessonImportService {
 				cmsSlide.setParagraph(cmsphara);
 
 			} else {
-				System.err.println("has table");
+				//System.err.println("has table");
 			}
 
 		}
@@ -403,7 +391,7 @@ public class LessonImportService {
 				cmsSlide.setParagraph(cmsphara);
 
 			} else {
-				System.err.println("has table");
+				//System.err.println("has table");
 			}
 
 		}
@@ -541,7 +529,7 @@ public class LessonImportService {
 			if (cmsSlide.getImage() != null) {
 
 				allUrls.add(oldMediaPath + cmsSlide.getImage().getUrl());
-				///System.out.println("uodated image url " + cmsSlide.getImage().getUrl()
+				/////System.out.println("uodated image url " + cmsSlide.getImage().getUrl()
 					//	.replace("/content/media_upload?getfile=", "").replace("/video/", ""));
 				if (cmsSlide.getImage().getUrl() != null && !cmsSlide.getImage().getUrl().contains("http")) {
 
@@ -560,16 +548,16 @@ public class LessonImportService {
 							mediaUrlPath + cmsSlide.getImage().getFragmentAudioUrl().replace("/video/", ""));
 				}
 
-				//System.err.println(">>>>>>>>>>>>>>>" + cmsSlide.getImage().getUrl());
+				////System.err.println(">>>>>>>>>>>>>>>" + cmsSlide.getImage().getUrl());
 
 			} else {
-				//System.err.println("cmsSlide.getImage() is null");
+				////System.err.println("cmsSlide.getImage() is null");
 			}
 			if (cmsSlide.getVideo() != null) {
 				allUrls.add(oldMediaPath + cmsSlide.getVideo().getUrl());
 				if (cmsSlide.getVideo().getUrl() != null && !cmsSlide.getVideo().getUrl().contains("http")) {
 					CMSVideo vid = new CMSVideo();
-					//System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>video"+oldMediaPath + cmsSlide.getVideo().getUrl());
+					////System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>video"+oldMediaPath + cmsSlide.getVideo().getUrl());
 					String updatedUrl = mediaUrlPath + cmsSlide.getVideo().getUrl().replace("/content/media_upload?getfile=", "").replace("/video/", "").replaceAll(" ", "_");
 					vid.setUrl(updatedUrl);
 					
@@ -615,9 +603,9 @@ public class LessonImportService {
 		//create structure like below
 				//lessonXMLs//lessonId//lessonId//lessonId.xml
 					File outerLessonFolder = new File(mediaPath + "lessonXMLs/" + lessonID);			
-					//System.out.println(outerLessonFolder.getAbsolutePath());
+					////System.out.println(outerLessonFolder.getAbsolutePath());
 					if (!outerLessonFolder.exists()) {
-						//System.out.println("Folder does not exists");
+						////System.out.println("Folder does not exists");
 						outerLessonFolder.mkdir();
 						if(serverType.equalsIgnoreCase("linux"))
 						{	
@@ -632,9 +620,9 @@ public class LessonImportService {
 					
 					
 					File innerLessonFolder = new File(mediaPath + "lessonXMLs/" + lessonID+"/"+lessonID);			
-					//System.out.println(innerLessonFolder.getAbsolutePath());
+					////System.out.println(innerLessonFolder.getAbsolutePath());
 					if (!innerLessonFolder.exists()) {
-						//System.out.println("Folder does not exists");
+						////System.out.println("Folder does not exists");
 						innerLessonFolder.mkdir();
 						if(serverType.equalsIgnoreCase("linux"))
 						{	
@@ -650,18 +638,18 @@ public class LessonImportService {
 		
 		
 		for (String str : allUrls) {
-		//	System.out.println("iterating strsss!!!!!!!!!!!!" + str);
+		//	//System.out.println("iterating strsss!!!!!!!!!!!!" + str);
 			if (str != null && !str.contains("null") && !str.contains("none")
 					&& !str.equalsIgnoreCase(oldMediaPath)) {
 				str = str.replace("/content/media_upload?getfile=", "").replaceAll("/video/", "");
 				String fileName = str.replace("backgrounds/", "");
 				fileName = fileName.replace(getOldMediaPath(), "");
 				File src = new File(str);
-				//System.err.println("src file name ->"+ src.getAbsolutePath());
+				////System.err.println("src file name ->"+ src.getAbsolutePath());
 				
 				File fileInLessonXMLFolder = new File(mediaPath + "lessonXMLs/" + lessonID + "/" +lessonID+"/"+fileName);
 				try {
-					//System.err.println("src file "+src.getAbsolutePath());
+					////System.err.println("src file "+src.getAbsolutePath());
 					FileUtils.copyFile(src, fileInLessonXMLFolder);
 					if(serverType.equalsIgnoreCase("linux")){
 						Files.setPosixFilePermissions(Paths.get(fileInLessonXMLFolder.getAbsolutePath()), perms);
@@ -1051,9 +1039,9 @@ public class LessonImportService {
 		//create structure like below
 		//lessonXMLs//lessonId//lessonId//lessonId.xml
 			File outerLessonFolder = new File(mediaPath + "lessonXMLs/" + lessonID);			
-			System.out.println(outerLessonFolder.getAbsolutePath());
+			//System.out.println(outerLessonFolder.getAbsolutePath());
 			if (!outerLessonFolder.exists()) {
-				System.out.println("Folder does not exists");
+				//System.out.println("Folder does not exists");
 				outerLessonFolder.mkdir();
 				if(serverType.equalsIgnoreCase("linux"))
 				{	
@@ -1063,9 +1051,9 @@ public class LessonImportService {
 			
 			
 			File innerLessonFolder = new File(mediaPath + "lessonXMLs/" + lessonID+"/"+lessonID);			
-			System.out.println(innerLessonFolder.getAbsolutePath());
+			//System.out.println(innerLessonFolder.getAbsolutePath());
 			if (!innerLessonFolder.exists()) {
-				System.out.println("Folder does not exists");
+				//System.out.println("Folder does not exists");
 				innerLessonFolder.mkdir();
 				if(serverType.equalsIgnoreCase("linux"))
 				{	
@@ -1077,7 +1065,7 @@ public class LessonImportService {
 			String lessonXMLPath=mediaPath + "lessonXMLs/" + lessonID+"/"+lessonID+"/"+lessonID+".xml";
 			Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(lessonXMLPath), "UTF-8"));
 			try {				
-					////System.err.println(lessonXML);
+					//////System.err.println(lessonXML);
 			    out.write(cmsLessonInString.replaceAll("[^\\x00-\\x7F]",""));				
 			} finally {
 			    out.close();
@@ -1091,12 +1079,6 @@ public class LessonImportService {
 
 	public void createXMLForLesson(int lessonId) {
 		Connection con = getConnection();
-		try {
-			System.out.println(con.isClosed());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		String getLessonPptDetails  = "select lesson.id  as lesson_id , presentaion.id  as ppt_id from lesson , presentaion, slide where lesson.id = presentaion.lesson_id and presentaion.id = slide.presentation_id and lesson_type != 'ASSESSMENT' and presentaion.lesson_id="+lessonId+" group by lesson.id , presentaion.id having (count(slide.id) >1)";
 		try {
 			Statement statement = con.createStatement();
@@ -1120,12 +1102,6 @@ public class LessonImportService {
 		// TODO Auto-generated method stub
 		String query="select assessment.id from lesson, cmsession, module, course, assessment where lesson.session_id = cmsession.id and cmsession.module_id = module.id and course.id = module.course_id and course.id = "+courseId+" and lesson.dtype = 'ASSESSMENT' and assessment.lesson_id = lesson.id ";
 		Connection con = getConnection();
-		try {
-			System.out.println(con.isClosed());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		try {
 			Statement statement = con.createStatement();
 			
@@ -1160,7 +1136,7 @@ public class LessonImportService {
 				 ResultSet chekAssess = checkAssesState.executeQuery(checkIfAssessmentExist);
 				 if(!chekAssess.next())
 				 {
-					System.out.println("inserting");
+					//System.out.println("inserting");
 					String insertQuery="INSERT INTO public.assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category, description, is_published, course_id) "
 							+ "VALUES ("+rs.getInt("id")+", '"+rs.getString("assessment_type")+"', now(), "+rs.getInt("number_of_questions")+", "+rs.getInt("assessmentdurationhours")+", "+rs.getInt("assessmentdurationminutes")+", '"+rs.getString("assessmenttitle").toString().trim().replace("'", "")+"', '"+rs.getBoolean("retry_able")+"', '"+rs.getString("category")+"', 'Not Available', 't',"+courseId+");";						
 					
@@ -1241,7 +1217,7 @@ public class LessonImportService {
 					// no need to close it.
 					//bw.close();
 
-					System.out.println("Done");
+					//System.out.println("Done");
 
 				
 			}
@@ -1288,7 +1264,7 @@ public class LessonImportService {
 			while (rs1.next()) {
 				bw.write(rs1.getString("q"));
 				bw.write(System.lineSeparator());
-			System.out.println();
+			//System.out.println();
 			}
 			
 			
@@ -1299,7 +1275,7 @@ public class LessonImportService {
 			while (rs2.next()) {
 				bw.write(rs2.getString("q"));
 				bw.write(System.lineSeparator());
-			System.out.println();
+			//System.out.println();
 			}
 			
 			
@@ -1310,7 +1286,7 @@ public class LessonImportService {
 			while (rs3.next()) {
 				bw.write(rs3.getString("q"));
 				bw.write(System.lineSeparator());
-			System.out.println();
+			//System.out.println();
 			}
 			
 			
@@ -1321,7 +1297,7 @@ public class LessonImportService {
 			while (rs4.next()) {
 				bw.write(rs4.getString("q"));
 				bw.write(System.lineSeparator());
-			System.out.println();
+			//System.out.println();
 			}
 			
 			
@@ -1332,7 +1308,7 @@ public class LessonImportService {
 			while (rs5.next()) {
 				bw.write(rs5.getString("q"));
 				bw.write(System.lineSeparator());
-			System.out.println();
+			//System.out.println();
 			}
 			
 			

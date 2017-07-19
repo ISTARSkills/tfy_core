@@ -26,7 +26,7 @@ public class UUIUtils {
 		Date date = new Date();
 		String timeStampString = format.format(date);
 		log.error(timeStampString + " " + message.toString());
-		System.err.println(message.toString());
+		//System.err.println(message.toString());
 	}
 
 	public static void printlog(Object cname, Object message) {
@@ -34,6 +34,6 @@ public class UUIUtils {
 		Date date = new Date();
 		String timeStampString = format.format(date);
 		log.error(timeStampString + " - " + cname + " - " + message.toString());
-		System.err.println(message.toString());
+		//System.err.println(message.toString());
 	}
 }

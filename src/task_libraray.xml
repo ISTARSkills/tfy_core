@@ -9,9 +9,9 @@
 				<label>Text Analysis</label>
 				<steps label="Text Analysis">
 					<form_elements>
-						<dataType>text_area</dataType>
+						<dataType>string</dataType>
 						<elemntName>input_text</elemntName>
-						<elemntType>TEXT</elemntType>
+						<elemntType>TEXT_AREA</elemntType>
 						<label>Enter Text</label>
 					</form_elements>
 					<updateQuery>update to something where something is something
@@ -126,37 +126,37 @@
 				</steps>
 				<steps label="Istar Courses">
 					<form_elements>
-						<dataType>text_area</dataType>
+						<dataType>string</dataType>
 						<label>How can istar make the course more interesting?</label>
 						<elemntName>how_can_istar_make_the_course_more_interesting
 						</elemntName>
-						<elemntType>TEXT</elemntType>
+						<elemntType>TEXT_AREA</elemntType>
 					</form_elements>
 					<form_elements>
-						<dataType>text_area</dataType>
+						<dataType>string</dataType>
 						<label>What aspects of the course would you change/remove?</label>
 						<elemntName>what_aspects_of_the_course_would_you_change/remove
 						</elemntName>
-						<elemntType>TEXT</elemntType>
+						<elemntType>TEXT_AREA</elemntType>
 					</form_elements>
 					<form_elements>
-						<dataType>text_area</dataType>
+						<dataType>string</dataType>
 						<label>What aspects would you like to see coverage of?</label>
 						<elemntName>what_aspects_would_you_like_to_see_coverage_of
 						</elemntName>
-						<elemntType>TEXT</elemntType>
+						<elemntType>TEXT_AREA</elemntType>
 					</form_elements>
 					<form_elements>
-						<dataType>text_area</dataType>
+						<dataType>string</dataType>
 						<label>Which session did you enjoy the most?</label>
 						<elemntName>which_session_did_you_enjoy_the_most</elemntName>
-						<elemntType>TEXT</elemntType>
+						<elemntType>TEXT_AREA</elemntType>
 					</form_elements>
 					<form_elements>
-						<dataType>text_area</dataType>
+						<dataType>string</dataType>
 						<label>Which session did you enjoy the least?</label>
 						<elemntName>which_session_did_you_enjoy_the_least</elemntName>
-						<elemntType>TEXT</elemntType>
+						<elemntType>TEXT_AREA</elemntType>
 					</form_elements>
 					<updateQuery>update to something where something is something
 					</updateQuery>
@@ -165,26 +165,26 @@
 				<steps label="Istar Courses 2">
 
 					<form_elements>
-						<dataType>text_area</dataType>
+						<dataType>string</dataType>
 						<label>Which session did you enjoy the least?</label>
 						<elemntName>which_session_did_you_enjoy_the_least</elemntName>
-						<elemntType>TEXT</elemntType>
+						<elemntType>TEXT_AREA</elemntType>
 					</form_elements>
 					<form_elements>
-						<dataType>text_area</dataType>
+						<dataType>string</dataType>
 						<label>How does Istar course compare to your regular college
 							curriculum?</label>
 						<elemntName>how_does_istar_course_compare_to_your_regular_college_curriculum
 						</elemntName>
-						<elemntType>TEXT</elemntType>
+						<elemntType>TEXT_AREA</elemntType>
 					</form_elements>
 					<form_elements>
-						<dataType>text_area</dataType>
+						<dataType>string</dataType>
 						<label>How is istar faculty compared to regular college faculty?
 						</label>
 						<elemntName>how_is_istar_faculty_compared_to_regular_college_faculty
 						</elemntName>
-						<elemntType>TEXT</elemntType>
+						<elemntType>TEXT_AREA</elemntType>
 					</form_elements>
 					<form_elements>
 						<dataType>number</dataType>
@@ -204,35 +204,211 @@
 			<value id="201" taskName="NSDC_FORM">
 				<description>This form need to be filled by students</description>
 				<label>Certificate Requisition Form</label>
-				<steps label="Personal Profile">
-					<form_elements>
+				<steps label="Personal Profile" id="1">
+					<form_elements id="1" required="true">
 						<dataType>number</dataType>
-						<label>pincode</label>
+						<label>Pincode</label>
 						<elemntName>pincode</elemntName>
-						<elemntType>DB_DROP_DOWN</elemntType>
-						<dropdownData>select distinct id as key , pin as value from pincode limit 3</dropdownData>
+						<elemntType>DROP_DOWN</elemntType>
+						<dropdownData type="ajaxified_list" dataFetchType="sql_string">
+						<itemSource>
+						select distinct pin as key, pin as value from pincode where CAST(pin AS varchar) like '%:search_term%'
+						</itemSource>
+						</dropdownData>
 					</form_elements>
-					<form_elements>
-						<dataType>date</dataType>
+					<form_elements id="2" required ="true">
+						<dataType> date</dataType>
 						<label>Date of Birth</label>
 						<elemntName>dob</elemntName>
 						<elemntType>DATE_PICKER</elemntType>
 					</form_elements>
-					<form_elements>
+					<form_elements id="3" required ="true">
 						<dataType>number</dataType>
 						<label>Aadhar No</label>
 						<elemntName>aadhar</elemntName>
 						<elemntType>TEXT_BOX</elemntType>
 					</form_elements>
-					<form_elements>
+					
+					<form_elements id="4">
 						<dataType>string</dataType>
 						<label>Caste Category *</label>
 						<elemntName>caste_category</elemntName>
-						<elemntType>STATIC_DROP_DOWN</elemntType>
-						<dropdownData>Gen!#OBC!#SC!#ST!#PH</dropdownData>
+						<elemntType>DROP_DOWN</elemntType>
+						<dropdownData type="static_list">
+						<itemSource>Gen!#OBC!#SC!#ST!#PH
+						</itemSource>
+						</dropdownData>
 					</form_elements>
-					<updateQuery>update address set pincode_id = where id = (select address_id from user_profile where user_id =$$USER_ID);
-					 update user_profile set dob =$$dob , gender ='$$gender', aadhar_no = $$aadhar , caste_category ='$$caste_category' where user_id=$$USER_ID;
+					<form_elements id="5">
+						<dataType>string</dataType>
+						<label>UG Degrees</label>
+						<elemntName>ug_degree</elemntName>
+						<elemntType>DROP_DOWN</elemntType>
+						<dropdownData type="ajaxified_list" dataFetchType="sql_string">
+						<itemSource>
+						select distinct parent_value as key, parent_value as value  from parent_dropdown_table where group_name='ug_degrees' and lower(parent_value) like '%:search_term%'
+						</itemSource>
+						</dropdownData>
+					</form_elements>
+					<form_elements id="6" dependency="5">
+						<dataType>string</dataType>
+						<label>UG Specialization</label>
+						<elemntName>ug_specialization</elemntName>
+						<elemntType>DROP_DOWN</elemntType>
+						<dropdownData type="ajaxified_list" dataFetchType="sql_string">
+						<itemSource>
+						select child_dropdown_value as key, child_dropdown_value as value from child_dropdown_table where parent_value=':dependency_term' and lower(child_dropdown_value) like '%:search_term%' ;
+						</itemSource>
+						</dropdownData>
+					</form_elements>
+					<form_elements id="7">
+						<dataType>string</dataType>
+						<label>Comments</label>
+						<elemntName>comments</elemntName>
+						<elemntType>TEXT_AREA</elemntType>
+					</form_elements>
+					<form_elements id="8">
+						<dataType>boolean</dataType>
+						<label>Are you considering a career in this sector?</label>
+						<elemntName>are_you_considering_a_career_in_this_sector
+						</elemntName>
+						<elemntType>SWITCH</elemntType>
+					</form_elements>
+					<form_elements required ="true" id="9">
+						<dataType>DECIMAL</dataType>
+						<label>Ablity to explain concepts</label>
+						<elemntName>ablity_to_explain_concepts</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<updateQuery>update address set pincode_id =(select id from pincode where pin = ':pincode' limit 1)  where id = (select address_id from user_profile where user_id =:USER_ID);
+					 update user_profile set dob =':dob' , aadhar_no = :aadhar , caste_category =':caste_category' where user_id=:USER_ID;
+					</updateQuery>
+				</steps>
+				<steps label="User Profile" id="2">
+					<form_elements id="1">
+						<dataType>number</dataType>
+						<label>Pincode</label>
+						<elemntName>pincode</elemntName>
+						<elemntType>DROP_DOWN</elemntType>
+						<dropdownData type="ajaxified_list" dataFetchType="sql_string">
+						<itemSource>
+						select distinct pin as key, pin as value from pincode where CAST(pin AS varchar) like '%:search_term%'
+						</itemSource>
+						</dropdownData>
+					</form_elements>					
+					<updateQuery>update address set pincode_id =(select id from pincode where pin = ':pincode' limit 1)  where id = (select address_id from user_profile where user_id =:USER_ID);
+					 update user_profile set dob =':dob' , aadhar_no = :aadhar , caste_category =':caste_category' where user_id=:USER_ID;
+					</updateQuery>
+				</steps>
+				<steps label="Professional Profile" id="3">
+					<form_elements id="1">
+						<dataType>number</dataType>
+						<label>Pincode</label>
+						<elemntName>pincode</elemntName>
+						<elemntType>DROP_DOWN</elemntType>
+						<dropdownData type="ajaxified_list" dataFetchType="sql_string">
+						<itemSource>
+						select distinct pin as key, pin as value from pincode where CAST(pin AS varchar) like '%:search_term%'
+						</itemSource>
+						</dropdownData>
+					</form_elements>					
+					<updateQuery>update address set pincode_id =(select id from pincode where pin = ':pincode' limit 1)  where id = (select address_id from user_profile where user_id =:USER_ID);
+					 update user_profile set dob =':dob' , aadhar_no = :aadhar , caste_category =':caste_category' where user_id=:USER_ID;
+					</updateQuery>
+				</steps>					
+			</value>
+		</entry>
+		<entry>
+			<key>202</key>
+			<value id="202" taskName="STUDENT_FEEDBACK_FORM">
+				<description>This form need to be filled by students</description>
+				<label>Classroom Feedback</label>
+				<steps label="Infra Realetd Fedback" id="1">
+					<form_elements id="1">
+						<dataType>DECIMAL</dataType>
+						<label>Projector Quality</label>
+						<elemntName>projector</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<form_elements id="2">
+						<dataType>DECIMAL</dataType>
+						<label>Internet speed</label>
+						<elemntName>internet</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<form_elements id="3">
+						<dataType>DECIMAL</dataType>
+						<label>Were there any disturbance while running a class</label>
+						<elemntName>outside_disturbance</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<updateQuery>update task set actor=:USER_ID;
+					</updateQuery>
+				</steps>
+				<steps label="Trainer Feedback" id="2">
+					<form_elements id="1">
+						<dataType>DECIMAL</dataType>
+						<label>Does trainer good at the content?</label>
+						<elemntName>trainer_knowledge</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<form_elements id="2">
+						<dataType>DECIMAL</dataType>
+						<label>How would you rate for trainer teaching speed?</label>
+						<elemntName>trainer_too_fast</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<form_elements id="3">
+						<dataType>DECIMAL</dataType>
+						<label>How would you rate for trainer teaching speed?</label>
+						<elemntName>class_control_by_trainer</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<form_elements id="4">
+						<dataType>DECIMAL</dataType>
+						<label>Did you have fun in class?</label>
+						<elemntName>no_fun_in_class</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<form_elements id="5">
+						<dataType>DECIMAL</dataType>
+						<label>Does trainer gave enough examples?</label>
+						<elemntName>enough_examples</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>					
+					<updateQuery>update task set actor=:USER_ID;
+					</updateQuery>
+				</steps>
+				<steps label="Content Related Feedback" id="3">
+					<form_elements id="1">
+						<dataType>DECIMAL</dataType>
+						<label>Did you feel the complexcity in content?</label>
+						<elemntName>too_tough_content</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<form_elements id="2">
+						<dataType>DECIMAL</dataType>
+						<label>Was it too theoritical?</label>
+						<elemntName>too_much_theoritic</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>				
+					<updateQuery>update task set actor=:USER_ID;
+					</updateQuery>
+				</steps>	
+				<steps label="Summary" id="4">
+					<form_elements id="1">
+						<dataType>DECIMAL</dataType>
+						<label>how would you rate the overall experience?</label>
+						<elemntName>rating</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<form_elements id="2">
+						<dataType>DECIMAL</dataType>
+						<label>Comment</label>
+						<elemntName>comment</elemntName>
+						<elemntType>TEXT_AREA</elemntType>
+					</form_elements>								
+					<updateQuery>update task set actor=:USER_ID;
 					</updateQuery>
 				</steps>				
 			</value>

@@ -39,7 +39,7 @@ public class ImportlessonDetails {
 			//for (Course course : (new CourseDAO()).findAll()) {
 				//for (Module module : (new ModuleDAO()).findAll()) {
 				//	String sq = "update module set image_url='/course_images/m_"+module.getId()+".png' where id="+module.getId()+" ;";
-				//	System.err.println(sq);
+				//	//System.err.println(sq);
 					
 				//}
 			//}
@@ -67,7 +67,7 @@ public class ImportlessonDetails {
 						   idDeleted = true;
 					   }
 					   if(!idDeleted) {
-						   System.err.println("update lesson set  duration="+duration+",  title='"+lessonTitle.replaceAll("_", " ")+"'  "
+						   //System.err.println("update lesson set  duration="+duration+",  title='"+lessonTitle.replaceAll("_", " ")+"'  "
 						   		+ " , is_deleted='t'   where id='"+lessonID+"' ;");
 					   } 
 						   
@@ -92,7 +92,7 @@ public class ImportlessonDetails {
 				int lessonID = (int) wb.getRow(i).getCell(2).getNumericCellValue();
 				   int slideID =  Integer.parseInt(wb.getRow(i).getCell(3).getStringCellValue().split("#")[1]);
 				   String tnotes = wb.getRow(i).getCell(4).getStringCellValue();
-				   System.err.println("lesson id ->"+ lessonID+" slideID -> "+slideID+ " coment "+tnotes.trim());
+				   //System.err.println("lesson id ->"+ lessonID+" slideID -> "+slideID+ " coment "+tnotes.trim());
 				   updateSlideTN(lessonID, slideID, tnotes);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -111,7 +111,7 @@ public class ImportlessonDetails {
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 			CMSLesson cmsLesson = (CMSLesson) jaxbUnmarshaller.unmarshal(file);
 
-			System.out.println(" CMS Lesson " + cmsLesson.getLessonTitle());
+			//System.out.println(" CMS Lesson " + cmsLesson.getLessonTitle());
 
 			for (CMSSlide cmsSlide : cmsLesson.getSlides()) {
 				if(cmsSlide.getId() == slideID){

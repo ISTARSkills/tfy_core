@@ -53,7 +53,7 @@ public class TaskLibrary {
 			TaskLibrary library = (TaskLibrary) jaxbUnmarshaller.unmarshal(url);
 			/*for(int i :library.getTemplates().keySet())
 			{
-				System.out.println(library.getTemplates().get(i).getId());
+				//System.out.println(library.getTemplates().get(i).getId());
 			}
 			*/
 			return library.getTemplates().get(t.getItemId());
@@ -71,7 +71,7 @@ public class TaskLibrary {
 
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			TaskLibrary library = (TaskLibrary) jaxbUnmarshaller.unmarshal(url);
-			System.out.println(library);
+			//System.out.println(library);
 			
 			
 			

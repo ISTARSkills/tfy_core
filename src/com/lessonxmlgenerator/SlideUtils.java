@@ -56,7 +56,7 @@ public class SlideUtils {
 				// e.printStackTrace();
 			}
 			String ext = "_desktop.vm";
-			System.out.println((String) hashMap.get("template") + "" + hashMap.get("id"));
+			//System.out.println((String) hashMap.get("template") + "" + hashMap.get("id"));
 			String templateVMFileName = cMSlide.getTemplateName() + ext;
 			if (cMSlide.getTemplateName().equalsIgnoreCase("ONLY_TITLE_LIST")) {
 				templateVMFileName = cMSlide.getList().getList_type() + "___" + cMSlide.getTemplateName() + ext;
@@ -132,7 +132,7 @@ public class SlideUtils {
 				data1 = data1.replaceAll("<p>", "<p class='fragment fade-up visible' >");
 			}
 			if (((int) hashMap.get("id")) == 626) {
-				// System.err.println("data1"+data1);
+				// //System.err.println("data1"+data1);
 			}
 			data1 = data1.replaceAll("<b>", "");
 			// data1 = data1.replaceAll("<ol>", "<ol class='fragment fade-up'
@@ -199,7 +199,7 @@ public class SlideUtils {
 	 * 
 	 * List<HashMap<String, Object>> data = util.executeQuery(sql);
 	 * 
-	 * System.err.println(data.size());
+	 * //System.err.println(data.size());
 	 * 
 	 * for (HashMap<String, Object> hashMap : data) { CMSSlide cMSlide = new
 	 * CMSSlide(); String xml = (String) hashMap.get("slide_text"); try {
@@ -211,7 +211,7 @@ public class SlideUtils {
 	 * jaxbUnmarshaller = jaxbContext.createUnmarshaller(); cMSlide = (CMSSlide)
 	 * jaxbUnmarshaller.unmarshal(in); } catch (Exception e) {
 	 * //e.printStackTrace(); } String ext = "_desktop.vm";
-	 * System.out.println((String) hashMap.get("template")); String
+	 * //System.out.println((String) hashMap.get("template")); String
 	 * templateVMFileName = cMSlide.getTemplateName() + ext; if
 	 * (cMSlide.getTemplateName().equalsIgnoreCase("ONLY_TITLE_LIST")) {
 	 * templateVMFileName = cMSlide.getList().getList_type() + "___" +
@@ -224,7 +224,7 @@ public class SlideUtils {
 	 * context.put("slide", cMSlide); Template t =
 	 * ve.getTemplate(templateVMFileName); StringWriter writer = new
 	 * StringWriter(); t.merge(context, writer); String data1 =
-	 * writer.toString(); //System.out.println(data1); } }
+	 * writer.toString(); ////System.out.println(data1); } }
 	 */
 
 	public String getLessonXML(int pptID) {
@@ -243,7 +243,7 @@ public class SlideUtils {
 				String slide_text = slide_xml.replaceAll("<br />", " ").replaceAll("<br>", " ")
 						.replaceAll("&nbsp;", " ").replaceAll("&lt;br&gt;", " ").replaceAll("&lt;br /&gt;", " ")
 						.replaceAll("[^\\x00-\\x7F]", "");
-				// System.err.println(slide_text);
+				// //System.err.println(slide_text);
 				InputStream in = IOUtils.toInputStream(slide_text, "UTF-8");
 				Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
 				cmsSlide = (CMSSlide) jaxbUnmarshaller.unmarshal(in);

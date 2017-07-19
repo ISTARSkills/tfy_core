@@ -60,8 +60,8 @@ public class MAIN {
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 
 		//createQLO();
-		System.out.println("started");
-		//System.out.println();
+		//System.out.println("started");
+		////System.out.println();
 		//createAssesmentBechmark();
 		//executeSQLFromFile();
 		//addCourseToAssessment();
@@ -70,7 +70,7 @@ public class MAIN {
 		//portCheck();
 		checkAssessment();
 		
-		System.out.println("exiting");
+		//System.out.println("exiting");
 		System.exit(0);
 
 	}
@@ -91,7 +91,7 @@ public class MAIN {
 
 	private static void portCheck() {
 		// TODO Auto-generated method stub
-		System.out.println(isLocalPortInUse(4567));
+		//System.out.println(isLocalPortInUse(4567));
 	}
 
 
@@ -126,7 +126,7 @@ public class MAIN {
 
 	private static void SS() {
 		// TODO Auto-generated method stub
-		System.out.println("start");
+		//System.out.println("start");
 		DBUTILS util = new DBUTILS();
 		for(int i =5 ; i<= 16;i++)
 		{
@@ -140,7 +140,7 @@ public class MAIN {
 		util.executeUpdate(indertLOb);
 		}
 		}
-		System.out.println("done");
+		//System.out.println("done");
 		}
 
 
@@ -159,7 +159,7 @@ public class MAIN {
 			while (line != null) {
 				try {
 					line = br.readLine();
-					System.out.println(line);
+					//System.out.println(line);
 
 					String[] word = line.split("#");
 
@@ -199,13 +199,13 @@ public class MAIN {
 						}
 					}
 
-					System.out.println("EXECUTED");
+					//System.out.println("EXECUTED");
 				} catch (Exception e) {
-					System.out.println(line);
+					//System.out.println(line);
 				}
 			}
-			System.out.println("Count :" + count);
-			System.out.println("Good :" + good);
+			//System.out.println("Count :" + count);
+			//System.out.println("Good :" + good);
 		}
 
 	}
@@ -226,9 +226,9 @@ public class MAIN {
 				Question q = aq.getQuestion();
 				Set<Integer> parentSkills = new HashSet<Integer>();
 
-				//System.out.println("Q->" + q.getId());
+				////System.out.println("Q->" + q.getId());
 				for (SkillObjective so : q.getSkillObjectives()) {
-					//System.out.println("P--->" + so.getParentSkill());
+					////System.out.println("P--->" + so.getParentSkill());
 					parentSkills.add(so.getParentSkill());
 				}
 				totoalPoints = totoalPoints + q.getDifficultyLevel();
@@ -240,7 +240,7 @@ public class MAIN {
 				String sql = "INSERT INTO assessment_benchmark (id, assessment_id, skill_objective_id, max_points)"
 						+ " VALUES ((SELECT (MAX(ID) + 1) FROM assessment_benchmark), '" + asessment.getId() + "', "
 						+ parentCMSSkill + ", '" + perSkill + "');";
-				System.out.println(sql);
+				//System.out.println(sql);
 			}
 		}
 	}
@@ -265,15 +265,15 @@ public class MAIN {
 			String sql = "INSERT INTO assessment_benchmark1 (id, assessment_id, skill_objective_id, max_points)"
 					+ " VALUES ((SELECT (MAX(ID) + 1) FROM assessment_benchmark1), '" + asessment.getId() + "', '1', '"
 					+ totoalPoints + "');";
-			System.err.println(sql);
+			//System.err.println(sql);
 		}
-		System.out.println(countSO);
+		//System.out.println(countSO);
 
 	}
 
 	private static void saveQuestion(Question q, List<SkillObjective> allLOs) {
 		
-		//System.out.println("SAVING-->" + q.getId());
+		////System.out.println("SAVING-->" + q.getId());
 		
 		int maxSize = allLOs.size();
 		
@@ -281,7 +281,7 @@ public class MAIN {
 		
 		String sql ="INSERT INTO question_skill_objective (learning_objectiveid, questionid) VALUES ("+allLOs.get(rnd).getId()+", "+q.getId()+");";
 		
-		System.out.println(sql);
+		//System.out.println(sql);
 	}
 
 	public static void createQLO() throws FileNotFoundException, IOException {
@@ -292,20 +292,20 @@ public class MAIN {
 			while (line != null) {
 				try {
 					line = br.readLine();
-					//System.out.println(line.split("\t")[1]);
+					////System.out.println(line.split("\t")[1]);
 					SkillObjectiveDAO dao = new SkillObjectiveDAO();
 					for (SkillObjective skill_objective : dao.findAll()) {
 						if(skill_objective.getName().toUpperCase().trim().equalsIgnoreCase(line.split("\t")[1].toUpperCase().trim())) {
 							String sql = "INSERT INTO question_skill_objective (learning_objectiveid, questionid) VALUES ("+skill_objective.getId()+","+line.split("\t")[0]+");";
-							System.out.println(sql);
+							//System.out.println(sql);
 							kam++;
 						}
 					}
 				} catch (Exception e) {
-					System.out.println(line);
+					//System.out.println(line);
 				}
 			}
-			System.err.println("kmainis"+kam);
+			//System.err.println("kmainis"+kam);
 }
 
 	}
@@ -321,11 +321,11 @@ public class MAIN {
 			while (line != null) {
 				try {
 					line = br.readLine();
-					System.out.println(line);
+					//System.out.println(line);
 					DBUTILS.executeUpdate(line);
-					System.out.println("EXECUTED");
+					//System.out.println("EXECUTED");
 				} catch (Exception e) {
-					System.out.println(line);
+					//System.out.println(line);
 				}
 			}
 		}
@@ -342,19 +342,19 @@ public class MAIN {
 
 			while (line != null) {
 				index++;
-				// System.out.println("Line: " + index);
+				// //System.out.println("Line: " + index);
 				try {
 					line = br.readLine();
 					if (line.contains("#")) {
 
-						// System.out.println(line);
+						// //System.out.println(line);
 						String[] word = line.split("#");
 
 						String learningObjectiveTitle = word[0].trim();
 						String lessonTitle = word[1].trim();
 
-						// System.out.println(learningObjectiveTitle);
-						// System.out.println(lessonTitle);
+						// //System.out.println(learningObjectiveTitle);
+						// //System.out.println(lessonTitle);
 
 						SkillObjectiveDAO soDAO = new SkillObjectiveDAO();
 						LessonDAO lessonDAO = new LessonDAO();
@@ -369,18 +369,18 @@ public class MAIN {
 								good++;
 								String sql = "INSERT INTO lesson_skill_objective (lessonid, learning_objectiveid) VALUES ("
 										+ lesson.getId() + "," + so.getId() + ");";
-								System.out.println(sql);
+								//System.out.println(sql);
 							}
 						} else {
 							count++;
 						}
 					}
 				} catch (Exception e) {
-					// System.out.println("Exceptions");
+					// //System.out.println("Exceptions");
 				}
 			}
-			System.out.println("Count: " + count);
-			System.out.println("Good: " + good);
+			//System.out.println("Count: " + count);
+			//System.out.println("Good: " + good);
 		}
 	}
 
@@ -394,19 +394,19 @@ public class MAIN {
  * 
  * int count = 0; int index = 0;
  * 
- * while (line != null) { index++; //System.out.println("Line: " + index); if
+ * while (line != null) { index++; ////System.out.println("Line: " + index); if
  * (line.contains("#")) {
  * 
  * sb.append(line); sb.append(System.lineSeparator()); line = br.readLine();
- * //System.out.println(line);
+ * ////System.out.println(line);
  * 
  * String[] word = line.split("#");
  * 
  * if(word.length > 1){ String skillObjectiveTitle = word[0]; String questionId
  * = word[1].trim();
  * 
- * //System.out.println(skillObjectiveTitle);
- * //System.out.println(cmsessionTitle);
+ * ////System.out.println(skillObjectiveTitle);
+ * ////System.out.println(cmsessionTitle);
  * 
  * SkillObjectiveDAO soDAO = new SkillObjectiveDAO(); QuestionDAO cmsDAO = new
  * QuestionDAO();
@@ -416,7 +416,7 @@ public class MAIN {
  * 
  * 
  * if (allSO.size() > 0 && q!=null) { for(SkillObjective so : allSO){
- * System.out.println(
+ * //System.out.println(
  * "insert into question_skill_objective (learning_objectiveid, questionid) values("
  * +so.getId()+","+q.getId()+");"); } }else{
  * 
@@ -466,8 +466,8 @@ public class MAIN {
  * = aq.getQuestion();
  * 
  * 
- * if(q.getSkillObjectives().size()==0){ System.out.println(q.getId()); }else{
- * //System.out.println(q.getId() + "--HAS-->" +q.getSkillObjectives().size());
+ * if(q.getSkillObjectives().size()==0){ //System.out.println(q.getId()); }else{
+ * ////System.out.println(q.getId() + "--HAS-->" +q.getSkillObjectives().size());
  * }
  * 
  * 
@@ -482,7 +482,7 @@ public class MAIN {
  * } } } System.exit(0);
  */
 
-// System.err.println(asessment.getAssessmentQuestions().size()+"---"+
+// //System.err.println(asessment.getAssessmentQuestions().size()+"---"+
 // totoalPoints + "Number of Skills- >"+numberOfSkillObjetcives );
 
 /// }
@@ -496,7 +496,7 @@ public class MAIN {
  * "INSERT INTO assessment_benchmark (id, assessment_id, skill_objective_id, max_points)"
  * + " VALUES ((SELECT (MAX(ID) + 1) FROM assessment_benchmark), '" +
  * asessment.getId() + "', '1', '" + totoalPoints + "');";
- * System.err.println(sql); }
+ * //System.err.println(sql); }
  */
 
 /*				for(SkillObjective so : q.getSkillObjectives()){
@@ -505,7 +505,7 @@ totoalPoints = ((double) q.getDifficultyLevel())/q.getSkillObjectives().size();
 String sql = "INSERT INTO assessment_benchmark (id, assessment_id, skill_objective_id, max_points)"
 		+ " VALUES ((SELECT (MAX(ID) + 1) FROM assessment_benchmark), '" + asessment.getId() + "', '1', '"
 		+ totoalPoints + "');";
-System.err.println(sql);
+//System.err.println(sql);
 }
 */
 
@@ -551,7 +551,7 @@ public class MAIN {
 	public static void main(String[] args) {
 		Module m = (new ModuleDAO().findById(25));
 		for (Cmsession cms : m.getCmsessions()) {
-			System.out.println(cms.getId());
+			//System.out.println(cms.getId());
 		}
 		//TestingContextAdd();
 		TestingContextFind();
@@ -560,7 +560,7 @@ public class MAIN {
 	private static void TestingContextFind() {
 		// TODO Auto-generated method stub
 		Context context = (new ContextDAO()).findById(1);
-		System.err.println(context.getTitle());
+		//System.err.println(context.getTitle());
 	}
 
 	private static void TestingContextAdd() {
@@ -582,7 +582,7 @@ public class MAIN {
 		} finally {
 			session.flush();
 		}
-		System.err.println(context.getId());
+		//System.err.println(context.getId());
 	}
 
 }

@@ -39,7 +39,7 @@ public class HibernateSessionFactory {
 				e.printStackTrace();
 			}
 		} catch (Exception e) {
-			System.err.println("%%%% Error Creating SessionFactory %%%%");
+			//System.err.println("%%%% Error Creating SessionFactory %%%%");
 			e.printStackTrace();
 		}
     }
@@ -83,7 +83,7 @@ public class HibernateSessionFactory {
 				e.printStackTrace();
 			}
 		} catch (Exception e) {
-			System.err.println("%%%% Error Creating SessionFactory %%%%");
+			//System.err.println("%%%% Error Creating SessionFactory %%%%");
 			e.printStackTrace();
 		}
 	}
