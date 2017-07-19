@@ -2,12 +2,12 @@
 
 <div class="row"> 
 <div class="col-md-12 "><h1 data-slide_id='$slide.getId()' data-element_type='TITLE' class="edit">$slide.getTitle().getText()</h1></div> 
-<div class="col-md-5 fragment fade-up visible" data-fragment-index="0"><img  src="$slide.getImage().getUrl()" alt="no_img" ></div>
+<div class="col-md-5 fragment fade-up visible" data-fragment-index="0"><img  class="edit_image" src="$slide.getImage().getUrl()" alt="no_img" ></div>
  <div class="col-md-7">
 <ul>
 							#foreach( $item in $slide.getList().getItems() )
 #if(!$item.getText().isEmpty())
-<div data-slide_id='$slide.getId()' data-element_type='PHARAIMGLIST' class="fragment fade-up edit" data-fragment-index="$foreach.index">$item.getText()</div> #end
+<div data-slide_id='$slide.getId()' data-element_type='LIST' class="fragment fade-up edit" data-fragment-index="$foreach.index">$item.getText()</div> #end
 	 	 #end
 			</ul>		
 					    </div> 
