@@ -176,7 +176,7 @@
 							curriculum?</label>
 						<elemntName>how_does_istar_course_compare_to_your_regular_college_curriculum
 						</elemntName>
-						<elemntType>TEXT_AREA_AREA</elemntType>
+						<elemntType>TEXT_AREA</elemntType>
 					</form_elements>
 					<form_elements>
 						<dataType>string</dataType>
