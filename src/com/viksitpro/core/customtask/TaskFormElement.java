@@ -133,7 +133,7 @@ public class TaskFormElement {
 					"  <input type='checkbox' name='"+elementName+"' class='js-switch' data-unique="+uniqueId+" id='"+uniqueId+"' tabindex='"+(element.getId())+"'>\r\n"+ 
 					"</div>");
 			return out;
-		case "TEXT":
+		case "TEXT_AREA":
 			out.append("<div class='form-group'><label>"
 					+element.getLabel()+ "</label><br/>" + 
 					"  <textarea style='width:100%;' rows='3' name='"+elementName+"'  data-unique="+uniqueId+" id='"+uniqueId+"' tabindex='"+(element.getId())+"'></textarea>"+ 
@@ -181,6 +181,8 @@ public class TaskFormElement {
 				}					
 			}				
 			return out;
+		
+			
 		default:
 			break;
 		}
