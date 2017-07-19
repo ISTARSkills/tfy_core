@@ -35,12 +35,12 @@ public class CreateIndex {
 		// Step 1: Load the JDBC driver.
 		try {
 			Class.forName("org.postgresql.Driver");
-			// System.out.println("Driver Loaded.");
+			// //System.out.println("Driver Loaded.");
 			// Step 2: Establish the connection to the database.
 			String url = "jdbc:postgresql://elt.talentify.in:5432/talentify";
 
 			conn = DriverManager.getConnection(url, "postgres", "4a626021-e55a");
-			// System.out.println("Got Connection.");
+			// //System.out.println("Got Connection.");
 
 			st = conn.createStatement();
 			String[] types = { "TABLE"};
@@ -49,7 +49,7 @@ public class CreateIndex {
 			DatabaseMetaData md = conn.getMetaData();
 			ResultSet rs = md.getTables(null, null, "%", types);
 			while (rs.next()) {
-				// System.out.println(rs.getString("TABLE_NAME"));
+				// //System.out.println(rs.getString("TABLE_NAME"));
 				String tableName = rs.getString("TABLE_NAME");
 				tablename.put(tableName, getAllColumns(tableName));
 			}
@@ -69,11 +69,11 @@ public class CreateIndex {
 
 		Statement stmt = null;
 		Class.forName("org.postgresql.Driver");
-		// System.out.println("Driver Loaded.");
+		// //System.out.println("Driver Loaded.");
 		String url = "jdbc:postgresql://elt.talentify.in:5432/talentify";
 
 		conn = DriverManager.getConnection(url, "postgres", "4a626021-e55a");
-		// System.out.println("Got Connection.");
+		// //System.out.println("Got Connection.");
 
 		stmt = conn.createStatement();
 		ResultSet rs = stmt.executeQuery(sql);
@@ -83,7 +83,7 @@ public class CreateIndex {
 				String key = rsmd.getColumnName(i);
 				String string ="CREATE INDEX ON "+tableName+" USING btree ("+key+");";	
 				executesql(string);
-			System.err.println(string);
+			//System.err.println(string);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
@@ -97,13 +97,13 @@ public class CreateIndex {
 
 		Statement stmt = null;
 		Class.forName("org.postgresql.Driver");
-		// System.out.println("Driver Loaded.");
+		// //System.out.println("Driver Loaded.");
 		String url = "jdbc:postgresql://elt.talentify.in:5432/talentify";
 
 		conn = DriverManager.getConnection(url, "postgres", "4a626021-e55a");		
 		stmt = conn.createStatement();
 
 		int rs = stmt.executeUpdate(string);
-		System.err.println("status ->"+ stmt.executeUpdate(string));
+		//System.err.println("status ->"+ stmt.executeUpdate(string));
 	}
 }

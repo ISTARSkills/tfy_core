@@ -22,7 +22,7 @@ public class MAIN {
 
 	
 		String str = "-1127145161";
-		System.err.println(str.replaceAll("-", ""));
+		//System.err.println(str.replaceAll("-", ""));
 		
 		
 	}

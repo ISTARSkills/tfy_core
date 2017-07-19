@@ -56,9 +56,9 @@ public class PublishDelegator {
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				System.out.println("error in sending notification");
+				//System.out.println("error in sending notification");
 			}
-			System.out.println("Notification sent to user");
+			//System.out.println("Notification sent to user");
 		}
 	}
 	
@@ -80,11 +80,11 @@ public class PublishDelegator {
 			try {
 				Thread.sleep(10000);
 			} catch (InterruptedException e) {
-				System.out.println("error in sending notification");
+				//System.out.println("error in sending notification");
 			}			
-			System.out.println("Notification sent to all the users");
+			//System.out.println("Notification sent to all the users");
 		}else{
-			System.out.println("DEV SERVER");
+			//System.out.println("DEV SERVER");
 
 				DatabaseReference databaseReferenceForUser = FirebaseDatabase.getInstance().getReference("istar-notification-dev").child(istarUserId);
 
@@ -100,9 +100,9 @@ public class PublishDelegator {
 			try {
 				Thread.sleep(10000);
 			} catch (InterruptedException e) {
-				System.out.println("error in sending notification");
+				//System.out.println("error in sending notification");
 			}			
-			System.out.println("Notification sent to all the users");
+			//System.out.println("Notification sent to all the users");
 		}
 	}
 	
@@ -129,11 +129,11 @@ public class PublishDelegator {
 				try {
 					Thread.sleep(10000);
 				} catch (InterruptedException e) {
-					System.out.println("error in sending notification");
+					//System.out.println("error in sending notification");
 				}			
-				System.out.println("Notification sent to all the users");
+				//System.out.println("Notification sent to all the users");
 			}else{
-				System.out.println("DEV SERVER");
+				//System.out.println("DEV SERVER");
 				for(String istarUserId : allIstarUserIds){
 					DatabaseReference databaseReferenceForUser = FirebaseDatabase.getInstance().getReference("istar-notification-dev").child(istarUserId);
 
@@ -150,9 +150,9 @@ public class PublishDelegator {
 				try {
 					Thread.sleep(10000);
 				} catch (InterruptedException e) {
-					System.out.println("error in sending notification");
+					//System.out.println("error in sending notification");
 				}			
-				System.out.println("Notification sent to all the users");
+				//System.out.println("Notification sent to all the users");
 			}
 		}	
 }

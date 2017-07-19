@@ -92,7 +92,7 @@ public class TeamMemberServices {
 		
 		String sql = "select user_id from team_member where team_id="+teamId;
 		
-		System.out.println(sql);
+		//System.out.println(sql);
 		
 		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
 		Session session = baseHibernateDAO.getSession();
@@ -117,7 +117,7 @@ public class TeamMemberServices {
 		try {
 			for (IstarUser user : allTeamMembers) {
 				String sql = "INSERT INTO team_member (team_id, user_id) VALUES (" + teamId + ", " + user.getId() + ")";
-				System.out.println(sql);
+				//System.out.println(sql);
 
 				SQLQuery query = session.createSQLQuery(sql);
 				query.executeUpdate();
@@ -143,7 +143,7 @@ public class TeamMemberServices {
 				
 				allTeamMembersSet.add(istarUser);
 			} else {
-				System.out.println("TeamMember already exists");
+				//System.out.println("TeamMember already exists");
 			}
 			team = teamServices.updateTeamToDAO(team);
 		}
@@ -206,7 +206,7 @@ public class TeamMemberServices {
 
 		List<TeamMember> allTeamMember = session.createQuery(criteria).getResultList();
 
-		System.out.println(allTeamMember.size());
+		//System.out.println(allTeamMember.size());
 		if (allTeamMember.size() > 0) {
 			teamMember = allTeamMember.get(0);
 		}
@@ -229,7 +229,7 @@ public class TeamMemberServices {
 		
 		List<Integer> allTeamMember = query.list();
 
-		System.out.println(allTeamMember.size());
+		//System.out.println(allTeamMember.size());
 		if (allTeamMember.size() <= 0) {
 			isOld = false;
 		}		
@@ -241,7 +241,7 @@ public class TeamMemberServices {
 		Session session = baseHibernateDAO.getSession();
 		try {
 			String sql = "delete from team_member where team_id=" + teamId;
-			System.err.println(sql);
+			//System.err.println(sql);
 			SQLQuery query = session.createSQLQuery(sql);
 			query.executeUpdate();
 		} catch (Exception e) {

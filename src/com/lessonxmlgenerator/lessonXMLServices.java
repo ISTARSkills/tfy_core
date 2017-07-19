@@ -60,7 +60,7 @@ public class lessonXMLServices {
 			    new FileOutputStream(path), "UTF-8"));
 			try {
 				
-					//System.err.println(lessonXML);
+					////System.err.println(lessonXML);
 			    out.write(lessonXML.replaceAll("[^\\x00-\\x7F]",""));
 				
 			} finally {
@@ -78,10 +78,10 @@ public class lessonXMLServices {
 		String sql = "select lesson_id from presentaion ORDER BY lesson_id";
 		List<HashMap<String, Object>> lessons = (new com.viksitpro.core.utilities.DBUTILS()).executeQuery(sql);
 		lessonXMLServices xmlServices = new lessonXMLServices();
-		//System.out.println(slideUtils.getLessonXML(626));
+		////System.out.println(slideUtils.getLessonXML(626));
 		for(HashMap<String, Object> lesson : lessons){
-			System.err.println(createlessonXMLFile(xmlServices.lessonXML(Integer.parseInt(lesson.get("lesson_id").toString())), 
-					Integer.parseInt(lesson.get("lesson_id").toString())));
+			//System.err.println(createlessonXMLFile(xmlServices.lessonXML(Integer.parseInt(lesson.get("lesson_id").toString())), 
+					//Integer.parseInt(lesson.get("lesson_id").toString())));
 		}
 		
 	}

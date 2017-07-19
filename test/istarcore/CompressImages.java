@@ -18,7 +18,7 @@ public class CompressImages {
 	}
 
 	private static void compressImage() {
-	    Tinify.setKey("YOUR_API_KEY");
+	    //Tinify.setKey("YOUR_API_KEY");
 
 		
 	}

@@ -140,7 +140,7 @@ public class TaskFormElement {
 		case "STAR_RATING":
 			out.append("<div class='form-group'>\r\n" + 
 					"<label>"+element.getLabel()+ " </label> \r\n" + 
-					"<div class='combostar "+required+"' data-name='"+elementName+"'>" + 
+					"<div class='combostar form-control"+required+"' data-name='"+elementName+"'>" + 
 					"</div></div>");
 			return out;
 			

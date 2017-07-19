@@ -98,7 +98,7 @@ public class TaskLogServices {
     	 }
     	
     	
-    	 System.out.println("logs size---"+uniqueLogs.size());
+    	 //System.out.println("logs size---"+uniqueLogs.size());
     	 return uniqueLogs;
     }
     

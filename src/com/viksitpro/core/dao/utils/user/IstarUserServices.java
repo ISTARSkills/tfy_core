@@ -164,7 +164,7 @@ public class IstarUserServices {
 	public UserProfile createUserProfile(Integer istarUserId, Integer addressId, String firstName, String lastName,
 			Date dob, String gender, String profileImage, Long aadhar) {
 
-		System.out.println("Name is-> "+firstName);
+		//System.out.println("Name is-> "+firstName);
 		IstarUser istarUser = getIstarUser(istarUserId);
 
 		UserProfile userProfile = new UserProfile();
@@ -185,7 +185,7 @@ public class IstarUserServices {
 	}
 
 	public UserProfile updateUserProfile(Integer istarUserId, Integer addressId, String firstName, String lastName,
-			String dob, String gender, String profileImage, Long aadhar) {
+			Date dob, String gender, String profileImage, Long aadhar) {
 		
 		IstarUser user = getIstarUser(istarUserId);
 		UserProfile userProfile = user.getUserProfile();
@@ -309,7 +309,7 @@ public class IstarUserServices {
 
 		istarUser = saveIstarUserToDAO(istarUser);
 		}else{
-			System.out.println("User alread exists!");
+			//System.out.println("User alread exists!");
 		}
 		return istarUser;
 	}
@@ -340,7 +340,7 @@ public class IstarUserServices {
 
 		istarUser = saveIstarUserToDAO(istarUser);
 		}else{
-			System.out.println("User Email/Mobile alread exists!");
+			//System.out.println("User Email/Mobile alread exists!");
 		}
 		return istarUser;
 	}
@@ -372,7 +372,7 @@ public class IstarUserServices {
 
 		istarUser = saveIstarUserToDAO(istarUser);
 		}else{
-			System.out.println("User Email/Mobile alread exists!");
+			//System.out.println("User Email/Mobile alread exists!");
 		}
 		return istarUser;
 	}
@@ -530,7 +530,7 @@ public class IstarUserServices {
 		try {
 			allIstarUsersByEmail = istarUserDAO.findByEmail(email);
 
-			System.out.println("Size is " + allIstarUsersByEmail.size());
+			//System.out.println("Size is " + allIstarUsersByEmail.size());
 			
 			if (allIstarUsersByEmail.size() > 0) {
 				istarUser = allIstarUsersByEmail.get(0);
@@ -551,7 +551,7 @@ public class IstarUserServices {
 		try {
 			allIstarUsersByMobile = istarUserDAO.findByMobile(mobile);
 
-			System.out.println("Size is " + allIstarUsersByMobile.size());
+			//System.out.println("Size is " + allIstarUsersByMobile.size());
 			
 			if (allIstarUsersByMobile.size() > 0) {
 				istarUser = allIstarUsersByMobile.get(0);
@@ -579,9 +579,9 @@ public class IstarUserServices {
 		for (UserRole userRole : user.getUserRoles()) {
 			rolesset.add(userRole.getRole());
 		}
-		System.out.println("roleset size>>>>>" + rolesset.size());
+		//System.out.println("roleset size>>>>>" + rolesset.size());
 		roles = (ArrayList<Role>) BaseHibernateDAO.GetOrderedListFromSet(rolesset, "priority");
-		System.out.println("roles size>>>>>>>" + roles.size());
+		//System.out.println("roles size>>>>>>>" + roles.size());
 		return roles;
 	}
 
@@ -593,8 +593,8 @@ public class IstarUserServices {
 	}
 
 	public void testProfile(int userId, String fileName) {
-		System.err.println("-------------->"+(new IstarUserDAO()).findById(userId).getUserProfile().getImage());
-		System.err.println("fileName--->"+fileName);
+		//System.err.println("-------------->"+(new IstarUserDAO()).findById(userId).getUserProfile().getImage());
+		//System.err.println("fileName--->"+fileName);
 		
 	}
 
