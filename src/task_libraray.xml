@@ -204,35 +204,64 @@
 			<value id="201" taskName="NSDC_FORM">
 				<description>This form need to be filled by students</description>
 				<label>Certificate Requisition Form</label>
-				<steps label="Personal Profile">
-					<form_elements>
+				<steps label="Personal Profile" id="1">
+					<form_elements id="1">
 						<dataType>number</dataType>
-						<label>pincode</label>
+						<label>Pincode</label>
 						<elemntName>pincode</elemntName>
-						<elemntType>DB_DROP_DOWN</elemntType>
-						<dropdownData>select distinct id as key , pin as value from pincode limit 3</dropdownData>
+						<elemntType>DROP_DOWN</elemntType>
+						<dropdownData type="ajaxified_list" dataFetchType="sql_string">
+						<itemSource>
+						select distinct pin as key, pin as value from pincode where CAST(pin AS TEXT) like '%:search_term%'
+						</itemSource>
+						</dropdownData>
 					</form_elements>
-					<form_elements>
-						<dataType>date</dataType>
+					<form_elements id="2">
+						<dataType> date</dataType>
 						<label>Date of Birth</label>
 						<elemntName>dob</elemntName>
 						<elemntType>DATE_PICKER</elemntType>
 					</form_elements>
-					<form_elements>
+					<form_elements id="3">
 						<dataType>number</dataType>
 						<label>Aadhar No</label>
 						<elemntName>aadhar</elemntName>
 						<elemntType>TEXT_BOX</elemntType>
 					</form_elements>
-					<form_elements>
+					<form_elements id="4">
 						<dataType>string</dataType>
 						<label>Caste Category *</label>
 						<elemntName>caste_category</elemntName>
-						<elemntType>STATIC_DROP_DOWN</elemntType>
-						<dropdownData>Gen!#OBC!#SC!#ST!#PH</dropdownData>
+						<elemntType>DROP_DOWN</elemntType>
+						<dropdownData type="static_list">
+						<itemSource>Gen!#OBC!#SC!#ST!#PH
+						</itemSource>
+						</dropdownData>
 					</form_elements>
-					<updateQuery>update address set pincode_id = where id = (select address_id from user_profile where user_id =$$USER_ID);
-					 update user_profile set dob =$$dob , gender ='$$gender', aadhar_no = $$aadhar , caste_category ='$$caste_category' where user_id=$$USER_ID;
+					<form_elements id="5">
+						<dataType>string</dataType>
+						<label>UG Degrees</label>
+						<elemntName>ug_degree</elemntName>
+						<elemntType>DROP_DOWN</elemntType>
+						<dropdownData type="ajaxified_list" dataFetchType="sql_string">
+						<itemSource>
+						select distinct parent_value as key, parent_value as value  from parent_dropdown_table where group_name='ug_degrees' and lower(parent_value) like '%:search_term%'
+						</itemSource>
+						</dropdownData>
+					</form_elements>
+					<form_elements id="6" dependency="5">
+						<dataType>string</dataType>
+						<label>UG Specialization</label>
+						<elemntName>ug_specialization</elemntName>
+						<elemntType>DROP_DOWN</elemntType>
+						<dropdownData type="ajaxified_list" dataFetchType="sql_string">
+						<itemSource>
+						select child_dropdown_value as key, child_dropdown_value as value from child_dropdown_table where parent_value=':dependency_term' and lower(child_dropdown_value) like '%:search_term%' ;
+						</itemSource>
+						</dropdownData>
+					</form_elements>
+					<updateQuery>update address set pincode_id =(select id from pincode where pin = ':pincode' limit 1)  where id = (select address_id from user_profile where user_id =:USER_ID);
+					 update user_profile set dob =':dob' , aadhar_no = :aadhar , caste_category =':caste_category' where user_id=:USER_ID;
 					</updateQuery>
 				</steps>				
 			</value>

@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlElement;
  *
  */
 public class TaskStep {
+	Integer id;
 	String label;
 	List<TaskFormElement> form_elements;
 	String updateQuery;
@@ -56,6 +57,15 @@ public class TaskStep {
 	}
 	public void setFetchQuery(String fetchQuery) {
 		this.fetchQuery = fetchQuery;
+	}
+
+	@XmlAttribute
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	
 	
