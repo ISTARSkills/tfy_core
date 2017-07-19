@@ -318,5 +318,61 @@
 				</steps>					
 			</value>
 		</entry>
+		<entry>
+			<key>202</key>
+			<value id="202" taskName="STUDENT_FEEDBACK_FORM">
+				<description>This form need to be filled by students</description>
+				<label>Classroom Feedback</label>
+				<steps label="Infra Realetd Fedback" id="1">
+					<form_elements id="1">
+						<dataType>DECIMAL</dataType>
+						<label>Projector Quality</label>
+						<elemntName>projector</elemntName>
+						<elemntType>TEXt_AREA</elemntType>
+					</form_elements>
+					<form_elements id="2">
+						<dataType>DECIMAL</dataType>
+						<label>asd</label>
+						<elemntName>internet</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<updateQuery>update address set pincode_id =(select id from pincode where pin = ':pincode' limit 1)  where id = (select address_id from user_profile where user_id =:USER_ID);
+					 update user_profile set dob =':dob' , aadhar_no = :aadhar , caste_category =':caste_category' where user_id=:USER_ID;
+					</updateQuery>
+				</steps>
+				<steps label="User Profile" id="2">
+					<form_elements id="1">
+						<dataType>number</dataType>
+						<label>Pincode</label>
+						<elemntName>pincode</elemntName>
+						<elemntType>DROP_DOWN</elemntType>
+						<dropdownData type="ajaxified_list" dataFetchType="sql_string">
+						<itemSource>
+						select distinct pin as key, pin as value from pincode where CAST(pin AS varchar) like '%:search_term%'
+						</itemSource>
+						</dropdownData>
+					</form_elements>					
+					<updateQuery>update address set pincode_id =(select id from pincode where pin = ':pincode' limit 1)  where id = (select address_id from user_profile where user_id =:USER_ID);
+					 update user_profile set dob =':dob' , aadhar_no = :aadhar , caste_category =':caste_category' where user_id=:USER_ID;
+					</updateQuery>
+				</steps>
+				<steps label="Professional Profile" id="3">
+					<form_elements id="1">
+						<dataType>number</dataType>
+						<label>Pincode</label>
+						<elemntName>pincode</elemntName>
+						<elemntType>DROP_DOWN</elemntType>
+						<dropdownData type="ajaxified_list" dataFetchType="sql_string">
+						<itemSource>
+						select distinct pin as key, pin as value from pincode where CAST(pin AS varchar) like '%:search_term%'
+						</itemSource>
+						</dropdownData>
+					</form_elements>					
+					<updateQuery>update address set pincode_id =(select id from pincode where pin = ':pincode' limit 1)  where id = (select address_id from user_profile where user_id =:USER_ID);
+					 update user_profile set dob =':dob' , aadhar_no = :aadhar , caste_category =':caste_category' where user_id=:USER_ID;
+					</updateQuery>
+				</steps>					
+			</value>
+		</entry>
 	</templates>
 </taskLibrary>
