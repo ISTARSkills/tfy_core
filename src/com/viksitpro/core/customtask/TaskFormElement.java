@@ -27,7 +27,19 @@ public class TaskFormElement {
 	DropDownData dropdownData;
 	Integer id;
 	Integer dependency;
+	Boolean required;
 	
+	
+	
+	@XmlAttribute(name="required", required=false)
+	public Boolean getRequired() {
+		return required;
+	}
+
+	public void setRequired(Boolean required) {
+		this.required = required;
+	}
+
 	@XmlAttribute(name="dependency", required=false)
 	public Integer getDependency() {
 		return dependency;
@@ -119,34 +131,39 @@ public class TaskFormElement {
 		DBUTILS util = new  DBUTILS();
 		String elementName=element.getElemntName().replaceAll(" ","_").replace("?", "").toLowerCase();
 		String uniqueId = "form_element_"+templateId+"_"+stepId+"_"+element.getId();
+		String required = "";
+		if(element.getRequired()!=null && element.getRequired())
+		{
+			required = "required";
+		}	
 		switch (element.getElemntType()) {
 		case "STAR_RATING":
 			out.append("<div class='form-group'>\r\n" + 
 					"<label>"+element.getLabel()+ " </label> \r\n" + 
-					"<div class='combostar' data-name='"+elementName+"'>" + 
+					"<div class='combostar "+required+"' data-name='"+elementName+"'>" + 
 					"</div></div>");
 			return out;
 			
 		case "SWITCH":
 			out.append("<div class='form-group'><label>"
 					+element.getLabel()+ "</label><br/>" + 
-					"  <input type='checkbox' name='"+elementName+"' class='js-switch' data-unique="+uniqueId+" id='"+uniqueId+"' tabindex='"+(element.getId())+"'>\r\n"+ 
+					"  <input type='checkbox' name='"+elementName+"' class='js-switch form-control "+required+"' data-unique="+uniqueId+" id='"+uniqueId+"' tabindex='"+(element.getId())+"'>\r\n"+ 
 					"</div>");
 			return out;
 		case "TEXT_AREA":
 			out.append("<div class='form-group'><label>"
 					+element.getLabel()+ "</label><br/>" + 
-					"  <textarea style='width:100%;' rows='3' name='"+elementName+"'  data-unique="+uniqueId+" id='"+uniqueId+"' tabindex='"+(element.getId())+"'></textarea>"+ 
+					"  <textarea style='width:100%;' rows='3' name='"+elementName+"'  data-unique="+uniqueId+" id='"+uniqueId+"' tabindex='"+(element.getId())+"' class='form-control "+required+"'></textarea>"+ 
 					"</div>");
 			return out;
 		case "TEXT_BOX":
 			out.append("<div class='form-group'><label>"
 					+element.getLabel()+ "</label><br/>" + 
-					"  <input type='text' name='"+elementName+"' class='form-control' data-unique="+uniqueId+" id='"+uniqueId+"' tabindex='"+(element.getId())+"'>\r\n"+ 
+					"  <input type='text' name='"+elementName+"' class='form-control "+required+"' data-unique="+uniqueId+" id='"+uniqueId+"' tabindex='"+(element.getId())+"'>\r\n"+ 
 					"</div>");
 			return out;
 		case "DATE_PICKER":
-			out.append("<div class='form-group data_date_picker '><label>"+element.getLabel()+"</label> <div class='input-group date'> <span class='input-group-addon'><i class='fa fa-calendar'></i></span><input name='"+elementName+"' type='text' class='date_holder form-control' value='' tabindex='"+(element.getId())+"'> </div> </div>");			
+			out.append("<div class='form-group data_date_picker '><label>"+element.getLabel()+"</label> <div class='input-group date'> <span class='input-group-addon'><i class='fa fa-calendar'></i></span><input name='"+elementName+"' type='text' class='date_holder form-control "+required+"' tabindex='"+(element.getId())+"'> </div> </div>");			
 			return out;
 		case "DROP_DOWN":
 			
@@ -154,7 +171,7 @@ public class TaskFormElement {
 			{
 				out.append("<div class='form-group'><label> "+element.getLabel()+"</label>"
 						+ " <select name='"+elementName+"' data-unique="+uniqueId+" id='"+uniqueId+"' data-placeholder='Select "+element.getLabel()+"' "
-								+ "data-tabindex='"+(element.getId())+"' tabindex='"+(element.getId())+"'> ");
+								+ "data-tabindex='"+(element.getId())+"' tabindex='"+(element.getId())+"' class='form-control "+required+"'> ");
 				for(String option : element.getDropdownData().getItemSource().split("!#"))
 				{
 					out.append("<option value='"+option+"'>"+option+"</option>");
@@ -165,7 +182,7 @@ public class TaskFormElement {
 			{
 				if(element.getDependency()!=null)
 				{
-					out.append("<div class='form-group'><label> "+element.getLabel()+"</label> <select class='ajaxified_list' name='"+elementName+"' "
+					out.append("<div class='form-group'><label> "+element.getLabel()+"</label> <select class='ajaxified_list form-control "+required+"' name='"+elementName+"' "
 							+ " data-unique="+uniqueId+" id='"+uniqueId+"' data-dependency='"+"form_element_"+templateId+"_"+stepId+"_"+element.getDependency()+"' "
 									+ " data-sql='"+element.getDropdownData().getItemSource().replaceAll("'", "\"")+"' data-placeholder='Select "+element.getLabel()+"' "
 											+ "data-tabindex='"+(element.getId())+"' tabindex='"+(element.getId())+"'> ");	
@@ -174,7 +191,7 @@ public class TaskFormElement {
 				}
 				else
 				{
-					out.append("<div class='form-group'><label> "+element.getLabel()+"</label> <select class='ajaxified_list' name='"+elementName+"' data-unique="+uniqueId+" "
+					out.append("<div class='form-group'><label> "+element.getLabel()+"</label> <select class='ajaxified_list form-control "+required+"' name='"+elementName+"' data-unique="+uniqueId+" "
 							+ " id='"+uniqueId+"' data-sql='"+element.getDropdownData().getItemSource().replaceAll("'", "\"")+"' data-placeholder='Select "+element.getLabel()+"' "
 									+ "data-tabindex='"+(element.getId())+"' tabindex='"+(element.getId())+"'> ");				
 					out.append("</select></div>");

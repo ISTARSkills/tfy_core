@@ -205,7 +205,7 @@
 				<description>This form need to be filled by students</description>
 				<label>Certificate Requisition Form</label>
 				<steps label="Personal Profile" id="1">
-					<form_elements id="1">
+					<form_elements id="1" required="true">
 						<dataType>number</dataType>
 						<label>Pincode</label>
 						<elemntName>pincode</elemntName>
@@ -216,13 +216,13 @@
 						</itemSource>
 						</dropdownData>
 					</form_elements>
-					<form_elements id="2">
+					<form_elements id="2" required ="true">
 						<dataType> date</dataType>
 						<label>Date of Birth</label>
 						<elemntName>dob</elemntName>
 						<elemntType>DATE_PICKER</elemntType>
 					</form_elements>
-					<form_elements id="3">
+					<form_elements id="3" required ="true">
 						<dataType>number</dataType>
 						<label>Aadhar No</label>
 						<elemntName>aadhar</elemntName>
@@ -267,14 +267,14 @@
 						<elemntName>comments</elemntName>
 						<elemntType>TEXT_AREA</elemntType>
 					</form_elements>
-					<form_elements>
+					<form_elements id="8">
 						<dataType>boolean</dataType>
 						<label>Are you considering a career in this sector?</label>
 						<elemntName>are_you_considering_a_career_in_this_sector
 						</elemntName>
 						<elemntType>SWITCH</elemntType>
 					</form_elements>
-					<form_elements>
+					<form_elements required ="true" id="9">
 						<dataType>DECIMAL</dataType>
 						<label>Ablity to explain concepts</label>
 						<elemntName>ablity_to_explain_concepts</elemntName>
@@ -328,50 +328,89 @@
 						<dataType>DECIMAL</dataType>
 						<label>Projector Quality</label>
 						<elemntName>projector</elemntName>
-						<elemntType>TEXt_AREA</elemntType>
+						<elemntType>STAR_RATING</elemntType>
 					</form_elements>
 					<form_elements id="2">
 						<dataType>DECIMAL</dataType>
-						<label>asd</label>
+						<label>Internet speed</label>
 						<elemntName>internet</elemntName>
 						<elemntType>STAR_RATING</elemntType>
 					</form_elements>
-					<updateQuery>update address set pincode_id =(select id from pincode where pin = ':pincode' limit 1)  where id = (select address_id from user_profile where user_id =:USER_ID);
-					 update user_profile set dob =':dob' , aadhar_no = :aadhar , caste_category =':caste_category' where user_id=:USER_ID;
+					<form_elements id="3">
+						<dataType>DECIMAL</dataType>
+						<label>Were there any disturbance while running a class</label>
+						<elemntName>outside_disturbance</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<updateQuery>update task set actor=:USER_ID;
 					</updateQuery>
 				</steps>
-				<steps label="User Profile" id="2">
+				<steps label="Trainer Feedback" id="2">
 					<form_elements id="1">
-						<dataType>number</dataType>
-						<label>Pincode</label>
-						<elemntName>pincode</elemntName>
-						<elemntType>DROP_DOWN</elemntType>
-						<dropdownData type="ajaxified_list" dataFetchType="sql_string">
-						<itemSource>
-						select distinct pin as key, pin as value from pincode where CAST(pin AS varchar) like '%:search_term%'
-						</itemSource>
-						</dropdownData>
+						<dataType>DECIMAL</dataType>
+						<label>Does trainer good at the content?</label>
+						<elemntName>trainer_knowledge</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<form_elements id="2">
+						<dataType>DECIMAL</dataType>
+						<label>How would you rate for trainer teaching speed?</label>
+						<elemntName>trainer_too_fast</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<form_elements id="3">
+						<dataType>DECIMAL</dataType>
+						<label>How would you rate for trainer teaching speed?</label>
+						<elemntName>class_control_by_trainer</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<form_elements id="4">
+						<dataType>DECIMAL</dataType>
+						<label>Did you have fun in class?</label>
+						<elemntName>no_fun_in_class</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<form_elements id="5">
+						<dataType>DECIMAL</dataType>
+						<label>Does trainer gave enough examples?</label>
+						<elemntName>enough_examples</elemntName>
+						<elemntType>STAR_RATING</elemntType>
 					</form_elements>					
-					<updateQuery>update address set pincode_id =(select id from pincode where pin = ':pincode' limit 1)  where id = (select address_id from user_profile where user_id =:USER_ID);
-					 update user_profile set dob =':dob' , aadhar_no = :aadhar , caste_category =':caste_category' where user_id=:USER_ID;
+					<updateQuery>update task set actor=:USER_ID;
 					</updateQuery>
 				</steps>
-				<steps label="Professional Profile" id="3">
+				<steps label="Content Related Feedback" id="3">
 					<form_elements id="1">
-						<dataType>number</dataType>
-						<label>Pincode</label>
-						<elemntName>pincode</elemntName>
-						<elemntType>DROP_DOWN</elemntType>
-						<dropdownData type="ajaxified_list" dataFetchType="sql_string">
-						<itemSource>
-						select distinct pin as key, pin as value from pincode where CAST(pin AS varchar) like '%:search_term%'
-						</itemSource>
-						</dropdownData>
-					</form_elements>					
-					<updateQuery>update address set pincode_id =(select id from pincode where pin = ':pincode' limit 1)  where id = (select address_id from user_profile where user_id =:USER_ID);
-					 update user_profile set dob =':dob' , aadhar_no = :aadhar , caste_category =':caste_category' where user_id=:USER_ID;
+						<dataType>DECIMAL</dataType>
+						<label>Did you feel the complexcity in content?</label>
+						<elemntName>too_tough_content</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<form_elements id="2">
+						<dataType>DECIMAL</dataType>
+						<label>Was it too theoritical?</label>
+						<elemntName>too_much_theoritic</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>				
+					<updateQuery>update task set actor=:USER_ID;
 					</updateQuery>
-				</steps>					
+				</steps>	
+				<steps label="Summary" id="4">
+					<form_elements id="1">
+						<dataType>DECIMAL</dataType>
+						<label>how would you rate the overall experience?</label>
+						<elemntName>rating</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+					</form_elements>
+					<form_elements id="2">
+						<dataType>DECIMAL</dataType>
+						<label>Comment</label>
+						<elemntName>comment</elemntName>
+						<elemntType>TEXT_AREA</elemntType>
+					</form_elements>								
+					<updateQuery>update task set actor=:USER_ID;
+					</updateQuery>
+				</steps>				
 			</value>
 		</entry>
 	</templates>
