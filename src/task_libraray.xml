@@ -44,7 +44,8 @@
 						<elemntName>quality_of_examples_provided</elemntName>
 						<elemntType>STAR_RATING</elemntType>
 					</form_elements>
-					<updateQuery>update to something where something is something
+					<updateQuery>
+					INSERT INTO user_task_feedback (id, coverage, ease_of_understanding, quality_of_examples_provided, task_id, user_id) VALUES ((select max(id)+1 from user_task_feedback), :coverage, :ease_of_understanding, :quality_of_examples_provided, :TASK_ID, :USER_ID);
 					</updateQuery>
 				</steps>
 				<steps label="Faculty">
@@ -78,7 +79,8 @@
 						<elemntName>are_you_enjoying_the_course</elemntName>
 						<elemntType>SWITCH</elemntType>
 					</form_elements>
-					<updateQuery>update to something where something is something
+					<updateQuery>
+					UPDATE user_task_feedback SET knowledge_of_subject_matter=':knowledge_of_subject_matter', classroom_management=':classroom_management', communication_style=':communication_style', ablity_to_explain_concepts=:ablity_to_explain_concepts, enjoying_the_course=':are_you_enjoying_the_course' WHERE task_id=:TASK_ID AND user_id=:USER_ID;
 					</updateQuery>
 				</steps>
 				<steps label="Learning">
@@ -121,7 +123,8 @@
 						</elemntName>
 						<elemntType>SWITCH</elemntType>
 					</form_elements>
-					<updateQuery>update to something where something is something
+					<updateQuery>
+					UPDATE user_task_feedback SET feel_like_you_are_learning_something_useful=':do_you_feel_like_you_are_learning_something_useful', interested_in_learning_more_subjects_related_to_the_sector=':would_you_be_interested_in_learning_more_subjects_related_to_the_sector', recommend_istar_course_to_your_friends_based_on_your_experience=':would_you_recommend_istar_course(s)_to_your_friends_based_on_your_experience', is_the_course_giving_you_a_fair_idea=':is_the_course_giving_you_a_fair_idea_of_the_kind_of_work_involved_in_jobs_in_the_sector_and_the_nature_of_industry', considering_a_career_in_this_sector=':are_you_considering_a_career_in_this_sector' WHERE task_id=:TASK_ID AND user_id=:USER_ID;UPDATE user_task_feedback SET feel_like_you_are_learning_something_useful=':do_you_feel_like_you_are_learning_something_useful', interested_in_learning_more_subjects_related_to_the_sector=':would_you_be_interested_in_learning_more_subjects_related_to_the_sector', recommend_istar_course_to_your_friends_based_on_your_experience=':would_you_recommend_istar_course(s)_to_your_friends_based_on_your_experience', is_the_course_giving_you_a_fair_idea=':is_the_course_giving_you_a_fair_idea_of_the_kind_of_work_involved_in_jobs_in_the_sector_and_the_nature_of_industry', considering_a_career_in_this_sector=':are_you_considering_a_career_in_this_sector' WHERE task_id=:TASK_ID AND user_id=:USER_ID;
 					</updateQuery>
 				</steps>
 				<steps label="Istar Courses">
@@ -158,7 +161,9 @@
 						<elemntName>which_session_did_you_enjoy_the_least</elemntName>
 						<elemntType>TEXT_AREA</elemntType>
 					</form_elements>
-					<updateQuery>update to something where something is something
+					<updateQuery>
+					need to change
+					UPDATE user_task_feedback SET overall_how_would_you_rate_your_experience_in_the_course=NULL, feel_like_you_are_learning_something_useful=NULL, interested_in_learning_more_subjects_related_to_the_sector=NULL, recommend_istar_course_to_your_friends_based_on_your_experience=NULL, istar_make_the_course_more_interesting=NULL, aspects_of_the_course_would_you_change_or_remove=NULL, aspects_would_you_like_to_see_coverage_of=NULL, session_which_you_enjoy_the_most=NULL, session_which_you_enjoy_the_least=NULL, istar_course_compare_to_your_regular_college_curriculum=NULL, istar_faculty_compared_to_regular_college_faculty=NULL,enjoying_the_course=NULL, is_the_course_giving_you_a_fair_idea=NULL, considering_a_career_in_this_sector=NULL WHERE task_id=:TASK_ID AND user_id=:USER_ID;
 					</updateQuery>
 				</steps>
 
