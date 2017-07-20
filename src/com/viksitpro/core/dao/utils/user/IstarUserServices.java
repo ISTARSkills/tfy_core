@@ -435,6 +435,7 @@ public class IstarUserServices {
 		IstarUserDAO istarUserDAO = new IstarUserDAO();
 
 		Session istarUserSession = istarUserDAO.getSession();
+		istarUserSession.clear();
 		Transaction istarUserTransaction = null;
 		try {
 			istarUserTransaction = istarUserSession.beginTransaction();

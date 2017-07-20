@@ -136,6 +136,7 @@ public class UserRoleServices {
 			UserRoleDAO userRoleDAO = new UserRoleDAO();
 
 			Session userRoleSession = userRoleDAO.getSession();
+			userRoleSession.clear();
 			Transaction userRoleTransaction = null;
 			try {
 				userRoleTransaction = userRoleSession.beginTransaction();
