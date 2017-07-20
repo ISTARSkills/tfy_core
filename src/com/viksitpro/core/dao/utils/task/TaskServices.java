@@ -672,6 +672,7 @@ public class TaskServices {
 				taskTransaction.rollback();
 			e.printStackTrace();
 		} finally {
+			taskSession.clear();
 			taskSession.close();
 		}
 		return task;
@@ -693,6 +694,7 @@ public class TaskServices {
 				taskTransaction.rollback();
 			e.printStackTrace();
 		} finally {
+			taskSession.clear();
 			taskSession.close();
 		}
 		return task;

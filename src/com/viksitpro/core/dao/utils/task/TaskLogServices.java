@@ -188,6 +188,7 @@ public class TaskLogServices {
 				taskLogTransaction.rollback();
 			e.printStackTrace();
 		} finally {
+			taskLogSession.clear();
 			taskLogSession.close();
 		}
 		return taskLog;
