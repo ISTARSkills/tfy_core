@@ -3,6 +3,7 @@
  */
 package com.viksitpro.core.cms.oldcontent;
 
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -13,7 +14,14 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @XmlRootElement(name = "li")
 public class CMSTextItem {
-
+	String text;
+	int id;
+	CMSList list;
+	String description;
+	String fragmentAudioUrl;
+	int fragmentDuration;
+	String type = "circle";
+	
 	public CMSTextItem() {
 		super();
 	}
@@ -42,6 +50,16 @@ public class CMSTextItem {
 		super();
 		this.text = text;
 		this.id = id;
+	}
+
+	
+	@XmlAttribute(name = "list_type")
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getText() {
@@ -86,13 +104,7 @@ public class CMSTextItem {
 
 	}
 
-	String text;
-	int id;
-	CMSList list;
-	String description;
-	String fragmentAudioUrl;
-	int fragmentDuration;
-
+	
 	@XmlElement(name = "fragment_audio")
 	public String getFragmentAudioUrl() {
 		if (fragmentAudioUrl == null) {

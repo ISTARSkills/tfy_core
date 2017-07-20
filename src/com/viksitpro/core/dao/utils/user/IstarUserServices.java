@@ -1,6 +1,8 @@
 package com.viksitpro.core.dao.utils.user;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -433,6 +435,7 @@ public class IstarUserServices {
 		IstarUserDAO istarUserDAO = new IstarUserDAO();
 
 		Session istarUserSession = istarUserDAO.getSession();
+		istarUserSession.clear();
 		Transaction istarUserTransaction = null;
 		try {
 			istarUserTransaction = istarUserSession.beginTransaction();
