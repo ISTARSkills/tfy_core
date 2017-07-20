@@ -23,7 +23,6 @@
 	<classpathentry kind="lib" path="lib/google-http-client-jackson2-1.22.0.jar"/>
 	<classpathentry kind="lib" path="lib/google-oauth-client-1.22.0.jar"/>
 	<classpathentry kind="lib" path="lib/gson-2.1.jar"/>
-	<classpathentry kind="lib" path="lib/guava-jdk5-17.0.jar"/>
 	<classpathentry kind="lib" path="lib/hibernate-commons-annotations-5.0.1.Final.jar"/>
 	<classpathentry kind="lib" path="lib/hibernate-core-5.1.0.Final.jar"/>
 	<classpathentry kind="lib" path="lib/hibernate-entitymanager-5.1.0.Final.jar"/>

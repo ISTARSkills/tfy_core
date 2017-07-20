@@ -42,6 +42,8 @@ public class IstarUser implements java.io.Serializable {
 	private String authToken;
 	private String loginType;
 	private Boolean isVerified;
+	
+	
 	private Set<Task> tasksForAssigneeMember = new HashSet<Task>(0);
 	private Set<RecruiterJobTaskCollegeMapping> recruiterJobTaskCollegeMappings = new HashSet<RecruiterJobTaskCollegeMapping>(
 			0);
@@ -89,6 +91,11 @@ public class IstarUser implements java.io.Serializable {
 	private Set<UserGamification> userGamifications = new HashSet<UserGamification>(0);
 	// Constructors
 
+	
+	
+	
+	
+	
 	/** default constructor */
 	public IstarUser() {
 	}
@@ -675,6 +682,9 @@ public class IstarUser implements java.io.Serializable {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	
 
 
 }

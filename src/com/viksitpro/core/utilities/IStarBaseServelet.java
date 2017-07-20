@@ -15,9 +15,9 @@ public class IStarBaseServelet extends HttpServlet {
 	}
 	
 	public void printParams(HttpServletRequest request) {
-		//System.out.println("Printing parameters of request:");
+		System.out.println("Printing parameters of request:");
 		for (String iterable_element : request.getParameterMap().keySet()) {
-			//System.out.println(iterable_element+" : "+request.getParameter(iterable_element));
+			System.out.println(iterable_element+" : "+request.getParameter(iterable_element));
 		}
 	}
 	

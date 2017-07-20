@@ -6,13 +6,15 @@
 			<value id="200" taskName="Text Analysis">
 				<description>This template is for sentiemnt analysis and density
 					analysis</description>
-				<label>Text Analysis</label>
-				<steps label="Text Analysis">
-					<form_elements>
+				<label>Voice Analysis</label>
+				<steps label="Voice Analysis">
+					<form_elements id="1">
 						<dataType>string</dataType>
-						<elemntName>input_text</elemntName>
-						<elemntType>TEXT_AREA</elemntType>
-						<label>Enter Text</label>
+						<label>Record Feedback</label>
+						<elemntName>student_feedback</elemntName>
+						<elemntType>VOICE</elemntType>						
+						<element_param name="keywords" value="bond!#james!#007"></element_param>
+						<element_param name="benchmark_string" value="james bond was actor in more than 7 movies. 7 different person played the role of james bond in "></element_param>						
 					</form_elements>
 					<updateQuery>update to something where something is something
 					</updateQuery>

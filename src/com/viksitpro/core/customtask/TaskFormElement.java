@@ -3,6 +3,7 @@
  */
 package com.viksitpro.core.customtask;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -12,6 +13,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 
+import com.viksitpro.core.utilities.CustomFormElementTypes;
 import com.viksitpro.core.utilities.DBUTILS;
 import com.viksitpro.core.utilities.FormElementDropdownType;
 
@@ -28,9 +30,18 @@ public class TaskFormElement {
 	Integer id;
 	Integer dependency;
 	Boolean required;
+	ArrayList<ElementParam> elementParams;
 	
 	
-	
+	@XmlElement(name="element_param", required=false)
+	public ArrayList<ElementParam> getElementParams() {
+		return elementParams;
+	}
+
+	public void setElementParams(ArrayList<ElementParam> elementParams) {
+		this.elementParams = elementParams;
+	}
+
 	@XmlAttribute(name="required", required=false)
 	public Boolean getRequired() {
 		return required;
@@ -137,6 +148,18 @@ public class TaskFormElement {
 			required = "required";
 		}	
 		switch (element.getElemntType()) {
+		case CustomFormElementTypes.VOICE:
+			out.append("<div class='form-group'>"
+					+ "<label>"+element.getLabel()+"</label><br/>"
+							+ "<div class='voice_input'>"
+					+ "<button type='button' class='btn btn-w-m btn-primary start_mic'  id='start_speaking_"+templateId+"_"+stepId+"_"+element.getId()+"' style='font-weight: 700;     margin: 0;     padding: .7em 1em;'>"
+							+ "<i class='fa fa-microphone' aria-hidden='true'></i>&nbsp;&nbsp;START NOW</button>"
+					+ "&nbsp;&nbsp;&nbsp;"
+					+ "<button type='button' class='btn btn-w-m btn-danger stop_mic' id='stop_speaking_"+templateId+"_"+stepId+"_"+element.getId()+"' style='    font-weight: 700;     margin: 0;     padding: .7em 1em;'>"
+							+ "<i class='fa fa-microphone-slash' aria-hidden='true'></i>&nbsp;&nbsp;STOP</button>"
+					+ "<textarea name ="+element.getElemntName()+" id='voice_text_"+templateId+"_"+stepId+"_"+element.getId()+"' style='margin-top: 7px; width: 100%; display:none;'></textarea>"
+					+ "</div></div>");
+			return out;
 		case "STAR_RATING":
 			out.append("<div class='form-group'>\r\n" + 
 					"<label>"+element.getLabel()+ " </label> \r\n" + 
