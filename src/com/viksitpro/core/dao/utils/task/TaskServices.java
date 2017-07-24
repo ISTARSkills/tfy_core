@@ -664,7 +664,7 @@ public class TaskServices {
 		Transaction taskTransaction = null;
 		try {
 			taskTransaction = taskSession.beginTransaction();
-			taskSession.save(task);
+			taskSession.update(task);
 			taskTransaction.commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
@@ -672,7 +672,6 @@ public class TaskServices {
 				taskTransaction.rollback();
 			e.printStackTrace();
 		} finally {
-			taskSession.clear();
 			taskSession.close();
 		}
 		return task;
@@ -694,7 +693,6 @@ public class TaskServices {
 				taskTransaction.rollback();
 			e.printStackTrace();
 		} finally {
-			taskSession.clear();
 			taskSession.close();
 		}
 		return task;
