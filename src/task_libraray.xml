@@ -4,7 +4,7 @@
 	<entry>
 			<key>200</key>
 			<value id="200" taskName="Text Analysis">
-				<description>This template is for sentiemnt analysis and density
+				<description>This template is for sentiment analysis and density
 					analysis</description>
 				<label>Voice Analysis</label>
 				<steps label="Voice Analysis">
@@ -459,7 +459,7 @@
 			<value id="202" taskName="STUDENT_FEEDBACK_FORM">
 				<description>This form need to be filled by students</description>
 				<label>Classroom Feedback</label>
-				<steps label="Infra Realetd Fedback" id="1">
+				<steps label="Infrastructure Related Feedback" id="1">
 					<form_elements id="1">
 						<dataType>DECIMAL</dataType>
 						<label>Projector Quality</label>
@@ -484,31 +484,31 @@
 				<steps label="Trainer Feedback" id="2">
 					<form_elements id="1">
 						<dataType>DECIMAL</dataType>
-						<label>Does trainer good at the content?</label>
+						<label>Is trainer's content good?</label>
 						<elemntName>trainer_knowledge</elemntName>
 						<elemntType>STAR_RATING</elemntType>
 					</form_elements>
 					<form_elements id="2">
 						<dataType>DECIMAL</dataType>
-						<label>How would you rate for trainer teaching speed?</label>
+						<label>How would you rate the trainer's teaching speed?</label>
 						<elemntName>trainer_too_fast</elemntName>
 						<elemntType>STAR_RATING</elemntType>
 					</form_elements>
 					<form_elements id="3">
 						<dataType>DECIMAL</dataType>
-						<label>How would you rate for trainer teaching speed?</label>
+						<label>How would you rate the trainer's coverage of concepts?</label>
 						<elemntName>class_control_by_trainer</elemntName>
 						<elemntType>STAR_RATING</elemntType>
 					</form_elements>
 					<form_elements id="4">
 						<dataType>DECIMAL</dataType>
-						<label>Did you have fun in class?</label>
+						<label>How much fun did you have?</label>
 						<elemntName>no_fun_in_class</elemntName>
 						<elemntType>STAR_RATING</elemntType>
 					</form_elements>
 					<form_elements id="5">
 						<dataType>DECIMAL</dataType>
-						<label>Does trainer gave enough examples?</label>
+						<label>Did the trainer give enough examples?</label>
 						<elemntName>enough_examples</elemntName>
 						<elemntType>STAR_RATING</elemntType>
 					</form_elements>					
@@ -518,13 +518,13 @@
 				<steps label="Content Related Feedback" id="3">
 					<form_elements id="1">
 						<dataType>DECIMAL</dataType>
-						<label>Did you feel the complexcity in content?</label>
+						<label>How complex was the content?</label>
 						<elemntName>too_tough_content</elemntName>
 						<elemntType>STAR_RATING</elemntType>
 					</form_elements>
 					<form_elements id="2">
 						<dataType>DECIMAL</dataType>
-						<label>Was it too theoritical?</label>
+						<label>Was it too theoretical?</label>
 						<elemntName>too_much_theoritic</elemntName>
 						<elemntType>STAR_RATING</elemntType>
 					</form_elements>				
@@ -534,7 +534,7 @@
 				<steps label="Summary" id="4">
 					<form_elements id="1">
 						<dataType>DECIMAL</dataType>
-						<label>how would you rate the overall experience?</label>
+						<label>How would you rate the overall experience?</label>
 						<elemntName>rating</elemntName>
 						<elemntType>STAR_RATING</elemntType>
 					</form_elements>
@@ -547,6 +547,86 @@
 					<updateQuery>update task set actor=:USER_ID;
 					</updateQuery>
 				</steps>				
+			</value>
+		</entry>
+		<entry>
+		<key>203</key>
+			<value id="203" taskName="DDUGKY PLACEMENT">
+				<description>This form need to be filled by students</description>
+				<label>Classroom Feedback</label>
+<steps label="DDUGKY PLACEMENT" id="3">
+					<form_elements id="1">
+						<dataType>STRING</dataType>
+						<label>Name</label>
+						<elemntName>name</elemntName>
+						<elemntType>TEXT_BOX</elemntType>
+					</form_elements>
+					<form_elements id="2">
+						<dataType>STRING</dataType>
+						<label>Course</label>
+						<elemntName>course</elemntName>
+						<elemntType>TEXT_BOX</elemntType>
+					</form_elements>
+                          <form_elements id="3">
+						<dataType>STRING</dataType>
+						<label>Center</label>
+						<elemntName>center</elemntName>
+						<elemntType>TEXT_BOX</elemntType>
+					</form_elements>
+					<form_elements id="4">
+						<dataType>NUMBER</dataType>
+						<label>Batch Number</label>
+						<elemntName>batch_number</elemntName>
+						<elemntType>TEXT_BOX</elemntType>
+					</form_elements>
+					
+				      <form_elements id="5">
+						<dataType>NUMBER</dataType>
+						<label>BATCH CODE</label>
+						<elemntName>batch_code</elemntName>
+						<elemntType>TEXT_BOX</elemntType>
+					</form_elements>
+					<form_elements id="6">
+						<dataType>boolean</dataType>
+						<label>Would you like to get further placement assistance from istar? *</label>
+						<elemntName>need_further_assistance</elemntName>
+						<elemntType>SWITCH</elemntType>
+					</form_elements>
+					<form_elements id="7">
+						<dataType>boolean</dataType>
+						<label>Will you be available for placements from 2nd August to 6th August? *</label>
+						<elemntName>avail</elemntName>
+						<elemntType>SWITCH</elemntType>
+					</form_elements>
+					
+					<updateQuery>INSERT INTO stu_placement (id, student_id, course_name, center, batch_number, batch_code, need_further_assistance, avail) 
+			VALUES ((select COALESCE(max(id),0)+1 from stu_placement), :USER_ID, ':course', ':center', ':batch_number', ':batch_code', ':need_further_assistance', ':avail');
+			update task set is_active='f' where actor=:USER_ID and id= :TASK_ID;
+					</updateQuery>
+				</steps>	
+					
+			</value>
+		</entry>
+		<entry>
+			<key>204</key>
+			<value id="204" taskName="RSVP Event">
+				<description>This template is used for generating a binary input custom task like accepting meeting requests.</description>
+				<label>Meeting Request</label>
+				<steps label="Meeting Request">
+					<form_elements id="1">
+						<dataType>boolean</dataType>
+						<label>Hi Paul,
+My name is Vaibhav from iSTAR, which is a skill training firm.
+I am trying to locate someone from the Human Resource department to meet and discuss the possibility of training your employees.
+I appreciate if you could point me in the right direction by providing the name and contact details of the most suitable person.
+Thank you very much for your time.   Kindly RSVP for Meeting Request
+</label>
+						<elemntName>meeting_request</elemntName>
+						<elemntType>SWITCH</elemntType>						
+					</form_elements>
+					<updateQuery>update task set is_active = 'true' where id = 
+					</updateQuery>
+				</steps>
 			</value>
 		</entry>
 	</templates>
