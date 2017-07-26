@@ -624,7 +624,7 @@ Thank you very much for your time.   Kindly RSVP for Meeting Request
 						<elemntName>meeting_request</elemntName>
 						<elemntType>SWITCH</elemntType>						
 					</form_elements>
-					<updateQuery>update task set is_active = 'true' where id = 
+					<updateQuery>update task set is_active = 'true' where id = :TASK_ID
 					</updateQuery>
 				</steps>
 			</value>
