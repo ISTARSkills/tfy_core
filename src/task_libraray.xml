@@ -146,7 +146,7 @@
 					<form_elements>
 						<dataType>string</dataType>
 						<label>Which session did you enjoy the most?</label>
-						<elemntName>which_session_did_you_enjoy_the_most</elemntName>
+						<elemntName>session_which_you_enjoy_the_most</elemntName>
 						<elemntType>TEXT_AREA</elemntType>
 					</form_elements>
 					<form_elements>
@@ -156,7 +156,7 @@
 						<elemntType>TEXT_AREA</elemntType>
 					</form_elements>
 					<updateQuery>
-					UPDATE user_task_feedback SET istar_make_the_course_more_interesting=':istar_make_the_course_more_interesting', aspects_of_the_course_would_you_change_or_remove=':aspects_of_the_course_would_you_change_or_remove', aspects_would_you_like_to_see_coverage_of=':aspects_would_you_like_to_see_coverage_of', session_which_you_enjoy_the_least=':session_which_you_enjoy_the_least' WHERE task_id=:TASK_ID AND user_id=:USER_ID;
+					UPDATE user_task_feedback SET session_which_you_enjoy_the_most=':session_which_you_enjoy_the_most',istar_make_the_course_more_interesting=':istar_make_the_course_more_interesting', aspects_of_the_course_would_you_change_or_remove=':aspects_of_the_course_would_you_change_or_remove', aspects_would_you_like_to_see_coverage_of=':aspects_would_you_like_to_see_coverage_of', session_which_you_enjoy_the_least=':session_which_you_enjoy_the_least' WHERE task_id=:TASK_ID AND user_id=:USER_ID;
 					</updateQuery>
 				</steps>
 
