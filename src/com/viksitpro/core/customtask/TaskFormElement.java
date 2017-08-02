@@ -141,6 +141,7 @@ public class TaskFormElement {
 		StringBuffer out = new StringBuffer();
 		DBUTILS util = new  DBUTILS();
 		String elementName=element.getElemntName().replaceAll(" ","_").replace("?", "").toLowerCase();
+		String dataType=element.getDataType();
 		String uniqueId = "form_element_"+templateId+"_"+stepId+"_"+element.getId();
 		String required = "";
 		if(element.getRequired()!=null && element.getRequired())
@@ -184,7 +185,7 @@ public class TaskFormElement {
 		case "TEXT_BOX":
 			out.append("<div class='form-group'><label>"
 					+element.getLabel()+ "</label><br/>" + 
-					"  <input type='text' name='"+elementName+"' class='form-control "+required+"' data-unique="+uniqueId+" id='"+uniqueId+"' tabindex='"+(element.getId())+"'>\r\n"+ 
+					"  <input type='"+dataType+"' name='"+elementName+"' class='form-control "+required+"' data-unique="+uniqueId+" id='"+uniqueId+"' tabindex='"+(element.getId())+"'>\r\n"+ 
 					"</div>");
 			return out;
 		case "DATE_PICKER":
