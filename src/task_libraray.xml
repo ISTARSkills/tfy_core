@@ -192,6 +192,7 @@
 					</form_elements>
 					<updateQuery>
 					UPDATE user_task_feedback SET overall_how_would_you_rate_your_experience_in_the_course=:overall_how_would_you_rate_your_experience_in_the_course,istar_faculty_compared_to_regular_college_faculty=':how_is_istar_faculty_compared_to_regular_college_faculty',istar_course_compare_to_your_regular_college_curriculum=':how_does_istar_course_compare_to_your_regular_college_curriculum' WHERE task_id=:TASK_ID AND user_id=:USER_ID;
+					UPDATE task set state='COMPLETED', is_active='f' where id = :TASK_ID;
 					</updateQuery>
 				</steps>
 			</value>
@@ -209,7 +210,7 @@
 						<elemntType>DROP_DOWN</elemntType>
 						<dropdownData type="ajaxified_list" dataFetchType="sql_string">
 						<itemSource>
-						select distinct pin as key, pin as value from pincode where CAST(pin AS varchar) like '%:search_term%'
+						select distinct pin as key from pincode where CAST(pin AS varchar) like '%:search_term%'
 						</itemSource>
 						</dropdownData>
 					</form_elements>
@@ -275,6 +276,7 @@
 					<updateQuery>update address set pincode_id =(select id from pincode where pin = ':pincode' limit 1),addressline1=':address_line_1',addressline2=':address_line_2'  where id = (select address_id from user_profile where user_id =:USER_ID);
 					 update user_profile set dob =':dob' , aadhar_no = :aadhar , caste_category =':caste_category',religion =':religion',place_of_birth=':place_of_birth',father_name=':father_name' where user_id=:USER_ID;
 					 update professional_profile set below_poverty_line = ':below_poverty_line' where user_id = :USER_ID;
+					 UPDATE task set state='COMPLETED', is_active='f' where id = :TASK_ID;
 					</updateQuery>
 				</steps>
 				<steps label="Education Details" id="2">
