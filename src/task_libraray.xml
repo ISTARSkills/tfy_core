@@ -47,6 +47,7 @@
 						<elemntType>STAR_RATING</elemntType>
 					</form_elements>
 					<updateQuery>
+					DELETE FROM user_task_feedback WHERE task_id=:TASK_ID AND user_id=:USER_ID;
 					INSERT INTO user_task_feedback (id, coverage, ease_of_understanding, quality_of_examples_provided, task_id, user_id) VALUES ((select COALESCE(max(id)+1 , 1) from user_task_feedback), :coverage, :ease_of_understanding, :quality_of_examples_provided, :TASK_ID, :USER_ID);
 					</updateQuery>
 				</steps>
