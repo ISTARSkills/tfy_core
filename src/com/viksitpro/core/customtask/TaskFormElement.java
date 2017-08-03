@@ -29,7 +29,8 @@ public class TaskFormElement {
 	DropDownData dropdownData;
 	Integer id;
 	Integer dependency;
-	Boolean required;
+	
+	ArrayList<ValidationType> validationTypes;
 	ArrayList<ElementParam> elementParams;
 	
 	
@@ -42,14 +43,7 @@ public class TaskFormElement {
 		this.elementParams = elementParams;
 	}
 
-	@XmlAttribute(name="required", required=false)
-	public Boolean getRequired() {
-		return required;
-	}
-
-	public void setRequired(Boolean required) {
-		this.required = required;
-	}
+	
 
 	@XmlAttribute(name="dependency", required=false)
 	public Integer getDependency() {
@@ -137,6 +131,19 @@ public class TaskFormElement {
 		this.dropdownData = dropdownData;
 	}
 
+	
+	
+	
+	
+	@XmlElement(name="validation_types", required=false)
+	public ArrayList<ValidationType> getValidationTypes() {
+		return validationTypes;
+	}
+
+	public void setValidationTypes(ArrayList<ValidationType> validationTypes) {
+		this.validationTypes = validationTypes;
+	}
+
 	public static  StringBuffer get(TaskFormElement element,Integer templateId, Integer stepId) {
 		StringBuffer out = new StringBuffer();
 		DBUTILS util = new  DBUTILS();
@@ -144,10 +151,21 @@ public class TaskFormElement {
 		String dataType=element.getDataType();
 		String uniqueId = "form_element_"+templateId+"_"+stepId+"_"+element.getId();
 		String required = "";
-		if(element.getRequired()!=null && element.getRequired())
+		String warning ="";
+		String validationDataString ="";
+		for(ValidationType valType : element.getValidationTypes())		
 		{
-			required = "required";
-		}	
+			validationDataString="";
+			warning = valType.getWarning();
+			
+			
+			//if validation type contains required also
+			{
+				required="required";
+			}
+		}
+		
+		
 		switch (element.getElemntType()) {
 		case CustomFormElementTypes.VOICE:
 			out.append("<div class='form-group'>"
@@ -160,13 +178,14 @@ public class TaskFormElement {
 					+ "<button type='button' class='btn btn-w-m btn-danger stop_mic' id='stop_speaking_"+templateId+"_"+stepId+"_"+element.getId()+"' "
 							+ "style='    background: #528FE7 !important;     color: #FFF;     font-weight: 700;     margin: 0;     padding: .7em 1em;     width: 142px;     height: 44px;     border-color: #528FE7;'>"
 							+ "<i class='fa fa-microphone-slash' aria-hidden='true'></i>&nbsp;&nbsp;STOP</button>"
-					+ "<textarea name ="+element.getElemntName()+" id='voice_text_"+templateId+"_"+stepId+"_"+element.getId()+"' style='margin-top: 7px; width: 100%; display:none;'></textarea>"
+					+ "<textarea name ="+element.getElemntName()+" id='voice_text_"+templateId+"_"+stepId+"_"+element.getId()+"' style='margin-top: 7px; width: 100%; display:none;' "+validationDataString+"></textarea>"
+							+ "<label style='display:none' id='warning_voice_text_"+templateId+"_"+stepId+"_"+element.getId()+"'>"+warning+"</label>"
 					+ "</div></div>");
 			return out;
 		case "STAR_RATING":
 			out.append("<div class='form-group'>\r\n" + 
 					"<label>"+element.getLabel()+ " </label> \r\n" + 
-					"<div class='combostar form-control"+required+"' data-name='"+elementName+"'>" + 
+					"<div class='combostar form-control "+required+"' data-name='"+elementName+"'>" + 
 					"</div></div>");
 			return out;
 			
@@ -234,4 +253,6 @@ public class TaskFormElement {
 		
 		return out;
 	}
+
+	
 }

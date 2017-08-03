@@ -1,20 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <taskLibrary>
 	<templates>
-	<entry>
+		<entry>
 			<key>200</key>
 			<value id="200" taskName="Text Analysis">
 				<description>This template is for sentiment analysis and density
-					analysis</description>
+					analysis
+				</description>
 				<label>Voice Analysis</label>
 				<steps label="Voice Analysis">
 					<form_elements id="1">
 						<dataType>string</dataType>
 						<label>Record Feedback</label>
 						<elemntName>student_feedback</elemntName>
-						<elemntType>VOICE</elemntType>						
+						<elemntType>VOICE</elemntType>
 						<element_param name="keywords" value="bond!#james!#007"></element_param>
-						<element_param name="benchmark_string" value="james bond was actor in more than 7 movies. 7 different person played the role of james bond in "></element_param>						
+						<element_param name="benchmark_string"
+							value="james bond was actor in more than 7 movies. 7 different person played the role of james bond in "></element_param>
+							
+						<validation_types type="REQUIRED"></validation_types>
+						<validation_types type="INTEGER"></validation_types>
+						<validation_types type="INTEGER_RANGE"  warning="This filed must lie in between 10 to 1000">
+							<params name="min_integer">
+							<value>10</value>							
+							</params>
+							<params name="max_integer">
+							<value>1000</value>
+							</params>
+						</validation_types>
+						<validation_types type="PATTERN">
+						<params name="pattern">
+							<value><![CDATA[(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])]]></value>
+							</params>						
+						</validation_types>
+						<validation_types type="ALPHANUMERIC">
+										
+						</validation_types>	
 					</form_elements>
 					<updateQuery>update to something where something is something
 					</updateQuery>
@@ -25,7 +46,8 @@
 			<key>100</key>
 			<value id="100" taskName="MID_SESSION_STUDENT_FEEDBACK">
 				<description>A class has been scheduled for the course $$PROGRAM in
-					$$ORGANIZATION_NAME at $$EVENT_DATE</description>
+					$$ORGANIZATION_NAME at $$EVENT_DATE
+				</description>
 				<label>Mid Session Student Feedback</label>
 				<steps label="Course Content">
 					<form_elements>
@@ -47,8 +69,13 @@
 						<elemntType>STAR_RATING</elemntType>
 					</form_elements>
 					<updateQuery>
-					DELETE FROM user_task_feedback WHERE task_id=:TASK_ID AND user_id=:USER_ID;
-					INSERT INTO user_task_feedback (id, coverage, ease_of_understanding, quality_of_examples_provided, task_id, user_id) VALUES ((select COALESCE(max(id)+1 , 1) from user_task_feedback), :coverage, :ease_of_understanding, :quality_of_examples_provided, :TASK_ID, :USER_ID);
+						DELETE FROM user_task_feedback WHERE task_id=:TASK_ID AND
+						user_id=:USER_ID;
+						INSERT INTO user_task_feedback (id, coverage, ease_of_understanding,
+						quality_of_examples_provided, task_id, user_id) VALUES ((select
+						COALESCE(max(id)+1 , 1) from user_task_feedback), :coverage,
+						:ease_of_understanding, :quality_of_examples_provided, :TASK_ID,
+						:USER_ID);
 					</updateQuery>
 				</steps>
 				<steps label="Faculty">
@@ -83,14 +110,21 @@
 						<elemntType>SWITCH</elemntType>
 					</form_elements>
 					<updateQuery>
-					UPDATE user_task_feedback SET knowledge_of_subject_matter=':knowledge_of_subject_matter', classroom_management=':classroom_management', communication_style=':communication_style', ablity_to_explain_concepts=:ablity_to_explain_concepts, enjoying_the_course=':are_you_enjoying_the_course' WHERE task_id=:TASK_ID AND user_id=:USER_ID;
+						UPDATE user_task_feedback SET
+						knowledge_of_subject_matter=':knowledge_of_subject_matter',
+						classroom_management=':classroom_management',
+						communication_style=':communication_style',
+						ablity_to_explain_concepts=:ablity_to_explain_concepts,
+						enjoying_the_course=':are_you_enjoying_the_course' WHERE
+						task_id=:TASK_ID AND user_id=:USER_ID;
 					</updateQuery>
 				</steps>
 				<steps label="Learning">
 					<form_elements>
 						<dataType>boolean</dataType>
 						<label>Do you feel like you are learning something useful?</label>
-						<elemntName>feel_like_you_are_learning_something_useful</elemntName>
+						<elemntName>feel_like_you_are_learning_something_useful
+						</elemntName>
 						<elemntType>SWITCH</elemntType>
 					</form_elements>
 					<form_elements>
@@ -104,8 +138,10 @@
 					<form_elements>
 						<dataType>boolean</dataType>
 						<label>Would you be interested in learning more subjects related
-							to the sector?</label>
-						<elemntName>interested_in_learning_more_subjects_related_to_the_sector</elemntName>
+							to the sector?
+						</label>
+						<elemntName>interested_in_learning_more_subjects_related_to_the_sector
+						</elemntName>
 						<elemntType>SWITCH</elemntType>
 					</form_elements>
 					<form_elements>
@@ -117,12 +153,20 @@
 					<form_elements>
 						<dataType>boolean</dataType>
 						<label>Would you recommend istar course(s) to your friends based
-							on your experience?</label>
-						<elemntName>recommend_istar_course_to_your_friends_based_on_your_experience</elemntName>
+							on your experience?
+						</label>
+						<elemntName>recommend_istar_course_to_your_friends_based_on_your_experience
+						</elemntName>
 						<elemntType>SWITCH</elemntType>
 					</form_elements>
 					<updateQuery>
-					UPDATE user_task_feedback SET feel_like_you_are_learning_something_useful=':feel_like_you_are_learning_something_useful', interested_in_learning_more_subjects_related_to_the_sector=':interested_in_learning_more_subjects_related_to_the_sector', recommend_istar_course_to_your_friends_based_on_your_experience=':recommend_istar_course_to_your_friends_based_on_your_experience', is_the_course_giving_you_a_fair_idea=':is_the_course_giving_you_a_fair_idea', considering_a_career_in_this_sector=':considering_a_career_in_this_sector' WHERE task_id=:TASK_ID AND user_id=:USER_ID;
+						UPDATE user_task_feedback SET
+						feel_like_you_are_learning_something_useful=':feel_like_you_are_learning_something_useful',
+						interested_in_learning_more_subjects_related_to_the_sector=':interested_in_learning_more_subjects_related_to_the_sector',
+						recommend_istar_course_to_your_friends_based_on_your_experience=':recommend_istar_course_to_your_friends_based_on_your_experience',
+						is_the_course_giving_you_a_fair_idea=':is_the_course_giving_you_a_fair_idea',
+						considering_a_career_in_this_sector=':considering_a_career_in_this_sector'
+						WHERE task_id=:TASK_ID AND user_id=:USER_ID;
 					</updateQuery>
 				</steps>
 				<steps label="Istar Courses">
@@ -135,7 +179,8 @@
 					<form_elements>
 						<dataType>string</dataType>
 						<label>What aspects of the course would you change/remove?</label>
-						<elemntName>aspects_of_the_course_would_you_change_or_remove</elemntName>
+						<elemntName>aspects_of_the_course_would_you_change_or_remove
+						</elemntName>
 						<elemntType>TEXT_AREA</elemntType>
 					</form_elements>
 					<form_elements>
@@ -157,42 +202,49 @@
 						<elemntType>TEXT_AREA</elemntType>
 					</form_elements>
 					<updateQuery>
-					UPDATE user_task_feedback SET session_which_you_enjoy_the_most=':session_which_you_enjoy_the_most',istar_make_the_course_more_interesting=':istar_make_the_course_more_interesting', aspects_of_the_course_would_you_change_or_remove=':aspects_of_the_course_would_you_change_or_remove', aspects_would_you_like_to_see_coverage_of=':aspects_would_you_like_to_see_coverage_of', session_which_you_enjoy_the_least=':session_which_you_enjoy_the_least' WHERE task_id=:TASK_ID AND user_id=:USER_ID;
+						UPDATE user_task_feedback SET
+						session_which_you_enjoy_the_most=':session_which_you_enjoy_the_most',istar_make_the_course_more_interesting=':istar_make_the_course_more_interesting',
+						aspects_of_the_course_would_you_change_or_remove=':aspects_of_the_course_would_you_change_or_remove',
+						aspects_would_you_like_to_see_coverage_of=':aspects_would_you_like_to_see_coverage_of',
+						session_which_you_enjoy_the_least=':session_which_you_enjoy_the_least'
+						WHERE task_id=:TASK_ID AND user_id=:USER_ID;
 					</updateQuery>
 				</steps>
 
 				<steps label="Istar Courses 2">
-<!-- 
-					<form_elements>
-						<dataType>string</dataType>
-						<label>Which session did you enjoy the least?</label>
-						<elemntName>which_session_did_you_enjoy_the_least</elemntName>
-						<elemntType>TEXT_AREA</elemntType>
-					</form_elements> -->
+					<!-- <form_elements> <dataType>string</dataType> <label>Which session 
+						did you enjoy the least?</label> <elemntName>which_session_did_you_enjoy_the_least</elemntName> 
+						<elemntType>TEXT_AREA</elemntType> </form_elements> -->
 					<form_elements>
 						<dataType>string</dataType>
 						<label>How does Istar course compare to your regular college
-							curriculum?</label>
-						<elemntName>how_does_istar_course_compare_to_your_regular_college_curriculum</elemntName>
+							curriculum?
+						</label>
+						<elemntName>how_does_istar_course_compare_to_your_regular_college_curriculum
+						</elemntName>
 						<elemntType>TEXT_AREA</elemntType>
 					</form_elements>
 					<form_elements>
 						<dataType>string</dataType>
 						<label>How is istar faculty compared to regular college faculty?
 						</label>
-						<elemntName>how_is_istar_faculty_compared_to_regular_college_faculty</elemntName>
+						<elemntName>how_is_istar_faculty_compared_to_regular_college_faculty
+						</elemntName>
 						<elemntType>TEXT_AREA</elemntType>
 					</form_elements>
 					<form_elements>
 						<dataType>number</dataType>
 						<label>Overall how would you rate your experience In the course?
 						</label>
-						<elemntName>overall_how_would_you_rate_your_experience_in_the_course</elemntName>
+						<elemntName>overall_how_would_you_rate_your_experience_in_the_course
+						</elemntName>
 						<elemntType>STAR_RATING</elemntType>
 					</form_elements>
 					<updateQuery>
-					UPDATE user_task_feedback SET overall_how_would_you_rate_your_experience_in_the_course=:overall_how_would_you_rate_your_experience_in_the_course,istar_faculty_compared_to_regular_college_faculty=':how_is_istar_faculty_compared_to_regular_college_faculty',istar_course_compare_to_your_regular_college_curriculum=':how_does_istar_course_compare_to_your_regular_college_curriculum' WHERE task_id=:TASK_ID AND user_id=:USER_ID;
-					UPDATE task set state='COMPLETED', is_active='f' where id = :TASK_ID;
+						UPDATE user_task_feedback SET
+						overall_how_would_you_rate_your_experience_in_the_course=:overall_how_would_you_rate_your_experience_in_the_course,istar_faculty_compared_to_regular_college_faculty=':how_is_istar_faculty_compared_to_regular_college_faculty',istar_course_compare_to_your_regular_college_curriculum=':how_does_istar_course_compare_to_your_regular_college_curriculum'
+						WHERE task_id=:TASK_ID AND user_id=:USER_ID;
+						UPDATE task set state='COMPLETED', is_active='f' where id = :TASK_ID;
 					</updateQuery>
 				</steps>
 			</value>
@@ -209,18 +261,19 @@
 						<elemntName>pincode</elemntName>
 						<elemntType>DROP_DOWN</elemntType>
 						<dropdownData type="ajaxified_list" dataFetchType="sql_string">
-						<itemSource>
-						select distinct pin as key from pincode where CAST(pin AS varchar) like '%:search_term%'
-						</itemSource>
+							<itemSource>
+								select distinct pin as key from pincode where CAST(pin AS varchar)
+								like '%:search_term%'
+							</itemSource>
 						</dropdownData>
 					</form_elements>
-					<form_elements id="2" required ="true">
+					<form_elements id="2" required="true">
 						<dataType> date</dataType>
 						<label>Date of Birth</label>
 						<elemntName>dob</elemntName>
 						<elemntType>DATE_PICKER</elemntType>
 					</form_elements>
-					<form_elements id="3" required ="true">
+					<form_elements id="3" required="true">
 						<dataType>number</dataType>
 						<label>Aadhar No</label>
 						<elemntName>aadhar</elemntName>
@@ -262,8 +315,8 @@
 						<elemntName>caste_category</elemntName>
 						<elemntType>DROP_DOWN</elemntType>
 						<dropdownData type="static_list">
-						<itemSource>Gen!#OBC!#SC!#ST!#PH
-						</itemSource>
+							<itemSource>Gen!#OBC!#SC!#ST!#PH
+							</itemSource>
 						</dropdownData>
 					</form_elements>
 					<form_elements id="10">
@@ -271,12 +324,23 @@
 						<label>Religion *</label>
 						<elemntName>religion</elemntName>
 						<elemntType>DROP_DOWN</elemntType>
-						<dropdownData type="static_list"><itemSource>Hindu!#Muslim!#Christian!#Sikh!#Buddhist!#Jews!#Other</itemSource></dropdownData>
+						<dropdownData type="static_list">
+							<itemSource>Hindu!#Muslim!#Christian!#Sikh!#Buddhist!#Jews!#Other
+							</itemSource>
+						</dropdownData>
 					</form_elements>
-					<updateQuery>update address set pincode_id =(select id from pincode where pin = ':pincode' limit 1),addressline1=':address_line_1',addressline2=':address_line_2'  where id = (select address_id from user_profile where user_id =:USER_ID);
-					 update user_profile set dob =':dob' , aadhar_no = :aadhar , caste_category =':caste_category',religion =':religion',place_of_birth=':place_of_birth',father_name=':father_name' where user_id=:USER_ID;
-					 update professional_profile set below_poverty_line = ':below_poverty_line' where user_id = :USER_ID;
-					 UPDATE task set state='COMPLETED', is_active='f' where id = :TASK_ID;
+					<updateQuery>update address set pincode_id =(select id from pincode
+						where pin = ':pincode' limit
+						1),addressline1=':address_line_1',addressline2=':address_line_2'
+						where id = (select address_id from user_profile where user_id
+						=:USER_ID);
+						update user_profile set dob =':dob' , aadhar_no = :aadhar ,
+						caste_category =':caste_category',religion
+						=':religion',place_of_birth=':place_of_birth',father_name=':father_name'
+						where user_id=:USER_ID;
+						update professional_profile set below_poverty_line =
+						':below_poverty_line' where user_id = :USER_ID;
+						UPDATE task set state='COMPLETED', is_active='f' where id = :TASK_ID;
 					</updateQuery>
 				</steps>
 				<steps label="Education Details" id="2">
@@ -310,9 +374,11 @@
 						<elemntName>ug_degree</elemntName>
 						<elemntType>DROP_DOWN</elemntType>
 						<dropdownData type="ajaxified_list" dataFetchType="sql_string">
-						<itemSource>
-						select distinct parent_value as key, parent_value as value  from parent_dropdown_table where group_name='ug_degrees' and lower(parent_value) like '%:search_term%'
-						</itemSource>
+							<itemSource>
+								select distinct parent_value as key, parent_value as value from
+								parent_dropdown_table where group_name='ug_degrees' and
+								lower(parent_value) like '%:search_term%'
+							</itemSource>
 						</dropdownData>
 					</form_elements>
 					<form_elements id="6" dependency="5">
@@ -321,9 +387,11 @@
 						<elemntName>ug_specialization</elemntName>
 						<elemntType>DROP_DOWN</elemntType>
 						<dropdownData type="ajaxified_list" dataFetchType="sql_string">
-						<itemSource>
-						select child_dropdown_value as key, child_dropdown_value as value from child_dropdown_table where parent_value=':dependency_term' and lower(child_dropdown_value) like '%:search_term%' ;
-						</itemSource>
+							<itemSource>
+								select child_dropdown_value as key, child_dropdown_value as value from
+								child_dropdown_table where parent_value=':dependency_term' and
+								lower(child_dropdown_value) like '%:search_term%' ;
+							</itemSource>
 						</dropdownData>
 					</form_elements>
 					<form_elements id="7">
@@ -338,9 +406,11 @@
 						<elemntName>pg_degree</elemntName>
 						<elemntType>DROP_DOWN</elemntType>
 						<dropdownData type="ajaxified_list" dataFetchType="sql_string">
-						<itemSource>
-						select distinct parent_value as key, parent_value as value  from parent_dropdown_table where group_name='pg_degrees' and lower(parent_value) like '%:search_term%'
-						</itemSource>
+							<itemSource>
+								select distinct parent_value as key, parent_value as value from
+								parent_dropdown_table where group_name='pg_degrees' and
+								lower(parent_value) like '%:search_term%'
+							</itemSource>
 						</dropdownData>
 					</form_elements>
 					<form_elements id="9" dependency="8">
@@ -349,9 +419,11 @@
 						<elemntName>pg_specialization</elemntName>
 						<elemntType>DROP_DOWN</elemntType>
 						<dropdownData type="ajaxified_list" dataFetchType="sql_string">
-						<itemSource>
-						select child_dropdown_value as key, child_dropdown_value as value from child_dropdown_table where parent_value=':dependency_term' and lower(child_dropdown_value) like '%:search_term%' ;
-						</itemSource>
+							<itemSource>
+								select child_dropdown_value as key, child_dropdown_value as value from
+								child_dropdown_table where parent_value=':dependency_term' and
+								lower(child_dropdown_value) like '%:search_term%' ;
+							</itemSource>
 						</dropdownData>
 					</form_elements>
 					<form_elements id="10">
@@ -361,7 +433,9 @@
 						<elemntType>TEXT_BOX</elemntType>
 					</form_elements>
 					<updateQuery>
-					 update professional_profile set marks_10=:marks_10,marks_12=:marks_12,yop_10=:yop10,yop_12=:yop12,under_graduation_specialization_name=':ug_specialization',under_gradution_marks=:ug_marks,post_graduation_specialization_name=':pg_specialization',post_gradution_marks=:pg_marks,under_graduate_degree_name=':ug_degree',pg_degree_name=':pg_degree' where user_id=:USER_ID;
+						update professional_profile set
+						marks_10=:marks_10,marks_12=:marks_12,yop_10=:yop10,yop_12=:yop12,under_graduation_specialization_name=':ug_specialization',under_gradution_marks=:ug_marks,post_graduation_specialization_name=':pg_specialization',post_gradution_marks=:pg_marks,under_graduate_degree_name=':ug_degree',pg_degree_name=':pg_degree'
+						where user_id=:USER_ID;
 					</updateQuery>
 				</steps>
 				<steps label="Job Details" id="3">
@@ -371,8 +445,11 @@
 						<elemntName>job_sector</elemntName>
 						<elemntType>DROP_DOWN</elemntType>
 						<dropdownData type="static_list">
-						<itemSource>IT!#Automotive!#Banking and Financial!#ITES!#Healthcare!#Capital Goods!#Construction!#Security!#Telecom!#Retail!#Agriculture!#Electronics!#Beauty and Wellness!#Gem and Jewellery!#Media and Entertainment
-						</itemSource>
+							<itemSource>IT!#Automotive!#Banking and
+								Financial!#ITES!#Healthcare!#Capital
+								Goods!#Construction!#Security!#Telecom!#Retail!#Agriculture!#Electronics!#Beauty
+								and Wellness!#Gem and Jewellery!#Media and Entertainment
+							</itemSource>
 						</dropdownData>
 					</form_elements>
 					<form_elements id="2">
@@ -381,8 +458,8 @@
 						<elemntName>preferred_location</elemntName>
 						<elemntType>DROP_DOWN</elemntType>
 						<dropdownData type="static_list">
-						<itemSource>Anywhere!#Mumbai!#Delhi!#Bangalore!#Pune!#Kolkata!#Hyderabad!#Bhopal!#Ahmedabad!#Nagpur!#Chennai!#Chandigarh
-						</itemSource>
+							<itemSource>Anywhere!#Mumbai!#Delhi!#Bangalore!#Pune!#Kolkata!#Hyderabad!#Bhopal!#Ahmedabad!#Nagpur!#Chennai!#Chandigarh
+							</itemSource>
 						</dropdownData>
 					</form_elements>
 					<form_elements>
@@ -410,24 +487,26 @@
 						<elemntType>TEXT_BOX</elemntType>
 					</form_elements>
 					<updateQuery>
-					update professional_profile set job_sector=':job_sector',preferred_location=':preferred_location',company_name=':company_name',position=':position',duration=:duration,description=':description'  where user_id=:USER_ID;
+						update professional_profile set
+						job_sector=':job_sector',preferred_location=':preferred_location',company_name=':company_name',position=':position',duration=:duration,description=':description'
+						where user_id=:USER_ID;
 					</updateQuery>
 				</steps>
 				<steps label="Further Studies Details" id="3">
-				<form_elements id="1">
-					<dataType>boolean</dataType>
-					<label>Is Studying Further After Degree? *</label>
-					<elemntName>is_studying_further_after_degree</elemntName>
-					<elemntType>SWITCH</elemntType>
-				</form_elements>
-				<form_elements id="2">
+					<form_elements id="1">
+						<dataType>boolean</dataType>
+						<label>Is Studying Further After Degree? *</label>
+						<elemntName>is_studying_further_after_degree</elemntName>
+						<elemntType>SWITCH</elemntType>
+					</form_elements>
+					<form_elements id="2">
 						<dataType>string</dataType>
 						<label>Interested In Type of Course *</label>
 						<elemntName>interested_in_type_of_course</elemntName>
 						<elemntType>DROP_DOWN</elemntType>
 						<dropdownData type="static_list">
-						<itemSource>PG!#Diploma!#ShortTermCourses
-						</itemSource>
+							<itemSource>PG!#Diploma!#ShortTermCourses
+							</itemSource>
 						</dropdownData>
 					</form_elements>
 					<form_elements id="3">
@@ -436,12 +515,14 @@
 						<elemntName>area_of_interest</elemntName>
 						<elemntType>DROP_DOWN</elemntType>
 						<dropdownData type="static_list">
-						<itemSource>Finance!#Software!#Accounting!#Marketing!#Analytics
-						</itemSource>
+							<itemSource>Finance!#Software!#Accounting!#Marketing!#Analytics
+							</itemSource>
 						</dropdownData>
 					</form_elements>
 					<updateQuery>
-					update professional_profile set is_studying_further_after_degree=':is_studying_further_after_degree',interested_in_type_of_course=':interested_in_type_of_course',area_of_interest=':area_of_interest'  where user_id=:USER_ID;
+						update professional_profile set
+						is_studying_further_after_degree=':is_studying_further_after_degree',interested_in_type_of_course=':interested_in_type_of_course',area_of_interest=':area_of_interest'
+						where user_id=:USER_ID;
 					</updateQuery>
 				</steps>
 			</value>
@@ -488,7 +569,8 @@
 					</form_elements>
 					<form_elements id="3">
 						<dataType>DECIMAL</dataType>
-						<label>How would you rate the trainer's coverage of concepts?</label>
+						<label>How would you rate the trainer's coverage of concepts?
+						</label>
 						<elemntName>class_control_by_trainer</elemntName>
 						<elemntType>STAR_RATING</elemntType>
 					</form_elements>
@@ -503,7 +585,7 @@
 						<label>Did the trainer give enough examples?</label>
 						<elemntName>enough_examples</elemntName>
 						<elemntType>STAR_RATING</elemntType>
-					</form_elements>					
+					</form_elements>
 					<updateQuery>update task set actor=:USER_ID;
 					</updateQuery>
 				</steps>
@@ -519,10 +601,10 @@
 						<label>Was it too theoretical?</label>
 						<elemntName>too_much_theoritic</elemntName>
 						<elemntType>STAR_RATING</elemntType>
-					</form_elements>				
+					</form_elements>
 					<updateQuery>update task set actor=:USER_ID;
 					</updateQuery>
-				</steps>	
+				</steps>
 				<steps label="Summary" id="4">
 					<form_elements id="1">
 						<dataType>DECIMAL</dataType>
@@ -535,18 +617,18 @@
 						<label>Comment</label>
 						<elemntName>comment</elemntName>
 						<elemntType>TEXT_AREA</elemntType>
-					</form_elements>								
+					</form_elements>
 					<updateQuery>update task set actor=:USER_ID;
 					</updateQuery>
-				</steps>				
+				</steps>
 			</value>
 		</entry>
 		<entry>
-		<key>203</key>
+			<key>203</key>
 			<value id="203" taskName="DDUGKY PLACEMENT">
 				<description>This form need to be filled by students</description>
 				<label>Classroom Feedback</label>
-<steps label="DDUGKY PLACEMENT" id="3">
+				<steps label="DDUGKY PLACEMENT" id="3">
 					<form_elements id="1">
 						<dataType>STRING</dataType>
 						<label>Name</label>
@@ -559,7 +641,7 @@
 						<elemntName>course</elemntName>
 						<elemntType>TEXT_BOX</elemntType>
 					</form_elements>
-                          <form_elements id="3">
+					<form_elements id="3">
 						<dataType>STRING</dataType>
 						<label>Center</label>
 						<elemntName>center</elemntName>
@@ -570,9 +652,10 @@
 						<label>Batch Number</label>
 						<elemntName>batch_number</elemntName>
 						<elemntType>TEXT_BOX</elemntType>
+						
 					</form_elements>
-					
-				      <form_elements id="5">
+
+					<form_elements id="5">
 						<dataType>NUMBER</dataType>
 						<label>BATCH CODE</label>
 						<elemntName>batch_code</elemntName>
@@ -580,41 +663,51 @@
 					</form_elements>
 					<form_elements id="6">
 						<dataType>boolean</dataType>
-						<label>Would you like to get further placement assistance from istar? *</label>
+						<label>Would you like to get further placement assistance from
+							istar? *</label>
 						<elemntName>need_further_assistance</elemntName>
 						<elemntType>SWITCH</elemntType>
 					</form_elements>
 					<form_elements id="7">
 						<dataType>boolean</dataType>
-						<label>Will you be available for placements from 2nd August to 6th August? *</label>
+						<label>Will you be available for placements from 2nd August to 6th
+							August? *</label>
 						<elemntName>avail</elemntName>
 						<elemntType>SWITCH</elemntType>
 					</form_elements>
-					
-					<updateQuery>INSERT INTO stu_placement (id, student_id, course_name, center, batch_number, batch_code, need_further_assistance, avail) 
-			VALUES ((select COALESCE(max(id),0)+1 from stu_placement), :USER_ID, ':course', ':center', ':batch_number', ':batch_code', ':need_further_assistance', ':avail');
-			update task set is_active='f' where actor=:USER_ID and id= :TASK_ID;
+
+					<updateQuery>INSERT INTO stu_placement (id, student_id,
+						course_name, center, batch_number, batch_code,
+						need_further_assistance, avail)
+						VALUES ((select COALESCE(max(id),0)+1 from stu_placement), :USER_ID,
+						':course', ':center', ':batch_number', ':batch_code',
+						':need_further_assistance', ':avail');
+						update task set is_active='f' where actor=:USER_ID and id= :TASK_ID;
 					</updateQuery>
-				</steps>	
-					
+				</steps>
+
 			</value>
 		</entry>
 		<entry>
 			<key>204</key>
 			<value id="204" taskName="RSVP Event">
-				<description>This template is used for generating a binary input custom task like accepting meeting requests.</description>
+				<description>This template is used for generating a binary input
+					custom task like accepting meeting requests.</description>
 				<label>Meeting Request</label>
 				<steps label="Meeting Request">
 					<form_elements id="1">
 						<dataType>boolean</dataType>
 						<label>Hi Paul,
-My name is Vaibhav from iSTAR, which is a skill training firm.
-I am trying to locate someone from the Human Resource department to meet and discuss the possibility of training your employees.
-I appreciate if you could point me in the right direction by providing the name and contact details of the most suitable person.
-Thank you very much for your time.   Kindly RSVP for Meeting Request
-</label>
+							My name is Vaibhav from iSTAR, which is a skill training firm.
+							I am trying to locate someone from the Human Resource department
+							to meet and discuss the possibility of training your employees.
+							I appreciate if you could point me in the right direction by
+							providing the name and contact details of the most suitable
+							person.
+							Thank you very much for your time. Kindly RSVP for Meeting Request
+						</label>
 						<elemntName>meeting_request</elemntName>
-						<elemntType>SWITCH</elemntType>						
+						<elemntType>SWITCH</elemntType>
 					</form_elements>
 					<updateQuery>update task set is_active = 'true' where id = :TASK_ID
 					</updateQuery>

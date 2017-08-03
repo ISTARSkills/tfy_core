@@ -40,6 +40,7 @@ public class TaskItemCategory {
 	public static final String REMOTE_CLASS_PRESENTOR = "REMOTE_CLASS_PRESENTOR";
 	public static final String REMOTE_CLASS_STUDENT = "REMOTE_CLASS_STUDENT";
 	public static final String CUSTOM_TASK = "CUSTOM_TASK";
+	public static final String CREATE_LESSON = "CREATE_LESSON";
 
 	
 	
