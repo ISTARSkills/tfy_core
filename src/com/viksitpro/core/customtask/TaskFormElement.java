@@ -14,6 +14,7 @@ import javax.xml.bind.annotation.XmlElement;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 import com.viksitpro.core.utilities.CustomFormElementTypes;
+import com.viksitpro.core.utilities.CustomTaskElementValidationTypes;
 import com.viksitpro.core.utilities.DBUTILS;
 import com.viksitpro.core.utilities.FormElementDropdownType;
 
@@ -153,19 +154,33 @@ public class TaskFormElement {
 		String required = "";
 		String warning ="";
 		String validationDataString ="";
-		for(ValidationType valType : element.getValidationTypes())		
-		{
-			validationDataString="";
-			warning = valType.getWarning();
-			
-			
-			//if validation type contains required also
+		
+		if(element.getValidationTypes() != null){
+			for(ValidationType valType : element.getValidationTypes())		
 			{
-				required="required";
+				if(valType.getWarning()!=null){
+				warning = valType.getWarning();
+				}
+				if(valType.getType().equalsIgnoreCase(CustomTaskElementValidationTypes.REQUIRED))
+				{
+					required = "required";
+				}
+				else
+				{
+					validationDataString=" data-validation_type="+valType.getType();
+					if(valType.getParams()!=null){
+						for(ValidationParam validationParam : valType.getParams()){
+							String paramName = validationParam.getName();
+							String paramValue = validationParam.getValue();
+							validationDataString +=" "+paramName+" ='"+ paramValue+"'";
+						}
+					}	
+				}	
+				
+			
 			}
-		}
-		
-		
+			System.err.println("validation "+validationDataString);
+			}
 		switch (element.getElemntType()) {
 		case CustomFormElementTypes.VOICE:
 			out.append("<div class='form-group'>"
@@ -179,7 +194,7 @@ public class TaskFormElement {
 							+ "style='    background: #528FE7 !important;     color: #FFF;     font-weight: 700;     margin: 0;     padding: .7em 1em;     width: 142px;     height: 44px;     border-color: #528FE7;'>"
 							+ "<i class='fa fa-microphone-slash' aria-hidden='true'></i>&nbsp;&nbsp;STOP</button>"
 					+ "<textarea name ="+element.getElemntName()+" id='voice_text_"+templateId+"_"+stepId+"_"+element.getId()+"' style='margin-top: 7px; width: 100%; display:none;' "+validationDataString+"></textarea>"
-							+ "<label style='display:none' id='warning_voice_text_"+templateId+"_"+stepId+"_"+element.getId()+"'>"+warning+"</label>"
+							+ "<label class='custom_error' style='display:none' id='warning_voice_text_"+templateId+"_"+stepId+"_"+element.getId()+"'>"+warning+"</label>"
 					+ "</div></div>");
 			return out;
 		case "STAR_RATING":
@@ -192,54 +207,54 @@ public class TaskFormElement {
 		case "SWITCH":
 			out.append("<div class='form-group'><label>"
 					+element.getLabel()+ "</label><br/>" + 
-					"  <input type='checkbox' name='"+elementName+"' class='js-switch form-control "+required+"' data-unique="+uniqueId+" id='"+uniqueId+"' tabindex='"+(element.getId())+"'>\r\n"+ 
-					"</div>");
+					"  <input type='checkbox' name='"+elementName+"' class='js-switch form-control "+required+"' "+validationDataString+" data-unique="+uniqueId+" id='"+uniqueId+"' tabindex='"+(element.getId())+"'>\r\n"+ 
+					"<label style='display:none'  id='warning_"+uniqueId+"'>"+warning+"</label></div>");
 			return out;
 		case "TEXT_AREA":
 			out.append("<div class='form-group'><label>"
 					+element.getLabel()+ "</label><br/>" + 
-					"  <textarea style='width:100%;' rows='3' name='"+elementName+"'  data-unique="+uniqueId+" id='"+uniqueId+"' tabindex='"+(element.getId())+"' class='form-control "+required+"'></textarea>"+ 
-					"</div>");
+					"  <textarea style='width:100%;' rows='3' name='"+elementName+"' "+validationDataString+"  data-unique="+uniqueId+" id='"+uniqueId+"' tabindex='"+(element.getId())+"' class='form-control "+required+"'></textarea>"+ 
+					"<label style='display:none' class='custom_error' id='warning_"+uniqueId+"'>"+warning+"</label></div>");
 			return out;
 		case "TEXT_BOX":
 			out.append("<div class='form-group'><label>"
 					+element.getLabel()+ "</label><br/>" + 
-					"  <input type='"+dataType+"' name='"+elementName+"' class='form-control "+required+"' data-unique="+uniqueId+" id='"+uniqueId+"' tabindex='"+(element.getId())+"'>\r\n"+ 
-					"</div>");
+					"  <input type='"+dataType+"' name='"+elementName+"' "+validationDataString+" class='form-control "+required+"' data-unique="+uniqueId+" id='"+uniqueId+"' tabindex='"+(element.getId())+"'>\r\n"+ 
+					"<label style='display:none' class='custom_error' id='warning_"+uniqueId+"'>"+warning+"</label></div>");
 			return out;
 		case "DATE_PICKER":
-			out.append("<div class='form-group data_date_picker '><label>"+element.getLabel()+"</label> <div class='input-group date'> <span class='input-group-addon'><i class='fa fa-calendar'></i></span><input name='"+elementName+"' type='text' class='date_holder form-control "+required+"' tabindex='"+(element.getId())+"'> </div> </div>");			
+			out.append("<div class='form-group data_date_picker '><label>"+element.getLabel()+"</label> <div class='input-group date'> <span class='input-group-addon'><i class='fa fa-calendar'></i></span><input name='"+elementName+"' "+validationDataString+" type='text' class='date_holder form-control "+required+"' tabindex='"+(element.getId())+"' id='"+uniqueId+"'><label style='display:none' id='warning_"+uniqueId+"'>"+warning+"</label> </div> </div>");			
 			return out;
 		case "DROP_DOWN":
 			
 			if(element.getDropdownData().getType().equalsIgnoreCase(FormElementDropdownType.static_list))
 			{
 				out.append("<div class='form-group'><label> "+element.getLabel()+"</label>"
-						+ " <select name='"+elementName+"' data-unique="+uniqueId+" id='"+uniqueId+"' data-placeholder='Select "+element.getLabel()+"' "
+						+ " <select "+validationDataString+" name='"+elementName+"' data-unique="+uniqueId+" id='"+uniqueId+"' data-placeholder='Select "+element.getLabel()+"' "
 								+ "data-tabindex='"+(element.getId())+"' tabindex='"+(element.getId())+"' class='form-control "+required+"'> ");
 				for(String option : element.getDropdownData().getItemSource().split("!#"))
 				{
 					out.append("<option value='"+option+"'>"+option+"</option>");
 				}				
-				out.append("</select></div>");
+				out.append("</select><label style='display:none' id='warning_"+uniqueId+"'>"+warning+"</label></div>");
 			}
 			else if(element.getDropdownData().getType().equalsIgnoreCase(FormElementDropdownType.ajaxified_list))
 			{
 				if(element.getDependency()!=null)
 				{
-					out.append("<div class='form-group'><label> "+element.getLabel()+"</label> <select class='ajaxified_list form-control "+required+"' name='"+elementName+"' "
+					out.append("<div class='form-group'><label> "+element.getLabel()+"</label> <select "+validationDataString+" class='ajaxified_list form-control "+required+"' name='"+elementName+"' "
 							+ " data-unique="+uniqueId+" id='"+uniqueId+"' data-dependency='"+"form_element_"+templateId+"_"+stepId+"_"+element.getDependency()+"' "
 									+ " data-sql='"+element.getDropdownData().getItemSource().replaceAll("'", "\"")+"' data-placeholder='Select "+element.getLabel()+"' "
 											+ "data-tabindex='"+(element.getId())+"' tabindex='"+(element.getId())+"'> ");	
 					
-					out.append("</select></div>");
+					out.append("</select><label style='display:none' id='warning_"+uniqueId+"'>"+warning+"</label></div>");
 				}
 				else
 				{
-					out.append("<div class='form-group'><label> "+element.getLabel()+"</label> <select class='ajaxified_list form-control "+required+"' name='"+elementName+"' data-unique="+uniqueId+" "
+					out.append("<div class='form-group'><label> "+element.getLabel()+"</label> <select "+validationDataString+" class='ajaxified_list form-control "+required+"' name='"+elementName+"' data-unique="+uniqueId+" "
 							+ " id='"+uniqueId+"' data-sql='"+element.getDropdownData().getItemSource().replaceAll("'", "\"")+"' data-placeholder='Select "+element.getLabel()+"' "
 									+ "data-tabindex='"+(element.getId())+"' tabindex='"+(element.getId())+"'> ");				
-					out.append("</select></div>");
+					out.append("</select><label style='display:none' id='warning_"+uniqueId+"'>"+warning+"</label></div>");
 				}					
 			}				
 			return out;
