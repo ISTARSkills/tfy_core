@@ -8,7 +8,7 @@
 					analysis
 				</description>
 				<label>Voice Analysis</label>
-				<steps label="Voice Analysis">
+				<steps label="Voice Analysis" id="1">
 					<form_elements id="1">
 						<dataType>string</dataType>
 						<label>Record Feedback</label>
@@ -19,27 +19,117 @@
 							value="james bond was actor in more than 7 movies. 7 different person played the role of james bond in "></element_param>
 							
 						<validation_types type="REQUIRED"></validation_types>
-						<validation_types type="INTEGER"></validation_types>
-						<validation_types type="INTEGER_RANGE"  warning="This filed must lie in between 10 to 1000">
-							<params name="min_integer">
-							<value>10</value>							
+						
+							
+					</form_elements>
+					<form_elements id="2">
+						<dataType>number</dataType>
+						<label>coverage</label>
+						<elemntName>coverage</elemntName>
+						<elemntType>STAR_RATING</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
+					</form_elements>
+					<form_elements id="3">
+						<dataType>number</dataType>
+						<label>Pincode</label>
+						<elemntName>pincode</elemntName>
+						<elemntType>DROP_DOWN</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
+						<dropdownData type="ajaxified_list" dataFetchType="sql_string">
+							<itemSource>
+								select distinct pin as key from pincode where CAST(pin AS varchar)
+								like '%:search_term%'
+							</itemSource>
+						</dropdownData>
+					</form_elements>
+					<form_elements id="4">
+						<dataType>number</dataType>
+						<label>UG Marks</label>
+						<elemntName>ug_marks</elemntName>
+						<elemntType>TEXT_BOX</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
+						<validation_types type="INTEGER">
+							<params name="min">
+							<value>0</value>							
 							</params>
-							<params name="max_integer">
-							<value>1000</value>
+							<params name="max">
+							<value>100</value>
 							</params>
 						</validation_types>
-						<validation_types type="PATTERN">
-						<params name="pattern">
-							<value><![CDATA[(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])]]></value>
+					</form_elements>
+					<form_elements id="5">
+						<dataType>string</dataType>
+						<label>What aspects of the course would you change/remove?</label>
+						<elemntName>aspects_of_the_course_would_you_change_or_remove</elemntName>
+						<elemntType>TEXT_AREA</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
+						<validation_types type="ALPHANUMERIC" warning="Please enter in correct format">
+						<params name="minLength">
+							<value>5</value>							
+							</params>
+						<params name="maxLength">
+							<value>500</value>							
 							</params>						
 						</validation_types>
-						<validation_types type="ALPHANUMERIC">
-										
-						</validation_types>	
+					</form_elements>
+					<form_elements id="6">
+						<dataType>string</dataType>
+						<label>Place of Birth *</label>
+						<elemntName>place_of_birth</elemntName>
+						<elemntType>TEXT_BOX</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
+					</form_elements>
+					<form_elements id="7">
+						<dataType>number</dataType>
+						<label>Aadhar No</label>
+						<elemntName>aadhar</elemntName>
+						<elemntType>TEXT_BOX</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
+						<validation_types type="INTEGER_RANGE"  warning="This filed must lie in between 10 to 1000">
+							<params name="minLength">
+							<value>16</value>							
+							</params>
+							<params name="maxLength">
+							<value>16</value>
+							</params>
+						</validation_types>
+						
+					</form_elements>
+					<form_elements id="8">
+						<dataType>number</dataType>
+						<label>Aadhar No</label>
+						<elemntName>aadhar</elemntName>
+						<elemntType>TEXT_BOX</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
+						
+						<validation_types type="PATTERN" warning="Please enter in correct format">
+							<params name="pattern">
+							<value><![CDATA[^(?!0{12})\d{12}$]]></value>
+							</params>						
+						</validation_types>
+					</form_elements>
+					<form_elements id="9">
+						<dataType> date</dataType>
+						<label>Date of Birth</label>
+						<elemntName>dob</elemntName>
+						<elemntType>DATE_PICKER</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
 					</form_elements>
 					<updateQuery>update to something where something is something
 					</updateQuery>
-				</steps>
+					</steps>
+					<steps label="Testing" id="2">
+					<form_elements id="1">
+						<dataType>string</dataType>
+						<label>What aspects of the course would you change/remove?</label>
+						<elemntName>aspects_of_the_course_would_you_change_or_remove
+						</elemntName>
+						<elemntType>TEXT_AREA</elemntType>
+					</form_elements>
+					<updateQuery>update to something where something is something
+					</updateQuery>
+					</steps>
+				
 			</value>
 		</entry>
 		<entry>
@@ -255,7 +345,7 @@
 				<description>This form need to be filled by students</description>
 				<label>Certificate Requisition Form</label>
 				<steps label="Personal Profile" id="1">
-					<form_elements id="1" required="true">
+					<form_elements id="1">
 						<dataType>number</dataType>
 						<label>Pincode</label>
 						<elemntName>pincode</elemntName>
@@ -267,17 +357,31 @@
 							</itemSource>
 						</dropdownData>
 					</form_elements>
-					<form_elements id="2" required="true">
+					<form_elements id="2">
 						<dataType> date</dataType>
 						<label>Date of Birth</label>
 						<elemntName>dob</elemntName>
 						<elemntType>DATE_PICKER</elemntType>
 					</form_elements>
-					<form_elements id="3" required="true">
+					<form_elements id="3">
 						<dataType>number</dataType>
 						<label>Aadhar No</label>
 						<elemntName>aadhar</elemntName>
 						<elemntType>TEXT_BOX</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
+						<validation_types type="INTEGER"></validation_types>
+						<validation_types type="INTEGER_RANGE"  warning="This filed must lie in between 10 to 1000">
+							<params name="minLength">
+							<value>16</value>							
+							</params>
+							<params name="maxLength">
+							<value>16</value>
+							</params>
+						</validation_types>
+						<validation_types type="PATTERN">
+						</validation_types>
+						<validation_types type="ALPHANUMERIC">
+						</validation_types>	
 					</form_elements>
 					<form_elements id="4">
 						<dataType>string</dataType>

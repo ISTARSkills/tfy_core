@@ -9,9 +9,9 @@ package com.viksitpro.core.utilities;
  */
 public class CustomTaskElementValidationTypes {
 
-	public final String INTEGER ="INTEGER";
-	public final String REQUIRED ="REQUIRED";
-	public final String INTEGER_RANGE ="INTEGER_RANGE";
-	public final String ALPHANUMERIC ="ALPHANUMERIC";
-	public final String PATTERN ="PATTERN";
+	public final static String INTEGER ="INTEGER";
+	public final static String REQUIRED ="REQUIRED";
+	public final static String INTEGER_RANGE ="INTEGER_RANGE";
+	public final static String ALPHANUMERIC ="ALPHANUMERIC";
+	public final static String PATTERN ="PATTERN";
 }
