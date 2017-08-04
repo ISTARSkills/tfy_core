@@ -139,20 +139,20 @@
 					$$ORGANIZATION_NAME at $$EVENT_DATE
 				</description>
 				<label>Mid Session Student Feedback</label>
-				<steps label="Course Content">
-					<form_elements>
+				<steps label="Course Content" id="1">
+					<form_elements id="1">
 						<dataType>number</dataType>
 						<label>Coverage</label>
 						<elemntName>coverage</elemntName>
 						<elemntType>STAR_RATING</elemntType>
 					</form_elements>
-					<form_elements>
+					<form_elements id="2">
 						<dataType>number</dataType>
 						<label>Ease of Understanding</label>
 						<elemntName>ease_of_understanding</elemntName>
 						<elemntType>STAR_RATING</elemntType>
 					</form_elements>
-					<form_elements>
+					<form_elements id="3">
 						<dataType>number</dataType>
 						<label>Quality Of Examples Provided</label>
 						<elemntName>quality_of_examples_provided</elemntName>
@@ -168,32 +168,32 @@
 						:USER_ID);
 					</updateQuery>
 				</steps>
-				<steps label="Faculty">
-					<form_elements>
+				<steps label="Faculty" id="2">
+					<form_elements id="1">
 						<dataType>number</dataType>
 						<label>Knowledge of Subject Matter</label>
 						<elemntName>knowledge_of_subject_matter</elemntName>
 						<elemntType>STAR_RATING</elemntType>
 					</form_elements>
-					<form_elements>
+					<form_elements id="2">
 						<dataType>number</dataType>
 						<label>Classroom Management</label>
 						<elemntName>classroom_management</elemntName>
 						<elemntType>STAR_RATING</elemntType>
 					</form_elements>
-					<form_elements>
+					<form_elements id="3">
 						<dataType>number</dataType>
 						<label>Communication Style</label>
 						<elemntName>communication_style</elemntName>
 						<elemntType>STAR_RATING</elemntType>
 					</form_elements>
-					<form_elements>
+					<form_elements id="4">
 						<dataType>number</dataType>
 						<label>Ablity to explain concepts</label>
 						<elemntName>ablity_to_explain_concepts</elemntName>
 						<elemntType>STAR_RATING</elemntType>
 					</form_elements>
-					<form_elements>
+					<form_elements id="5">
 						<dataType>boolean</dataType>
 						<label>Are you enjoying the course?</label>
 						<elemntName>are_you_enjoying_the_course</elemntName>
@@ -209,15 +209,14 @@
 						task_id=:TASK_ID AND user_id=:USER_ID;
 					</updateQuery>
 				</steps>
-				<steps label="Learning">
-					<form_elements>
+				<steps label="Learning" id="3">
+					<form_elements id="1">
 						<dataType>boolean</dataType>
 						<label>Do you feel like you are learning something useful?</label>
-						<elemntName>feel_like_you_are_learning_something_useful
-						</elemntName>
+						<elemntName>feel_like_you_are_learning_something_useful</elemntName>
 						<elemntType>SWITCH</elemntType>
 					</form_elements>
-					<form_elements>
+					<form_elements id="2">
 						<dataType>boolean</dataType>
 						<label>Is the course giving you a fair idea of the kind of work
 							involved in jobs in the sector and the nature of Industry?
@@ -225,28 +224,26 @@
 						<elemntName>is_the_course_giving_you_a_fair_idea</elemntName>
 						<elemntType>SWITCH</elemntType>
 					</form_elements>
-					<form_elements>
+					<form_elements id="3">
 						<dataType>boolean</dataType>
 						<label>Would you be interested in learning more subjects related
 							to the sector?
 						</label>
-						<elemntName>interested_in_learning_more_subjects_related_to_the_sector
-						</elemntName>
+						<elemntName>interested_in_learning_more_subjects_related_to_the_sector</elemntName>
 						<elemntType>SWITCH</elemntType>
 					</form_elements>
-					<form_elements>
+					<form_elements id="4">
 						<dataType>boolean</dataType>
 						<label>Are you considering a career in this sector?</label>
 						<elemntName>considering_a_career_in_this_sector</elemntName>
 						<elemntType>SWITCH</elemntType>
 					</form_elements>
-					<form_elements>
+					<form_elements id="5">
 						<dataType>boolean</dataType>
 						<label>Would you recommend istar course(s) to your friends based
 							on your experience?
 						</label>
-						<elemntName>recommend_istar_course_to_your_friends_based_on_your_experience
-						</elemntName>
+						<elemntName>recommend_istar_course_to_your_friends_based_on_your_experience</elemntName>
 						<elemntType>SWITCH</elemntType>
 					</form_elements>
 					<updateQuery>
@@ -259,8 +256,8 @@
 						WHERE task_id=:TASK_ID AND user_id=:USER_ID;
 					</updateQuery>
 				</steps>
-				<steps label="Istar Courses">
-					<form_elements>
+				<steps label="Istar Courses" id="4">
+					<form_elements id="1">
 						<dataType>string</dataType>
 						<label>How can istar make the course more interesting?</label>
 						<elemntName>istar_make_the_course_more_interesting</elemntName>
@@ -275,7 +272,7 @@
 							</params>
 						</validation_types>
 					</form_elements>
-					<form_elements>
+					<form_elements id="2">
 						<dataType>string</dataType>
 						<label>What aspects of the course would you change/remove?</label>
 						<elemntName>aspects_of_the_course_would_you_change_or_remove
@@ -291,7 +288,7 @@
 							</params>
 						</validation_types>
 					</form_elements>
-					<form_elements>
+					<form_elements id="3">
 						<dataType>string</dataType>
 						<label>What aspects would you like to see coverage of?</label>
 						<elemntName>aspects_would_you_like_to_see_coverage_of</elemntName>
@@ -306,7 +303,7 @@
 							</params>
 						</validation_types>
 					</form_elements>
-					<form_elements>
+					<form_elements id="4">
 						<dataType>string</dataType>
 						<label>Which session did you enjoy the most?</label>
 						<elemntName>session_which_you_enjoy_the_most</elemntName>
@@ -321,7 +318,7 @@
 							</params>
 						</validation_types>
 					</form_elements>
-					<form_elements>
+					<form_elements id="5">
 						<dataType>string</dataType>
 						<label>Which session did you enjoy the least?</label>
 						<elemntName>session_which_you_enjoy_the_least</elemntName>
@@ -346,17 +343,16 @@
 					</updateQuery>
 				</steps>
 
-				<steps label="Istar Courses 2">
+				<steps label="Istar Courses 2" id="5">
 					<!-- <form_elements> <dataType>string</dataType> <label>Which session 
 						did you enjoy the least?</label> <elemntName>which_session_did_you_enjoy_the_least</elemntName> 
 						<elemntType>TEXT_AREA</elemntType> </form_elements> -->
-					<form_elements>
+					<form_elements id="1">
 						<dataType>string</dataType>
 						<label>How does Istar course compare to your regular college
 							curriculum?
 						</label>
-						<elemntName>how_does_istar_course_compare_to_your_regular_college_curriculum
-						</elemntName>
+						<elemntName>how_does_istar_course_compare_to_your_regular_college_curriculum</elemntName>
 						<elemntType>TEXT_AREA</elemntType>
 						<validation_types type="REQUIRED"></validation_types>
 						<validation_types type="INTEGER_RANGE">
@@ -368,12 +364,11 @@
 							</params>
 						</validation_types>
 					</form_elements>
-					<form_elements>
+					<form_elements id="2">
 						<dataType>string</dataType>
 						<label>How is istar faculty compared to regular college faculty?
 						</label>
-						<elemntName>how_is_istar_faculty_compared_to_regular_college_faculty
-						</elemntName>
+						<elemntName>how_is_istar_faculty_compared_to_regular_college_faculty</elemntName>
 						<elemntType>TEXT_AREA</elemntType>
 						<validation_types type="REQUIRED"></validation_types>
 						<validation_types type="INTEGER_RANGE">
@@ -385,12 +380,11 @@
 							</params>
 						</validation_types>
 					</form_elements>
-					<form_elements>
+					<form_elements id="3">
 						<dataType>number</dataType>
 						<label>Overall how would you rate your experience In the course?
 						</label>
-						<elemntName>overall_how_would_you_rate_your_experience_in_the_course
-						</elemntName>
+						<elemntName>overall_how_would_you_rate_your_experience_in_the_course</elemntName>
 						<elemntType>STAR_RATING</elemntType>
 					</form_elements>
 					<updateQuery>
