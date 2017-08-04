@@ -142,7 +142,7 @@
 				<steps label="Course Content">
 					<form_elements>
 						<dataType>number</dataType>
-						<label>coverage</label>
+						<label>Coverage</label>
 						<elemntName>coverage</elemntName>
 						<elemntType>STAR_RATING</elemntType>
 					</form_elements>
@@ -356,12 +356,14 @@
 								like '%:search_term%'
 							</itemSource>
 						</dropdownData>
+						<validation_types type="REQUIRED"></validation_types>
 					</form_elements>
 					<form_elements id="2">
-						<dataType> date</dataType>
+						<dataType>date</dataType>
 						<label>Date of Birth</label>
 						<elemntName>dob</elemntName>
 						<elemntType>DATE_PICKER</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
 					</form_elements>
 					<form_elements id="3">
 						<dataType>number</dataType>
@@ -369,43 +371,55 @@
 						<elemntName>aadhar</elemntName>
 						<elemntType>TEXT_BOX</elemntType>
 						<validation_types type="REQUIRED"></validation_types>
-						<validation_types type="INTEGER"></validation_types>
-						<validation_types type="INTEGER_RANGE"  warning="This filed must lie in between 10 to 1000">
-							<params name="minLength">
-							<value>16</value>							
-							</params>
-							<params name="maxLength">
-							<value>16</value>
-							</params>
+						<validation_types type="PATTERN" warning="Please provide correct format (12 digits required)">
+							<params name="pattern">
+							<value><![CDATA[^(?!0{12})\d{12}$]]></value>
+							</params>						
 						</validation_types>
-						<validation_types type="PATTERN">
-						</validation_types>
-						<validation_types type="ALPHANUMERIC">
-						</validation_types>	
 					</form_elements>
 					<form_elements id="4">
 						<dataType>string</dataType>
 						<label>Address Line 1 *</label>
 						<elemntName>address_line_1</elemntName>
 						<elemntType>TEXT_BOX</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
+						<validation_types type="INTEGER_RANGE">
+							<params name="minLength">
+							<value>5</value>							
+							</params>
+							<params name="maxLength">
+							<value>300</value>
+							</params>
+						</validation_types>
 					</form_elements>
 					<form_elements id="5">
 						<dataType>string</dataType>
 						<label>Address Line 2 *</label>
 						<elemntName>address_line_2</elemntName>
 						<elemntType>TEXT_BOX</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
+						<validation_types type="INTEGER_RANGE">
+							<params name="minLength">
+							<value>5</value>							
+							</params>
+							<params name="maxLength">
+							<value>300</value>
+							</params>
+						</validation_types>
 					</form_elements>
 					<form_elements id="6">
 						<dataType>string</dataType>
 						<label>Fathers Name *</label>
 						<elemntName>father_name</elemntName>
 						<elemntType>TEXT_BOX</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
 					</form_elements>
 					<form_elements id="7">
 						<dataType>string</dataType>
 						<label>Place of Birth *</label>
 						<elemntName>place_of_birth</elemntName>
 						<elemntType>TEXT_BOX</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
 					</form_elements>
 					<form_elements id="8">
 						<dataType>boolean</dataType>
@@ -422,6 +436,7 @@
 							<itemSource>Gen!#OBC!#SC!#ST!#PH
 							</itemSource>
 						</dropdownData>
+						d
 					</form_elements>
 					<form_elements id="10">
 						<dataType>string</dataType>
@@ -432,6 +447,7 @@
 							<itemSource>Hindu!#Muslim!#Christian!#Sikh!#Buddhist!#Jews!#Other
 							</itemSource>
 						</dropdownData>
+						<validation_types type="REQUIRED"></validation_types>
 					</form_elements>
 					<updateQuery>update address set pincode_id =(select id from pincode
 						where pin = ':pincode' limit
@@ -453,28 +469,64 @@
 						<label>10th Marks *</label>
 						<elemntName>marks_10</elemntName>
 						<elemntType>TEXT_BOX</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
+						<validation_types type="INTEGER">
+							<params name="min">
+							<value>0</value>							
+							</params>
+							<params name="max">
+							<value>100</value>
+							</params>
+						</validation_types>
 					</form_elements>
 					<form_elements id="2">
 						<dataType>number</dataType>
 						<label>10th Year of Passing *</label>
 						<elemntName>yop10</elemntName>
 						<elemntType>TEXT_BOX</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
+						<validation_types type="INTEGER">
+							<params name="min">
+							<value>1970</value>							
+							</params>
+							<params name="max">
+							<value>2025</value>
+							</params>
+						</validation_types>
 					</form_elements>
 					<form_elements id="3">
 						<dataType>number</dataType>
 						<label>12th Marks *</label>
 						<elemntName>marks_12</elemntName>
 						<elemntType>TEXT_BOX</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
+						<validation_types type="INTEGER">
+							<params name="min">
+							<value>0</value>							
+							</params>
+							<params name="max">
+							<value>100</value>
+							</params>
+						</validation_types>
 					</form_elements>
 					<form_elements id="4">
 						<dataType>number</dataType>
 						<label>12th Year of Passing *</label>
 						<elemntName>yop12</elemntName>
 						<elemntType>TEXT_BOX</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
+						<validation_types type="INTEGER">
+							<params name="min">
+							<value>1970</value>							
+							</params>
+							<params name="max">
+							<value>2025</value>
+							</params>
+						</validation_types>
 					</form_elements>
 					<form_elements id="5">
 						<dataType>string</dataType>
-						<label>UG Degrees</label>
+						<label>UG Degrees *</label>
 						<elemntName>ug_degree</elemntName>
 						<elemntType>DROP_DOWN</elemntType>
 						<dropdownData type="ajaxified_list" dataFetchType="sql_string">
@@ -484,10 +536,11 @@
 								lower(parent_value) like '%:search_term%'
 							</itemSource>
 						</dropdownData>
+						<validation_types type="REQUIRED"></validation_types>
 					</form_elements>
 					<form_elements id="6" dependency="5">
 						<dataType>string</dataType>
-						<label>UG Specialization</label>
+						<label>UG Specialization *</label>
 						<elemntName>ug_specialization</elemntName>
 						<elemntType>DROP_DOWN</elemntType>
 						<dropdownData type="ajaxified_list" dataFetchType="sql_string">
@@ -497,12 +550,22 @@
 								lower(child_dropdown_value) like '%:search_term%' ;
 							</itemSource>
 						</dropdownData>
+						<validation_types type="REQUIRED"></validation_types>
 					</form_elements>
 					<form_elements id="7">
 						<dataType>number</dataType>
-						<label>UG Marks</label>
+						<label>UG Marks *</label>
 						<elemntName>ug_marks</elemntName>
 						<elemntType>TEXT_BOX</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
+						<validation_types type="INTEGER">
+							<params name="min">
+							<value>0</value>							
+							</params>
+							<params name="max">
+							<value>100</value>
+							</params>
+						</validation_types>
 					</form_elements>
 					<form_elements id="8">
 						<dataType>string</dataType>
@@ -555,6 +618,7 @@
 								and Wellness!#Gem and Jewellery!#Media and Entertainment
 							</itemSource>
 						</dropdownData>
+						<validation_types type="REQUIRED"></validation_types>
 					</form_elements>
 					<form_elements id="2">
 						<dataType>string</dataType>
@@ -565,6 +629,7 @@
 							<itemSource>Anywhere!#Mumbai!#Delhi!#Bangalore!#Pune!#Kolkata!#Hyderabad!#Bhopal!#Ahmedabad!#Nagpur!#Chennai!#Chandigarh
 							</itemSource>
 						</dropdownData>
+						<validation_types type="REQUIRED"></validation_types>
 					</form_elements>
 					<form_elements>
 						<dataType>string</dataType>
@@ -574,9 +639,14 @@
 					</form_elements>
 					<form_elements>
 						<dataType>number</dataType>
-						<label>Duration</label>
+						<label>Duration (in months)</label>
 						<elemntName>duration</elemntName>
 						<elemntType>TEXT_BOX</elemntType>
+						<validation_types type="INTEGER">
+							<params name="max">
+							<value>120</value>
+							</params>
+						</validation_types>
 					</form_elements>
 					<form_elements>
 						<dataType>string</dataType>
@@ -612,6 +682,7 @@
 							<itemSource>PG!#Diploma!#ShortTermCourses
 							</itemSource>
 						</dropdownData>
+						<validation_types type="REQUIRED"></validation_types>
 					</form_elements>
 					<form_elements id="3">
 						<dataType>string</dataType>
@@ -622,6 +693,7 @@
 							<itemSource>Finance!#Software!#Accounting!#Marketing!#Analytics
 							</itemSource>
 						</dropdownData>
+						<validation_types type="REQUIRED"></validation_types>
 					</form_elements>
 					<updateQuery>
 						update professional_profile set
