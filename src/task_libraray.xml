@@ -265,6 +265,15 @@
 						<label>How can istar make the course more interesting?</label>
 						<elemntName>istar_make_the_course_more_interesting</elemntName>
 						<elemntType>TEXT_AREA</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
+						<validation_types type="INTEGER_RANGE">
+							<params name="minLength">
+							<value>5</value>							
+							</params>
+							<params name="maxLength">
+							<value>300</value>
+							</params>
+						</validation_types>
 					</form_elements>
 					<form_elements>
 						<dataType>string</dataType>
@@ -272,24 +281,60 @@
 						<elemntName>aspects_of_the_course_would_you_change_or_remove
 						</elemntName>
 						<elemntType>TEXT_AREA</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
+						<validation_types type="INTEGER_RANGE">
+							<params name="minLength">
+							<value>5</value>							
+							</params>
+							<params name="maxLength">
+							<value>300</value>
+							</params>
+						</validation_types>
 					</form_elements>
 					<form_elements>
 						<dataType>string</dataType>
 						<label>What aspects would you like to see coverage of?</label>
 						<elemntName>aspects_would_you_like_to_see_coverage_of</elemntName>
 						<elemntType>TEXT_AREA</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
+						<validation_types type="INTEGER_RANGE">
+							<params name="minLength">
+							<value>5</value>							
+							</params>
+							<params name="maxLength">
+							<value>300</value>
+							</params>
+						</validation_types>
 					</form_elements>
 					<form_elements>
 						<dataType>string</dataType>
 						<label>Which session did you enjoy the most?</label>
 						<elemntName>session_which_you_enjoy_the_most</elemntName>
 						<elemntType>TEXT_AREA</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
+						<validation_types type="INTEGER_RANGE">
+							<params name="minLength">
+							<value>5</value>							
+							</params>
+							<params name="maxLength">
+							<value>300</value>
+							</params>
+						</validation_types>
 					</form_elements>
 					<form_elements>
 						<dataType>string</dataType>
 						<label>Which session did you enjoy the least?</label>
 						<elemntName>session_which_you_enjoy_the_least</elemntName>
 						<elemntType>TEXT_AREA</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
+						<validation_types type="INTEGER_RANGE">
+							<params name="minLength">
+							<value>5</value>							
+							</params>
+							<params name="maxLength">
+							<value>300</value>
+							</params>
+						</validation_types>
 					</form_elements>
 					<updateQuery>
 						UPDATE user_task_feedback SET
@@ -313,6 +358,15 @@
 						<elemntName>how_does_istar_course_compare_to_your_regular_college_curriculum
 						</elemntName>
 						<elemntType>TEXT_AREA</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
+						<validation_types type="INTEGER_RANGE">
+							<params name="minLength">
+							<value>5</value>							
+							</params>
+							<params name="maxLength">
+							<value>300</value>
+							</params>
+						</validation_types>
 					</form_elements>
 					<form_elements>
 						<dataType>string</dataType>
@@ -321,6 +375,15 @@
 						<elemntName>how_is_istar_faculty_compared_to_regular_college_faculty
 						</elemntName>
 						<elemntType>TEXT_AREA</elemntType>
+						<validation_types type="REQUIRED"></validation_types>
+						<validation_types type="INTEGER_RANGE">
+							<params name="minLength">
+							<value>5</value>							
+							</params>
+							<params name="maxLength">
+							<value>300</value>
+							</params>
+						</validation_types>
 					</form_elements>
 					<form_elements>
 						<dataType>number</dataType>
