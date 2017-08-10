@@ -2,11 +2,8 @@
  * 
  */
 package com.viksitpro.core.skill.pojo;
-
 import java.util.ArrayList;
-
 import com.viksitpro.core.dao.entities.Cmsession;
-
 /**
  * @author mayank
  *
@@ -15,7 +12,7 @@ public class SessionLevelSkill {
 	Integer id;
 	String skillName;
 	String creationType;
-	
+	ArrayList<Cmsession> sessions;
 	ArrayList<LearningObjective> learningObjectives;
 	/*ArrayList<Cmsession> sessions;*/
 	public SessionLevelSkill() {
@@ -53,6 +50,14 @@ public class SessionLevelSkill {
 
 	public void setLearningObjectives(ArrayList<LearningObjective> learningObjectives) {
 		this.learningObjectives = learningObjectives;
+	}
+
+	public ArrayList<Cmsession> getSessions() {
+		return sessions;
+	}
+
+	public void setSessions(ArrayList<Cmsession> sessions) {
+		this.sessions = sessions;
 	}
 	
 	

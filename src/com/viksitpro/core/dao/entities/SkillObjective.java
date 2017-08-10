@@ -34,6 +34,7 @@ public class SkillObjective implements java.io.Serializable {
 	private String skillLevelType;
 	private Integer order_id;
 	private Integer context;
+	private String creationType;
 	
 	private Set<TrainerSkillDistrubutionStats> trainerSkillDistrubutionStatses = new HashSet<TrainerSkillDistrubutionStats>(
 			0);
@@ -302,4 +303,14 @@ public class SkillObjective implements java.io.Serializable {
 		this.context = context;
 	}
 
+	@Column(name = "creation_type", nullable=true)
+	public String getCreationType() {
+		return creationType;
+	}
+
+	public void setCreationType(String creationType) {
+		this.creationType = creationType;
+	}
+
+	
 }

@@ -32,7 +32,7 @@ import com.viksitpro.core.utilities.DBUTILS;
 public class SkillService {
 
 	
-	public CourseLevelSkill getCourseSkillTree(int courseId)
+	public CourseLevelSkill createOrUpdateCourseSkillTree(int courseId)
 	{
 		DBUTILS util = new  DBUTILS();
 		CourseLevelSkill courseLevelSkill = new CourseLevelSkill();
