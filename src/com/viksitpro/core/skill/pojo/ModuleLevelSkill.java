@@ -17,7 +17,7 @@ public class ModuleLevelSkill {
 	String creationType;
 	
 	ArrayList<SessionLevelSkill> sessionLevelSkill;
-	ArrayList<Module> modules;
+	//ArrayList<Module> modules;
 
 	public Integer getId() {
 		return id;
@@ -56,13 +56,13 @@ public class ModuleLevelSkill {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ArrayList<Module> getModules() {
+	/*public ArrayList<Module> getModules() {
 		return modules;
 	}
 
 	public void setModules(ArrayList<Module> modules) {
 		this.modules = modules;
-	}
+	}*/
 	
 	
 }

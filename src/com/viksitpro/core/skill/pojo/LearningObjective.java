@@ -17,6 +17,7 @@ public class LearningObjective {
 	String learningObjectiveName;
 	String creationType;
 	ArrayList<Lesson> lessons;
+	
 	public Integer getId() {
 		return id;
 	}

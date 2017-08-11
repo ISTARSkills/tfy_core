@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import com.viksitpro.core.dao.entities.Cmsession;
 import com.viksitpro.core.dao.entities.CmsessionDAO;
@@ -18,7 +17,6 @@ import com.viksitpro.core.dao.entities.Lesson;
 import com.viksitpro.core.dao.entities.LessonDAO;
 import com.viksitpro.core.dao.entities.Module;
 import com.viksitpro.core.dao.entities.ModuleDAO;
-import com.viksitpro.core.dao.entities.SkillObjective;
 import com.viksitpro.core.skill.pojo.CourseLevelSkill;
 import com.viksitpro.core.skill.pojo.LearningObjective;
 import com.viksitpro.core.skill.pojo.ModuleLevelSkill;
@@ -26,12 +24,32 @@ import com.viksitpro.core.skill.pojo.SessionLevelSkill;
 import com.viksitpro.core.utilities.DBUTILS;
 
 /**
- * @author mayank
+ * @author ISTAR-SKILL
  *
  */
-public class SkillService {
+public class OldSkillServices {
+
 
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// crap starts here 
 	public CourseLevelSkill createOrUpdateCourseSkillTree(int courseId)
 	{
 		DBUTILS util = new  DBUTILS();
@@ -370,5 +388,4 @@ public class SkillService {
 		lo.setCreationType("SYSTEM_CREATED");
 		return lo;
 	}
-	
 }

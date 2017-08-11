@@ -12,9 +12,9 @@ public class SessionLevelSkill {
 	Integer id;
 	String skillName;
 	String creationType;
-	ArrayList<Cmsession> sessions;
+	//ArrayList<Cmsession> sessions;
 	ArrayList<LearningObjective> learningObjectives;
-	/*ArrayList<Cmsession> sessions;*/
+	
 	public SessionLevelSkill() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -52,13 +52,13 @@ public class SessionLevelSkill {
 		this.learningObjectives = learningObjectives;
 	}
 
-	public ArrayList<Cmsession> getSessions() {
+	/*public ArrayList<Cmsession> getSessions() {
 		return sessions;
 	}
 
 	public void setSessions(ArrayList<Cmsession> sessions) {
 		this.sessions = sessions;
-	}
+	}*/
 	
 	
 	
