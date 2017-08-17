@@ -84,7 +84,24 @@ public class CoreSkillService {
 					SessionLevelSkill sessionSkill = sessionLevelskills.get(sessionSkillId);
 					ArrayList<LearningObjective> los = sessionSkill.getLearningObjectives();
 					
+					SkillObjective lobj = totalLoIncourse.get(loId);					
+					LearningObjective loNew = new LearningObjective();
+					loNew.setCreationType(lobj.getCreationType());
+					loNew.setId(lobj.getId());
+					loNew.setLearningObjectiveName(lobj.getName());
+					ArrayList<Lesson> lessons = new ArrayList<>();
+					for(Lesson lesson: lobj.getLessons())
+					{
+						if(lessonsInCourse.contains(lesson.getId()))
+						{
+							lessons.add(lesson);
+						}	
+					}
+					loNew.setLessons(lessons);
+					los.add(loNew);
 					
+					sessionSkill.setLearningObjectives(los);
+					sessionLevelskills.put(sessionSkill.getId(), sessionSkill);
 				}
 				else
 				{
@@ -121,9 +138,70 @@ public class CoreSkillService {
 			}	
 			
 			
-			String findModuleLevelskill ="select DISTINCT module_skill_id, session_skill_id from module_skill_session_skill_map where session_skill_id in (select DISTINCT session_skill_id from session_skill_lo_map where learning_obj_id in ("+loIds+"))";
+			HashMap<Integer, ModuleLevelSkill> moduleLevelSkills = new HashMap<>();
+			
+			String findModuleLevelskill ="SELECT DISTINCT module_skill_id, session_skill_id, COALESCE(module_skill.creation_type,'SYSTEM_CREATED') as creation_type, module_skill.name FROM module_skill_session_skill_map, skill_objective module_skill WHERE session_skill_id IN ( SELECT DISTINCT session_skill_id FROM session_skill_lo_map WHERE learning_obj_id IN ("+loIds+") ) and module_skill.id = module_skill_session_skill_map.module_skill_id";
+			List<HashMap<String, Object>> moduleLevelSkillsData = util.executeQuery(findModuleLevelskill);  
+			for(HashMap<String, Object> moduleRow: moduleLevelSkillsData)
+			{
+				int moduleSkillId= (int)moduleRow.get("module_skill_id");
+				String moduleSkillName = moduleRow.get("name").toString();
+				String creationType = moduleRow.get("creation_type").toString();
+				int sessionSkillId = (int)moduleRow.get("session_skill_id");
+				
+				if(moduleLevelSkills.containsKey(moduleSkillId))
+				{
+					// add session level skill in existing module
+					ModuleLevelSkill modSkill = moduleLevelSkills.get(moduleSkillId);
+					ArrayList<SessionLevelSkill> sessionLevelSkillPerMod = modSkill.getSessionLevelSkill();
+					boolean sessionSkillalreadyPresent = false;
+					for(SessionLevelSkill sessionInMod:  sessionLevelSkillPerMod)
+					{
+						if(sessionInMod.getId()==sessionSkillId)
+						{
+							sessionSkillalreadyPresent= true;
+							break;							
+						}	
+					}
+					
+					if(!sessionSkillalreadyPresent)
+					{						
+						if(sessionLevelskills.containsKey(sessionSkillId))
+						{
+							sessionLevelSkillPerMod.add(sessionLevelskills.get(sessionSkillId));
+						}
+					}				
+					modSkill.setSessionLevelSkill(sessionLevelSkillPerMod);
+					moduleLevelSkills.put(moduleSkillId, modSkill);					
+					
+				}
+				else
+				{
+					//create new module level skill
+					ModuleLevelSkill modSkill = new ModuleLevelSkill();
+					modSkill.setId(moduleSkillId);
+					modSkill.setCreationType(creationType);
+					modSkill.setSkillName(moduleSkillName);
+					
+					ArrayList<SessionLevelSkill> sessionLevelSkillPerMod = new ArrayList<>();
+					if(sessionLevelskills.containsKey(sessionSkillId))
+					{
+						sessionLevelSkillPerMod.add(sessionLevelskills.get(sessionSkillId));
+					}	
+					modSkill.setSessionLevelSkill(sessionLevelSkillPerMod);
+					moduleLevelSkills.put(moduleSkillId, modSkill);
+					
+				}	
+			}
 			
 			
+			ArrayList<ModuleLevelSkill> moduleLevelSkill = new ArrayList<>();
+			for(int modSkillId: moduleLevelSkills.keySet())
+			{
+				moduleLevelSkill.add(moduleLevelSkills.get(modSkillId));				
+			}
+			
+			courseLevelSkill.setModuleLevelSkill(moduleLevelSkill);			
 		}
 		
 		return courseLevelSkill;
@@ -134,6 +212,7 @@ public class CoreSkillService {
 	{
 		CoreSkillService cs = new CoreSkillService();
 		cs.getShellSkillTreeForCourse(5);
+		
 	}
 	
 }
