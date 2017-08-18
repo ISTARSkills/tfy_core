@@ -17,9 +17,7 @@ public class DeliverySession {
 	Integer id;
 	String sessionName;
 	ArrayList<DeliveryLesson> lessons;
-	ArrayList<LearningObjective> los;
-	ArrayList<Integer>mappedLessons;
-	ArrayList<SessionLevelSkill>sessionSkills;
+	
 	Boolean isPerfect;
 	public Integer getId() {
 		return id;
@@ -39,18 +37,7 @@ public class DeliverySession {
 	public void setLessons(ArrayList<DeliveryLesson> lessons) {
 		this.lessons = lessons;
 	}
-	public ArrayList<LearningObjective> getLos() {
-		return los;
-	}
-	public void setLos(ArrayList<LearningObjective> los) {
-		this.los = los;
-	}
-	public ArrayList<Integer> getMappedLessons() {
-		return mappedLessons;
-	}
-	public void setMappedLessons(ArrayList<Integer> mappedLessons) {
-		this.mappedLessons = mappedLessons;
-	}
+	
 	public Boolean getIsPerfect() {
 		return isPerfect;
 	}
@@ -61,12 +48,7 @@ public class DeliverySession {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ArrayList<SessionLevelSkill> getSessionSkills() {
-		return sessionSkills;
-	}
-	public void setSessionSkills(ArrayList<SessionLevelSkill> sessionSkills) {
-		this.sessionSkills = sessionSkills;
-	}
+	
 	
 	
 }
