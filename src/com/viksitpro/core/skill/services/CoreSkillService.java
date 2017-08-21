@@ -65,8 +65,8 @@ public class CoreSkillService {
 						{
 							for(Lesson lesson : lobj.getLessons())
 							{
-								
-								
+								if(lesson.getIsDeleted()!=null && !lesson.getIsDeleted())
+								{
 									if(lessonModSkillMap.containsKey(lesson.getId()))
 									{
 										ArrayList<ModuleLevelSkill> modSkills = lessonModSkillMap.get(lesson.getId());
@@ -91,6 +91,8 @@ public class CoreSkillService {
 										modSkills.add(modskill);
 										lessonModSkillMap.put(lesson.getId(), modSkills);
 									}
+								}
+									
 								
 									
 							}	
@@ -128,48 +130,55 @@ public class CoreSkillService {
 						{
 							for(Lesson lesson : cms.getLessons())
 							{
-								DeliveryLesson l = new DeliveryLesson();
-								l.setId(lesson.getId());
-								l.setLessonName(lesson.getTitle());
-								l.setType(lesson.getType());
-								l.setIsPerfect(true);
-								if(lesson.getType().equalsIgnoreCase("ASSESSMENT"))
-								{										
-									if(lesson.getLessonXml()!=null && !lesson.getLessonXml().isEmpty() && !lesson.getLessonXml().equalsIgnoreCase(""))
-									{	
-										DeliveryAssessmentTree assessTree =	getDeliveryTreeForAssessment(Integer.parseInt(lesson.getLessonXml()));
-										if(!assessTree.isValid())
-										{
-											l.setIsPerfect(false);
-											isSessionPerfect = false;
-											isModulePerfect=false;
-										}
-										
-									}else
-									{
-										l.setIsPerfect(false);
-										isSessionPerfect = false;
-										isModulePerfect=false;
-									}	
-								}
-								else
+								if(lesson.getIsDeleted()!=null && !lesson.getIsDeleted())
 								{
-									
-									if(lessonModSkillMap.containsKey(lesson.getId()))
+									DeliveryLesson l = new DeliveryLesson();
+									l.setId(lesson.getId());
+									l.setLessonName(lesson.getTitle());
+									l.setType(lesson.getType());
+									l.setIsPerfect(true);
+									if(lesson.getType()!=null)
 									{
-										l.setMappedModuleLevelSkill(lessonModSkillMap.get(lesson.getId()));
-										l.setIsPerfect(true);
-									}
-									else
-									{
-										ArrayList<ModuleLevelSkill> modSkills = new ArrayList<>();
-										l.setMappedModuleLevelSkill(modSkills);
-										l.setIsPerfect(false);
-										isSessionPerfect = false;
-										isModulePerfect=false;
-									}
-								}									
-								deliveryLessons.add(l);
+										if(lesson.getType().equalsIgnoreCase("ASSESSMENT"))
+										{										
+											if(lesson.getLessonXml()!=null && !lesson.getLessonXml().isEmpty() && !lesson.getLessonXml().equalsIgnoreCase(""))
+											{	
+												DeliveryAssessmentTree assessTree =	getDeliveryTreeForAssessment(Integer.parseInt(lesson.getLessonXml()));
+												if(!assessTree.isValid())
+												{
+													l.setIsPerfect(false);
+													isSessionPerfect = false;
+													isModulePerfect=false;
+												}
+												
+											}else
+											{
+												l.setIsPerfect(false);
+												isSessionPerfect = false;
+												isModulePerfect=false;
+											}	
+										}
+										else
+										{
+											
+											if(lessonModSkillMap.containsKey(lesson.getId()))
+											{
+												l.setMappedModuleLevelSkill(lessonModSkillMap.get(lesson.getId()));
+												l.setIsPerfect(true);
+											}
+											else
+											{
+												ArrayList<ModuleLevelSkill> modSkills = new ArrayList<>();
+												l.setMappedModuleLevelSkill(modSkills);
+												l.setIsPerfect(false);
+												isSessionPerfect = false;
+												isModulePerfect=false;
+											}
+										}
+									}	
+									deliveryLessons.add(l);
+								}	
+								
 							}
 						}	
 						
@@ -636,14 +645,18 @@ public class CoreSkillService {
 				sessionsInCourse.add(cms.getId());
 				for(Lesson lesson : cms.getLessons())
 				{
-					lessonsInCourse.add(lesson.getId());
-					for(SkillObjective skillObj : lesson.getSkillObjectives())
+					if(lesson.getIsDeleted()!=null && !lesson.getIsDeleted())
 					{
-						if(!totalLoIncourse.containsKey(skillObj.getId()))
+						lessonsInCourse.add(lesson.getId());
+						for(SkillObjective skillObj : lesson.getSkillObjectives())
 						{
-							totalLoIncourse.put(skillObj.getId(), skillObj);
-						}	
+							if(!totalLoIncourse.containsKey(skillObj.getId()))
+							{
+								totalLoIncourse.put(skillObj.getId(), skillObj);
+							}	
+						}
 					}	
+						
 					
 				}	
 			}
@@ -678,7 +691,7 @@ public class CoreSkillService {
 					ArrayList<Lesson> lessons = new ArrayList<>();
 					for(Lesson lesson: lobj.getLessons())
 					{
-						if(lessonsInCourse.contains(lesson.getId()))
+						if(lesson.getIsDeleted()!=null && !lesson.getIsDeleted() && lessonsInCourse.contains(lesson.getId()))
 						{
 							lessons.add(lesson);
 						}	
@@ -707,7 +720,7 @@ public class CoreSkillService {
 					ArrayList<Lesson> lessons = new ArrayList<>();
 					for(Lesson lesson: lobj.getLessons())
 					{
-						if(lessonsInCourse.contains(lesson.getId()))
+						if(lesson.getIsDeleted()!=null && !lesson.getIsDeleted() &&  lessonsInCourse.contains(lesson.getId()))
 						{
 							lessons.add(lesson);
 						}	
