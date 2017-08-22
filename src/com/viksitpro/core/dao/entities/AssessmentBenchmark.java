@@ -29,7 +29,7 @@ public class AssessmentBenchmark implements java.io.Serializable {
 	private String itemType;
 	private SkillObjective skillObjective;
 	private String maxPoints;
-	private Integer contextId;
+	private Integer courseId;
 
 	// Constructors
 
@@ -99,13 +99,13 @@ public class AssessmentBenchmark implements java.io.Serializable {
 	public void setItemType(String itemType) {
 		this.itemType = itemType;
 	}
-	@Column(name="context_id")
-	public Integer getContextId() {
-		return contextId;
+	@Column(name="course_id")
+	public Integer getCourseId() {
+		return courseId;
 	}
 
-	public void setContextId(Integer contextId) {
-		this.contextId = contextId;
+	public void setCourseId(Integer courseId) {
+		this.courseId = courseId;
 	}
 
 	
