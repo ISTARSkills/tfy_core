@@ -91,10 +91,7 @@ public class CoreSkillService {
 										modSkills.add(modskill);
 										lessonModSkillMap.put(lesson.getId(), modSkills);
 									}
-								}
-									
-								
-									
+								}								
 							}	
 						}	
 					}	
@@ -150,6 +147,22 @@ public class CoreSkillService {
 													isSessionPerfect = false;
 													isModulePerfect=false;
 												}
+												else
+												{
+													if(lessonModSkillMap.containsKey(lesson.getId()))
+													{
+														l.setMappedModuleLevelSkill(lessonModSkillMap.get(lesson.getId()));
+														l.setIsPerfect(true);
+													}
+													else
+													{
+														ArrayList<ModuleLevelSkill> modSkills = new ArrayList<>();
+														l.setMappedModuleLevelSkill(modSkills);
+														l.setIsPerfect(false);
+														isSessionPerfect = false;
+														isModulePerfect=false;
+													}
+												}	
 												
 											}else
 											{
@@ -636,7 +649,8 @@ public class CoreSkillService {
 		ArrayList<Integer> modulesInCourse = new ArrayList<>();
 		ArrayList<Integer> sessionsInCourse = new ArrayList<>();
 		ArrayList<Integer> lessonsInCourse = new ArrayList<>();
-		
+		ArrayList<Integer> assessmentsInCourse  = new ArrayList<>();
+		HashMap<Integer, Lesson> assessmentLesonMap = new HashMap<>();
 		for(Module module : course.getModules())
 		{
 			modulesInCourse.add(module.getId());
@@ -648,13 +662,42 @@ public class CoreSkillService {
 					if(lesson.getIsDeleted()!=null && !lesson.getIsDeleted())
 					{
 						lessonsInCourse.add(lesson.getId());
-						for(SkillObjective skillObj : lesson.getSkillObjectives())
+						if(lesson.getType()!=null)
 						{
-							if(!totalLoIncourse.containsKey(skillObj.getId()))
+							if(lesson.getType().equalsIgnoreCase("ASSESSMENT"))
 							{
-								totalLoIncourse.put(skillObj.getId(), skillObj);
+								if(lesson.getLessonXml()!=null && !lesson.getLessonXml().equalsIgnoreCase("") && !assessmentsInCourse.contains(Integer.parseInt(lesson.getLessonXml())))
+								{
+									assessmentsInCourse.add(Integer.parseInt(lesson.getLessonXml()));
+									assessmentLesonMap.put(Integer.parseInt(lesson.getLessonXml()), lesson);
+									Assessment assess = new AssessmentDAO().findById(Integer.parseInt(lesson.getLessonXml()));
+									for(AssessmentQuestion aq : assess.getAssessmentQuestions())
+									{
+										if(aq.getQuestion().getSkillObjectives()!=null)
+										{
+											for(SkillObjective skillObj : aq.getQuestion().getSkillObjectives())
+											{
+												if(!totalLoIncourse.containsKey(skillObj.getId()))
+												{
+													totalLoIncourse.put(skillObj.getId(), skillObj);
+												}
+											}	
+										}	
+									}	
+								}	
+								
+							}else
+							{
+								for(SkillObjective skillObj : lesson.getSkillObjectives())
+								{
+									if(!totalLoIncourse.containsKey(skillObj.getId()))
+									{
+										totalLoIncourse.put(skillObj.getId(), skillObj);
+									}	
+								}
 							}	
-						}
+						}	
+						
 					}	
 						
 					
@@ -696,6 +739,20 @@ public class CoreSkillService {
 							lessons.add(lesson);
 						}	
 					}
+					if(lobj.getQuestions()!=null)
+					{
+						for(Question que :lobj.getQuestions())
+						{
+							for(AssessmentQuestion aq :que.getAssessmentQuestions())
+							{
+								if(assessmentsInCourse.contains(aq.getAssessment().getId()))
+								{
+									lessons.add(assessmentLesonMap.get(aq.getAssessment().getId()));
+								}	
+							}
+						}
+					}
+					
 					loNew.setLessons(lessons);
 					los.add(loNew);
 					
@@ -725,6 +782,20 @@ public class CoreSkillService {
 							lessons.add(lesson);
 						}	
 					}
+					if(lobj.getQuestions()!=null)
+					{
+						for(Question que :lobj.getQuestions())
+						{
+							for(AssessmentQuestion aq :que.getAssessmentQuestions())
+							{
+								if(assessmentsInCourse.contains(aq.getAssessment().getId()))
+								{
+									lessons.add(assessmentLesonMap.get(aq.getAssessment().getId()));
+								}	
+							}
+						}
+					}
+					
 					loNew.setLessons(lessons);
 					los.add(loNew);
 					
