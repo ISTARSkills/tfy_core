@@ -12,7 +12,10 @@ public class EventDetail {
 	String status;
 	String courseName;
 	String groupName;
+	String roleName;
 	EventTrainer trainer;
+	Integer classRoomId;
+	String classRoomName;
 	EventTrainer associateTrainer;
 	EventAttendance eventAttendance;
 	EventFeedback trainerFeedback;
@@ -20,6 +23,14 @@ public class EventDetail {
 	ArrayList<String> learningObjCovered;
 	
 	
+	
+	
+	public String getRoleName() {
+		return roleName;
+	}
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
 	public Integer getEventId() {
 		return eventId;
 	}
@@ -101,6 +112,18 @@ public class EventDetail {
 	public EventDetail() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	public Integer getClassRoomId() {
+		return classRoomId;
+	}
+	public void setClassRoomId(Integer classRoomId) {
+		this.classRoomId = classRoomId;
+	}
+	public String getClassRoomName() {
+		return classRoomName;
+	}
+	public void setClassRoomName(String classRoomName) {
+		this.classRoomName = classRoomName;
 	}
 	
 	
