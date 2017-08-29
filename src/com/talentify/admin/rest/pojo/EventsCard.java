@@ -17,8 +17,9 @@ public class EventsCard {
 	Float duration;
 	String imageUrl;
 	String course;
-	String sessionName;	
+	
 	String groupName;
+	String roleName;
 	String trainerName;
 	String associateTrainerName;
 	Float attendancePercentage;	
@@ -66,12 +67,7 @@ public class EventsCard {
 	public void setCourse(String course) {
 		this.course = course;
 	}
-	public String getSessionName() {
-		return sessionName;
-	}
-	public void setSessionName(String sessionName) {
-		this.sessionName = sessionName;
-	}
+	
 	public String getGroupName() {
 		return groupName;
 	}
@@ -141,6 +137,12 @@ public class EventsCard {
 	}
 	public void setClassroomName(String classroomName) {
 		this.classroomName = classroomName;
+	}
+	public String getRoleName() {
+		return roleName;
+	}
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
 	}
 	
 	
