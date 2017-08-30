@@ -20,6 +20,9 @@ public class EventsCard {
 	
 	String groupName;
 	String roleName;
+	String sessionName;	
+
+	
 	String trainerName;
 	String associateTrainerName;
 	Float attendancePercentage;	
@@ -144,6 +147,11 @@ public class EventsCard {
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
-	
+	public String getSessionName() {
+		return sessionName;
+	}
+	public void setSessionName(String sessionName) {
+		this.sessionName = sessionName;
+	}
 	
 }
