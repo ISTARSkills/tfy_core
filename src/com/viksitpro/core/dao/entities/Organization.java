@@ -52,7 +52,9 @@ public class Organization implements java.io.Serializable {
 	private Set<CollegeRecruiterMapping> collegeRecruiterMappings = new HashSet<CollegeRecruiterMapping>(0);
 	private Set<ClassroomDetails> classroomDetailses = new HashSet<ClassroomDetails>(0);
 	private Set<UserOrgMapping> userOrgMappings = new HashSet<UserOrgMapping>(0);
-
+	
+	private Organization parentOrg;
+	private Set<Organization> childOrgs;
 	// Constructors
 
 	/** default constructor */
@@ -343,5 +345,29 @@ public class Organization implements java.io.Serializable {
 	public void setUserOrgMappings(Set<UserOrgMapping> userOrgMappings) {
 		this.userOrgMappings = userOrgMappings;
 	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "parent_org_id", nullable=true)
+	public Organization getParentOrg() {
+		return parentOrg;
+	}
+
+	public void setParentOrg(Organization parentOrg) {
+		this.parentOrg = parentOrg;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "parentOrg")
+	public Set<Organization> getChildOrgs() {
+		return childOrgs;
+	}
+
+	public void setChildOrgs(Set<Organization> childOrgs) {
+		this.childOrgs = childOrgs;
+	}
+	
+	
+	
+	
+	
 
 }
