@@ -21,7 +21,7 @@ public class EventDetail {
 	EventFeedback trainerFeedback;
 	ArrayList<EventFeedback> studentFeedback;
 	ArrayList<String> learningObjCovered;
-	
+	ArrayList<EventLogSlide> logs; 
 	
 	
 	
@@ -124,6 +124,12 @@ public class EventDetail {
 	}
 	public void setClassRoomName(String classRoomName) {
 		this.classRoomName = classRoomName;
+	}
+	public ArrayList<EventLogSlide> getLogs() {
+		return logs;
+	}
+	public void setLogs(ArrayList<EventLogSlide> logs) {
+		this.logs = logs;
 	}
 	
 	
