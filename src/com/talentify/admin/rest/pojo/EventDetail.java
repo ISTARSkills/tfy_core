@@ -10,6 +10,7 @@ public class EventDetail {
 	Float duration;
 	String imageUrl;
 	String status;
+	String sessionName;
 	String courseName;
 	String groupName;
 	String roleName;
@@ -125,11 +126,19 @@ public class EventDetail {
 	public void setClassRoomName(String classRoomName) {
 		this.classRoomName = classRoomName;
 	}
+
 	public ArrayList<EventLogSlide> getLogs() {
 		return logs;
 	}
+	
 	public void setLogs(ArrayList<EventLogSlide> logs) {
 		this.logs = logs;
+	}
+	public String getSessionName() {
+		return sessionName;
+	}
+	public void setSessionName(String sessionName) {
+		this.sessionName = sessionName;
 	}
 	
 	

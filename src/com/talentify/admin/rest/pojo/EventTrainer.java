@@ -17,6 +17,8 @@ public class EventTrainer {
 	ArrayList<String> skills;
 	Float averageFeedback;
 	Float totalHoursTaught;
+	String imageUrl;
+	
 	public String getType() {
 		return type;
 	}
@@ -52,6 +54,14 @@ public class EventTrainer {
 	}
 	public void setTotalHoursTaught(Float totalHoursTaught) {
 		this.totalHoursTaught = totalHoursTaught;
+	}
+	
+	
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 	public EventTrainer() {
 		super();
