@@ -20,7 +20,9 @@ public class AdminRole {
 	Float wizard;
 	Float master;
 	Float rookie;
-	Float apprentice;	
+	Float apprentice;
+	String imageUrl;
+	
 	ArrayList<AdminGroupThumb> groups;
 	public Integer getId() {
 		return id;
@@ -87,6 +89,14 @@ public class AdminRole {
 	}
 	public void setGroups(ArrayList<AdminGroupThumb> groups) {
 		this.groups = groups;
+	}
+	
+	
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 	public AdminRole() {
 		super();
