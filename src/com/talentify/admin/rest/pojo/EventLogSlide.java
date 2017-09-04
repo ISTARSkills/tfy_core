@@ -11,6 +11,8 @@ public class EventLogSlide {
 
 	String time;
 	Integer slideId;
+	Integer lessonId;
+	Integer sessionId;
 	String totalTime;
 	String slideTitle;
 	String lessonTitle;
@@ -55,6 +57,18 @@ public class EventLogSlide {
 	}
 	public void setSesssionTitle(String sesssionTitle) {
 		this.sesssionTitle = sesssionTitle;
+	}
+	public Integer getLessonId() {
+		return lessonId;
+	}
+	public void setLessonId(Integer lessonId) {
+		this.lessonId = lessonId;
+	}
+	public Integer getSessionId() {
+		return sessionId;
+	}
+	public void setSessionId(Integer sessionId) {
+		this.sessionId = sessionId;
 	}
 	
 	
