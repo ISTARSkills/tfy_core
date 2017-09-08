@@ -674,18 +674,23 @@ public class CoreSkillService {
 									assessmentsInCourse.add(Integer.parseInt(lesson.getLessonXml()));
 									assessmentLesonMap.put(Integer.parseInt(lesson.getLessonXml()), lesson);
 									Assessment assess = new AssessmentDAO().findById(Integer.parseInt(lesson.getLessonXml()));
-									for(AssessmentQuestion aq : assess.getAssessmentQuestions())
-									{
-										if(aq.getQuestion().getSkillObjectives()!=null)
+									
+									try {
+										for(AssessmentQuestion aq : assess.getAssessmentQuestions())
 										{
-											for(SkillObjective skillObj : aq.getQuestion().getSkillObjectives())
+											if(aq.getQuestion().getSkillObjectives()!=null)
 											{
-												if(!totalLoIncourse.containsKey(skillObj.getId()))
+												for(SkillObjective skillObj : aq.getQuestion().getSkillObjectives())
 												{
-													totalLoIncourse.put(skillObj.getId(), skillObj);
-												}
+													if(!totalLoIncourse.containsKey(skillObj.getId()))
+													{
+														totalLoIncourse.put(skillObj.getId(), skillObj);
+													}
+												}	
 											}	
-										}	
+										}
+									} catch (Exception e) {
+										System.out.println("lesson.getLessonXml()"+lesson.getLessonXml());
 									}	
 								}	
 								

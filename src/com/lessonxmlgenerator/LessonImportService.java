@@ -1114,7 +1114,7 @@ public class LessonImportService {
 				int sessionId = rs.getInt("session_id");
 				int moduleId = rs.getInt("module_id");
 				String lessontitle =  rs.getString("lesson_title");
-				boolean treeExist = importLesson(lessonId, sessionId, moduleId, lessontitle, assessmentId);
+				//boolean treeExist = importLesson(lessonId, sessionId, moduleId, lessontitle, assessmentId);
 				//if(treeExist) {
 					importAssessment(assessmentId, courseId);
 				//}

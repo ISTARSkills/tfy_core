@@ -27,7 +27,7 @@ public class AssessmentBenchmark implements java.io.Serializable {
 	private Integer id;
 	private Integer itemId;
 	private String itemType;
-	private SkillObjective skillObjective;
+	private Integer skillId;
 	private String maxPoints;
 	private Integer courseId;
 
@@ -37,12 +37,7 @@ public class AssessmentBenchmark implements java.io.Serializable {
 	public AssessmentBenchmark() {
 	}
 
-	/** full constructor */
-	public AssessmentBenchmark(Assessment assessment, SkillObjective skillObjective, String maxPoints) {
-		
-		this.skillObjective = skillObjective;
-		this.maxPoints = maxPoints;
-	}
+	
 
 	// Property accessors
 	@GenericGenerator(name = "generator", strategy = "increment")
@@ -61,16 +56,19 @@ public class AssessmentBenchmark implements java.io.Serializable {
 
 	
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "skill_objective_id")
-
-	public SkillObjective getSkillObjective() {
-		return this.skillObjective;
+	
+	@Column(name = "skill_id")
+	public Integer getSkillId() {
+		return skillId;
 	}
 
-	public void setSkillObjective(SkillObjective skillObjective) {
-		this.skillObjective = skillObjective;
+
+
+	public void setSkillId(Integer skillId) {
+		this.skillId = skillId;
 	}
+
+
 
 	@Column(name = "max_points", precision = 17, scale = 17)
 
