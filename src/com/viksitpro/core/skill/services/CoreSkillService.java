@@ -47,6 +47,9 @@ import com.viksitpro.core.utilities.DBUTILS;
  */
 public class CoreSkillService {
 	
+	
+	
+	
 	public DeliveryCourse getDeliveryTreeForCourse(int courseId)
 	{
 		DeliveryCourse courseTree = new DeliveryCourse();
@@ -886,6 +889,36 @@ public class CoreSkillService {
 		cs.getShellTreeForContext(111);
 		
 		System.out.println("end");
+	}
+
+	public CourseLevelSkill getShellSkillTreeForCourse6Sept(int courseId) {
+		CourseLevelSkill courseTree = new CourseLevelSkill();
+		Course course = new CourseDAO().findById(courseId);
+		ArrayList<ModuleLevelSkill> moduleSkills = new ArrayList<>();
+		for(Module module : course.getModules())
+		{
+			ModuleLevelSkill modSkill = new ModuleLevelSkill();
+			modSkill.setId(module.getId());
+			modSkill.setCreationType("SYSTEM_CREATED");
+			modSkill.setSkillName(module.getModuleName());
+			ArrayList<SessionLevelSkill> sessionSkills = new ArrayList<>();
+			for(Cmsession cms : module.getCmsessions())
+			{
+				SessionLevelSkill sessionLevelSkill = new SessionLevelSkill();
+				sessionLevelSkill.setCreationType("SYSTEM_CREATED");
+				sessionLevelSkill.setId(cms.getId());
+				sessionLevelSkill.setSkillName(cms.getTitle());				
+				sessionSkills.add(sessionLevelSkill);
+			}
+			modSkill.setSessionLevelSkill(sessionSkills);
+			moduleSkills.add(modSkill);			
+		}	
+		
+		courseTree.setCreationType("SYSTEM_CREATED");
+		courseTree.setId(courseId);
+		courseTree.setSkillName(course.getCourseName());
+		courseTree.setModuleLevelSkill(moduleSkills);		
+		return courseTree;
 	}
 	
 }
