@@ -5,27 +5,20 @@ package com.viksitpro.core.skill.services;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.viksitpro.core.dao.entities.Assessment;
 import com.viksitpro.core.dao.entities.AssessmentDAO;
 import com.viksitpro.core.dao.entities.AssessmentQuestion;
 import com.viksitpro.core.dao.entities.Cmsession;
-import com.viksitpro.core.dao.entities.CmsessionDAO;
 import com.viksitpro.core.dao.entities.Context;
 import com.viksitpro.core.dao.entities.ContextDAO;
 import com.viksitpro.core.dao.entities.Course;
 import com.viksitpro.core.dao.entities.CourseDAO;
 import com.viksitpro.core.dao.entities.Lesson;
-import com.viksitpro.core.dao.entities.LessonDAO;
 import com.viksitpro.core.dao.entities.Module;
-import com.viksitpro.core.dao.entities.ModuleDAO;
 import com.viksitpro.core.dao.entities.Question;
 import com.viksitpro.core.dao.entities.SkillObjective;
 import com.viksitpro.core.dao.entities.SkillObjectiveDAO;
@@ -33,8 +26,8 @@ import com.viksitpro.core.delivery.pojo.DeliveryCourse;
 import com.viksitpro.core.delivery.pojo.DeliveryLesson;
 import com.viksitpro.core.delivery.pojo.DeliveryModule;
 import com.viksitpro.core.delivery.pojo.DeliverySession;
-import com.viksitpro.core.skill.pojo.DeliveryAssessmentTree;
 import com.viksitpro.core.skill.pojo.CourseLevelSkill;
+import com.viksitpro.core.skill.pojo.DeliveryAssessmentTree;
 import com.viksitpro.core.skill.pojo.DeliveryQuestion;
 import com.viksitpro.core.skill.pojo.LearningObjective;
 import com.viksitpro.core.skill.pojo.ModuleLevelSkill;
