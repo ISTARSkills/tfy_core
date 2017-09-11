@@ -1473,7 +1473,7 @@ public class LessonImportService {
 							+ "VALUES ("+lessonId+", 'PRESENTATION', 10,  '"+rs.getString("title").trim().replace("'", "")+"', NULL, now(), 'f', '', 'BOTH', 'f', NULL);";
 					String mapping="insert into lesson_cmsession (lesson_id, cmsession_id) values("+lessonId+","+rs.getInt("session_id")+")";
 					try {
-						bw=new FileWriter("C:\\Users\\ISTAR-SKILL\\Documents\\lessonScripts\\"+lessonId+"_lesson.sql");
+						bw=new FileWriter(""+AppProperies.getProperty("mediaPath")+"\\"+lessonId+"_lesson.sql");
 
 						
 						bw.write(insertQuery);
