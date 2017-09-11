@@ -1450,6 +1450,48 @@ public class LessonImportService {
 		String getModules ="";
 		
 	}
+
+	
+
+	public void createImportScriptForLesson(int lessonId) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		Connection local = getLocalConnection();
+		String getLessonPptDetails  = "select * from lesson where id ="+lessonId;
+		try {
+			Statement statement = con.createStatement();
+			
+			ResultSet rs = statement.executeQuery(getLessonPptDetails);
+			while (rs.next()) {
+				
+				String check="select * from lesson where id="+lessonId;
+				Statement checkStatement = local.createStatement();
+				ResultSet checkResult = checkStatement.executeQuery(check);
+				if(checkResult.next())
+				{
+					String insertQuery="INSERT INTO lesson (id, type, duration, title, order_id, created_at, is_deleted, lesson_xml, category, is_published, org_id) "
+							+ "VALUES ("+lessonId+", 'PRESENTATION', 10,  '"+rs.getString("title").trim().replace("'", "")+"', NULL, now(), 'f', '', 'BOTH', 'f', NULL);";
+					String mapping="insert into lesson_cmsession (lesson_id, cmsession_id) values("+lessonId+","+rs.getInt("session_id")+")";
+					try {
+						bw=new FileWriter("C:\\Users\\ISTAR-SKILL\\Documents\\lessonScripts\\"+lessonId+"_lesson.sql");
+
+						
+						bw.write(insertQuery);
+						bw.write(System.lineSeparator());
+						
+						bw.write(mapping);
+						bw.write(System.lineSeparator());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		} catch (SQLException  e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
 	
 	
 	
