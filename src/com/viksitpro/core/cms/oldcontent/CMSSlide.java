@@ -20,6 +20,7 @@ import org.hibernate.Criteria;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 
+import com.viksitpro.core.cms.interactive.EntityOption;
 import com.viksitpro.core.dao.entities.IstarUserDAO;
 import com.viksitpro.core.dao.entities.Question;
 import com.viksitpro.core.utilities.DBUTILS;
@@ -57,9 +58,66 @@ public class CMSSlide {
 	// for interactive tem[llatye addition
 
 	String label; // optional
-	String audio_type; // repeitive/nonrepetitive optional
-	ArrayList<Outcome> outcomes;
+	String audioType; // repeitive/nonrepetitive optional
+	
+	@XmlAttribute(name="label", required=false)
+	public String getLabel() {
+		return label;
+	}
 
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	@XmlAttribute(name="audio_type",required=false)
+	public String getAudioType() {
+		return audioType;
+	}
+
+	public void setAudioType(String audioType) {
+		this.audioType = audioType;
+	}
+
+	@XmlElement(name="outcomes", required=false)
+	public ArrayList<Outcome> getOutcomes() {
+		return outcomes;
+	}
+
+	public void setOutcomes(ArrayList<Outcome> outcomes) {
+		this.outcomes = outcomes;
+	}
+
+	@XmlAttribute(name="grid_x_count", required=false)
+	public Integer getGridXCount() {
+		return gridXCount;
+	}
+
+	public void setGridXCount(Integer gridXCount) {
+		this.gridXCount = gridXCount;
+	}
+
+	@XmlAttribute(name="grid_y_count", required=false)
+	public Integer getGridYCount() {
+		return gridYCount;
+	}
+
+	public void setGridYCount(Integer gridYCount) {
+		this.gridYCount = gridYCount;
+	}
+
+	@XmlElement(name="options", required=false)
+	public ArrayList<EntityOption> getOptions() {
+		return options;
+	}
+
+	public void setOptions(ArrayList<EntityOption> options) {
+		this.options = options;
+	}
+
+	ArrayList<Outcome> outcomes;
+	Integer gridXCount;
+	Integer gridYCount;
+	ArrayList<EntityOption> options;
 	public CMSSlide() {
 		ArrayList<CMSTextItem> items = new ArrayList<CMSTextItem>();
 		items.add(new CMSTextItem("", ""));
@@ -361,4 +419,7 @@ public class CMSSlide {
 		this.evaluators = evaluators;
 	}
 
+	
+	
+	
 }

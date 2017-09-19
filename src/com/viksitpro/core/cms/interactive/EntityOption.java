@@ -3,11 +3,10 @@
  */
 package com.viksitpro.core.cms.interactive;		
 
-import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.ElementMap;
+
 
 import java.io.Serializable;
-import java.util.HashMap;
+import javax.xml.bind.annotation.XmlAttribute;
 
 /**
  * @author ComplexObject
@@ -15,57 +14,22 @@ import java.util.HashMap;
 
 public class EntityOption implements Serializable {
 
-    @Attribute(name = "id", required = false)
-    Integer id;
-    @Attribute(name = "option_text", required = false)
+	private static final long serialVersionUID = 1L;
+
+	Integer id;    
     String optionText;
-    @Attribute(name = "image_url", required = false)
-    String backgroundImage;
-    @Attribute(name = "option_grid", required = false)
-    String grid;
-    @Attribute(name = "iscorrect", required = false)
-    boolean isCorrect;
-    @Attribute(name = "bg_color", required = false)
-    String backgroundColor;
-
-    @Attribute(name = "next_entity", required = false)
-    Integer nextEntity;
-
-    @ElementMap(entry = "info_cards",inline = false, required = false)
-    HashMap<Integer, InfoCard> cards = new HashMap<Integer, InfoCard>();
-
-    @Attribute(name = "eval_script", required = false)
-    String evaluationScript;
-
-    @Attribute(name = "media_url", required = false)
-    String mediaUrl;
-    @Attribute(name = "media_type", required = false)
-    String mediaType;
-    
-    @Attribute(name = "font_color", required = false)
-    String fontColor;
-    
-    @Attribute(name = "font_size", required = false)
-    String fontSize;
-
-    @Attribute(name = "is_bold", required = false)
-    boolean isBold;
-    
-    @Attribute(name = "is_italic", required = false)
-    boolean isItalic;
-    
-    @Attribute(name = "is_underlined", required = false)
-    boolean isUnderlined;
-    
-    public HashMap<Integer, InfoCard> getCards() {
-        return cards;
-    }
-
-    public void setCards(HashMap<Integer, InfoCard> cards) {
-        this.cards = cards;
-    }
-
-
+    String backgroundImage;    
+    String grid;       
+    String backgroundColor;          
+    String mediaUrl;    
+    String mediaType;        
+    String fontColor;        
+    String fontSize;    
+    Boolean isBold;        
+    Boolean isItalic;
+    Boolean isUnderlined;
+    Boolean draggable;
+    Boolean dropable;
     public EntityOption() {
         super();
         // TODO Auto-generated constructor stub
@@ -80,7 +44,7 @@ public class EntityOption implements Serializable {
         this.backgroundColor = backgroundColor;
     }
 
-
+    @XmlAttribute(name="id")
     public Integer getId() {
         return id;
     }
@@ -89,6 +53,7 @@ public class EntityOption implements Serializable {
         this.id = id;
     }
 
+    @XmlAttribute(name="option_text", required=false)
     public String getOptionText() {
         return optionText;
     }
@@ -97,6 +62,7 @@ public class EntityOption implements Serializable {
         this.optionText = optionText;
     }
 
+    @XmlAttribute(name="background_image", required=false)
     public String getBackgroundImage() {
         return backgroundImage;
     }
@@ -105,6 +71,7 @@ public class EntityOption implements Serializable {
         this.backgroundImage = backgroundImage;
     }
 
+    @XmlAttribute(name="grid", required=false)
     public String getGrid() {
         return grid;
     }
@@ -113,31 +80,7 @@ public class EntityOption implements Serializable {
         this.grid = grid;
     }
 
-    public boolean isCorrect() {
-        return isCorrect;
-    }
-
-    public void setCorrect(boolean isCorrect) {
-        this.isCorrect = isCorrect;
-    }
-
-
-    public Integer getNextEntity() {
-        return nextEntity;
-    }
-
-    public void setNextEntity(Integer nextEntity) {
-        this.nextEntity = nextEntity;
-    }
-
-    public String getEvaluationScript() {
-        return evaluationScript;
-    }
-
-    public void setEvaluationScript(String evaluationScript) {
-        this.evaluationScript = evaluationScript;
-    }
-
+    @XmlAttribute(name="media_url", required=false)
     public String getMediaUrl() {
         return mediaUrl;
     }
@@ -146,6 +89,7 @@ public class EntityOption implements Serializable {
         this.mediaUrl = mediaUrl;
     }
 
+    @XmlAttribute(name="media_type", required=false)
     public String getMediaType() {
         return mediaType;
     }
@@ -154,6 +98,7 @@ public class EntityOption implements Serializable {
         this.mediaType = mediaType;
     }
 
+    @XmlAttribute(name="font_color", required=false)
 	public String getFontColor() {
 		return fontColor;
 	}
@@ -162,6 +107,7 @@ public class EntityOption implements Serializable {
 		this.fontColor = fontColor;
 	}
 
+	@XmlAttribute(name="font_size", required=false)
 	public String getFontSize() {
 		return fontSize;
 	}
@@ -170,30 +116,56 @@ public class EntityOption implements Serializable {
 		this.fontSize = fontSize;
 	}
 
-	public boolean isBold() {
+	@XmlAttribute(name="is_bold", required=false)
+	public Boolean getIsBold() {
 		return isBold;
 	}
 
-	public void setBold(boolean isBold) {
+
+	public void setIsBold(Boolean isBold) {
 		this.isBold = isBold;
 	}
 
-	public boolean isItalic() {
+	@XmlAttribute(name="is_italic")
+	public Boolean getIsItalic() {
 		return isItalic;
 	}
 
-	public void setItalic(boolean isItalic) {
+
+	public void setIsItalic(Boolean isItalic) {
 		this.isItalic = isItalic;
 	}
 
-	public boolean isUnderlined() {
+	@XmlAttribute(name="is_underlined", required=false)
+	public Boolean getIsUnderlined() {
 		return isUnderlined;
 	}
 
-	public void setUnderlined(boolean isUnderlined) {
+
+	public void setIsUnderlined(Boolean isUnderlined) {
 		this.isUnderlined = isUnderlined;
-	}  
-	   
+	}
+
+	@XmlAttribute(name="dragable", required=false)
+	public Boolean getDraggable() {
+		return draggable;
+	}
+
+
+	public void setDraggable(Boolean draggable) {
+		this.draggable = draggable;
+	}
+
+	@XmlAttribute(name="droppable", required=false)
+	public Boolean getDropable() {
+		return dropable;
+	}
+
+
+	public void setDropable(Boolean dropable) {
+		this.dropable = dropable;
+	}
+
     
 }
 
