@@ -32,7 +32,7 @@ import com.viksitpro.core.utilities.DBUTILS;
 public class EntityOption {
 	int Id;
 	Integer correct_order_id;
-	int next_slide;
+	Integer next_slide;
 	String image_BG;
 	String bg_audio;
 	String option_text;
@@ -92,11 +92,11 @@ public class EntityOption {
 		this.type = type;
 	}
 
-	public int getNext_slide() {
+	public Integer getNext_slide() {
 		return next_slide;
 	}
 	@XmlAttribute(name = "next_slide",required=false)
-	public void setNext_slide(int next_slide) {
+	public void setNext_slide(Integer next_slide) {
 		this.next_slide = next_slide;
 	}
 
