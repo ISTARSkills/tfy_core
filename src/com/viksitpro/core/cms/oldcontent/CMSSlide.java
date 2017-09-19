@@ -50,9 +50,15 @@ public class CMSSlide {
 	String audioUrl;
 	int slideDuration;
 	Integer fragmentCount;
-	String slide_type="INFORMATION_ONLY";
+	String slide_type = "INFORMATION_ONLY";
 	String evaluatorType;
 	List<CMSEVALUTAOR> evaluators = new ArrayList<CMSEVALUTAOR>();
+
+	// for interactive tem[llatye addition
+
+	String label; // optional
+	String audio_type; // repeitive/nonrepetitive optional
+	ArrayList<Outcome> outcomes;
 
 	public CMSSlide() {
 		ArrayList<CMSTextItem> items = new ArrayList<CMSTextItem>();
@@ -113,8 +119,6 @@ public class CMSSlide {
 
 	}
 
-
-	
 	@XmlAttribute
 	public String getSlide_type() {
 		return slide_type;
@@ -132,6 +136,7 @@ public class CMSSlide {
 	public void setId(int id) {
 		Id = id;
 	}
+
 	@XmlElement(name = "order_id")
 	public int getOrder_id() {
 		return order_id;
@@ -155,7 +160,7 @@ public class CMSSlide {
 
 	@XmlElement(name = "duration")
 	public int getSlideDuration() {
-		if(slideDuration == 0) {
+		if (slideDuration == 0) {
 			return 5000;
 		}
 		return slideDuration;
@@ -295,7 +300,7 @@ public class CMSSlide {
 	public void setBackgroundTransition(String backgroundTransition) {
 		this.backgroundTransition = backgroundTransition.toLowerCase();
 	}
-	
+
 	public String toString() {
 		StringWriter out = new StringWriter();
 		JAXBContext jaxbContext;
@@ -328,7 +333,7 @@ public class CMSSlide {
 	public void setTitle2(CMSTitle2 title2) {
 		this.title2 = title2;
 	}
-	
+
 	@XmlAttribute(name = "fragmentCount")
 	public Integer getFragmentCount() {
 		return fragmentCount;
