@@ -22,7 +22,6 @@ import com.viksitpro.core.dao.utils.HibernateSessionFactory;
  */
 public class DBUTILS {
 	public void executeUpdate(String sql) {
-		System.out.println(sql);
 		Session session_hibernate = HibernateSessionFactory.getSessionFactory().openSession();
 		session_hibernate.clear();
 		Transaction tx = null;
@@ -42,7 +41,6 @@ public class DBUTILS {
 	}
 
 	public int executeUpdateReturn(String sql) {
-		System.out.println(sql);
 		Session session_hibernate = HibernateSessionFactory.getSessionFactory().openSession();
 		session_hibernate.clear();
 		Transaction tx = null;

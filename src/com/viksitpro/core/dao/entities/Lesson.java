@@ -20,6 +20,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.xml.bind.JAXBContext;
@@ -56,6 +57,7 @@ public class Lesson implements java.io.Serializable {
 	private Set<StudentPlaylist> studentPlaylists = new HashSet<StudentPlaylist>(0);
 	private String Image_url;
 	private String category;
+	private Assessment assessment;
 
 	private String lessonXml;
 
@@ -282,6 +284,16 @@ public class Lesson implements java.io.Serializable {
 
 	public void setIsPublished(Boolean isPublished) {
 		this.isPublished = isPublished;
+	}
+
+	
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "lesson",optional=true)
+	public Assessment getAssessment() {
+		return assessment;
+	}
+
+	public void setAssessment(Assessment assessment) {
+		this.assessment = assessment;
 	}
 	
 	

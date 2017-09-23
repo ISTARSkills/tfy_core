@@ -902,11 +902,25 @@ public class CoreSkillService {
 			ArrayList<SessionLevelSkill> sessionSkills = new ArrayList<>();
 			for(Cmsession cms : module.getCmsessions())
 			{
-				SessionLevelSkill sessionLevelSkill = new SessionLevelSkill();
-				sessionLevelSkill.setCreationType("SYSTEM_CREATED");
-				sessionLevelSkill.setId(cms.getId());
-				sessionLevelSkill.setSkillName(cms.getTitle());				
-				sessionSkills.add(sessionLevelSkill);
+				boolean validSession = false;
+				if(cms.getLessons()!=null )
+				{
+					for(Lesson lesson : cms.getLessons())
+					{
+						if(!lesson.getType().equalsIgnoreCase("ASSESSMENT") && lesson.getSkillObjectives()!=null && lesson.getSkillObjectives().size()>0) {
+							validSession= true;
+						}
+					}
+				}
+				if(validSession)
+				{
+					SessionLevelSkill sessionLevelSkill = new SessionLevelSkill();
+					sessionLevelSkill.setCreationType("SYSTEM_CREATED");
+					sessionLevelSkill.setId(cms.getId());
+					sessionLevelSkill.setSkillName(cms.getTitle());				
+					sessionSkills.add(sessionLevelSkill);
+				}	
+				
 			}
 			modSkill.setSessionLevelSkill(sessionSkills);
 			moduleSkills.add(modSkill);			

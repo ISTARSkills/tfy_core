@@ -1,9 +1,17 @@
 package com.viksitpro.core.dao.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -16,7 +24,7 @@ public class Context implements java.io.Serializable {
 
 		private Integer Id;
 		private String title;
-		
+		private Set<Course> courses = new HashSet<>();
 		// Constructors
 
 		/** default constructor */
@@ -52,6 +60,18 @@ public class Context implements java.io.Serializable {
 
 		public void setTitle(String title) {
 			this.title = title;
+		}
+
+		@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+		@JoinTable(name = "course_context_mapping", schema = "public", joinColumns = {
+				@JoinColumn(name = "context_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+						@JoinColumn(name = "course_id", nullable = false, updatable = false) })
+		public Set<Course> getCourses() {
+			return courses;
+		}
+
+		public void setCourses(Set<Course> courses) {
+			this.courses = courses;
 		}
 		
 		
