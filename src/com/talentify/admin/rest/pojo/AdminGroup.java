@@ -11,6 +11,7 @@ import java.util.ArrayList;
  */
 public class AdminGroup {
 
+	Integer id;
 	String groupName ;
 	String type;
 	Float averageRating;
@@ -18,6 +19,15 @@ public class AdminGroup {
 	Integer totalStudents;
 	Float attendancePercentage;
 	Float performance;
+	
+	
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public String getGroupName() {
 		return groupName;
 	}

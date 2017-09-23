@@ -22,6 +22,9 @@ public class CMSLesson {
 
 	String teacherNotes;
 	String studentNotes;
+	
+	
+    String audio_url;
 
 	@XmlElement(name = "teacher_notes")
 	public String getTeacherNotes() {
@@ -78,4 +81,13 @@ public class CMSLesson {
 		this.lessonDescription = lessonDescription;
 	}
 
+	public String getAudio_url() {
+		return audio_url;
+	}
+	@XmlElement(name = "audio_url", required = false)
+	public void setAudio_url(String audio_url) {
+		this.audio_url = audio_url;
+	}
+
+	
 }
