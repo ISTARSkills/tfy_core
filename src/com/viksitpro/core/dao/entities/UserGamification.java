@@ -1,6 +1,7 @@
 package com.viksitpro.core.dao.entities;
 
 import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -26,8 +28,8 @@ public class UserGamification implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	private SkillObjective skillObjective;
-	private IstarUser istarUser;
+	private Integer skillObjective;
+	private Integer istarUser;
 	private Double points;
 	private Integer coins;
 	private Timestamp createdAt;
@@ -44,8 +46,7 @@ public class UserGamification implements java.io.Serializable {
 	/** full constructor */
 	public UserGamification(SkillObjective skillObjective, IstarUser istarUser, Double points, Integer coins,
 			Timestamp createdAt, Timestamp updatedAt, Integer itemId, String itemType) {
-		this.skillObjective = skillObjective;
-		this.istarUser = istarUser;
+		
 		this.points = points;
 		this.coins = coins;
 		this.createdAt = createdAt;
@@ -69,25 +70,25 @@ public class UserGamification implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "skill_objective")
 
-	public SkillObjective getSkillObjective() {
+	@Column(name = "skill_objective")
+
+	public Integer getSkillObjective() {
 		return this.skillObjective;
 	}
 
-	public void setSkillObjective(SkillObjective skillObjective) {
+	public void setSkillObjective(Integer skillObjective) {
 		this.skillObjective = skillObjective;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "istar_user")
+	
+	@Column(name = "istar_user")
 
-	public IstarUser getIstarUser() {
+	public Integer getIstarUser() {
 		return this.istarUser;
 	}
 
-	public void setIstarUser(IstarUser istarUser) {
+	public void setIstarUser(Integer istarUser) {
 		this.istarUser = istarUser;
 	}
 

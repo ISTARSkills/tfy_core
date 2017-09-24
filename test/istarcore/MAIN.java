@@ -68,8 +68,7 @@ public class MAIN {
 		//SS();
 		//ll();
 		//portCheck();
-		checkAssessment();
-		
+		//checkAssessment();
 		//System.out.println("exiting");
 		System.exit(0);
 
@@ -78,6 +77,12 @@ public class MAIN {
 	
 
 	
+
+
+	
+
+
+
 
 
 	private static void checkAssessment() {
@@ -176,7 +181,7 @@ public class MAIN {
 
 							if (assessment != null && courses.size() > 0) {
 								good++;
-								assessment.setCourse(courses.get(0).getId());
+								
 								
 								Session assessmentSession = assessmentDAO.getSession();
 								Transaction assessmentTransaction = null;

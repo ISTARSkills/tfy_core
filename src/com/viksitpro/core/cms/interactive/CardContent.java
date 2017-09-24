@@ -3,9 +3,9 @@
  */
 package com.viksitpro.core.cms.interactive;		
 
-import org.simpleframework.xml.Attribute;
-
 import java.io.Serializable;
+
+import org.simpleframework.xml.Attribute;
 
 /**
  * @author ComplexObject

@@ -4,14 +4,9 @@
 package com.viksitpro.core.customtask;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-
-import org.apache.commons.lang3.StringEscapeUtils;
 
 import com.viksitpro.core.utilities.CustomFormElementTypes;
 import com.viksitpro.core.utilities.CustomTaskElementValidationTypes;

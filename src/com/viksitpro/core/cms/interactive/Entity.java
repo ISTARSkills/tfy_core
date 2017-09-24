@@ -5,11 +5,6 @@ package com.viksitpro.core.cms.interactive;
 
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Map;
-
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.ElementMap;

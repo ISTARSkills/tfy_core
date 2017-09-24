@@ -5,8 +5,6 @@ package com.viksitpro.core.skill.pojo;
 
 import java.util.ArrayList;
 
-import com.viksitpro.core.dao.entities.Module;
-
 /**
  * @author mayank
  *

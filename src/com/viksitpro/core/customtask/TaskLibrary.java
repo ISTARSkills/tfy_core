@@ -3,7 +3,6 @@
  */
 package com.viksitpro.core.customtask;
 
-import java.io.File;
 import java.net.URL;
 import java.util.HashMap;
 
@@ -11,7 +10,6 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 import com.viksitpro.core.dao.entities.Task;
 import com.viksitpro.core.dao.entities.TaskDAO;

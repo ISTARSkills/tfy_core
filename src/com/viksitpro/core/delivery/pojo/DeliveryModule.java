@@ -5,9 +5,6 @@ package com.viksitpro.core.delivery.pojo;
 
 import java.util.ArrayList;
 
-import com.viksitpro.core.skill.pojo.ModuleLevelSkill;
-import com.viksitpro.core.skill.pojo.SessionLevelSkill;
-
 /**
  * @author mayank
  *

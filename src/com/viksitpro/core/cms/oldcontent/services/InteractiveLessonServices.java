@@ -4,18 +4,15 @@
 package com.viksitpro.core.cms.oldcontent.services;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import com.viksitpro.core.cms.interactive.EntityOption;
 import com.viksitpro.core.cms.oldcontent.CMSLesson;
 import com.viksitpro.core.cms.oldcontent.CMSSlide;
 import com.viksitpro.core.utilities.AppProperies;

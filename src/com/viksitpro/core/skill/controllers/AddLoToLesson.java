@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.viksitpro.core.skill.services.CoreSkillService;
 import com.viksitpro.core.utilities.DBUTILS;
 
 

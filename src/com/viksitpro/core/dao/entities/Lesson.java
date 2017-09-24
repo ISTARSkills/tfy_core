@@ -1,13 +1,8 @@
 package com.viksitpro.core.dao.entities;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.StringReader;
 import java.sql.Timestamp;
 import java.util.HashSet;
-import java.util.Properties;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
