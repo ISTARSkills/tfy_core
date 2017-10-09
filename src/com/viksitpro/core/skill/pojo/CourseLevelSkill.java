@@ -15,7 +15,6 @@ public class CourseLevelSkill {
 	String skillName;
 	String creationType;	
 	ArrayList<ModuleLevelSkill> moduleLevelSkill;
-	
 
 	
 	public Integer getId() {

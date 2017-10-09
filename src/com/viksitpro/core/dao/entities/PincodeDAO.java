@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -54,13 +55,16 @@ public class PincodeDAO extends BaseHibernateDAO {
 	}
 
 	public Pincode findById(java.lang.Integer id) {
+		Session ss = getSession();
 		log.debug("getting Pincode instance with id: " + id);
 		try {
-			Pincode instance = (Pincode) getSession().get("com.viksitpro.core.dao.entities.Pincode", id);
+			Pincode instance = (Pincode) ss.get("com.viksitpro.core.dao.entities.Pincode", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
+		}finally {
+			ss.close();
 		}
 	}
 
@@ -78,15 +82,18 @@ public class PincodeDAO extends BaseHibernateDAO {
 	}
 
 	public List<Pincode> findByProperty(String propertyName, Object value) {
+		Session ss = getSession();
 		log.debug("finding Pincode instance with property: " + propertyName + ", value: " + value);
 		try {
 			String queryString = "from Pincode as model where model." + propertyName + "= ?";
-			Query queryObject = getSession().createQuery(queryString);
+			Query queryObject = ss.createQuery(queryString);
 			queryObject.setParameter(0, value);
 			return queryObject.list();
 		} catch (RuntimeException re) {
 			log.error("find by property name failed", re);
 			throw re;
+		}finally {
+			ss.close();
 		}
 	}
 

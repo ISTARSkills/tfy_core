@@ -22,7 +22,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
@@ -1098,8 +1100,7 @@ public class LessonImportService {
 
 	public void importAssessmentForCourse(int courseId) {
 		// TODO Auto-generated method stub
-		String query="select assessment.id, lesson.id as lesson_id,lesson.title as lesson_title, cmsession.id as session_id,module.id as module_id   from lesson, cmsession, module, course, assessment where lesson.session_id = cmsession.id and cmsession.module_id = module.id and course.id = module.course_id and course.id = "+courseId+" and lesson.dtype = 'ASSESSMENT' and assessment.lesson_id = lesson.id ";
-		System.out.println(query);
+		String query="select assessment.id from lesson, cmsession, module, course, assessment where lesson.session_id = cmsession.id and cmsession.module_id = module.id and course.id = module.course_id and course.id = "+courseId+" and lesson.dtype = 'ASSESSMENT' and assessment.lesson_id = lesson.id ";
 		Connection con = getConnection();
 		try {
 			Statement statement = con.createStatement();
@@ -1108,57 +1109,12 @@ public class LessonImportService {
 			while (rs.next()) {
 				
 				int assessmentId = rs.getInt("id");
-				int lessonId = rs.getInt("lesson_id");
-				int sessionId = rs.getInt("session_id");
-				int moduleId = rs.getInt("module_id");
-				String lessontitle =  rs.getString("lesson_title");
-				//boolean treeExist = importLesson(lessonId, sessionId, moduleId, lessontitle, assessmentId);
-				//if(treeExist) {
-					importAssessment(assessmentId, courseId);
-				//}
+				importAssessment(assessmentId, courseId);
 			}
-			
-			//con.close();
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-	}
-
-	private boolean importLesson(int lessonId, int sessionId, int moduleId, String lessonTitle, int assessmentID) {
-		boolean treeExist = true;
-		
-		
-		try {
-			Statement statement = getLocalConnection().createStatement();
-			String getlesson = "select * from lesson where id ="+lessonId;
-			ResultSet rs = statement.executeQuery(getlesson);
-			if(rs.next()) {
-				bw=new FileWriter(AppProperies.getProperty("mediaLessonPath")+"/assessments/lesson_"+lessonId+"_assessment_lesson.sql");
-				String insertQuery ="update lesson set lesson_xml='"+assessmentID+"' where id ="+lessonId+"";
-				bw.write(insertQuery);
-				bw.write(System.lineSeparator());
-				bw.close();	
-			}
-			else
-			{
-				//insert lessons
-				bw=new FileWriter(AppProperies.getProperty("mediaLessonPath")+"/assessments/lesson_"+lessonId+"_assessment_lesson.sql");
-				String insertQuery ="INSERT INTO lesson (id, type, duration, tags, title, subject, order_id, created_at, is_deleted, description, lesson_xml, category, is_published, org_id) "
-						+ "VALUES ("+lessonId+", 'ASSESSMENT', '60', NULL, '"+lessonTitle.replace("'", "").trim()+"', 'NONE', NULL, '2017-07-26 14:30:26.639738', 'f', NULL, '"+assessmentID+"', 'BOTH', 't', NULL);";
-				bw.write(insertQuery);
-				bw.write(System.lineSeparator());
-				bw.close();
-			}			
-		
-			
-			
-		}catch(Exception ex)
-		{
-			
-		}
-		
-		return treeExist;
 	}
 
 	private void importAssessment(int assessmentId, int courseId) {
@@ -1169,19 +1125,18 @@ public class LessonImportService {
 		try {
 			Statement statement = getConnection().createStatement();
 			String getAssessmentDetails = "select * from assessment where id ="+assessmentId;
-			System.out.println(getAssessmentDetails);
 			ResultSet rs = statement.executeQuery(getAssessmentDetails);
 			while (rs.next()) {
 				
 			try{
 				bw=new FileWriter(AppProperies.getProperty("mediaLessonPath")+"/assessments/"+assessmentId+"_assessment.sql");
 
-				 Statement checkAssesState = getLocalConnection().createStatement();
+				 Statement checkAssesState = getTalentifyConnection().createStatement();
 				 String checkIfAssessmentExist ="select * from assessment where id="+assessmentId;
 				 ResultSet chekAssess = checkAssesState.executeQuery(checkIfAssessmentExist);
 				 if(!chekAssess.next())
 				 {
-					System.out.println("inserting");
+					//System.out.println("inserting");
 					String insertQuery="INSERT INTO public.assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category, description, is_published, course_id) "
 							+ "VALUES ("+rs.getInt("id")+", '"+rs.getString("assessment_type")+"', now(), "+rs.getInt("number_of_questions")+", "+rs.getInt("assessmentdurationhours")+", "+rs.getInt("assessmentdurationminutes")+", '"+rs.getString("assessmenttitle").toString().trim().replace("'", "")+"', '"+rs.getBoolean("retry_able")+"', '"+rs.getString("category")+"', 'Not Available', 't',"+courseId+");";						
 					
@@ -1206,21 +1161,13 @@ public class LessonImportService {
 						while(rs3.next())
 						{
 						
-							Statement checkQueState = getLocalConnection().createStatement();
+							Statement checkQueState = getTalentifyConnection().createStatement();
 							 String checkIfQueExist ="select * from question where id="+rs2.getInt("questionid");
-							 System.out.println(checkIfQueExist);
 							 ResultSet chekQue = checkQueState.executeQuery(checkIfQueExist);
 							 if(!chekQue.next())
 							 {
-								 String passage="";
-								 if(rs3.getString("comprehensive_passage_text")!=null)
-								 {
-									 passage= rs3.getString("comprehensive_passage_text").trim().replace("'", "");
-								 } 
 								 String insertIntoQuestion = "INSERT INTO question (id, question_text, question_type, created_at, difficulty_level, specifier, duration_in_sec, explanation, comprehensive_passage_text, points, context_id) "
-									+ "VALUES ("+rs3.getInt("id")+", '"+rs3.getString("question_text").trim().replace("'", "")+"', "+rs3.getInt("question_type")+", now(), "+rs3.getInt("difficulty_level")+", "+rs3.getInt("specifier")+", "+rs3.getInt("duration_in_sec")+", "
-											+ "'"+rs3.getString("explanation").trim().replace("'", "")+"', "
-													+ "'"+passage+"', '1', "+courseId+");";							
+									+ "VALUES ("+rs3.getInt("id")+", '"+rs3.getString("question_text").trim().replace("'", "")+"', "+rs3.getInt("question_type")+", now(), "+rs3.getInt("difficulty_level")+", "+rs3.getInt("specifier")+", "+rs3.getInt("duration_in_sec")+", '"+rs3.getString("explanation").trim().replace("'", "")+"', '"+rs3.getString("comprehensive_passage_text").trim().replace("'", "")+"', '1', "+courseId+");";							
 								 bw.write(insertIntoQuestion);
 								 bw.write(System.lineSeparator());
 								 
@@ -1231,7 +1178,7 @@ public class LessonImportService {
 							ResultSet rs4 = statement4.executeQuery(findOptionRelatedToQuestion);
 							while(rs4.next())
 							{
-								Statement checkOptionState = getLocalConnection().createStatement();
+								Statement checkOptionState = getTalentifyConnection().createStatement();
 								 String checkIfOptinExist ="select * from assessment_option where id="+rs4.getInt("id");
 								 ResultSet chekOption = checkOptionState.executeQuery(checkIfOptinExist);
 								if(!chekOption.next())
@@ -1247,7 +1194,7 @@ public class LessonImportService {
 							
 						}
 						
-						Statement checkAssessmentQueueState = getLocalConnection().createStatement();
+						Statement checkAssessmentQueueState = getTalentifyConnection().createStatement();
 						String checkIfAssessmentQueueExist ="select * from assessment_question where assessmentid="+rs2.getInt("assessmentid")+" and questionid="+rs2.getInt("questionid");
 						ResultSet chekAssessmentQueue = checkAssessmentQueueState.executeQuery(checkIfAssessmentQueueExist);
 						if(!chekAssessmentQueue.next())
@@ -1280,38 +1227,6 @@ public class LessonImportService {
 		}
 		
 		
-	}
-
-	private Connection getLocalConnection() {
-		try{
-			
-			Class.forName("org.postgresql.Driver");
-			Connection connection = null;
-			connection = DriverManager.getConnection(
-			   "jdbc:postgresql://localhost:5432/talentify","postgres", "4a626021-e55a");
-			return connection;
-		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		return null;
-	}
-
-	private Connection getBusinessConnection() {
-		try{
-			
-			Class.forName("org.postgresql.Driver");
-			Connection connection = null;
-			connection = DriverManager.getConnection(
-			   "jdbc:postgresql://business.talentify.in:5432/talentify","postgres", "4a626021-e55a");
-			return connection;
-		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		return null;
 	}
 
 	public void importSkillForCourse(int courseId) {
@@ -1447,48 +1362,6 @@ public class LessonImportService {
 		
 		String getModules ="";
 		
-	}
-
-	
-
-	public void createImportScriptForLesson(int lessonId) {
-		// TODO Auto-generated method stub
-		Connection con = getConnection();
-		Connection local = getLocalConnection();
-		String getLessonPptDetails  = "select * from lesson where id ="+lessonId;
-		try {
-			Statement statement = con.createStatement();
-			
-			ResultSet rs = statement.executeQuery(getLessonPptDetails);
-			while (rs.next()) {
-				
-				String check="select * from lesson where id="+lessonId;
-				Statement checkStatement = local.createStatement();
-				ResultSet checkResult = checkStatement.executeQuery(check);
-				if(checkResult.next())
-				{
-					String insertQuery="INSERT INTO lesson (id, type, duration, title, order_id, created_at, is_deleted, lesson_xml, category, is_published, org_id) "
-							+ "VALUES ("+lessonId+", 'PRESENTATION', 10,  '"+rs.getString("title").trim().replace("'", "")+"', NULL, now(), 'f', '', 'BOTH', 'f', NULL);";
-					String mapping="insert into lesson_cmsession (lesson_id, cmsession_id) values("+lessonId+","+rs.getInt("session_id")+")";
-					try {
-						bw=new FileWriter(""+AppProperies.getProperty("mediaPath")+"\\"+lessonId+"_lesson.sql");
-
-						
-						bw.write(insertQuery);
-						bw.write(System.lineSeparator());
-						
-						bw.write(mapping);
-						bw.write(System.lineSeparator());
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			}
-		} catch (SQLException  e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 	}
 	
 	

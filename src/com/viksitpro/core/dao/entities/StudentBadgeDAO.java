@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,13 +50,16 @@ public class StudentBadgeDAO extends BaseHibernateDAO {
 	}
 
 	public StudentBadge findById(java.lang.Integer id) {
+		Session ss = getSession();
 		log.debug("getting StudentBadge instance with id: " + id);
 		try {
-			StudentBadge instance = (StudentBadge) getSession().get("com.viksitpro.core.dao.entities.StudentBadge", id);
+			StudentBadge instance = (StudentBadge) ss.get("com.viksitpro.core.dao.entities.StudentBadge", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
+		}finally {
+			ss.close();
 		}
 	}
 
@@ -73,15 +77,18 @@ public class StudentBadgeDAO extends BaseHibernateDAO {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
+		Session ss = getSession();
 		log.debug("finding StudentBadge instance with property: " + propertyName + ", value: " + value);
 		try {
 			String queryString = "from StudentBadge as model where model." + propertyName + "= ?";
-			Query queryObject = getSession().createQuery(queryString);
+			Query queryObject = ss.createQuery(queryString);
 			queryObject.setParameter(0, value);
 			return queryObject.list();
 		} catch (RuntimeException re) {
 			log.error("find by property name failed", re);
 			throw re;
+		}finally {
+			ss.close();
 		}
 	}
 

@@ -5,7 +5,8 @@ package com.viksitpro.core.delivery.pojo;
 
 import java.util.ArrayList;
 
-import com.viksitpro.core.skill.pojo.ModuleLevelSkill;
+import com.viksitpro.core.dao.entities.SkillObjective;
+import com.viksitpro.core.skill.pojo.LearningObjective;
 
 /**
  * @author mayank
@@ -15,9 +16,8 @@ public class DeliveryLesson {
 
 	Integer id;
 	String lessonName;
-	ArrayList<ModuleLevelSkill> mappedModuleLevelSkill;
+	ArrayList<LearningObjective> mappedLO;
 	Boolean isPerfect;
-	String type;
 	
 	public Integer getId() {
 		return id;
@@ -31,14 +31,11 @@ public class DeliveryLesson {
 	public void setLessonName(String lessonName) {
 		this.lessonName = lessonName;
 	}
-	
-	
-	
-	public ArrayList<ModuleLevelSkill> getMappedModuleLevelSkill() {
-		return mappedModuleLevelSkill;
+	public ArrayList<LearningObjective> getMappedLO() {
+		return mappedLO;
 	}
-	public void setMappedModuleLevelSkill(ArrayList<ModuleLevelSkill> mappedModuleLevelSkill) {
-		this.mappedModuleLevelSkill = mappedModuleLevelSkill;
+	public void setMappedLO(ArrayList<LearningObjective> mappedLO) {
+		this.mappedLO = mappedLO;
 	}
 	public Boolean getIsPerfect() {
 		return isPerfect;
@@ -49,12 +46,6 @@ public class DeliveryLesson {
 	public DeliveryLesson() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
 	}
 	
 	

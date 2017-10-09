@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,13 +48,16 @@ public class UrlTableDAO extends BaseHibernateDAO {
 	}
 
 	public UrlTable findById(com.viksitpro.core.dao.entities.UrlTableId id) {
+		Session ss = getSession();
 		log.debug("getting UrlTable instance with id: " + id);
 		try {
-			UrlTable instance = (UrlTable) getSession().get("com.viksitpro.core.dao.entities.UrlTable", id);
+			UrlTable instance = (UrlTable) ss.get("com.viksitpro.core.dao.entities.UrlTable", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
+		}finally {
+			ss.close();
 		}
 	}
 
@@ -71,15 +75,18 @@ public class UrlTableDAO extends BaseHibernateDAO {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
+		Session ss = getSession();
 		log.debug("finding UrlTable instance with property: " + propertyName + ", value: " + value);
 		try {
 			String queryString = "from UrlTable as model where model." + propertyName + "= ?";
-			Query queryObject = getSession().createQuery(queryString);
+			Query queryObject = ss.createQuery(queryString);
 			queryObject.setParameter(0, value);
 			return queryObject.list();
 		} catch (RuntimeException re) {
 			log.error("find by property name failed", re);
 			throw re;
+		}finally {
+			ss.close();
 		}
 	}
 

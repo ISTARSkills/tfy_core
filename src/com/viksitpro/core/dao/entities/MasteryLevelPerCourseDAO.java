@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,14 +56,17 @@ public class MasteryLevelPerCourseDAO extends BaseHibernateDAO {
 	}
 
 	public MasteryLevelPerCourse findById(java.lang.Integer id) {
+		Session ss = getSession();
 		log.debug("getting MasteryLevelPerCourse instance with id: " + id);
 		try {
-			MasteryLevelPerCourse instance = (MasteryLevelPerCourse) getSession()
+			MasteryLevelPerCourse instance = (MasteryLevelPerCourse) ss
 					.get("com.viksitpro.core.dao.entities.MasteryLevelPerCourse", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
+		}finally {
+			ss.close();
 		}
 	}
 
@@ -81,15 +85,18 @@ public class MasteryLevelPerCourseDAO extends BaseHibernateDAO {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
+		Session ss = getSession();
 		log.debug("finding MasteryLevelPerCourse instance with property: " + propertyName + ", value: " + value);
 		try {
 			String queryString = "from MasteryLevelPerCourse as model where model." + propertyName + "= ?";
-			Query queryObject = getSession().createQuery(queryString);
+			Query queryObject = ss.createQuery(queryString);
 			queryObject.setParameter(0, value);
 			return queryObject.list();
 		} catch (RuntimeException re) {
 			log.error("find by property name failed", re);
 			throw re;
+		}finally {
+			ss.close();
 		}
 	}
 

@@ -3,11 +3,11 @@
  */
 package com.viksitpro.core.cms.interactive;		
 
-import java.io.Serializable;
-import java.util.HashMap;
-
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.ElementMap;
+
+import java.io.Serializable;
+import java.util.HashMap;
 
 /**
  * @author ComplexObject

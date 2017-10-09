@@ -10,6 +10,7 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -21,10 +22,10 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
-import com.viksitpro.core.cms.oldcontent.CMSLesson;
-import com.viksitpro.core.cms.oldcontent.CMSSlide;
-import com.viksitpro.core.cms.oldcontent.CMSTextItem;
+import com.viksitpro.core.cms.oldcontent.*;
 import com.viksitpro.core.utilities.DBUTILS;
 
 /**

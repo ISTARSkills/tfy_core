@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,14 +49,17 @@ public class AssessmentQuestionDAO extends BaseHibernateDAO {
 	}
 
 	public AssessmentQuestion findById(java.lang.Integer id) {
+		Session ss = getSession();
 		log.debug("getting AssessmentQuestion instance with id: " + id);
 		try {
-			AssessmentQuestion instance = (AssessmentQuestion) getSession()
+			AssessmentQuestion instance = (AssessmentQuestion) ss
 					.get("com.viksitpro.core.dao.entities.AssessmentQuestion", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
+		}finally {
+			ss.close();
 		}
 	}
 

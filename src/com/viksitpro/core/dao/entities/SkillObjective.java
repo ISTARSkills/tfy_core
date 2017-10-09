@@ -48,7 +48,8 @@ public class SkillObjective implements java.io.Serializable {
 	private Set<SkillObjective> skillObjectivesForLearningObjectiveId = new HashSet<SkillObjective>(0);
 	private Set<Cmsession> cmsessions = new HashSet<Cmsession>(0);
 	private Set<SkillObjective> skillObjectivesForSkillId = new HashSet<SkillObjective>(0);
-	//private Set<AssessmentBenchmark> assessmentBenchmarks = new HashSet<AssessmentBenchmark>(0);
+	private Set<UserGamification> userGamifications = new HashSet<UserGamification>(0);
+	private Set<AssessmentBenchmark> assessmentBenchmarks = new HashSet<AssessmentBenchmark>(0);
 	
 	// Constructors
 
@@ -77,7 +78,8 @@ public class SkillObjective implements java.io.Serializable {
 		this.skillObjectivesForLearningObjectiveId = skillObjectivesForLearningObjectiveId;
 		this.cmsessions = cmsessions;
 		this.skillObjectivesForSkillId = skillObjectivesForSkillId;
-		//this.assessmentBenchmarks = assessmentBenchmarks;
+		this.userGamifications = userGamifications;
+		this.assessmentBenchmarks = assessmentBenchmarks;
 	}
 
 	// Property accessors
@@ -263,9 +265,17 @@ public class SkillObjective implements java.io.Serializable {
 		this.skillObjectivesForSkillId = skillObjectivesForSkillId;
 	}
 	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "skillObjective")
+
+	public Set<UserGamification> getUserGamifications() {
+		return this.userGamifications;
+	}
+
+	public void setUserGamifications(Set<UserGamification> userGamifications) {
+		this.userGamifications = userGamifications;
+	}
 	
-	
-	/*@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "skillObjective")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "skillObjective")
 
 	public Set<AssessmentBenchmark> getAssessmentBenchmarks() {
 		return this.assessmentBenchmarks;
@@ -273,7 +283,7 @@ public class SkillObjective implements java.io.Serializable {
 
 	public void setAssessmentBenchmarks(Set<AssessmentBenchmark> assessmentBenchmarks) {
 		this.assessmentBenchmarks = assessmentBenchmarks;
-	}*/
+	}
 
 	@Column(name = "order_id")
 	public Integer getOrder_id() {

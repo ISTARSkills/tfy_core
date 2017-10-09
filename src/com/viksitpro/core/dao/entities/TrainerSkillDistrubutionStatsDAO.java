@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,14 +49,17 @@ public class TrainerSkillDistrubutionStatsDAO extends BaseHibernateDAO {
 	}
 
 	public TrainerSkillDistrubutionStats findById(java.lang.Integer id) {
+		Session ss = getSession();
 		log.debug("getting TrainerSkillDistrubutionStats instance with id: " + id);
 		try {
-			TrainerSkillDistrubutionStats instance = (TrainerSkillDistrubutionStats) getSession()
+			TrainerSkillDistrubutionStats instance = (TrainerSkillDistrubutionStats) ss
 					.get("com.viksitpro.core.dao.entities.TrainerSkillDistrubutionStats", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
+		}finally {
+			ss.close();
 		}
 	}
 
@@ -74,16 +78,19 @@ public class TrainerSkillDistrubutionStatsDAO extends BaseHibernateDAO {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
+		Session ss = getSession();
 		log.debug(
 				"finding TrainerSkillDistrubutionStats instance with property: " + propertyName + ", value: " + value);
 		try {
 			String queryString = "from TrainerSkillDistrubutionStats as model where model." + propertyName + "= ?";
-			Query queryObject = getSession().createQuery(queryString);
+			Query queryObject = ss.createQuery(queryString);
 			queryObject.setParameter(0, value);
 			return queryObject.list();
 		} catch (RuntimeException re) {
 			log.error("find by property name failed", re);
 			throw re;
+		}finally {
+			ss.close();
 		}
 	}
 

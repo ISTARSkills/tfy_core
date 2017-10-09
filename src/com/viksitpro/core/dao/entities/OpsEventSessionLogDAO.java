@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -59,14 +60,17 @@ public class OpsEventSessionLogDAO extends BaseHibernateDAO {
 	}
 
 	public OpsEventSessionLog findById(java.lang.Integer id) {
+		Session ss = getSession();
 		log.debug("getting OpsEventSessionLog instance with id: " + id);
 		try {
-			OpsEventSessionLog instance = (OpsEventSessionLog) getSession()
+			OpsEventSessionLog instance = (OpsEventSessionLog) ss
 					.get("com.viksitpro.core.dao.entities.OpsEventSessionLog", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
+		}finally {
+			ss.close();
 		}
 	}
 
@@ -84,15 +88,18 @@ public class OpsEventSessionLogDAO extends BaseHibernateDAO {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
+		Session ss = getSession();
 		log.debug("finding OpsEventSessionLog instance with property: " + propertyName + ", value: " + value);
 		try {
 			String queryString = "from OpsEventSessionLog as model where model." + propertyName + "= ?";
-			Query queryObject = getSession().createQuery(queryString);
+			Query queryObject = ss.createQuery(queryString);
 			queryObject.setParameter(0, value);
 			return queryObject.list();
 		} catch (RuntimeException re) {
 			log.error("find by property name failed", re);
 			throw re;
+		}finally {
+			ss.close();
 		}
 	}
 

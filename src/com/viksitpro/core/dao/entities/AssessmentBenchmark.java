@@ -2,10 +2,12 @@ package com.viksitpro.core.dao.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -25,9 +27,9 @@ public class AssessmentBenchmark implements java.io.Serializable {
 	private Integer id;
 	private Integer itemId;
 	private String itemType;
-	private Integer skillId;
+	private SkillObjective skillObjective;
 	private String maxPoints;
-	private Integer courseId;
+	private Integer contextId;
 
 	// Constructors
 
@@ -35,7 +37,12 @@ public class AssessmentBenchmark implements java.io.Serializable {
 	public AssessmentBenchmark() {
 	}
 
-	
+	/** full constructor */
+	public AssessmentBenchmark(Assessment assessment, SkillObjective skillObjective, String maxPoints) {
+		
+		this.skillObjective = skillObjective;
+		this.maxPoints = maxPoints;
+	}
 
 	// Property accessors
 	@GenericGenerator(name = "generator", strategy = "increment")
@@ -54,19 +61,16 @@ public class AssessmentBenchmark implements java.io.Serializable {
 
 	
 
-	
-	@Column(name = "skill_id")
-	public Integer getSkillId() {
-		return skillId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "skill_objective_id")
+
+	public SkillObjective getSkillObjective() {
+		return this.skillObjective;
 	}
 
-
-
-	public void setSkillId(Integer skillId) {
-		this.skillId = skillId;
+	public void setSkillObjective(SkillObjective skillObjective) {
+		this.skillObjective = skillObjective;
 	}
-
-
 
 	@Column(name = "max_points", precision = 17, scale = 17)
 
@@ -95,13 +99,13 @@ public class AssessmentBenchmark implements java.io.Serializable {
 	public void setItemType(String itemType) {
 		this.itemType = itemType;
 	}
-	@Column(name="course_id")
-	public Integer getCourseId() {
-		return courseId;
+	@Column(name="context_id")
+	public Integer getContextId() {
+		return contextId;
 	}
 
-	public void setCourseId(Integer courseId) {
-		this.courseId = courseId;
+	public void setContextId(Integer contextId) {
+		this.contextId = contextId;
 	}
 
 	

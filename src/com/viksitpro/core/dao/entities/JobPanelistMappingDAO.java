@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,14 +48,17 @@ public class JobPanelistMappingDAO extends BaseHibernateDAO {
 	}
 
 	public JobPanelistMapping findById(java.lang.Integer id) {
+		Session ss = getSession();
 		log.debug("getting JobPanelistMapping instance with id: " + id);
 		try {
-			JobPanelistMapping instance = (JobPanelistMapping) getSession()
+			JobPanelistMapping instance = (JobPanelistMapping) ss
 					.get("com.viksitpro.core.dao.entities.JobPanelistMapping", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
+		}finally {
+			ss.close();
 		}
 	}
 
@@ -72,15 +76,18 @@ public class JobPanelistMappingDAO extends BaseHibernateDAO {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
+		Session ss = getSession();
 		log.debug("finding JobPanelistMapping instance with property: " + propertyName + ", value: " + value);
 		try {
 			String queryString = "from JobPanelistMapping as model where model." + propertyName + "= ?";
-			Query queryObject = getSession().createQuery(queryString);
+			Query queryObject = ss.createQuery(queryString);
 			queryObject.setParameter(0, value);
 			return queryObject.list();
 		} catch (RuntimeException re) {
 			log.error("find by property name failed", re);
 			throw re;
+		}finally {
+			ss.close();
 		}
 	}
 

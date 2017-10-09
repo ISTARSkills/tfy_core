@@ -43,7 +43,7 @@ public class DBUTILS {
 	public int executeUpdateReturn(String sql) {
 		Session session_hibernate = HibernateSessionFactory.getSessionFactory().openSession();
 		session_hibernate.clear();
-		Transaction tx = null;
+	Transaction tx = null;
 		List<HashMap<String, Object>> ret = new ArrayList<HashMap<String, Object>>();
 		try {
 			tx = session_hibernate.beginTransaction();
@@ -65,7 +65,7 @@ public class DBUTILS {
 		List<HashMap<String, Object>> data = new ArrayList<HashMap<String, Object>>();
 		Session session_hibernate = HibernateSessionFactory.getSessionFactory().openSession();
 		session_hibernate.clear();
-		Transaction tx = null;
+	Transaction tx = null;
 		try {
 			tx = session_hibernate.beginTransaction();
 			SQLQuery query = session_hibernate.createSQLQuery(sql);
@@ -86,7 +86,7 @@ public class DBUTILS {
 		List<HashMap<String, Object>> data = new ArrayList<HashMap<String, Object>>();
 		Session session_hibernate = HibernateSessionFactory.getSessionFactory().openSession();
 		session_hibernate.clear();
-		Transaction tx = null;
+Transaction tx = null;
 		try {
 			tx = session_hibernate.beginTransaction();
 			query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
@@ -103,28 +103,22 @@ public class DBUTILS {
 	}
 
 	public void syncPkeySeq(String table_name, String pkey_seq) {
-		String syncSeq = "SELECT setval('" + pkey_seq + "', COALESCE((SELECT MAX(id)+1 FROM " + table_name
-				+ "), 1), false) as id;";
+		String syncSeq = "SELECT setval('" + pkey_seq + "', COALESCE((SELECT MAX(id)+1 FROM " + table_name + "), 1), false) as id;";
 		try {
 			long seq_val = executeUpdateReturn(syncSeq);
-			// System.out.println("DONE: DBUTILS::syncPkeySeq -> syncSeq --> " +
-			// syncSeq + pkey_seq + " ---> " + seq_val);
+			//System.out.println("DONE: DBUTILS::syncPkeySeq -> syncSeq --> " + syncSeq + pkey_seq + " ---> " + seq_val);
 		} catch (Exception e) {
-			// System.err.println("FAIL: DBUTILS::syncPkeySeq -> syncSeq --> " +
-			// syncSeq);
+			//System.err.println("FAIL: DBUTILS::syncPkeySeq -> syncSeq --> " + syncSeq);
 			e.printStackTrace();
 		}
 		return;
 	}
-
+	
 	public List<Object> executeHQL(String hql) {
-		Session session = HibernateSessionFactory.getSessionFactory().openSession();
-		session.clear();
+		Session session = HibernateSessionFactory.getSessionFactory().openSession();		session.clear();
 
 		Query query = session.createQuery(hql);
 		List<Object> results = query.list();
-		session.close();
-
 		return results;
 	}
 }

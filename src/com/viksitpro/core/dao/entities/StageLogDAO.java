@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -57,13 +58,16 @@ public class StageLogDAO extends BaseHibernateDAO {
 	}
 
 	public StageLog findById(java.lang.Integer id) {
+		Session ss = getSession();
 		log.debug("getting StageLog instance with id: " + id);
 		try {
-			StageLog instance = (StageLog) getSession().get("com.viksitpro.core.dao.entities.StageLog", id);
+			StageLog instance = (StageLog) ss.get("com.viksitpro.core.dao.entities.StageLog", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
+		}finally {
+			ss.close();
 		}
 	}
 
@@ -81,15 +85,18 @@ public class StageLogDAO extends BaseHibernateDAO {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
+		Session ss = getSession();
 		log.debug("finding StageLog instance with property: " + propertyName + ", value: " + value);
 		try {
 			String queryString = "from StageLog as model where model." + propertyName + "= ?";
-			Query queryObject = getSession().createQuery(queryString);
+			Query queryObject = ss.createQuery(queryString);
 			queryObject.setParameter(0, value);
 			return queryObject.list();
 		} catch (RuntimeException re) {
 			log.error("find by property name failed", re);
 			throw re;
+		}finally {
+			ss.close();
 		}
 	}
 

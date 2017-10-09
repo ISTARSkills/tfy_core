@@ -88,6 +88,7 @@ public class IstarUser implements java.io.Serializable {
 	private Set<ChatGroup> chatGroups = new HashSet<ChatGroup>(0);
 	private Set<StudentPlaylist> studentPlaylists = new HashSet<StudentPlaylist>(0);
 	private Set<Notification> notificationsForReceiverId = new HashSet<Notification>(0);
+	private Set<UserGamification> userGamifications = new HashSet<UserGamification>(0);
 	// Constructors
 
 	
@@ -171,6 +172,7 @@ public class IstarUser implements java.io.Serializable {
 		this.chatGroups = chatGroups;
 		this.studentPlaylists = studentPlaylists;
 		this.notificationsForReceiverId = notificationsForReceiverId;
+		this.userGamifications = userGamifications;
 	}
 
 	// Property accessors
@@ -665,6 +667,15 @@ public class IstarUser implements java.io.Serializable {
 		this.notificationsForReceiverId = notificationsForReceiverId;
 	}
 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "istarUser")
+
+	public Set<UserGamification> getUserGamifications() {
+		return this.userGamifications;
+	}
+
+	public void setUserGamifications(Set<UserGamification> userGamifications) {
+		this.userGamifications = userGamifications;
+	}
 	
 	@Transient
 	public Set<SkillPrecentile> getSkillPercentiles() {

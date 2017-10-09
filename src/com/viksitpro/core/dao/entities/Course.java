@@ -40,8 +40,9 @@ public class Course implements java.io.Serializable {
 	private List<Module> modules = new ArrayList<Module>();
 	private List<SkillObjective> skillObjectives = new ArrayList<SkillObjective>();
 	private Set<Batch> batchs = new HashSet<Batch>(0);
+	private String category;
 	private String image_url;
-	private List<Context> contexts  = new ArrayList<>();
+	
 	
 	// Constructors
 
@@ -171,7 +172,15 @@ public class Course implements java.io.Serializable {
 		this.batchs = batchs;
 	}
 
-	
+	@Column(name = "category")
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	@Column(name = "image_url")
 	public String getImage_url() {
 		return image_url;
@@ -201,18 +210,6 @@ public class Course implements java.io.Serializable {
 		
 		
 		return out;
-	}
-
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name = "course_context_mapping", schema = "public", joinColumns = {
-			@JoinColumn(name = "course_id", nullable = false, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "context_id", nullable = false, updatable = false) })
-	public List<Context> getContexts() {
-		return contexts;
-	}
-
-	public void setContexts(List<Context> contexts) {
-		this.contexts = contexts;
 	}
 
 }

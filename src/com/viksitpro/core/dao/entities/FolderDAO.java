@@ -8,6 +8,7 @@ import javax.persistence.Transient;
 
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,13 +51,16 @@ public class FolderDAO extends BaseHibernateDAO {
 	}
 
 	public Folder findById(java.lang.Integer id) {
+		Session ss = getSession();
 		log.debug("getting Folder instance with id: " + id);
 		try {
-			Folder instance = (Folder) getSession().get("com.viksitpro.core.dao.entities.Folder", id);
+			Folder instance = (Folder) ss.get("com.viksitpro.core.dao.entities.Folder", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
+		}finally {
+			ss.close();
 		}
 	}
 
@@ -74,15 +78,18 @@ public class FolderDAO extends BaseHibernateDAO {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
+		Session ss = getSession();
 		log.debug("finding Folder instance with property: " + propertyName + ", value: " + value);
 		try {
 			String queryString = "from Folder as model where model." + propertyName + "= ?";
-			Query queryObject = getSession().createQuery(queryString);
+			Query queryObject = ss.createQuery(queryString);
 			queryObject.setParameter(0, value);
 			return queryObject.list();
 		} catch (RuntimeException re) {
 			log.error("find by property name failed", re);
 			throw re;
+		}finally {
+			ss.close();
 		}
 	}
 

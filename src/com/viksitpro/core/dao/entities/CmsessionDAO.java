@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,13 +52,16 @@ public class CmsessionDAO extends BaseHibernateDAO {
 	}
 
 	public Cmsession findById(java.lang.Integer id) {
+		Session ss = getSession();
 		log.debug("getting Cmsession instance with id: " + id);
 		try {
-			Cmsession instance = (Cmsession) getSession().get("com.viksitpro.core.dao.entities.Cmsession", id);
+			Cmsession instance = (Cmsession) ss.get("com.viksitpro.core.dao.entities.Cmsession", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
+		}finally {
+			ss.close();
 		}
 	}
 

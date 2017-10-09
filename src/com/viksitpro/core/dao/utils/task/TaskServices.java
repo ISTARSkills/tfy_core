@@ -36,19 +36,19 @@ public class TaskServices {
 	{
 		DBUTILS util = new DBUTILS();
 		Integer taskId = null;
-		String checkIfTaskExist ="select id from task where actor= "+actor+" and item_id="+itemId+" and item_type='"+itemType+"' and cast (start_date  as date) = cast (now() as date)";
+		/*String checkIfTaskExist ="select id from task where actor= "+actor+" and item_id="+itemId+" and item_type='"+itemType+"' and cast (start_date  as date) = cast (now() as date)";
 		List<HashMap<String, Object>> alreadyAvailbleTask = util.executeQuery(checkIfTaskExist);
 		if(alreadyAvailbleTask.size()>0)
 		{
 			taskId = (Integer)alreadyAvailbleTask.get(0).get("id");
 		}
 		else
-		{
+		{*/
 			String sql ="INSERT INTO task (id, name, description, owner, actor, state,  start_date, end_date, is_active,  created_at, updated_at, item_id, item_type) "
 					+ "VALUES ((select COALESCE(max(id),0) +1 from task), '"+name+"', '"+description+"', "+owner+", "+actor+", 'SCHEDULED', now(),now(), 't', now(), now(), "+itemId+", '"+itemType+"') returning id;";
 				//System.out.println(">>>"+sql);
 			taskId = util.executeUpdateReturn(sql);
-		}
+		//}
 		
 			 
 		return taskId;
@@ -502,12 +502,34 @@ public class TaskServices {
 	@SuppressWarnings("unchecked")
 	public List<Task> getAllTaskOfActorForToday(IstarUser istarUser){
 		
-		String hql = "from Task task where actor= :actor";		
+		String hql = "from Task task where actor= :actor";
+		
 		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
 		Session session = baseHibernateDAO.getSession();
+
+/*		DateFormat day = new SimpleDateFormat("yyyyMMdd");
+		Date startDate = new Date();
+		
+		try {
+			startDate = day.parse(day.format(new Date()));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		Date endDate = new Date(startDate.getTime()+24*60*60*1000);
+		Timestamp dayStart = new Timestamp(startDate.getTime());
+		Timestamp dayEnd = new Timestamp(endDate.getTime());
+
+		//System.out.println("Day ends at->" + dayStart);
+		//System.out.println("Day ends at->" + dayEnd);
+		*/
 		Query query = session.createQuery(hql);
 		query.setParameter("actor", istarUser.getId());
+		//query.setParameter("dayStart", dayStart);
+		//query.setParameter("dayEnd", dayEnd);
+		
 		List<Task> allTask = query.list();
+		//System.out.println("allTask" + allTask.size());
 		return allTask;		
 	}
 	

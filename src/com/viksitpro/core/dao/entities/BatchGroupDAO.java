@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,13 +52,16 @@ public class BatchGroupDAO extends BaseHibernateDAO {
 	}
 
 	public BatchGroup findById(java.lang.Integer id) {
+		Session ss = getSession();
 		log.debug("getting BatchGroup instance with id: " + id);
 		try {
-			BatchGroup instance = (BatchGroup) getSession().get("com.viksitpro.core.dao.entities.BatchGroup", id);
+			BatchGroup instance = (BatchGroup) ss.get("com.viksitpro.core.dao.entities.BatchGroup", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
+		}finally {
+			ss.close();
 		}
 	}
 
@@ -75,15 +79,18 @@ public class BatchGroupDAO extends BaseHibernateDAO {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
+		Session ss = getSession();
 		log.debug("finding BatchGroup instance with property: " + propertyName + ", value: " + value);
 		try {
 			String queryString = "from BatchGroup as model where model." + propertyName + "= ?";
-			Query queryObject = getSession().createQuery(queryString);
+			Query queryObject = ss.createQuery(queryString);
 			queryObject.setParameter(0, value);
 			return queryObject.list();
 		} catch (RuntimeException re) {
 			log.error("find by property name failed", re);
 			throw re;
+		}finally {
+			ss.close();
 		}
 	}
 

@@ -10,9 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -27,6 +25,7 @@ import org.hibernate.annotations.OrderBy;
 public class Assessment implements java.io.Serializable {
 
 	// Fields
+
 	private Integer id;
 	private String assessmentType;
 	private Timestamp createdAt;
@@ -37,7 +36,7 @@ public class Assessment implements java.io.Serializable {
 	private Boolean retryAble;
 	private String category;
 	private String description;
-	private Lesson lesson;
+	private Integer course;
 	private Set<AssessmentQuestion> assessmentQuestions = new HashSet<AssessmentQuestion>(0);
 	private Set<Report> reports = new HashSet<Report>(0);
 	private Set<StudentAssessment> studentAssessments = new HashSet<StudentAssessment>(0);
@@ -64,6 +63,7 @@ public class Assessment implements java.io.Serializable {
 		this.assessmentQuestions = assessmentQuestions;
 		this.reports = reports;
 		this.studentAssessments = studentAssessments;
+		this.course = course;
 		
 		this.description = description;
 	}
@@ -173,6 +173,15 @@ public class Assessment implements java.io.Serializable {
 		this.description = description;
 	}
 
+	@Column(name = "course_id")
+
+	public Integer getCourse() {
+		return course;
+	}
+
+	public void setCourse(Integer course) {
+		this.course = course;
+	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "assessment")
 	@OrderBy(clause = "orderId")
@@ -204,17 +213,5 @@ public class Assessment implements java.io.Serializable {
 		this.studentAssessments = studentAssessments;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "lesson_id")
-	public Lesson getLesson() {
-		return lesson;
-	}
-
-	public void setLesson(Lesson lesson) {
-		this.lesson = lesson;
-	}
-
-	
-	
 	
 }

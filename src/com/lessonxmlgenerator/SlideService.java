@@ -1,5 +1,6 @@
 package com.lessonxmlgenerator;
 
+import java.awt.List;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -11,11 +12,8 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import com.viksitpro.core.cms.oldcontent.CMSLesson;
-import com.viksitpro.core.cms.oldcontent.CMSList;
-import com.viksitpro.core.cms.oldcontent.CMSParagraph;
+import com.viksitpro.core.cms.oldcontent.*;
 import com.viksitpro.core.cms.oldcontent.CMSSlide;
-import com.viksitpro.core.cms.oldcontent.CMSTextItem;
 
 
 
