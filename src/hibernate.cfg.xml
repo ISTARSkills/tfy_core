@@ -13,10 +13,10 @@
 		<property name="hbm2ddl.auto">update</property>
 		<property name="myeclipse.connection.profile">org.postgresql.Driver</property>
 		<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-		<property name="connection.password">4a626021-e55a</property>
+		<property name="connection.password">cx6ac54nmgGtLD1y</property>
 		<property name="show_sql">false</property>
 		<property name="connection.username">postgres</property>
-		<property name="connection.url">jdbc:postgresql://localhost:5432/talentify</property>
+		<property name="connection.url">jdbc:postgresql://35.200.218.45:5432/elt</property>
 		<property name="connection.driver_class">org.postgresql.Driver</property>
 		<mapping class="com.viksitpro.core.dao.entities.CollegeRecruiterMapping" />
 		<mapping class="com.viksitpro.core.dao.entities.JobRoleSkillBenchmark" />
