@@ -1,9 +1,7 @@
 package com.viksitpro.core.dao.utils.user;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /*import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -92,7 +90,7 @@ public class TeamMemberServices {
 		
 		String sql = "select user_id from team_member where team_id="+teamId;
 		
-		//System.out.println(sql);
+		//ViksitLogger.logMSG(this.getClass().getName(),sql);
 		
 		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
 		Session session = baseHibernateDAO.getSession();
@@ -117,7 +115,7 @@ public class TeamMemberServices {
 		try {
 			for (IstarUser user : allTeamMembers) {
 				String sql = "INSERT INTO team_member (team_id, user_id) VALUES (" + teamId + ", " + user.getId() + ")";
-				//System.out.println(sql);
+				//ViksitLogger.logMSG(this.getClass().getName(),sql);
 
 				SQLQuery query = session.createSQLQuery(sql);
 				query.executeUpdate();
@@ -143,7 +141,7 @@ public class TeamMemberServices {
 				
 				allTeamMembersSet.add(istarUser);
 			} else {
-				//System.out.println("TeamMember already exists");
+				//ViksitLogger.logMSG(this.getClass().getName(),"TeamMember already exists");
 			}
 			team = teamServices.updateTeamToDAO(team);
 		}
@@ -206,7 +204,7 @@ public class TeamMemberServices {
 
 		List<TeamMember> allTeamMember = session.createQuery(criteria).getResultList();
 
-		//System.out.println(allTeamMember.size());
+		//ViksitLogger.logMSG(this.getClass().getName(),allTeamMember.size());
 		if (allTeamMember.size() > 0) {
 			teamMember = allTeamMember.get(0);
 		}
@@ -229,7 +227,7 @@ public class TeamMemberServices {
 		
 		List<Integer> allTeamMember = query.list();
 
-		//System.out.println(allTeamMember.size());
+		//ViksitLogger.logMSG(this.getClass().getName(),allTeamMember.size());
 		if (allTeamMember.size() <= 0) {
 			isOld = false;
 		}		
@@ -241,7 +239,7 @@ public class TeamMemberServices {
 		Session session = baseHibernateDAO.getSession();
 		try {
 			String sql = "delete from team_member where team_id=" + teamId;
-			//System.err.println(sql);
+			//ViksitLogger.logMSG(this.getClass().getName(),(sql);
 			SQLQuery query = session.createSQLQuery(sql);
 			query.executeUpdate();
 		} catch (Exception e) {

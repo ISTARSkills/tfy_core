@@ -13,7 +13,6 @@ import org.hibernate.Transaction;
 import com.viksitpro.core.dao.entities.BaseHibernateDAO;
 import com.viksitpro.core.dao.entities.IstarNotification;
 import com.viksitpro.core.dao.entities.IstarNotificationDAO;
-import com.viksitpro.core.dao.entities.Task;
 
 public class IstarNotificationServices {
 	

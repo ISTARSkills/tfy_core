@@ -7,9 +7,6 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.attribute.PosixFilePermission;
@@ -39,6 +36,7 @@ import com.viksitpro.core.cms.oldcontent.services.ZipFiles;
 import com.viksitpro.core.dao.entities.Lesson;
 import com.viksitpro.core.dao.entities.LessonDAO;
 import com.viksitpro.core.exceptions.EntityNotFoundException;
+import com.viksitpro.core.logger.ViksitLogger;
 import com.viksitpro.core.utilities.AppProperies;
 import com.viksitpro.core.utilities.DBUTILS;
 
@@ -130,10 +128,11 @@ public class IstarXMLCreator implements Callable {
 						String imageName = UUID.randomUUID().toString() + System.currentTimeMillis();
 						imageName = imageName + "-" + i;
 						String endpoint = "https://sandbox.zamzar.com/v1/files/" + i + "/content";
+						String desktopFilename = apachePath + "/lessonXMLs/" + lessonId + "/" + lessonId + "/" + imageName+"_desktop.png";
 						String localFilename = apachePath + "/lessonXMLs/" + lessonId + "/" + lessonId + "/" + imageName+".png";
 						CMSSlide slide = new CMSSlide();
 
-						slide.setId(i);
+						slide.setId(((lessonId*1000)+i));
 						slide.setImage_BG(
 								mediaUrlPath + "/lessonXMLs/" + lessonId + "/" + lessonId + "/" + imageName + ".png");
 						slide.setOrder_id(i);
@@ -146,15 +145,23 @@ public class IstarXMLCreator implements Callable {
 							HttpEntity responseContent = response.getEntity();
 							BufferedInputStream bis = new BufferedInputStream(responseContent.getContent());
 							BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(localFilename));
+							BufferedOutputStream bosDesktop = new BufferedOutputStream(new FileOutputStream(desktopFilename));
 							int inByte;
 							while ((inByte = bis.read()) != -1) {
 								bos.write(inByte);
+								bosDesktop.write(inByte);
 							}
-							System.out.println("File downloaded");
+							
+							
+							ViksitLogger.logMSG(this.getClass().getName(),"File downloaded");
+							
+							
 							response.close();
 							httpClient.close();
 							bos.close();
+							bosDesktop.close();
 							bis.close();
+							
 						} catch (UnsupportedOperationException | IOException e) {
 							e.printStackTrace();
 						}
@@ -199,7 +206,7 @@ public class IstarXMLCreator implements Callable {
 				File sourceFile = new File(SOURCE_FOLDER);
 
 				String zipName =SOURCE_FOLDER+ ".zip";
-				System.out.println("creating "+zipName);
+				ViksitLogger.logMSG(this.getClass().getName(),"creating "+zipName);
 				ZipFiles zipFiles = new ZipFiles();
 				zipFiles.zipDirectory(sourceFile, zipName);
 				
@@ -212,7 +219,7 @@ public class IstarXMLCreator implements Callable {
 				        exitVal = proc.waitFor();
 				        InputStream error = proc.getErrorStream();
 				         for (int i = 0; i < error.available(); i++) {
-				            System.out.println("" + error.read());
+				            ViksitLogger.logMSG(this.getClass().getName(),"" + error.read());
 				         }
 				        
 				         // wait for 10 seconds and then destroy the process
@@ -247,7 +254,7 @@ public class IstarXMLCreator implements Callable {
 		}
 		else
 		{
-			System.out.println("lesso  id is null");
+			ViksitLogger.logMSG(this.getClass().getName(),"lesso  id is null");
 		}	
 
 		return null;
@@ -272,7 +279,7 @@ public class IstarXMLCreator implements Callable {
 		    		if(file.list().length==0){
 
 		    		   file.delete();
-		    		 //  System.out.println("Directory is deleted : "
+		    		 //  ViksitLogger.logMSG(this.getClass().getName(),"Directory is deleted : "
 		                                                
 
 		    		}else{

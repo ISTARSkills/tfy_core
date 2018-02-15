@@ -6,6 +6,7 @@ package com.viksitpro.core.utilities;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
+
 import org.apache.log4j.Logger;
 
 
@@ -26,7 +27,7 @@ public class UUIUtils {
 		Date date = new Date();
 		String timeStampString = format.format(date);
 		log.error(timeStampString + " " + message.toString());
-		//System.err.println(message.toString());
+		//ViksitLogger.logMSG(this.getClass().getName(),(message.toString());
 	}
 
 	public static void printlog(Object cname, Object message) {
@@ -34,6 +35,6 @@ public class UUIUtils {
 		Date date = new Date();
 		String timeStampString = format.format(date);
 		log.error(timeStampString + " - " + cname + " - " + message.toString());
-		//System.err.println(message.toString());
+		//ViksitLogger.logMSG(this.getClass().getName(),(message.toString());
 	}
 }

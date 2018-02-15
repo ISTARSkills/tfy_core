@@ -3,28 +3,6 @@
  */
 package com.viksitpro.core.delivery.services;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import com.viksitpro.core.dao.entities.Cmsession;
-import com.viksitpro.core.dao.entities.CmsessionDAO;
-import com.viksitpro.core.dao.entities.Course;
-import com.viksitpro.core.dao.entities.CourseDAO;
-import com.viksitpro.core.dao.entities.Lesson;
-import com.viksitpro.core.dao.entities.LessonDAO;
-import com.viksitpro.core.dao.entities.Module;
-import com.viksitpro.core.dao.entities.ModuleDAO;
-import com.viksitpro.core.dao.entities.SkillObjective;
-import com.viksitpro.core.delivery.pojo.DeliveryCourse;
-import com.viksitpro.core.delivery.pojo.DeliveryLesson;
-import com.viksitpro.core.delivery.pojo.DeliveryModule;
-import com.viksitpro.core.delivery.pojo.DeliverySession;
-import com.viksitpro.core.skill.pojo.LearningObjective;
-import com.viksitpro.core.skill.pojo.ModuleLevelSkill;
-import com.viksitpro.core.skill.pojo.SessionLevelSkill;
-import com.viksitpro.core.utilities.DBUTILS;
-
 /**
  * @author mayank
  *

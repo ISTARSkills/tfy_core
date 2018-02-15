@@ -40,11 +40,11 @@ public class HHTPUTil {
 		
 		arrayList.add(((System.currentTimeMillis()-tt)/1000)+"");
 		
-		////System.err.println((System.currentTimeMillis()-tt)/1000);
+		////ViksitLogger.logMSG(this.getClass().getName(),((System.currentTimeMillis()-tt)/1000);
 		
 		/*
 		long time = System.currentTimeMillis();
-	 //System.out.println("start time"+time);
+	 //ViksitLogger.logMSG(this.getClass().getName(),"start time"+time);
 		// TODO Auto-generated method stub
 		String url = "http://cdn.talentify.in/courseZIPs/5.zip";
 		URL obj = new URL(url);
@@ -61,16 +61,16 @@ public class HHTPUTil {
 			StringBuffer response = new StringBuffer();
 				
 			while ((inputLine = in.readLine()) != null) {
-					//System.out.println(inputLine);
+					//ViksitLogger.logMSG(this.getClass().getName(),inputLine);
 				response.append(inputLine);
 			}
 			in.close();*/
 	//}
 
-		//	//System.out.println("end time "+(System.currentTimeMillis()-time)/1000);
+		//	//ViksitLogger.logMSG(this.getClass().getName(),"end time "+(System.currentTimeMillis()-time)/1000);
 		}
 		for(String key:arrayList ){
-			//System.out.println("Final timer------------- "+key);
+			//ViksitLogger.logMSG(this.getClass().getName(),"Final timer------------- "+key);
 		}
 		System.exit(0);
 	}

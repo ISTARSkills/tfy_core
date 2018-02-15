@@ -5,12 +5,15 @@ package com.viksitpro.core.cms.oldcontent.services;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
+
+import com.viksitpro.core.logger.ViksitLogger;
 
 /**
  * @author mayank
@@ -39,7 +42,7 @@ public class ZipFiles {
      * @param zipDirName
      */
     public void zipDirectory(File dir, String zipDirName) {
-    	//System.out.println(dir.getAbsolutePath());
+    	//ViksitLogger.logMSG(this.getClass().getName(),dir.getAbsolutePath());
         try {
             populateFilesList(dir);
             //now zip files one by one
@@ -47,7 +50,7 @@ public class ZipFiles {
             FileOutputStream fos = new FileOutputStream(zipDirName);
             ZipOutputStream zos = new ZipOutputStream(fos);
             for(String filePath : filesListInDir){
-                //System.out.println("Zipping "+filePath);
+                //ViksitLogger.logMSG(this.getClass().getName(),"Zipping "+filePath);
                 //for ZipEntry we need to keep only relative file path, so we used substring on absolute path
                 ZipEntry ze = new ZipEntry(filePath.substring(dir.getAbsolutePath().length()+1, filePath.length()));
                 zos.putNextEntry(ze);
@@ -109,7 +112,7 @@ public class ZipFiles {
             zos.close();
             fis.close();
             fos.close();
-            //System.out.println(file.getCanonicalPath()+" is zipped to "+zipFileName);
+            //ViksitLogger.logMSG(this.getClass().getName(),file.getCanonicalPath()+" is zipped to "+zipFileName);
             
         } catch (IOException e) {
             e.printStackTrace();
@@ -118,7 +121,7 @@ public class ZipFiles {
     }
     
     public void zipLessonDirectory(List<String> filesListInDir, File dir,String zipDirName) {
-		// System.out.println(dir.getAbsolutePath());
+		// ViksitLogger.logMSG(this.getClass().getName(),dir.getAbsolutePath());
 		try {
 			// now zip files one by one
 			// create ZipOutputStream to write to the zip file
@@ -129,7 +132,7 @@ public class ZipFiles {
 				if (file.exists()) {
 					filePath=file.getAbsolutePath();
 
-					// System.out.println("Zipping "+filePath);
+					// ViksitLogger.logMSG(this.getClass().getName(),"Zipping "+filePath);
 					// for ZipEntry we need to keep only relative file path, so
 					// we used substring on absolute path
 					ZipEntry ze = new ZipEntry(filePath.substring(dir.getAbsolutePath().length() + 1, filePath.length()));
@@ -147,8 +150,10 @@ public class ZipFiles {
 			}
 			zos.close();
 			fos.close();
+		} catch (FileNotFoundException e) {
+			ViksitLogger.logMSGERROR(this.getClass().getName()," Directory path unavailble Problem zipping file in path "+ zipDirName);
 		} catch (IOException e) {
-			e.printStackTrace();
+			ViksitLogger.logMSGERROR(this.getClass().getName(),"Problem zipping file in path "+ zipDirName);
 		}
 	}
 

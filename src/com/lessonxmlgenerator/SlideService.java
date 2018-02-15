@@ -1,6 +1,5 @@
 package com.lessonxmlgenerator;
 
-import java.awt.List;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -12,8 +11,11 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import com.viksitpro.core.cms.oldcontent.*;
+import com.viksitpro.core.cms.oldcontent.CMSLesson;
+import com.viksitpro.core.cms.oldcontent.CMSList;
+import com.viksitpro.core.cms.oldcontent.CMSParagraph;
 import com.viksitpro.core.cms.oldcontent.CMSSlide;
+import com.viksitpro.core.cms.oldcontent.CMSTextItem;
 
 
 
@@ -44,7 +46,7 @@ public class SlideService {
 
 		File file = new File(path);
 
-		//System.err.println(path);
+		//ViksitLogger.logMSG(this.getClass().getName(),(path);
 
 		try {
 			JAXBContext jaxbcontext = JAXBContext.newInstance(CMSLesson.class);
@@ -53,7 +55,7 @@ public class SlideService {
 			if (cmsLesson != null && cmsLesson.getSlides() != null) {
 				for (CMSSlide cmsSlide : cmsLesson.getSlides()) {
 					String templateVMFileName = cmsSlide.getTemplateName();
-					//System.err.println(templateVMFileName + " " + cmsSlide.getId());
+					//ViksitLogger.logMSG(this.getClass().getName(),(templateVMFileName + " " + cmsSlide.getId());
 					if (templateVMFileName.equalsIgnoreCase("ONLY_TITLE_PARAGRAPH")) {
 
 						CMSParagraph cmsphara = new CMSParagraph();
@@ -86,7 +88,7 @@ public class SlideService {
 							cmsSlide.setParagraph(cmsphara);
 
 						} else {
-							//System.err.println("has table");
+							//ViksitLogger.logMSG(this.getClass().getName(),("has table");
 						}
 
 					}
@@ -122,7 +124,7 @@ public class SlideService {
 							cmsSlide.setParagraph(cmsphara);
 
 						} else {
-							//System.err.println("has table");
+							//ViksitLogger.logMSG(this.getClass().getName(),("has table");
 						}
 
 					}
@@ -158,7 +160,7 @@ public class SlideService {
 							cmsSlide.setParagraph(cmsphara);
 
 						} else {
-							//System.err.println("has table");
+							//ViksitLogger.logMSG(this.getClass().getName(),("has table");
 						}
 
 					}
@@ -194,7 +196,7 @@ public class SlideService {
 							cmsSlide.setParagraph(cmsphara);
 
 						} else {
-							//System.err.println("has table");
+							//ViksitLogger.logMSG(this.getClass().getName(),("has table");
 						}
 
 					}
@@ -230,7 +232,7 @@ public class SlideService {
 							cmsSlide.setParagraph(cmsphara);
 
 						} else {
-							//System.err.println("has table");
+							//ViksitLogger.logMSG(this.getClass().getName(),("has table");
 						}
 
 					}

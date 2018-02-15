@@ -31,7 +31,7 @@ public class ImageResizeAndCompress extends Thread {
 			if(file.exists())
 			{
 				try {
-					//System.out.println("optimizing "+file.getAbsolutePath());
+					//ViksitLogger.logMSG(this.getClass().getName(),"optimizing "+file.getAbsolutePath());
 					Tinify.setKey(key);
 					Source source = Tinify.fromFile(file.getAbsolutePath());
 					Options options = new Options()

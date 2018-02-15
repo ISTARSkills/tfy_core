@@ -22,7 +22,9 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
+
 import com.viksitpro.core.exceptions.EntityNotFoundException;
+import com.viksitpro.core.logger.ViksitLogger;
 import com.viksitpro.core.utilities.AppProperies;
 import com.viksitpro.core.utilities.DBUTILS;
 
@@ -76,7 +78,7 @@ public class PowerPointServices {
         JSONObject json = new JSONObject(result);
 
         // Print result
-        System.out.println(json);
+       
 
         // Finalise response and client
         response.close();

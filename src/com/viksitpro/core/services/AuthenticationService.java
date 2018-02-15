@@ -202,7 +202,7 @@ public class AuthenticationService {
 	 */
 	public ResponseObject LoginWithEmailAndPasswordOnly(String email, String password, String jsessionId) 
 	{
-		//System.out.println("passwrdo"+password);
+		//ViksitLogger.logMSG(this.getClass().getName(),"passwrdo"+password);
 		ResponseObject result = new ResponseObject();
 		IstarUserServices userService = new IstarUserServices(); 
 		List<IstarUser> userWithGivenEmail = userService.getUserWithEmail(email);

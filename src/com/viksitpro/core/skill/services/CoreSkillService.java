@@ -5,22 +5,17 @@ package com.viksitpro.core.skill.services;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
 import com.viksitpro.core.dao.entities.Cmsession;
-import com.viksitpro.core.dao.entities.CmsessionDAO;
 import com.viksitpro.core.dao.entities.Course;
 import com.viksitpro.core.dao.entities.CourseDAO;
 import com.viksitpro.core.dao.entities.Lesson;
-import com.viksitpro.core.dao.entities.LessonDAO;
 import com.viksitpro.core.dao.entities.Module;
-import com.viksitpro.core.dao.entities.ModuleDAO;
 import com.viksitpro.core.dao.entities.SkillObjective;
+import com.viksitpro.core.logger.ViksitLogger;
 import com.viksitpro.core.skill.pojo.CourseLevelSkill;
 import com.viksitpro.core.skill.pojo.LearningObjective;
 import com.viksitpro.core.skill.pojo.ModuleLevelSkill;
@@ -65,7 +60,7 @@ public class CoreSkillService {
 		
 		DBUTILS util = new DBUTILS();
 		String loIds =StringUtils.join(totalLoIncourse.keySet(), ",");
-		System.out.println(loIds);		
+		ViksitLogger.logMSG(this.getClass().getName(),loIds);		
 		if(!loIds.isEmpty()) {
 			String findCMSessionLevelSkill ="select DISTINCT session_skill.id , session_skill.name,COALESCE(session_skill.creation_type, 'SYSTEM_CREATED') as creation_type,  session_skill_lo_map.learning_obj_id "
 					+ "from session_skill_lo_map , skill_objective session_skill "

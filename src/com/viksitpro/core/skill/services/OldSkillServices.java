@@ -17,6 +17,7 @@ import com.viksitpro.core.dao.entities.Lesson;
 import com.viksitpro.core.dao.entities.LessonDAO;
 import com.viksitpro.core.dao.entities.Module;
 import com.viksitpro.core.dao.entities.ModuleDAO;
+import com.viksitpro.core.logger.ViksitLogger;
 import com.viksitpro.core.skill.pojo.CourseLevelSkill;
 import com.viksitpro.core.skill.pojo.LearningObjective;
 import com.viksitpro.core.skill.pojo.ModuleLevelSkill;
@@ -320,7 +321,7 @@ public class OldSkillServices {
 	private ModuleLevelSkill createModuleLevelSkill(Module module, Course course) {
 		String createModuleSkillForThisCourse = "INSERT INTO skill_objective (id, type, name, parent_skill, skill_level_type, context,creation_type) \r\n" + 
 				"VALUES ((select COALESCE(max(id),0)+1 from skill_objective), 'SKILL', '"+module.getModuleName().trim()+"', NULL, 'MODULE',"+course.getId()+",'SYSTEM_CREATED') returning id;";
-		System.out.println(createModuleSkillForThisCourse);
+		ViksitLogger.logMSG(this.getClass().getName(),createModuleSkillForThisCourse);
 		DBUTILS util = new DBUTILS();
 		ModuleLevelSkill modSkill = new  ModuleLevelSkill();
 		int moduleSkillId = util.executeUpdateReturn(createModuleSkillForThisCourse);
@@ -348,7 +349,7 @@ public class OldSkillServices {
 	private SessionLevelSkill createSessionLevelSkill(Cmsession cms, Integer moduleSkillId, Course course) {
 		String createSessionSkillForThisCourse = "INSERT INTO skill_objective (id, type, name, parent_skill, skill_level_type, context,creation_type) \r\n" + 
 				"VALUES ((select COALESCE(max(id),0)+1 from skill_objective), 'SKILL', '"+cms.getTitle().trim()+"',"+moduleSkillId+" , 'CMSESSION',"+course.getId()+",'SYSTEM_CREATED') returning id;";
-		System.out.println(createSessionSkillForThisCourse);
+		ViksitLogger.logMSG(this.getClass().getName(),createSessionSkillForThisCourse);
 		DBUTILS util = new DBUTILS();
 		SessionLevelSkill sessionSkill = new  SessionLevelSkill();
 		int sessionSkillId = util.executeUpdateReturn(createSessionSkillForThisCourse);
@@ -379,7 +380,7 @@ public class OldSkillServices {
 	private LearningObjective createLO(int sessionSkillId, Lesson l, Course course) {
 		String createLOForSession = "INSERT INTO skill_objective (id, type, name, parent_skill, skill_level_type, context,creation_type) \r\n" + 
 				"VALUES ((select COALESCE(max(id),0)+1 from skill_objective), 'LEARNING_OBJECTIVE', '"+l.getTitle().trim()+"',"+sessionSkillId+" , 'LESSON',"+course.getId()+",'SYSTEM_CREATED') returning id;";
-		System.out.println(createLOForSession);
+		ViksitLogger.logMSG(this.getClass().getName(),createLOForSession);
 		DBUTILS util = new DBUTILS();
 		LearningObjective lo = new  LearningObjective();
 		int loId = util.executeUpdateReturn(createLOForSession);

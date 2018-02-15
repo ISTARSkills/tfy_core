@@ -98,7 +98,7 @@ public class TaskLogServices {
     	 }
     	
     	
-    	 //System.out.println("logs size---"+uniqueLogs.size());
+    	 //ViksitLogger.logMSG(this.getClass().getName(),"logs size---"+uniqueLogs.size());
     	 return uniqueLogs;
     }
     

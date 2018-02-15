@@ -6,7 +6,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 /*import javax.persistence.criteria.CriteriaBuilder;
@@ -46,7 +45,7 @@ public class TaskServices {
 		{*/
 			String sql ="INSERT INTO task (id, name, description, owner, actor, state,  start_date, end_date, is_active,  created_at, updated_at, item_id, item_type) "
 					+ "VALUES ((select COALESCE(max(id),0) +1 from task), '"+name+"', '"+description+"', "+owner+", "+actor+", 'SCHEDULED', now(),now(), 't', now(), now(), "+itemId+", '"+itemType+"') returning id;";
-				//System.out.println(">>>"+sql);
+				//ViksitLogger.logMSG(this.getClass().getName(),">>>"+sql);
 			taskId = util.executeUpdateReturn(sql);
 		//}
 		
@@ -495,7 +494,7 @@ public class TaskServices {
 		query.setParameter("actor", istarUser.getId());
 		
 		List<Task> allTask = query.list();
-		//System.out.println("allTask" + allTask.size());
+		//ViksitLogger.logMSG(this.getClass().getName(),"allTask" + allTask.size());
 		return allTask;
 	}
 	
@@ -520,8 +519,8 @@ public class TaskServices {
 		Timestamp dayStart = new Timestamp(startDate.getTime());
 		Timestamp dayEnd = new Timestamp(endDate.getTime());
 
-		//System.out.println("Day ends at->" + dayStart);
-		//System.out.println("Day ends at->" + dayEnd);
+		//ViksitLogger.logMSG(this.getClass().getName(),"Day ends at->" + dayStart);
+		//ViksitLogger.logMSG(this.getClass().getName(),"Day ends at->" + dayEnd);
 		*/
 		Query query = session.createQuery(hql);
 		query.setParameter("actor", istarUser.getId());
@@ -529,7 +528,7 @@ public class TaskServices {
 		//query.setParameter("dayEnd", dayEnd);
 		
 		List<Task> allTask = query.list();
-		//System.out.println("allTask" + allTask.size());
+		//ViksitLogger.logMSG(this.getClass().getName(),"allTask" + allTask.size());
 		return allTask;		
 	}
 	
@@ -555,8 +554,8 @@ public class TaskServices {
 		Timestamp dayStart = new Timestamp(startDate.getTime());
 		Timestamp dayEnd = new Timestamp(endDate.getTime());
 
-		//System.out.println("Day ends at->" + dayStart);
-		//System.out.println("Day ends at->" + dayEnd);
+		//ViksitLogger.logMSG(this.getClass().getName(),"Day ends at->" + dayStart);
+		//ViksitLogger.logMSG(this.getClass().getName(),"Day ends at->" + dayEnd);
 		
 		Query query = session.createQuery(hql);
 		query.setParameter("actor", istarUser.getId());
@@ -564,7 +563,7 @@ public class TaskServices {
 		query.setParameter("dayEnd", dayEnd);
 		
 		List<Task> allTask = query.list();
-		//System.out.println("allTask" + allTask.size());
+		//ViksitLogger.logMSG(this.getClass().getName(),"allTask" + allTask.size());
 		return allTask.size();		
 	}
 	
@@ -597,7 +596,7 @@ public class TaskServices {
 		TaskDAO taskDAO = new TaskDAO();
 		List<Task> allSubTask = (List<Task>) taskDAO.findByProperty("task", task);
 		
-		//System.out.println("SubTasks"+allSubTask.size());
+		//ViksitLogger.logMSG(this.getClass().getName(),"SubTasks"+allSubTask.size());
 		
 		return allSubTask;
 	}

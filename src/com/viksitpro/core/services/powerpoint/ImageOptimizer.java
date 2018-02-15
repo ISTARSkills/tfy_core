@@ -29,7 +29,7 @@ public class ImageOptimizer{
 		{
 			File directory = new File(directoryPath);
 		    if (directory.exists()){
-		    	//System.out.println("directory exist");
+		    	//ViksitLogger.logMSG(this.getClass().getName(),"directory exist");
 		    	String tinifyKey = null;		
 				tinifyKey = AppProperies.getProperty("tinify_key");
 				if(tinifyKey==null)
@@ -43,8 +43,8 @@ public class ImageOptimizer{
 					 ExecutorService excuters = Executors.newFixedThreadPool(directoryListing.length);
 					 for(File f : directoryListing)			 
 					 {
-						// System.out.println(i++);
-						 //System.out.println(f.getAbsolutePath());
+						// ViksitLogger.logMSG(this.getClass().getName(),i++);
+						 //ViksitLogger.logMSG(this.getClass().getName(),f.getAbsolutePath());
 						if(!f.getName().toLowerCase().contains("xml"))
 						{
 							ImageResizeAndCompress resizer = new ImageResizeAndCompress(f.getAbsolutePath(), tinifyKey);
@@ -56,7 +56,7 @@ public class ImageOptimizer{
 		}
 		else
 		{
-			//System.out.println("directory path is null");
+			//ViksitLogger.logMSG(this.getClass().getName(),"directory path is null");
 		}	
 	}
 

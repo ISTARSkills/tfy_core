@@ -10,7 +10,6 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -22,10 +21,10 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 
-import com.viksitpro.core.cms.oldcontent.*;
+import com.viksitpro.core.cms.oldcontent.CMSLesson;
+import com.viksitpro.core.cms.oldcontent.CMSSlide;
+import com.viksitpro.core.cms.oldcontent.CMSTextItem;
 import com.viksitpro.core.utilities.DBUTILS;
 
 /**
@@ -56,7 +55,7 @@ public class SlideUtils {
 				// e.printStackTrace();
 			}
 			String ext = "_desktop.vm";
-			//System.out.println((String) hashMap.get("template") + "" + hashMap.get("id"));
+			//ViksitLogger.logMSG(this.getClass().getName(),(String) hashMap.get("template") + "" + hashMap.get("id"));
 			String templateVMFileName = cMSlide.getTemplateName() + ext;
 			if (cMSlide.getTemplateName().equalsIgnoreCase("ONLY_TITLE_LIST")) {
 				templateVMFileName = cMSlide.getList().getList_type() + "___" + cMSlide.getTemplateName() + ext;
@@ -132,7 +131,7 @@ public class SlideUtils {
 				data1 = data1.replaceAll("<p>", "<p class='fragment fade-up visible' >");
 			}
 			if (((int) hashMap.get("id")) == 626) {
-				// //System.err.println("data1"+data1);
+				// //ViksitLogger.logMSG(this.getClass().getName(),("data1"+data1);
 			}
 			data1 = data1.replaceAll("<b>", "");
 			// data1 = data1.replaceAll("<ol>", "<ol class='fragment fade-up'
@@ -199,7 +198,7 @@ public class SlideUtils {
 	 * 
 	 * List<HashMap<String, Object>> data = util.executeQuery(sql);
 	 * 
-	 * //System.err.println(data.size());
+	 * //ViksitLogger.logMSG(this.getClass().getName(),(data.size());
 	 * 
 	 * for (HashMap<String, Object> hashMap : data) { CMSSlide cMSlide = new
 	 * CMSSlide(); String xml = (String) hashMap.get("slide_text"); try {
@@ -211,7 +210,7 @@ public class SlideUtils {
 	 * jaxbUnmarshaller = jaxbContext.createUnmarshaller(); cMSlide = (CMSSlide)
 	 * jaxbUnmarshaller.unmarshal(in); } catch (Exception e) {
 	 * //e.printStackTrace(); } String ext = "_desktop.vm";
-	 * //System.out.println((String) hashMap.get("template")); String
+	 * //ViksitLogger.logMSG(this.getClass().getName(),(String) hashMap.get("template")); String
 	 * templateVMFileName = cMSlide.getTemplateName() + ext; if
 	 * (cMSlide.getTemplateName().equalsIgnoreCase("ONLY_TITLE_LIST")) {
 	 * templateVMFileName = cMSlide.getList().getList_type() + "___" +
@@ -224,7 +223,7 @@ public class SlideUtils {
 	 * context.put("slide", cMSlide); Template t =
 	 * ve.getTemplate(templateVMFileName); StringWriter writer = new
 	 * StringWriter(); t.merge(context, writer); String data1 =
-	 * writer.toString(); ////System.out.println(data1); } }
+	 * writer.toString(); ////ViksitLogger.logMSG(this.getClass().getName(),data1); } }
 	 */
 
 	public String getLessonXML(int pptID) {
@@ -243,7 +242,7 @@ public class SlideUtils {
 				String slide_text = slide_xml.replaceAll("<br />", " ").replaceAll("<br>", " ")
 						.replaceAll("&nbsp;", " ").replaceAll("&lt;br&gt;", " ").replaceAll("&lt;br /&gt;", " ")
 						.replaceAll("[^\\x00-\\x7F]", "");
-				// //System.err.println(slide_text);
+				// //ViksitLogger.logMSG(this.getClass().getName(),(slide_text);
 				InputStream in = IOUtils.toInputStream(slide_text, "UTF-8");
 				Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
 				cmsSlide = (CMSSlide) jaxbUnmarshaller.unmarshal(in);

@@ -1,28 +1,21 @@
 package com.viksitpro.core.cms.oldcontent.services;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.nio.file.attribute.PosixFilePermission;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 
 import com.viksitpro.core.cms.oldcontent.CMSImage;
 import com.viksitpro.core.cms.oldcontent.CMSLesson;
@@ -46,7 +39,7 @@ public class OldContentService {
 			for (Cmsession cms : m.getCmsessions()) {
 				for (Lesson l : cms.getLessons()) {
 					if (l.getCategory().equalsIgnoreCase("ILT") || l.getCategory().equalsIgnoreCase("BOTH")) {
-						//System.err.println("creating folder for lesson " + l.getId());
+						//ViksitLogger.logMSG(this.getClass().getName(),("creating folder for lesson " + l.getId());
 						try {
 							createFolderForLessonInCourse(c.getId(), l.getId());
 						} catch (Exception e) {
@@ -194,7 +187,7 @@ public class OldContentService {
 					if (cmsSlide.getImage() != null) {
 
 						allUrls.add(oldMediaPath + cmsSlide.getImage().getUrl());
-						//System.out.println("uodated image url " + cmsSlide.getImage().getUrl()
+						//ViksitLogger.logMSG(this.getClass().getName(),"uodated image url " + cmsSlide.getImage().getUrl()
 								//.replace("/content/media_upload?getfile=", "").replace("/video/", ""));
 						if (cmsSlide.getImage().getUrl() != null && !cmsSlide.getImage().getUrl().contains("http")) {
 
@@ -213,15 +206,15 @@ public class OldContentService {
 									mediaUrlPath + cmsSlide.getImage().getFragmentAudioUrl().replace("/video/", ""));
 						}
 
-						//System.err.println(">>>>>>>>>>>>>>>" + cmsSlide.getImage().getUrl());
+						//ViksitLogger.logMSG(this.getClass().getName(),(">>>>>>>>>>>>>>>" + cmsSlide.getImage().getUrl());
 
 					} else {
-						//System.err.println("cmsSlide.getImage() is null");
+						//ViksitLogger.logMSG(this.getClass().getName(),("cmsSlide.getImage() is null");
 					}
 					if (cmsSlide.getVideo() != null) {
 						allUrls.add(oldMediaPath + cmsSlide.getVideo().getUrl());
 						if (cmsSlide.getVideo().getUrl() != null) {
-							//System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>video"+oldMediaPath + cmsSlide.getVideo().getUrl());
+							//ViksitLogger.logMSG(this.getClass().getName(),">>>>>>>>>>>>>>>>>>>>>>>>>>video"+oldMediaPath + cmsSlide.getVideo().getUrl());
 							cmsSlide.getVideo()
 									.setUrl(mediaUrlPath + cmsSlide.getVideo().getUrl().replace("/video/", ""));
 						}
@@ -236,27 +229,27 @@ public class OldContentService {
 
 			File courseFolder = new File(mediaPath + "courseZIPs/" + courseId);
 			
-			//System.out.println(courseFolder.getAbsolutePath());
+			//ViksitLogger.logMSG(this.getClass().getName(),courseFolder.getAbsolutePath());
 			if (!courseFolder.exists()) {
-				//System.out.println("Folder does not exists");
+				//ViksitLogger.logMSG(this.getClass().getName(),"Folder does not exists");
 				courseFolder.mkdir();
 				//Files.setPosixFilePermissions(Paths.get(courseFolder.getAbsolutePath()), perms);
 			}
 
 			File lessonFolder = new File(mediaPath + "courseZIPs/" + courseId + "/" + lessonId);
 			
-			//System.out.println(lessonFolder.getAbsolutePath());
+			//ViksitLogger.logMSG(this.getClass().getName(),lessonFolder.getAbsolutePath());
 			if (!lessonFolder.exists()) {
-				//System.out.println("Folder does not exists");
+				//ViksitLogger.logMSG(this.getClass().getName(),"Folder does not exists");
 				lessonFolder.mkdir();
 				//Files.setPosixFilePermissions(Paths.get(lessonFolder.getAbsolutePath()), perms);
 			}
 			
 			File coursefolderInlessonFolder = new File(mediaPath + "courseZIPs/" + courseId + "/" + lessonId+"/"+courseId);
 			
-			//System.out.println(coursefolderInlessonFolder.getAbsolutePath());
+			//ViksitLogger.logMSG(this.getClass().getName(),coursefolderInlessonFolder.getAbsolutePath());
 			if (!coursefolderInlessonFolder.exists()) {
-				//System.out.println("Folder does not exists");
+				//ViksitLogger.logMSG(this.getClass().getName(),"Folder does not exists");
 				coursefolderInlessonFolder.mkdir();
 				//Files.setPosixFilePermissions(Paths.get(lessonFolder.getAbsolutePath()), perms);
 			}
@@ -264,9 +257,9 @@ public class OldContentService {
 			
 			File finalLessonFolderolderInlessonFolder = new File(mediaPath + "courseZIPs/" + courseId + "/" + lessonId+"/"+courseId+"/"+lessonId);
 			
-			//System.out.println(finalLessonFolderolderInlessonFolder.getAbsolutePath());
+			//ViksitLogger.logMSG(this.getClass().getName(),finalLessonFolderolderInlessonFolder.getAbsolutePath());
 			if (!finalLessonFolderolderInlessonFolder.exists()) {
-				//System.out.println("Folder does not exists");
+				//ViksitLogger.logMSG(this.getClass().getName(),"Folder does not exists");
 				finalLessonFolderolderInlessonFolder.mkdir();
 				//Files.setPosixFilePermissions(Paths.get(lessonFolder.getAbsolutePath()), perms);
 			}
@@ -277,22 +270,22 @@ public class OldContentService {
 			 */
 			File lessonFolderInLessonXML = new File(mediaPath + "lessonXMLs/" + lessonId+"/"+lessonId+"/");
 
-			//System.out.println(lessonFolderInLessonXML.getAbsolutePath());
+			//ViksitLogger.logMSG(this.getClass().getName(),lessonFolderInLessonXML.getAbsolutePath());
 			if (!lessonFolderInLessonXML.exists()) {
-				//System.out.println("Folder does not exists");
+				//ViksitLogger.logMSG(this.getClass().getName(),"Folder does not exists");
 				lessonFolderInLessonXML.mkdir();
 				//Files.setPosixFilePermissions(Paths.get(lessonFolderInLessonXML.getAbsolutePath()), perms);
 			}
 
 			for (String str : allUrls) {
-				//System.out.println("iterating strsss!!!!!!!!!!!!" + str);
+				//ViksitLogger.logMSG(this.getClass().getName(),"iterating strsss!!!!!!!!!!!!" + str);
 				if (str != null && !str.contains("null") && !str.contains("none")
 						&& !str.equalsIgnoreCase(oldMediaPath)) {
 					str = str.replace("/content/media_upload?getfile=", "").replaceAll("/video/", "");
 					String fileName = str.replace("backgrounds/", "");
 					fileName = fileName.replace(getOldMediaPath(), "");
 					File src = new File(str);
-					//System.err.println("src file name ->"+ src.getAbsolutePath());
+					//ViksitLogger.logMSG(this.getClass().getName(),("src file name ->"+ src.getAbsolutePath());
 					File dest = new File(mediaPath + "courseZIPs/" + courseId + "/" + lessonId+"/"+courseId+"/"+lessonId+"/"+ fileName);
 
 					try {
@@ -319,7 +312,7 @@ public class OldContentService {
 
 			File destLessonXML = new File(
 					mediaPath + "courseZIPs/" + courseId + "/" + lessonId+"/"+courseId+"/"+lessonId + "/" + lessonId + ".xml");
-			//System.err.println("|||||||||||||||||||||||" + destLessonXML.getAbsolutePath());
+			//ViksitLogger.logMSG(this.getClass().getName(),("|||||||||||||||||||||||" + destLessonXML.getAbsolutePath());
 			jaxbMarshaller.marshal(cmsLesson, destLessonXML);
 
 			// copy updatedlessonXML in lessonXMLs folder

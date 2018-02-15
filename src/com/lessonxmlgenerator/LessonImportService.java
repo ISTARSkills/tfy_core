@@ -22,9 +22,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
@@ -156,7 +154,7 @@ public class LessonImportService {
 						String slide_text = slide_xml.replaceAll("<br />", " ").replaceAll("<br>", " ")
 								.replaceAll("&nbsp;", " ").replaceAll("&lt;br&gt;", " ").replaceAll("&lt;br /&gt;", " ")
 								.replaceAll("[^\\x00-\\x7F]", "");
-						// ////System.err.println(slide_text);
+						// ////ViksitLogger.logMSG(this.getClass().getName(),(slide_text);
 						InputStream in = IOUtils.toInputStream(slide_text, "UTF-8");
 						Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
 						cmsSlide = (CMSSlide) jaxbUnmarshaller.unmarshal(in);
@@ -246,7 +244,7 @@ public class LessonImportService {
 				cmsSlide.setParagraph(cmsphara);
 
 			} else {
-				//System.err.println("has table");
+				//ViksitLogger.logMSG(this.getClass().getName(),("has table");
 			}
 
 		}
@@ -282,7 +280,7 @@ public class LessonImportService {
 				cmsSlide.setParagraph(cmsphara);
 
 			} else {
-				//System.err.println("has table");
+				//ViksitLogger.logMSG(this.getClass().getName(),("has table");
 			}
 
 		}
@@ -318,7 +316,7 @@ public class LessonImportService {
 				cmsSlide.setParagraph(cmsphara);
 
 			} else {
-				//System.err.println("has table");
+				//ViksitLogger.logMSG(this.getClass().getName(),("has table");
 			}
 
 		}
@@ -354,7 +352,7 @@ public class LessonImportService {
 				cmsSlide.setParagraph(cmsphara);
 
 			} else {
-				//System.err.println("has table");
+				//ViksitLogger.logMSG(this.getClass().getName(),("has table");
 			}
 
 		}
@@ -391,7 +389,7 @@ public class LessonImportService {
 				cmsSlide.setParagraph(cmsphara);
 
 			} else {
-				//System.err.println("has table");
+				//ViksitLogger.logMSG(this.getClass().getName(),("has table");
 			}
 
 		}
@@ -529,7 +527,7 @@ public class LessonImportService {
 			if (cmsSlide.getImage() != null) {
 
 				allUrls.add(oldMediaPath + cmsSlide.getImage().getUrl());
-				/////System.out.println("uodated image url " + cmsSlide.getImage().getUrl()
+				/////ViksitLogger.logMSG(this.getClass().getName(),"uodated image url " + cmsSlide.getImage().getUrl()
 					//	.replace("/content/media_upload?getfile=", "").replace("/video/", ""));
 				if (cmsSlide.getImage().getUrl() != null && !cmsSlide.getImage().getUrl().contains("http")) {
 
@@ -548,16 +546,16 @@ public class LessonImportService {
 							mediaUrlPath + cmsSlide.getImage().getFragmentAudioUrl().replace("/video/", ""));
 				}
 
-				////System.err.println(">>>>>>>>>>>>>>>" + cmsSlide.getImage().getUrl());
+				////ViksitLogger.logMSG(this.getClass().getName(),(">>>>>>>>>>>>>>>" + cmsSlide.getImage().getUrl());
 
 			} else {
-				////System.err.println("cmsSlide.getImage() is null");
+				////ViksitLogger.logMSG(this.getClass().getName(),("cmsSlide.getImage() is null");
 			}
 			if (cmsSlide.getVideo() != null) {
 				allUrls.add(oldMediaPath + cmsSlide.getVideo().getUrl());
 				if (cmsSlide.getVideo().getUrl() != null && !cmsSlide.getVideo().getUrl().contains("http")) {
 					CMSVideo vid = new CMSVideo();
-					////System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>video"+oldMediaPath + cmsSlide.getVideo().getUrl());
+					////ViksitLogger.logMSG(this.getClass().getName(),">>>>>>>>>>>>>>>>>>>>>>>>>>video"+oldMediaPath + cmsSlide.getVideo().getUrl());
 					String updatedUrl = mediaUrlPath + cmsSlide.getVideo().getUrl().replace("/content/media_upload?getfile=", "").replace("/video/", "").replaceAll(" ", "_");
 					vid.setUrl(updatedUrl);
 					
@@ -603,9 +601,9 @@ public class LessonImportService {
 		//create structure like below
 				//lessonXMLs//lessonId//lessonId//lessonId.xml
 					File outerLessonFolder = new File(mediaPath + "lessonXMLs/" + lessonID);			
-					////System.out.println(outerLessonFolder.getAbsolutePath());
+					////ViksitLogger.logMSG(this.getClass().getName(),outerLessonFolder.getAbsolutePath());
 					if (!outerLessonFolder.exists()) {
-						////System.out.println("Folder does not exists");
+						////ViksitLogger.logMSG(this.getClass().getName(),"Folder does not exists");
 						outerLessonFolder.mkdir();
 						if(serverType.equalsIgnoreCase("linux"))
 						{	
@@ -620,9 +618,9 @@ public class LessonImportService {
 					
 					
 					File innerLessonFolder = new File(mediaPath + "lessonXMLs/" + lessonID+"/"+lessonID);			
-					////System.out.println(innerLessonFolder.getAbsolutePath());
+					////ViksitLogger.logMSG(this.getClass().getName(),innerLessonFolder.getAbsolutePath());
 					if (!innerLessonFolder.exists()) {
-						////System.out.println("Folder does not exists");
+						////ViksitLogger.logMSG(this.getClass().getName(),"Folder does not exists");
 						innerLessonFolder.mkdir();
 						if(serverType.equalsIgnoreCase("linux"))
 						{	
@@ -638,18 +636,18 @@ public class LessonImportService {
 		
 		
 		for (String str : allUrls) {
-		//	//System.out.println("iterating strsss!!!!!!!!!!!!" + str);
+		//	//ViksitLogger.logMSG(this.getClass().getName(),"iterating strsss!!!!!!!!!!!!" + str);
 			if (str != null && !str.contains("null") && !str.contains("none")
 					&& !str.equalsIgnoreCase(oldMediaPath)) {
 				str = str.replace("/content/media_upload?getfile=", "").replaceAll("/video/", "");
 				String fileName = str.replace("backgrounds/", "");
 				fileName = fileName.replace(getOldMediaPath(), "");
 				File src = new File(str);
-				////System.err.println("src file name ->"+ src.getAbsolutePath());
+				////ViksitLogger.logMSG(this.getClass().getName(),("src file name ->"+ src.getAbsolutePath());
 				
 				File fileInLessonXMLFolder = new File(mediaPath + "lessonXMLs/" + lessonID + "/" +lessonID+"/"+fileName);
 				try {
-					////System.err.println("src file "+src.getAbsolutePath());
+					////ViksitLogger.logMSG(this.getClass().getName(),("src file "+src.getAbsolutePath());
 					FileUtils.copyFile(src, fileInLessonXMLFolder);
 					if(serverType.equalsIgnoreCase("linux")){
 						Files.setPosixFilePermissions(Paths.get(fileInLessonXMLFolder.getAbsolutePath()), perms);
@@ -1039,9 +1037,9 @@ public class LessonImportService {
 		//create structure like below
 		//lessonXMLs//lessonId//lessonId//lessonId.xml
 			File outerLessonFolder = new File(mediaPath + "lessonXMLs/" + lessonID);			
-			//System.out.println(outerLessonFolder.getAbsolutePath());
+			//ViksitLogger.logMSG(this.getClass().getName(),outerLessonFolder.getAbsolutePath());
 			if (!outerLessonFolder.exists()) {
-				//System.out.println("Folder does not exists");
+				//ViksitLogger.logMSG(this.getClass().getName(),"Folder does not exists");
 				outerLessonFolder.mkdir();
 				if(serverType.equalsIgnoreCase("linux"))
 				{	
@@ -1051,9 +1049,9 @@ public class LessonImportService {
 			
 			
 			File innerLessonFolder = new File(mediaPath + "lessonXMLs/" + lessonID+"/"+lessonID);			
-			//System.out.println(innerLessonFolder.getAbsolutePath());
+			//ViksitLogger.logMSG(this.getClass().getName(),innerLessonFolder.getAbsolutePath());
 			if (!innerLessonFolder.exists()) {
-				//System.out.println("Folder does not exists");
+				//ViksitLogger.logMSG(this.getClass().getName(),"Folder does not exists");
 				innerLessonFolder.mkdir();
 				if(serverType.equalsIgnoreCase("linux"))
 				{	
@@ -1065,7 +1063,7 @@ public class LessonImportService {
 			String lessonXMLPath=mediaPath + "lessonXMLs/" + lessonID+"/"+lessonID+"/"+lessonID+".xml";
 			Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(lessonXMLPath), "UTF-8"));
 			try {				
-					//////System.err.println(lessonXML);
+					//////ViksitLogger.logMSG(this.getClass().getName(),(lessonXML);
 			    out.write(cmsLessonInString.replaceAll("[^\\x00-\\x7F]",""));				
 			} finally {
 			    out.close();
@@ -1136,7 +1134,7 @@ public class LessonImportService {
 				 ResultSet chekAssess = checkAssesState.executeQuery(checkIfAssessmentExist);
 				 if(!chekAssess.next())
 				 {
-					//System.out.println("inserting");
+					//ViksitLogger.logMSG(this.getClass().getName(),"inserting");
 					String insertQuery="INSERT INTO public.assessment (id, assessment_type, created_at, number_of_questions, assessmentdurationhours, assessmentdurationminutes, assessmenttitle, retry_able, category, description, is_published, course_id) "
 							+ "VALUES ("+rs.getInt("id")+", '"+rs.getString("assessment_type")+"', now(), "+rs.getInt("number_of_questions")+", "+rs.getInt("assessmentdurationhours")+", "+rs.getInt("assessmentdurationminutes")+", '"+rs.getString("assessmenttitle").toString().trim().replace("'", "")+"', '"+rs.getBoolean("retry_able")+"', '"+rs.getString("category")+"', 'Not Available', 't',"+courseId+");";						
 					
@@ -1217,7 +1215,7 @@ public class LessonImportService {
 					// no need to close it.
 					//bw.close();
 
-					//System.out.println("Done");
+					//ViksitLogger.logMSG(this.getClass().getName(),"Done");
 
 				
 			}
@@ -1264,7 +1262,7 @@ public class LessonImportService {
 			while (rs1.next()) {
 				bw.write(rs1.getString("q"));
 				bw.write(System.lineSeparator());
-			//System.out.println();
+			//ViksitLogger.logMSG(this.getClass().getName(),);
 			}
 			
 			
@@ -1275,7 +1273,7 @@ public class LessonImportService {
 			while (rs2.next()) {
 				bw.write(rs2.getString("q"));
 				bw.write(System.lineSeparator());
-			//System.out.println();
+			//ViksitLogger.logMSG(this.getClass().getName(),);
 			}
 			
 			
@@ -1286,7 +1284,7 @@ public class LessonImportService {
 			while (rs3.next()) {
 				bw.write(rs3.getString("q"));
 				bw.write(System.lineSeparator());
-			//System.out.println();
+			//ViksitLogger.logMSG(this.getClass().getName(),);
 			}
 			
 			
@@ -1297,7 +1295,7 @@ public class LessonImportService {
 			while (rs4.next()) {
 				bw.write(rs4.getString("q"));
 				bw.write(System.lineSeparator());
-			//System.out.println();
+			//ViksitLogger.logMSG(this.getClass().getName(),);
 			}
 			
 			
@@ -1308,7 +1306,7 @@ public class LessonImportService {
 			while (rs5.next()) {
 				bw.write(rs5.getString("q"));
 				bw.write(System.lineSeparator());
-			//System.out.println();
+			//ViksitLogger.logMSG(this.getClass().getName(),);
 			}
 			
 			

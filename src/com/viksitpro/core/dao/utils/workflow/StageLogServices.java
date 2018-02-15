@@ -203,7 +203,7 @@ public class StageLogServices {
 		try{
 			stageLogList = stageLogDAO.findByUrlCode(urlCode);
 		}catch(IllegalArgumentException e){
-			//System.out.println("urlCode is null");
+			//ViksitLogger.logMSG(this.getClass().getName(),"urlCode is null");
 		}		
 		return stageLogList;
 	}
@@ -225,7 +225,7 @@ public class StageLogServices {
 			
 			deleteStageLogFromDAO(getStageLog(stageLogId));
 		}				
-		//System.out.println("All existing stage logs deleted");
+		//ViksitLogger.logMSG(this.getClass().getName(),"All existing stage logs deleted");
 	}
 	
 	public StageLog saveStageLogToDAO(StageLog stageLog) {

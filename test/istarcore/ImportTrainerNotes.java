@@ -40,8 +40,8 @@ public class ImportTrainerNotes {
 		wr.close();
 
 		int responseCode = con.getResponseCode();
-		//System.out.println("\nSending 'POST' request to URL : " + url);
-		//System.out.println("Response Code : " + responseCode);
+		//ViksitLogger.logMSG(this.getClass().getName(),"\nSending 'POST' request to URL : " + url);
+		//ViksitLogger.logMSG(this.getClass().getName(),"Response Code : " + responseCode);
 
 		BufferedReader in = new BufferedReader(
 		        new InputStreamReader(con.getInputStream()));
@@ -54,7 +54,7 @@ public class ImportTrainerNotes {
 		in.close();
 
 		//print result
-		//System.out.println(response.toString());
+		//ViksitLogger.logMSG(this.getClass().getName(),response.toString());
 		
 		
 		// test();
@@ -73,7 +73,7 @@ public class ImportTrainerNotes {
 				int lessonID = (int) wb.getRow(i).getCell(2).getNumericCellValue();
 				int slideID = Integer.parseInt(wb.getRow(i).getCell(3).getStringCellValue().split("#")[1]);
 				String tnotes = wb.getRow(i).getCell(4).getStringCellValue();
-				//System.err.println("lesson id ->" + lessonID + " slideID -> " + slideID + " coment " + tnotes.trim());
+				//ViksitLogger.logMSG(this.getClass().getName(),("lesson id ->" + lessonID + " slideID -> " + slideID + " coment " + tnotes.trim());
 				updateSlideTN(lessonID, slideID, tnotes);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -104,9 +104,9 @@ public class ImportTrainerNotes {
 			wr.close();
 
 			int responseCode = con.getResponseCode();
-			//System.out.println("\nSending 'POST' request to URL : " + url);
-			//System.out.println("Post parameters : " + urlParameters);
-			//System.out.println("Response Code : " + responseCode);
+			//ViksitLogger.logMSG(this.getClass().getName(),"\nSending 'POST' request to URL : " + url);
+			//ViksitLogger.logMSG(this.getClass().getName(),"Post parameters : " + urlParameters);
+			//ViksitLogger.logMSG(this.getClass().getName(),"Response Code : " + responseCode);
 
 			BufferedReader in = new BufferedReader(
 			        new InputStreamReader(con.getInputStream()));
@@ -119,7 +119,7 @@ public class ImportTrainerNotes {
 			in.close();
 
 			//print result
-			//System.out.println(response.toString());
+			//ViksitLogger.logMSG(this.getClass().getName(),response.toString());
 
 		}
 

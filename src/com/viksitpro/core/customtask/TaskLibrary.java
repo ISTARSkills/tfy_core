@@ -3,7 +3,6 @@
  */
 package com.viksitpro.core.customtask;
 
-import java.io.File;
 import java.net.URL;
 import java.util.HashMap;
 
@@ -11,7 +10,6 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 import com.viksitpro.core.dao.entities.Task;
 import com.viksitpro.core.dao.entities.TaskDAO;
@@ -53,7 +51,7 @@ public class TaskLibrary {
 			TaskLibrary library = (TaskLibrary) jaxbUnmarshaller.unmarshal(url);
 			/*for(int i :library.getTemplates().keySet())
 			{
-				//System.out.println(library.getTemplates().get(i).getId());
+				//ViksitLogger.logMSG(this.getClass().getName(),library.getTemplates().get(i).getId());
 			}
 			*/
 			return library.getTemplates().get(t.getItemId());
@@ -71,7 +69,7 @@ public class TaskLibrary {
 
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			TaskLibrary library = (TaskLibrary) jaxbUnmarshaller.unmarshal(url);
-			//System.out.println(library);
+			//ViksitLogger.logMSG(this.getClass().getName(),library);
 			
 			
 			

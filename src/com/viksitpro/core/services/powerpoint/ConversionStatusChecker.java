@@ -19,6 +19,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
 import com.viksitpro.core.exceptions.EntityNotFoundException;
+import com.viksitpro.core.logger.ViksitLogger;
 
 
 /**
@@ -54,7 +55,7 @@ public class ConversionStatusChecker {
 	        JSONObject json = new JSONObject(result);
 
 	        // Print result
-	        System.out.println(json);
+	        ViksitLogger.logMSG(this.getClass().getName(),json.toString());
 
 	        // Finalise response and client
 	        response.close();

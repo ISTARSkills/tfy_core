@@ -1,7 +1,6 @@
 package com.viksitpro.core.notification;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -56,9 +55,9 @@ public class PublishDelegator {
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				//System.out.println("error in sending notification");
+				//ViksitLogger.logMSG(this.getClass().getName(),"error in sending notification");
 			}
-			//System.out.println("Notification sent to user");
+			//ViksitLogger.logMSG(this.getClass().getName(),"Notification sent to user");
 		}
 	}
 	
@@ -80,11 +79,11 @@ public class PublishDelegator {
 			try {
 				Thread.sleep(10000);
 			} catch (InterruptedException e) {
-				//System.out.println("error in sending notification");
+				//ViksitLogger.logMSG(this.getClass().getName(),"error in sending notification");
 			}			
-			//System.out.println("Notification sent to all the users");
+			//ViksitLogger.logMSG(this.getClass().getName(),"Notification sent to all the users");
 		}else{
-			//System.out.println("DEV SERVER");
+			//ViksitLogger.logMSG(this.getClass().getName(),"DEV SERVER");
 
 				DatabaseReference databaseReferenceForUser = FirebaseDatabase.getInstance().getReference("istar-notification-dev").child(istarUserId);
 
@@ -100,9 +99,9 @@ public class PublishDelegator {
 			try {
 				Thread.sleep(10000);
 			} catch (InterruptedException e) {
-				//System.out.println("error in sending notification");
+				//ViksitLogger.logMSG(this.getClass().getName(),"error in sending notification");
 			}			
-			//System.out.println("Notification sent to all the users");
+			//ViksitLogger.logMSG(this.getClass().getName(),"Notification sent to all the users");
 		}
 	}
 	
@@ -129,11 +128,11 @@ public class PublishDelegator {
 				try {
 					Thread.sleep(10000);
 				} catch (InterruptedException e) {
-					//System.out.println("error in sending notification");
+					//ViksitLogger.logMSG(this.getClass().getName(),"error in sending notification");
 				}			
-				//System.out.println("Notification sent to all the users");
+				//ViksitLogger.logMSG(this.getClass().getName(),"Notification sent to all the users");
 			}else{
-				//System.out.println("DEV SERVER");
+				//ViksitLogger.logMSG(this.getClass().getName(),"DEV SERVER");
 				for(String istarUserId : allIstarUserIds){
 					DatabaseReference databaseReferenceForUser = FirebaseDatabase.getInstance().getReference("istar-notification-dev").child(istarUserId);
 
@@ -150,9 +149,9 @@ public class PublishDelegator {
 				try {
 					Thread.sleep(10000);
 				} catch (InterruptedException e) {
-					//System.out.println("error in sending notification");
+					//ViksitLogger.logMSG(this.getClass().getName(),"error in sending notification");
 				}			
-				//System.out.println("Notification sent to all the users");
+				//ViksitLogger.logMSG(this.getClass().getName(),"Notification sent to all the users");
 			}
 		}	
 }

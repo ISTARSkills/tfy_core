@@ -5,7 +5,6 @@ package com.viksitpro.core.delivery.pojo;
 
 import java.util.ArrayList;
 
-import com.viksitpro.core.dao.entities.SkillObjective;
 import com.viksitpro.core.skill.pojo.LearningObjective;
 
 /**

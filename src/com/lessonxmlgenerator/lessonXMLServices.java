@@ -1,14 +1,11 @@
 package com.lessonxmlgenerator;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.List;
@@ -60,7 +57,7 @@ public class lessonXMLServices {
 			    new FileOutputStream(path), "UTF-8"));
 			try {
 				
-					////System.err.println(lessonXML);
+					////ViksitLogger.logMSG(this.getClass().getName(),(lessonXML);
 			    out.write(lessonXML.replaceAll("[^\\x00-\\x7F]",""));
 				
 			} finally {
@@ -78,9 +75,9 @@ public class lessonXMLServices {
 		String sql = "select lesson_id from presentaion ORDER BY lesson_id";
 		List<HashMap<String, Object>> lessons = (new com.viksitpro.core.utilities.DBUTILS()).executeQuery(sql);
 		lessonXMLServices xmlServices = new lessonXMLServices();
-		////System.out.println(slideUtils.getLessonXML(626));
+		////ViksitLogger.logMSG(this.getClass().getName(),slideUtils.getLessonXML(626));
 		for(HashMap<String, Object> lesson : lessons){
-			//System.err.println(createlessonXMLFile(xmlServices.lessonXML(Integer.parseInt(lesson.get("lesson_id").toString())), 
+			//ViksitLogger.logMSG(this.getClass().getName(),(createlessonXMLFile(xmlServices.lessonXML(Integer.parseInt(lesson.get("lesson_id").toString())), 
 					//Integer.parseInt(lesson.get("lesson_id").toString())));
 		}
 		

@@ -3,11 +3,11 @@
  */
 package com.viksitpro.core.cms.interactive;		
 
+import java.io.Serializable;
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
-
-import java.io.Serializable;
 
 /**
  * @author ComplexObject

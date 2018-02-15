@@ -1,8 +1,6 @@
 package com.viksitpro.core.dao.utils.user;
 
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -166,7 +164,7 @@ public class IstarUserServices {
 	public UserProfile createUserProfile(Integer istarUserId, Integer addressId, String firstName, String lastName,
 			Date dob, String gender, String profileImage, Long aadhar) {
 
-		//System.out.println("Name is-> "+firstName);
+		//ViksitLogger.logMSG(this.getClass().getName(),"Name is-> "+firstName);
 		IstarUser istarUser = getIstarUser(istarUserId);
 
 		UserProfile userProfile = new UserProfile();
@@ -311,7 +309,7 @@ public class IstarUserServices {
 
 		istarUser = saveIstarUserToDAO(istarUser);
 		}else{
-			//System.out.println("User alread exists!");
+			//ViksitLogger.logMSG(this.getClass().getName(),"User alread exists!");
 		}
 		return istarUser;
 	}
@@ -342,7 +340,7 @@ public class IstarUserServices {
 
 		istarUser = saveIstarUserToDAO(istarUser);
 		}else{
-			//System.out.println("User Email/Mobile alread exists!");
+			//ViksitLogger.logMSG(this.getClass().getName(),"User Email/Mobile alread exists!");
 		}
 		return istarUser;
 	}
@@ -374,7 +372,7 @@ public class IstarUserServices {
 
 		istarUser = saveIstarUserToDAO(istarUser);
 		}else{
-			//System.out.println("User Email/Mobile alread exists!");
+			//ViksitLogger.logMSG(this.getClass().getName(),"User Email/Mobile alread exists!");
 		}
 		return istarUser;
 	}
@@ -533,7 +531,7 @@ public class IstarUserServices {
 		try {
 			allIstarUsersByEmail = istarUserDAO.findByEmail(email);
 
-			//System.out.println("Size is " + allIstarUsersByEmail.size());
+			//ViksitLogger.logMSG(this.getClass().getName(),"Size is " + allIstarUsersByEmail.size());
 			
 			if (allIstarUsersByEmail.size() > 0) {
 				istarUser = allIstarUsersByEmail.get(0);
@@ -554,7 +552,7 @@ public class IstarUserServices {
 		try {
 			allIstarUsersByMobile = istarUserDAO.findByMobile(mobile);
 
-			//System.out.println("Size is " + allIstarUsersByMobile.size());
+			//ViksitLogger.logMSG(this.getClass().getName(),"Size is " + allIstarUsersByMobile.size());
 			
 			if (allIstarUsersByMobile.size() > 0) {
 				istarUser = allIstarUsersByMobile.get(0);
@@ -582,9 +580,9 @@ public class IstarUserServices {
 		for (UserRole userRole : user.getUserRoles()) {
 			rolesset.add(userRole.getRole());
 		}
-		//System.out.println("roleset size>>>>>" + rolesset.size());
+		//ViksitLogger.logMSG(this.getClass().getName(),"roleset size>>>>>" + rolesset.size());
 		roles = (ArrayList<Role>) BaseHibernateDAO.GetOrderedListFromSet(rolesset, "priority");
-		//System.out.println("roles size>>>>>>>" + roles.size());
+		//ViksitLogger.logMSG(this.getClass().getName(),"roles size>>>>>>>" + roles.size());
 		return roles;
 	}
 
@@ -596,8 +594,6 @@ public class IstarUserServices {
 	}
 
 	public void testProfile(int userId, String fileName) {
-		//System.err.println("-------------->"+(new IstarUserDAO()).findById(userId).getUserProfile().getImage());
-		//System.err.println("fileName--->"+fileName);
 		
 	}
 
