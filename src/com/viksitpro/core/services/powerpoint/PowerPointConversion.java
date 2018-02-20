@@ -47,7 +47,7 @@ public class PowerPointConversion implements Callable<JSONObject> {
 		JSONObject json = null;
 		if(sourceFile!=null && apiKey!=null)
 		{
-			 String endpoint = "https://sandbox.zamzar.com/v1/jobs";
+			 String endpoint = "https://api.zamzar.com/v1/jobs";
 		        String targetFormat = "png";
 				
 				
@@ -57,6 +57,7 @@ public class PowerPointConversion implements Callable<JSONObject> {
 		            .addPart("target_format", new StringBody(targetFormat, ContentType.TEXT_PLAIN))
 		            .build();
 		        HttpPost request = new HttpPost(endpoint);
+		        //System.out.println(request.getURI().toURL().toString());
 		        request.setEntity(requestContent);
 
 		        // Make request

@@ -38,7 +38,7 @@ public class ConversionStatusChecker {
 			{
 				throw new EntityNotFoundException("zamzar key is not defined in app.properties");
 			}
-	        String endpoint = "https://sandbox.zamzar.com/v1/jobs/" + jobId;
+	        String endpoint = "https://api.zamzar.com/v1/jobs/" + jobId;
 
 	        // Create HTTP client and request object
 	        CloseableHttpClient httpClient = getHttpClient(apiKey);

@@ -53,9 +53,9 @@ public class PowerPointServices {
 	
 
     public static void main(String[] args) throws Exception {
-        String apiKey = "917b119e3f312e41fedb1dd81f6ca4c0dbad0e6f";
-        String endpoint = "https://sandbox.zamzar.com/v1/jobs";
-        String sourceFile = "C:\\Users\\Mayank\\Downloads\\Session3.pptx";
+        String apiKey = "3b33a7378c93f255f9314e4e21b8caea1b48edf0";
+        String endpoint = "https://api.zamzar.com/v1/jobs";
+        String sourceFile = "C:\\Users\\vaibhav\\Documents\\deployement\\14 feb\\Computer Assembly and Dissambly 2.pptx";
         String targetFormat = "png";
 
         // Create HTTP client and request object
@@ -76,7 +76,7 @@ public class PowerPointServices {
 
         // Parse result as JSON
         JSONObject json = new JSONObject(result);
-
+        System.out.println(json);
         // Print result
        
 

@@ -127,7 +127,7 @@ public class IstarXMLCreator implements Callable {
 					for (int i : slideIds) {
 						String imageName = UUID.randomUUID().toString() + System.currentTimeMillis();
 						imageName = imageName + "-" + i;
-						String endpoint = "https://sandbox.zamzar.com/v1/files/" + i + "/content";
+						String endpoint = "https://api.zamzar.com/v1/files/" + i + "/content";
 						String desktopFilename = apachePath + "/lessonXMLs/" + lessonId + "/" + lessonId + "/" + imageName+"_desktop.png";
 						String localFilename = apachePath + "/lessonXMLs/" + lessonId + "/" + lessonId + "/" + imageName+".png";
 						CMSSlide slide = new CMSSlide();
