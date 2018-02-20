@@ -99,7 +99,7 @@ public class IstarXMLCreator implements Callable {
 		    	try {
 					delete(directory);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					
 					//e.printStackTrace();
 				}
 		    	directory.mkdir();
@@ -195,7 +195,7 @@ public class IstarXMLCreator implements Callable {
 				} catch (JAXBException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 				
@@ -245,7 +245,7 @@ public class IstarXMLCreator implements Callable {
 			        	
 						Files.setPosixFilePermissions(Paths.get(zipName), perms);
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
+						
 						//e.printStackTrace();
 					}
 		        }

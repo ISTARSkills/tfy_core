@@ -20,7 +20,7 @@ public class ResponseObject {
 	
 	public ResponseObject() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	@XmlAttribute(name="statusCode")

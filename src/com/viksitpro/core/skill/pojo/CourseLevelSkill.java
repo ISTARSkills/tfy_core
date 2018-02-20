@@ -43,7 +43,7 @@ public class CourseLevelSkill {
 
 	public CourseLevelSkill() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	public String getCreationType() {
 		return creationType;

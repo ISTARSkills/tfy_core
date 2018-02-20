@@ -211,7 +211,7 @@ public class CreateCourseStructure {
 			System.out.println(sql);
 			new DBUTILS().executeUpdate(sql);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			// e.printStackTrace();
 		}
 	}
@@ -224,7 +224,7 @@ public class CreateCourseStructure {
 			//System.out.println(sql);
 			new DBUTILS().executeUpdate(sql);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			// e.printStackTrace();
 		}
 
@@ -237,7 +237,7 @@ public class CreateCourseStructure {
 			// System.out.println(sql);
 			new DBUTILS().executeUpdate(sql);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			// e.printStackTrace();
 		}
 	}

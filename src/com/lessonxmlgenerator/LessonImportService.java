@@ -91,7 +91,7 @@ public class LessonImportService {
 	
 	
 	 public void importLessonForCourse(int courseId) throws SQLException {
-		// TODO Auto-generated method stub
+		
 		String query="select lesson.id  from lesson, cmsession, module, course where lesson.session_id = cmsession.id and cmsession.module_id = module.id and course.id = module.course_id and course.id = "+courseId;
 		Connection con = getConnection();
 		try {
@@ -104,7 +104,7 @@ public class LessonImportService {
 				createXMLForLesson(lessonId);
 			}
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 		}	
 	}
@@ -127,7 +127,7 @@ public class LessonImportService {
 				createlessonXMLFile(cmsLessonInString, lessonId);
 			}
 		} catch (SQLException | IOException e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 		}			
 	}
@@ -169,9 +169,9 @@ public class LessonImportService {
 						cmsSlide.setTeacherNotes(rs.getString("teacher_notes").toString());
 
 					} catch (JAXBException e) {
-						// TODO: handle exception
+						
 					} catch (IOException e) {
-						// TODO: handle exception
+						
 					}
 					cmSslides.add(cmsSlide);
 				}
@@ -196,12 +196,12 @@ public class LessonImportService {
 					marshaller.setProperty(javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, true);
 					marshaller.marshal(cmsLesson, buffer);
 				} catch (JAXBException e) {
-					// TODO: handle exception
+					
 				}
 			}
 			
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 		}
 	
@@ -464,7 +464,7 @@ public class LessonImportService {
 			try {
 				allUrls.add(oldMediaPath + cmsSlide.getImage_BG().replaceAll(".png", "_desktop.png"));
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+				
 				//e.printStackTrace();
 			}
 			// remove unnecessary path
@@ -610,7 +610,7 @@ public class LessonImportService {
 							try {
 								Files.setPosixFilePermissions(Paths.get(outerLessonFolder.getAbsolutePath()), perms);
 							} catch (IOException e) {
-								// TODO Auto-generated catch block
+								
 								e.printStackTrace();
 							}
 						}	
@@ -627,7 +627,7 @@ public class LessonImportService {
 							try {
 								Files.setPosixFilePermissions(Paths.get(innerLessonFolder.getAbsolutePath()), perms);
 							} catch (IOException e) {
-								// TODO Auto-generated catch block
+								
 								e.printStackTrace();
 							}
 						}	
@@ -976,7 +976,7 @@ public class LessonImportService {
 		{
 			
 		}
-		// TODO Auto-generated method stub
+		
 		return cmsSlide;
 		
 	}
@@ -1029,7 +1029,7 @@ public class LessonImportService {
 				mediaPath = properties.getProperty("mediaPath");
 				serverType = properties.getProperty("server_type");
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
+				
 				e1.printStackTrace();
 			}
 			
@@ -1090,14 +1090,14 @@ public class LessonImportService {
 				createlessonXMLFile(cmsLessonInString, lessonId);
 			}
 		} catch (SQLException | IOException e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 		}	
 		
 	}
 
 	public void importAssessmentForCourse(int courseId) {
-		// TODO Auto-generated method stub
+		
 		String query="select assessment.id from lesson, cmsession, module, course, assessment where lesson.session_id = cmsession.id and cmsession.module_id = module.id and course.id = module.course_id and course.id = "+courseId+" and lesson.dtype = 'ASSESSMENT' and assessment.lesson_id = lesson.id ";
 		Connection con = getConnection();
 		try {
@@ -1110,7 +1110,7 @@ public class LessonImportService {
 				importAssessment(assessmentId, courseId);
 			}
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 		}
 	}
@@ -1220,7 +1220,7 @@ public class LessonImportService {
 				
 			}
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 		}
 		
@@ -1238,7 +1238,7 @@ public class LessonImportService {
 				
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -1350,10 +1350,10 @@ public class LessonImportService {
 			}
 			bw.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		

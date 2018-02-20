@@ -59,7 +59,7 @@ public class DeliverySession {
 	}
 	public DeliverySession() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	public ArrayList<SessionLevelSkill> getSessionSkills() {
 		return sessionSkills;

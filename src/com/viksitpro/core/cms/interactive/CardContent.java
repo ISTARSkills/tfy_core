@@ -111,7 +111,7 @@ public class CardContent implements Serializable {
 
     public CardContent() {
         super();
-        // TODO Auto-generated constructor stub
+       
     }
 
 

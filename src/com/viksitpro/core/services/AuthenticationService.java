@@ -124,7 +124,7 @@ public class AuthenticationService {
 			try {
 				EmailUtils.sendEmail( user.getEmail(),subject , message);
 			} catch (javax.mail.MessagingException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 			

@@ -45,7 +45,7 @@ public class HHTPUTil {
 		/*
 		long time = System.currentTimeMillis();
 	 //ViksitLogger.logMSG(this.getClass().getName(),"start time"+time);
-		// TODO Auto-generated method stub
+		
 		String url = "http://cdn.talentify.in/courseZIPs/5.zip";
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();

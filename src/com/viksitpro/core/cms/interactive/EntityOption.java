@@ -68,7 +68,7 @@ public class EntityOption implements Serializable {
 
     public EntityOption() {
         super();
-        // TODO Auto-generated constructor stub
+       
     }
 
 

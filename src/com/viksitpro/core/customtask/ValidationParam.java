@@ -34,7 +34,7 @@ public class ValidationParam {
 	}
 	public ValidationParam() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	

@@ -90,7 +90,7 @@ public class MAIN {
 
 
 	private static void portCheck() {
-		// TODO Auto-generated method stub
+		
 		//ViksitLogger.logMSG(this.getClass().getName(),isLocalPortInUse(4567));
 	}
 
@@ -110,7 +110,7 @@ public class MAIN {
 
 
 	private static void ll() {
-		// TODO Auto-generated method stub
+		
 		DBUTILS util = new DBUTILS();
 		for(int i=4; i<=16 ;i++)
 		{
@@ -125,7 +125,7 @@ public class MAIN {
 
 
 	private static void SS() {
-		// TODO Auto-generated method stub
+		
 		//ViksitLogger.logMSG(this.getClass().getName(),"start");
 		DBUTILS util = new DBUTILS();
 		for(int i =5 ; i<= 16;i++)
@@ -558,13 +558,13 @@ public class MAIN {
 	}
 
 	private static void TestingContextFind() {
-		// TODO Auto-generated method stub
+		
 		Context context = (new ContextDAO()).findById(1);
 		//ViksitLogger.logMSG(this.getClass().getName(),(context.getTitle());
 	}
 
 	private static void TestingContextAdd() {
-		// TODO Auto-generated method stub
+		
 		Context context = new Context();
 		ContextDAO contextDAO = new ContextDAO();
 		context.setTitle("Champoa");

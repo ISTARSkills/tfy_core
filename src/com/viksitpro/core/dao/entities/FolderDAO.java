@@ -145,7 +145,7 @@ public class FolderDAO extends BaseHibernateDAO {
 
 	@Transient
 	public List<Folder> findByParentId(Integer id) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 }

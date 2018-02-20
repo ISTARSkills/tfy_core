@@ -18,7 +18,7 @@ public class PmResponseObject {
 	
 	public PmResponseObject() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	@XmlAttribute(name="statusCode")

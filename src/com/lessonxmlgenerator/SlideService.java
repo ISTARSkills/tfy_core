@@ -38,7 +38,7 @@ public class SlideService {
 			}
 			path = properties.getProperty("mediaLessonPath1");
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 		}
 
@@ -608,7 +608,7 @@ public class SlideService {
 			}
 			path = properties.getProperty("mediaLessonPath");
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 		}
 

@@ -51,7 +51,7 @@ public class InfoCard    implements Serializable {
 
 	public InfoCard() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	

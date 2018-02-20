@@ -679,7 +679,7 @@ public class IstarUser implements java.io.Serializable {
 	
 	@Transient
 	public Set<SkillPrecentile> getSkillPercentiles() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

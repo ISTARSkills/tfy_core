@@ -44,7 +44,7 @@ public class DeliveryLesson {
 	}
 	public DeliveryLesson() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	
