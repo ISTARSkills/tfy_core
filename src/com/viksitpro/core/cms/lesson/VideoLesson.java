@@ -14,7 +14,7 @@ public class VideoLesson implements Serializable{
 	
 	public VideoLesson() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	@XmlElement(name = "id", required = false)

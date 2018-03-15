@@ -44,7 +44,7 @@ public class LearningObjective {
 	}
 	public LearningObjective() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	

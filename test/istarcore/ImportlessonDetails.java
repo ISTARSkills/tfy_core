@@ -74,7 +74,7 @@ public class ImportlessonDetails {
 					  
 
 				   } catch (Exception e) {
-					// TODO Auto-generated catch block
+					
 					//e.printStackTrace();
 				}
 			}
@@ -95,7 +95,7 @@ public class ImportlessonDetails {
 				   //ViksitLogger.logMSG(this.getClass().getName(),("lesson id ->"+ lessonID+" slideID -> "+slideID+ " coment "+tnotes.trim());
 				   updateSlideTN(lessonID, slideID, tnotes);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+				
 				//e.printStackTrace();
 			}
 		}
@@ -122,7 +122,7 @@ public class ImportlessonDetails {
 			jaxbMarshaller.marshal(cmsLesson, file);
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 

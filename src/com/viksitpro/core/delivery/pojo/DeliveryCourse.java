@@ -47,7 +47,7 @@ public class DeliveryCourse {
 	}
 	public DeliveryCourse() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	public ArrayList<Integer> getMappedModules() {
 		return mappedModules;

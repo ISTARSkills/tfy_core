@@ -31,7 +31,7 @@ public class PublishDelegator {
 			}
 			deployment_type = properties.getProperty("deployment_type");
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 		}
 		

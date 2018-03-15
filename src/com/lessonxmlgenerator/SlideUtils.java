@@ -254,9 +254,9 @@ public class SlideUtils {
 				cmsSlide.setTeacherNotes(slide.get("teacher_notes").toString());
 
 			} catch (JAXBException e) {
-				// TODO: handle exception
+				
 			} catch (IOException e) {
-				// TODO: handle exception
+				
 			}
 			cmSslides.add(cmsSlide);
 		}
@@ -275,7 +275,7 @@ public class SlideUtils {
 			marshaller.setProperty(javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, true);
 			marshaller.marshal(cmsLesson, buffer);
 		} catch (JAXBException e) {
-			// TODO: handle exception
+			
 		}
 	
 		return buffer.toString();
@@ -594,7 +594,7 @@ public class SlideUtils {
 			break;
 		}
 
-		// TODO Auto-generated method stub
+		
 		return cmsSlide;
 	}
 }

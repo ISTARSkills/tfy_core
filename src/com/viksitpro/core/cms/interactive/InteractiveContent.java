@@ -45,7 +45,7 @@ public class InteractiveContent implements Serializable {
 	
 	public InteractiveContent() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public List<Entity> getQuestions() {

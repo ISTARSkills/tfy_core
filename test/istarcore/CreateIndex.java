@@ -24,7 +24,7 @@ public class CreateIndex {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 
 		// CREATE INDEX ON address USING btree (id);
 		HashMap<String, List<String>> tablename = new HashMap<>();
@@ -53,10 +53,10 @@ public class CreateIndex {
 				tablename.put(tableName, getAllColumns(tableName));
 			}
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 
@@ -84,7 +84,7 @@ public class CreateIndex {
 				executesql(string);
 			//ViksitLogger.logMSG(this.getClass().getName(),(string);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+				
 				//e.printStackTrace();
 			}
 		}

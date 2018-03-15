@@ -36,7 +36,7 @@ public class ValidationType {
 	
 	public ValidationType() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	@XmlAttribute(name="warning", required=false)

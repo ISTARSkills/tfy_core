@@ -67,7 +67,7 @@ public class Entity implements Serializable {
 
     public Entity() {
         super();
-        // TODO Auto-generated constructor stub
+       
     }
 
 

@@ -43,7 +43,7 @@ public class OldContentService {
 						try {
 							createFolderForLessonInCourse(c.getId(), l.getId());
 						} catch (Exception e) {
-							// TODO Auto-generated catch block
+							
 							// e.printStackTrace();
 						}
 					}
@@ -127,7 +127,7 @@ public class OldContentService {
 					try {
 						allUrls.add(oldMediaPath + cmsSlide.getImage_BG().replaceAll(".png", "_desktop.png"));
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
+						
 						//e.printStackTrace();
 					}
 					// remove unnecessary path
