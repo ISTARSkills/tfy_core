@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
-import com.viksitpro.core.logger.ViksitLogger;
 import com.viksitpro.core.utilities.CustomFormElementTypes;
 import com.viksitpro.core.utilities.CustomTaskElementValidationTypes;
 import com.viksitpro.core.utilities.DBUTILS;

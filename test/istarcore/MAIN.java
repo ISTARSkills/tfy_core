@@ -4,51 +4,29 @@
 package istarcore;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.net.ServerSocket;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import javax.persistence.TypedQuery;
-
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 import com.viksitpro.core.dao.entities.Assessment;
 import com.viksitpro.core.dao.entities.AssessmentDAO;
 import com.viksitpro.core.dao.entities.AssessmentQuestion;
-import com.viksitpro.core.dao.entities.AssessmentQuestionDAO;
-import com.viksitpro.core.dao.entities.BaseHibernateDAO;
-import com.viksitpro.core.dao.entities.Campaign;
-import com.viksitpro.core.dao.entities.Cmsession;
-import com.viksitpro.core.dao.entities.CmsessionDAO;
 import com.viksitpro.core.dao.entities.Course;
 import com.viksitpro.core.dao.entities.CourseDAO;
-import com.viksitpro.core.dao.entities.IstarUser;
-import com.viksitpro.core.dao.entities.IstarUserDAO;
 import com.viksitpro.core.dao.entities.Lesson;
 import com.viksitpro.core.dao.entities.LessonDAO;
-import com.viksitpro.core.dao.entities.Module;
-import com.viksitpro.core.dao.entities.ModuleDAO;
 import com.viksitpro.core.dao.entities.Question;
-import com.viksitpro.core.dao.entities.QuestionDAO;
 import com.viksitpro.core.dao.entities.SkillObjective;
 import com.viksitpro.core.dao.entities.SkillObjectiveDAO;
-import com.viksitpro.core.dao.entities.Task;
-import com.viksitpro.core.dao.utils.user.IstarUserServices;
 import com.viksitpro.core.utilities.DBUTILS;
 
 /**

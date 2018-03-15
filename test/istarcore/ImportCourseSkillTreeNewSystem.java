@@ -1,11 +1,19 @@
 package istarcore;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.viksitpro.core.dao.entities.*;
+import com.viksitpro.core.dao.entities.Cmsession;
+import com.viksitpro.core.dao.entities.CmsessionDAO;
+import com.viksitpro.core.dao.entities.Lesson;
+import com.viksitpro.core.dao.entities.LessonDAO;
+import com.viksitpro.core.dao.entities.SkillObjective;
+import com.viksitpro.core.dao.entities.SkillObjectiveDAO;
 import com.viksitpro.core.dao.utils.HibernateSessionFactory;
 
 

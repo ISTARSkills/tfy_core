@@ -3,8 +3,6 @@ package com.viksitpro.core.utilities;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
-import com.viksitpro.core.logger.ViksitLogger;
-
 
 
 public class IStarBaseServelet extends HttpServlet {

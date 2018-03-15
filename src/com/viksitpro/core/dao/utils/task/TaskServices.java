@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -501,7 +502,7 @@ public class TaskServices {
 	@SuppressWarnings("unchecked")
 	public List<Task> getAllTaskOfActorForToday(IstarUser istarUser){
 		
-		String hql = "from Task task where actor= :actor";
+		String hql = "from Task task where actor= :actor and startDate<= :nextWeekDate";
 		
 		BaseHibernateDAO baseHibernateDAO = new BaseHibernateDAO();
 		Session session = baseHibernateDAO.getSession();
@@ -516,17 +517,20 @@ public class TaskServices {
 		}
 
 		Date endDate = new Date(startDate.getTime()+24*60*60*1000);
-		Timestamp dayStart = new Timestamp(startDate.getTime());
-		Timestamp dayEnd = new Timestamp(endDate.getTime());
+		
 
 		//ViksitLogger.logMSG(this.getClass().getName(),"Day ends at->" + dayStart);
 		//ViksitLogger.logMSG(this.getClass().getName(),"Day ends at->" + dayEnd);
 		*/
+		Timestamp todayDate = new Timestamp(System.currentTimeMillis());
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(todayDate);
+		cal.set(Calendar.DATE, 7);
+		
+		Timestamp nextweekDate = new Timestamp(cal.getTimeInMillis());
 		Query query = session.createQuery(hql);
 		query.setParameter("actor", istarUser.getId());
-		//query.setParameter("dayStart", dayStart);
-		//query.setParameter("dayEnd", dayEnd);
-		
+		query.setParameter("nextWeekDate", nextweekDate);		
 		List<Task> allTask = query.list();
 		//ViksitLogger.logMSG(this.getClass().getName(),"allTask" + allTask.size());
 		return allTask;		

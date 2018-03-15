@@ -18,4 +18,8 @@ public class ViksitLogger {
 	public static void logMSGERROR(String className,Object message) {
 		LOGGER.error(className + " --- "+ message.toString() );
 	}
+	public static void logMSG(String string) {
+		LOGGER.info(string.toString() );
+		
+	}
 }
